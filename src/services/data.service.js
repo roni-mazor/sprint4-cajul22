@@ -6,6 +6,7 @@
 const board1 = {
     "_id": "b101",
     "title": "Robot dev proj",
+    "isStared": false,
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,
     "createdBy": {
@@ -83,6 +84,7 @@ const board1 = {
 const board2 = {
     "_id": "b102",
     "title": "Robot dev proj",
+    "isStared": true,
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,
     "createdBy": {
@@ -170,6 +172,7 @@ const board2 = {
 const board3 = {
     "_id": "b103",
     "title": "Robot dev proj",
+    "isStared": false,
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,
     "createdBy": {
