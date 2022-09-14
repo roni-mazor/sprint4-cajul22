@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router'
 import { Workspace } from "./views/workspace"
 import { Board } from "./views/board"
+import './assets/styles/styles.scss'
 
 
 export function App() {

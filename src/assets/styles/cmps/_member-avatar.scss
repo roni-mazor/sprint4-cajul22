@@ -1,0 +1,19 @@
+.member-avatar {
+    background-color: lightcoral;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 0 0 -2px;
+
+    .member-avatar-img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
