@@ -7,7 +7,8 @@ const STORAGE_KEY = 'boards'
 export const boardService = {
     query,
     getById,
-    save
+    save,
+    getTaskById
 }
 
 
@@ -22,11 +23,7 @@ async function query(filterBy) {
         "_id": board._id,
         "title": board.title,
         "isStarred": board.isStarred,
-<<<<<<< HEAD
         "style": board.style
-=======
-        "style": board
->>>>>>> 024ff663fb7a21df5987b613abf4195170dd8e63
     }))
     console.log('boards from service:', myBoards)
     return myBoards
@@ -37,6 +34,13 @@ async function getById(boardId) {
     return await storageService.get(STORAGE_KEY, boardId)
 }
 
+async function getTaskById(boardId, groupId, TaskId) {
+    const board = await storageService.get(STORAGE_KEY, boardId)
+    const group = board.groups.find(group => group.id === groupId)
+    const task = group.tasks.find(task => task.id === TaskId)
+    return task
+
+}
 
 async function save(board) {
     if (board._id) {

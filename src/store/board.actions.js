@@ -24,14 +24,14 @@ export function loadBoards() {
     
 }
 
-export function updateBoard(board) {
+export function updateIsStarred(board) {
 
     return async (dispatch) => {
 
         // console.log('boards actions:', board)
         try {
             boardService.save(board)
-            dispatch({ type: 'UPDATE_BOARD', board })
+            dispatch({ type: 'SET_STARRED', board })
         } catch (err) {
             console.log('Couldnt update board: ', err);
         }

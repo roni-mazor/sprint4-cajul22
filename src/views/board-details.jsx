@@ -19,7 +19,7 @@ export const BoardDetails = () => {
         <section className="board-container">
             <BoardHeader members={board.members} />
             <main className="board-main-content">
-                {board.groups.map(group => <BoardGroup key={group.id} group={group} />)}
+                {board.groups.map(group => <BoardGroup key={group.id} group={group} boardId={board._id} />)}
             </main>
         </section>
     )

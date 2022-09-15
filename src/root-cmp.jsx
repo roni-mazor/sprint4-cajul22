@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router'
 import { Workspace } from "./views/workspace"
 import { BoardDetails } from "./views/board-details"
+import {  TaskDetails } from './views/task-details';
 import './assets/styles/styles.scss'
 
 
@@ -11,6 +12,7 @@ export function App() {
       <Routes>
         <Route path="/workspace" element={<Workspace />} />
         <Route path="/board/:boardId" element={<BoardDetails />} />
+        <Route path="/board/:boardId/:groupId/:taskId" element={<TaskDetails />} />
       </Routes>
     </div>
   )

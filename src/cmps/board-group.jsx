@@ -2,9 +2,8 @@ import { TaskPreview } from "./task-preview"
 import { BsPlusLg, BsThreeDots } from 'react-icons/bs'
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { titleUpdate } from "../store/board.actions"
 
-export const BoardGroup = ({ group }) => {
+export const BoardGroup = ({ group ,boardId}) => {
     const dispatch = useDispatch()
     const [title, setTitle] = useState(group.title)
 
@@ -12,7 +11,7 @@ export const BoardGroup = ({ group }) => {
         setTitle(target.value)
     }
     const onTitleUpdate = () => {
-        dispatch(titleUpdate(title, group.id))
+        // dispatch(titleUpdate(title, group.id))
     }
     return (
 
@@ -25,7 +24,8 @@ export const BoardGroup = ({ group }) => {
                 <button className="group-actions-btn"><BsThreeDots /></button>
             </header>
             <ul className="task-container">
-                {group.tasks.map(task => <TaskPreview key={task.id} task={task} />)}
+                {group.tasks.map(task => <TaskPreview
+                 key={task.id} task={task} groupId={group.id} boardId={boardId} />)}
             </ul>
             <section className="task-compose">
                 <div className="compose-btn">

@@ -11,7 +11,7 @@ export function boardReducer(state = initialState, action) {
             return { ...state, boards: action.boards }
         case 'SET_BOARD':
             return { ...state, board: action.board }
-        case 'UPDATE_BOARD':
+        case 'SET_STARRED':
             return {
                 ...state,
                 boards: state.boards.map(board => board._id === action.board._id ? action.board : board)
