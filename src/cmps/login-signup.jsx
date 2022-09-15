@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { userService } from '../services/user.service'
 import { ImgUploader } from '../cmps/img-uploader'
 
 export function LoginSignup(props) {
+
+    const dispatch = useDispatch()
+
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(false)
     const [users, setUsers] = useState([])
 
-    useEffect(async () => {
-        const users = await userService.getUsers()
-        setUsers(users)
+    useEffect(() => {
+        userService.getUsers()
+            .then(setUsers)
     }, [])
 
     const clearState = () => {
@@ -26,14 +30,15 @@ export function LoginSignup(props) {
     const onLogin = (ev = null) => {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
-        props.onLogin(credentials)
+        dispatch(props.onLogin(credentials))
         clearState()
     }
 
-    const onSignup = (ev = null) => {
+    const onSubmit = (ev = null) => {
         if (ev) ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
-        props.onSignup(credentials)
+        console.log(credentials)
+        dispatch(props.onSignup(credentials))
         clearState()
     }
 
@@ -43,7 +48,7 @@ export function LoginSignup(props) {
     const onUploaded = (imgUrl) => {
         setCredentials({ ...credentials, imgUrl })
     }
-    
+
     return (
         <div className="login-page">
             <p>
@@ -61,7 +66,7 @@ export function LoginSignup(props) {
                 <button>Login!</button>
             </form>}
             <div className="signup-section">
-                {isSignup && <form className="signup-form" onSubmit={onSignup}>
+                {isSignup && <form className="signup-form" onSubmit={onSubmit}>
                     <input
                         type="text"
                         name="fullname"
@@ -86,7 +91,7 @@ export function LoginSignup(props) {
                         onChange={handleChange}
                         required
                     />
-                    <ImgUploader onUploaded={onUploaded}/>                    
+                    <ImgUploader onUploaded={onUploaded} />
                     <button >Signup!</button>
                 </form>}
             </div>

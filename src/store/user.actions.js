@@ -44,19 +44,26 @@ export function onLogin(credentials) {
 
 
 export function onSignup(credentials) {
-    return async (dispatch) => {
-        try {
-            const user = await userService.signup(credentials)
-            dispatch({
-                type: 'SET_USER',
-                user
-            })
-        } catch (err) {
-            showErrorMsg('Cannot signup')
-            console.log('Cannot signup', err)
-        }
-
+    console.log('Hi!')
+    return (dispatch) => {
+        console.log('Hi!')
+        userService.signup(credentials)
+        .then(console.log('Hi!')
+        )
     }
+
+    // return async (dispatch) => {        
+    //     try {
+    //         const user = await userService.signup(credentials)
+    //         dispatch({
+    //             type: 'SET_USER',
+    //             user
+    //         })
+    //     } catch (err) {
+    //         showErrorMsg('Cannot signup')
+    //         console.log('Cannot signup', err)
+    //     }
+    // }
 }
 
 export function onLogout() {
