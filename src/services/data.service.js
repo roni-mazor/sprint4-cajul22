@@ -124,33 +124,87 @@ const board2 = {
     ],
     "groups": [
         {
-            "id": "g101",
+            "id": "g10431",
             "title": "Group 1",
             "archivedAt": 1589983468418,
             "tasks": [
                 {
-                    "id": "c101",
+                    "id": "c10431",
                     "title": "Replace logo"
                 },
                 {
-                    "id": "c102",
+                    "id": "c102121",
                     "title": "Add Samples"
                 }
             ],
             "style": {}
         },
         {
-            "id": "g102",
+            "id": "g1042",
             "title": "Group 2",
             "tasks": [
                 {
-                    "id": "c103",
+                    "id": "c1033",
                     "title": "Do that",
                     "archivedAt": 1589983468418,
                 }
             ],
             "style": {}
-        }
+        },{
+            "id": "g1031",
+            "title": "Group 1",
+            "archivedAt": 1589983468418,
+            "tasks": [
+                {
+                    "id": "c1012",
+                    "title": "Replace logo"
+                },
+                {
+                    "id": "c1011",
+                    "title": "Add Samples"
+                }
+            ],
+            "style": {}
+        },{
+            "id": "g120",
+            "title": "Group 1",
+            "archivedAt": 1589983468418,
+            "tasks": [
+                {
+                    "id": "c401",
+                    "title": "Replace logo"
+                },
+                {
+                    "id": "c402",
+                    "title": "Add Samples"
+                }
+            ],
+            "style": {}
+        },{
+            "id": "g110",
+            "title": "Group 1",
+            "archivedAt": 1589983468418,
+            "tasks": [
+                {
+                    "id": "c205",
+                    "title": "Replace logo"
+                },
+                {
+                    "id": "c204",
+                    "title": "Add Samples"
+                }, {
+                    "id": "c202",
+                    "title": "Replace logo"
+                }, {
+                    "id": "c203",
+                    "title": "Replace logo"
+                }, {
+                    "id": "c201",
+                    "title": "Replace logo"
+                },
+            ],
+            "style": {}
+        },
     ],
     "activities": [
         {
