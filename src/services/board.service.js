@@ -21,7 +21,7 @@ async function query(filterBy) {
         "_id": board._id,
         "title": board.title,
         "isStarred": board.isStarred,
-        "style":board
+        "style": board
     }))
     console.log('boards from service:', myBoards)
     return myBoards
@@ -31,3 +31,4 @@ async function query(filterBy) {
 async function getById(boardId) {
     return await storageService.get(STORAGE_KEY, boardId)
 }
+
