@@ -9,6 +9,7 @@ export const boardService = {
     query,
     getById,
     save,
+    getTaskById,
     createTask
 }
 
@@ -35,6 +36,13 @@ async function getById(boardId) {
     return await storageService.get(STORAGE_KEY, boardId)
 }
 
+async function getTaskById(boardId, groupId, TaskId) {
+    const board = await storageService.get(STORAGE_KEY, boardId)
+    const group = board.groups.find(group => group.id === groupId)
+    const task = group.tasks.find(task => task.id === TaskId)
+    return task
+
+}
 
 async function save(board) {
     if (board._id) {

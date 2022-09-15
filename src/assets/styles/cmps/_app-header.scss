@@ -2,4 +2,15 @@
     background-color: #026aa7;
     height: 45px;
     width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo{
+        margin-inline-start: 10px;
+        cursor: pointer;
+    }
+    .log-sig{
+        margin-inline-end: 10px;
+        cursor: pointer;
+    }
 }

@@ -20,13 +20,25 @@ export function loadBoards() {
         }
 
     }
+}
 
+export function updateIsStarred(board) {
 
+    return async (dispatch) => {
+
+        // console.log('boards actions:', board)
+        try {
+            boardService.save(board)
+            dispatch({ type: 'SET_STARRED', board })
+        } catch (err) {
+            console.log('Couldnt update board: ', err);
+        }
+    }
 }
 
 export function saveGroup(group) {
 
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
             board.groups = board.groups.map(g => {
@@ -34,11 +46,9 @@ export function saveGroup(group) {
                 else return g
             })
             boardService.save(board)
-            console.log(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
             console.log('Couldnt update board: ', err);
         }
     }
 }
-

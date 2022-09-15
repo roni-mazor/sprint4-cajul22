@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { saveGroup } from "../store/board.actions"
 import { TaskCompose } from "./task-compose"
 
-export const BoardGroup = ({ group }) => {
+export const BoardGroup = ({ group ,boardId}) => {
     const dispatch = useDispatch()
     const [title, setTitle] = useState(group.title)
 
@@ -36,7 +36,8 @@ export const BoardGroup = ({ group }) => {
                 <button className="group-actions-btn"><BsThreeDots /></button>
             </header>
             <ul className="task-container">
-                {group.tasks.map(task => <TaskPreview key={task.id} task={task} />)}
+                {group.tasks.map(task => <TaskPreview
+                 key={task.id} task={task} groupId={group.id} boardId={boardId} />)}
             </ul>
             <TaskCompose addTask={addTask} />
 
