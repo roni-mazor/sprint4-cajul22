@@ -1,4 +1,4 @@
-export const Task = ({ task }) => {
+export const TaskPreview = ({ task }) => {
 
 
     return (

@@ -11,7 +11,7 @@ export const boardService = {
 
 
 async function query(filterBy) {
-    const myBoards = await storageService.query(STORAGE_KEY)
+    let myBoards = await storageService.query(STORAGE_KEY)
 
     if (!myBoards || !myBoards.length) {
         storageService.postMany(STORAGE_KEY, boards)
@@ -24,5 +24,5 @@ async function query(filterBy) {
 
 function getById(boardId) {
     const b = boards.find(board => board._id === boardId)
-    return b.board
+    return b
 }

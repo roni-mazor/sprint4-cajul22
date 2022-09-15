@@ -249,7 +249,7 @@ const board3 = {
 }
 
 export const boards = [
-    { _id: 'b101', board: board1 },
-    { _id: 'b102', board: board2 },
-    { _id: 'b103', board: board3 },
+    { ...board1 },
+    { ...board2 },
+    { ...board3 },
 ]

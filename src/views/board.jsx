@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
-import { BoardMainHeader } from "../cmps/board-main-header"
-import { Group } from "../cmps/group"
+import { BoardHeader } from "../cmps/board-header"
+import { BoardGroup } from "../cmps/board-group"
 import { loadBoard } from "../store/board.actions"
 
 export const Board = () => {
@@ -17,9 +17,9 @@ export const Board = () => {
 
     if (board) return (
         <section className="board-container">
-            <BoardMainHeader members={board.members} />
+            <BoardHeader members={board.members} />
             <main className="board-main-content">
-                {board.groups.map(group => <Group group={group} />)}
+                {board.groups.map(group => <BoardGroup group={group} />)}
             </main>
         </section>
     )

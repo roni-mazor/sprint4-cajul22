@@ -1,6 +1,6 @@
 import { MemberPreview } from "./member-preview"
 
-export const BoardMainHeader = ({ members }) => {
+export const BoardHeader = ({ members }) => {
 
 
     return (
