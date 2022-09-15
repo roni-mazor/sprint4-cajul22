@@ -1,0 +1,80 @@
+.group-content {
+    width: 272px;
+    padding: 0 4px;
+    background-color: #ebecf0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    position: relative;
+    white-space: normal;
+    margin-inline-end: 8px;
+
+    .group-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+
+        .group-actions-btn {
+            position: absolute;
+            color: #5e6c84;
+            background-color: transparent;
+            border: none;
+            right: 6px;
+
+            svg {
+                height: 16px;
+                width: 16px;
+            }
+        }
+
+        input {
+            box-sizing: border-box;
+            font-size: 16px;
+            background: #0000;
+            border: 0;
+            border-radius: 3px;
+            color: #172b4d;
+            font-weight: 600;
+            height: 28px;
+            outline: 0;
+            padding: 4px 8px 4px 12px;
+            width: 100%;
+
+            &:focus {
+                box-shadow: inset 0 0 0 1.5px var(--ds-border-input, #1946b6);
+                background: #fff;
+            }
+        }
+    }
+
+    .task-compose {
+        align-items: center;
+        border-radius: 3px;
+        margin: 2px 0 8px 4px;
+        padding: 4px 8px;
+        position: relative;
+        white-space: nowrap;
+        box-sizing: border-box;
+
+
+        .compose-btn {
+            color: #5e6c84;
+            border: none;
+            background-color: transparent;
+            display: flex;
+            width: 100%;
+            height: 20px;
+        }
+
+        &:hover {
+            background-color: darken(#ebecf0, 6%)
+        }
+    }
+
+    .task-container {
+        list-style: none;
+    }
+}
