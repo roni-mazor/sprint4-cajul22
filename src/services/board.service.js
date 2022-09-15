@@ -1,5 +1,6 @@
 import { storageService } from "./async-storage.service"
 import { boards } from "./data.service"
+import { utilService } from "./util.service"
 
 const STORAGE_KEY = 'boards'
 
@@ -7,7 +8,8 @@ const STORAGE_KEY = 'boards'
 export const boardService = {
     query,
     getById,
-    save
+    save,
+    createTask
 }
 
 
@@ -41,5 +43,12 @@ async function save(board) {
         board.createdAt = Date.now()
         // board.inStock = true
         return storageService.post(STORAGE_KEY, board)
+    }
+}
+
+function createTask(title) {
+    return {
+        "id": utilService.makeId(),
+        "title": title
     }
 }

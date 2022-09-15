@@ -5,17 +5,14 @@ const initialState = {
     isLoading: false
 }
 export function boardReducer(state = initialState, action) {
-
+    console.log('setting')
     switch (action.type) {
         case 'SET_BOARDS':
-            return { ...state, boards: action.boards }
+            return { ...state, boards: action.board }
         case 'SET_BOARD':
-            return { ...state, board: action.board }
+            return { ...state, board: { ...action.board } }
         case 'UPDATE_BOARD':
-            return {
-                ...state,
-                boards: state.boards.map(board => board._id === action.board._id ? action.board : board)
-            }
+            return { ...state, board: { ...action.board } }
 
         default:
             return state

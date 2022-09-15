@@ -14,7 +14,7 @@ export const BoardDetails = () => {
         dispatch(loadBoard(params.boardId))
     }, [])
 
-
+    console.log(board)
     if (board) return (
         <section className="board-container">
             <BoardHeader members={board.members} />
