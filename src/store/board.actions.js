@@ -20,6 +20,7 @@ export function loadBoards() {
         }
 
     }
+}
 
 
 export function updateIsStarred(board) {
