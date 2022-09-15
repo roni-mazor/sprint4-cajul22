@@ -1,8 +1,8 @@
 export const TaskPreview = ({ task }) => {
 
-
+    console.log(task)
     return (
-        <li key={task.id}>
+        <li className="task-preview">
             {task.title}
         </li>
     )

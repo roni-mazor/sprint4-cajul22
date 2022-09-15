@@ -22,7 +22,6 @@ async function query(filterBy) {
 }
 
 
-function getById(boardId) {
-    const b = boards.find(board => board._id === boardId)
-    return b
+async function getById(boardId) {
+    return await storageService.get(STORAGE_KEY, boardId)
 }
