@@ -1,5 +1,6 @@
 import { storageService } from "./async-storage.service"
 import { boards } from "./data.service"
+import { utilService } from "./util.service"
 
 const STORAGE_KEY = 'boards'
 
@@ -7,7 +8,8 @@ const STORAGE_KEY = 'boards'
 export const boardService = {
     query,
     getById,
-    save
+    save,
+    createTask
 }
 
 
@@ -22,11 +24,7 @@ async function query(filterBy) {
         "_id": board._id,
         "title": board.title,
         "isStarred": board.isStarred,
-<<<<<<< HEAD
         "style": board.style
-=======
-        "style": board
->>>>>>> 024ff663fb7a21df5987b613abf4195170dd8e63
     }))
     console.log('boards from service:', myBoards)
     return myBoards
@@ -45,5 +43,12 @@ async function save(board) {
         board.createdAt = Date.now()
         // board.inStock = true
         return storageService.post(STORAGE_KEY, board)
+    }
+}
+
+function createTask(title) {
+    return {
+        "id": utilService.makeId(),
+        "title": title
     }
 }

@@ -20,7 +20,7 @@ export const Workspace = () => {
         const board = await boardService.getById(boardId)
         // console.log('board:', board)
         board.isStarred = !board.isStarred
-        dispatch(updateBoard(board))
+        // dispatch(updateBoard(board))
         // dispatch(loadBoards())
     }
 

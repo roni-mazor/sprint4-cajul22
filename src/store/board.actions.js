@@ -21,19 +21,24 @@ export function loadBoards() {
 
     }
 
-    
+
 }
 
-export function updateBoard(board) {
+export function saveGroup(group) {
 
-    return async (dispatch) => {
-
-        // console.log('boards actions:', board)
+    return (dispatch, getState) => {
         try {
+            const board = getState().boardModule.board
+            board.groups = board.groups.map(g => {
+                if (g.id === group.id) return group
+                else return g
+            })
             boardService.save(board)
-            dispatch({ type: 'UPDATE_BOARD', board })
+            console.log(board)
+            dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
             console.log('Couldnt update board: ', err);
         }
     }
 }
+
