@@ -8,7 +8,7 @@ export function boardReducer(state = initialState, action) {
     console.log('setting')
     switch (action.type) {
         case 'SET_BOARDS':
-            return { ...state, boards: action.board }
+            return { ...state, boards: action.boards }
         case 'SET_BOARD':
             return { ...state, board: { ...action.board } }
         case 'UPDATE_BOARD':
