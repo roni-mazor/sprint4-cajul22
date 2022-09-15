@@ -20,6 +20,8 @@ export function loadBoards() {
         }
 
     }
+
+    
 }
 
 export function updateBoard(board) {
