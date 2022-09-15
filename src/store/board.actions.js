@@ -52,3 +52,15 @@ export function saveGroup(group) {
         }
     }
 }
+export function saveBoard(board) {
+
+    return async (dispatch,) => {
+        try {
+
+            boardService.save(board)
+            dispatch({ type: 'SET_BOARD', board })
+        } catch (err) {
+            console.log('Couldnt update board: ', err);
+        }
+    }
+}
