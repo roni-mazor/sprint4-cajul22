@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { IoMdList } from 'react-icons/io'
@@ -9,22 +10,22 @@ import { boardService } from "../services/board.service"
 
 export const TaskDetails = () => {
     const params = useParams()
+
     // const dispatch = useDispatch()
     const { boardId, groupId, taskId } = params
-    // const task = useSelector(state => state.boardModule.board)
+    const board = useSelector(state => state.boardModule.board)
     const [task, setTask] = useState()
 
     useEffect(() => {
         loadTask()
     }, [])
 
-    const loadTask = async () => {
-        try {
-            const currTask = await boardService.getTaskById(boardId, groupId, taskId)
-            setTask(currTask)
-        } catch (err) {
-            console.log('Couldnt get task:', err);
-        }
+    const loadTask = () => {
+
+        const group = board.groups.find(group => group.id === groupId)
+        const currTask = group.tasks.find(task => task.id === taskId)
+        // const currTask =  boardService.getTaskById(boardId, groupId, taskId)
+        setTask(currTask)
     }
 
     // console.log('task:', task)

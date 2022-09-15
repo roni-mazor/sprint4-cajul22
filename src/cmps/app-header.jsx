@@ -1,8 +1,14 @@
+import { Link } from "react-router-dom"
+
 export const AppHeader = () => {
     return (
         <header className="app-header">
-            <h3 className="logo">Jello</h3>
-            <h4 className="log-sig">LOGIN/SIGNUP</h4>
+            <Link to="/workspace">
+                <h3 className="logo">Jello</h3>
+            </Link>
+            <Link to="/login">
+                <h4 className="log-sig">LOGIN/SIGNUP</h4>
+            </Link>
         </header>
     )
 }

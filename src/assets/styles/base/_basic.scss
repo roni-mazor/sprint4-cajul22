@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-::selection {
-    // background-color: $clr1;
-    // color: $clr6;
-}
 
 html {
     font-family: montserrat;
@@ -14,34 +10,19 @@ html {
 }
 
 body {
-    font-size: rem(18px);
-    margin: 0;
     max-width: 1024px;
-    margin: auto;
+    margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: caveat;
-    margin: 0 0 0.6em;
-    line-height: 1;
-}
-
-
-section, main, footer {
-    padding: 5px;
-}
 
 img {
     width: 100%;
 }
 
-p {
-    margin: 0 0 1em;
-}
-
-a {
+a,
+a:hover,
+a:focus,
+a:active {
     text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
+    color: inherit;
 }

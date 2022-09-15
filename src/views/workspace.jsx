@@ -23,7 +23,7 @@ export const Workspace = () => {
         dispatch(updateIsStarred(board))
         // dispatch(loadBoards())
     }
- 
+ console.log('boards:', boards)
     if (!boards) return <h1>Loading...</h1>
     return (
         <React.Fragment>
