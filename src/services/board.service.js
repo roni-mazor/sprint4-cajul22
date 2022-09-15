@@ -17,8 +17,14 @@ async function query(filterBy) {
         storageService.postMany(STORAGE_KEY, boards)
         myBoards = boards
     }
-    console.log('boards from service:', boards)
-    return boards
+    myBoards = myBoards.map(board => ({
+        "_id": board._id,
+        "title": board.title,
+        "isStarred": board.isStarred,
+        "style":board
+    }))
+    console.log('boards from service:', myBoards)
+    return myBoards
 }
 
 

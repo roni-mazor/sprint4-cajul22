@@ -1,0 +1,21 @@
+.board-preview {
+    cursor: pointer;
+    width: 195px;
+    height: 95px;
+    border-radius: 10px;
+    background-color: cadetblue;
+    padding: 1px;
+    position: relative;
+
+    
+    h1 {
+        margin-inline-start: 5px;
+    }
+
+    span {
+        position: absolute;
+        bottom: 3px;
+        right: 5px;
+    }
+
+}

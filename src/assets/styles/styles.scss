@@ -1,3 +1,17 @@
+// SETUP
+
+
+// BASE
+@import 'base/basic';
+
+// VIEWS
+@import'views/workspace.scss';
+
+// CMPS
+@import './cmps/app-header';
+@import './cmps/board-list';
+@import './cmps/board-preview';
 @import './cmps/member-avatar';
-@import './cmps/_group-content.scss';
 @import './cmps/_board-main-content.scss';
+@import './cmps/_group-content.scss';
+@import './cmps/_group-content.scss';
