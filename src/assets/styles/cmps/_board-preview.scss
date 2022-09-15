@@ -6,16 +6,28 @@
     background-color: cadetblue;
     padding: 1px;
     position: relative;
+    color: rgb(47, 45, 45);
 
-    
+    &:hover div {
+        opacity: 100;
+        transition: opacity .5s;
+    }
+
     h1 {
         margin-inline-start: 5px;
     }
 
-    span {
+    div {
         position: absolute;
         bottom: 3px;
         right: 5px;
+        z-index: 20;
+        opacity: 0;
+        transition: opacity .5s;
+
+        &.starred {
+            color: gold;
+        }
     }
 
 }

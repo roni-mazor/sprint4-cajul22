@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { AppHeader } from "../cmps/app-header"
 import { BoardList } from "../cmps/board-list"
-import { loadBoards } from "../store/board.actions"
+import { boardService } from "../services/board.service"
+import { loadBoards, updateBoard } from "../store/board.actions"
 
 export const Workspace = () => {
 
@@ -14,12 +15,22 @@ export const Workspace = () => {
         dispatch(loadBoards())
     }, [])
 
+    const onToggleIsStarred = async (boardId) => {
+        // console.log('boardId:', boardId)
+        const board = await boardService.getById(boardId)
+        // console.log('board:', board)
+        board.isStarred = !board.isStarred
+        dispatch(updateBoard(board))
+        // dispatch(loadBoards())
+    }
+
     if (!boards) return <h1>Loading...</h1>
     return (
         <React.Fragment>
-            <AppHeader/>
+            <AppHeader />
             <section className="workspace">
-                <BoardList boards={boards} />
+                <BoardList boards={boards}
+                    onToggleIsStarred={onToggleIsStarred} />
             </section>
         </React.Fragment>
     )

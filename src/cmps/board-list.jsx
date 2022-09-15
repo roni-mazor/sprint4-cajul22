@@ -3,17 +3,18 @@ import { AiOutlineClockCircle, AiOutlineStar } from 'react-icons/ai'
 
 import { BoardPreview } from "./board-preview"
 
-export const BoardList = ({ boards }) => {
+export const BoardList = ({ boards,onToggleIsStarred }) => {
     return (
 
         <React.Fragment>
             <section className="board-list">
                 <h3 > <AiOutlineStar /> Stared Boards</h3>
-                <div className="board-list-container">
+                <div className="board-list-container starred">
 
                     {boards.map(board => board.isStarred && <BoardPreview
                         key={board._id}
                         board={board}
+                        onToggleIsStarred={onToggleIsStarred}
                     />)}
                 </div>
             </section>
@@ -24,6 +25,7 @@ export const BoardList = ({ boards }) => {
                     {boards.map(board => !board.isStarred && <BoardPreview
                         key={board._id}
                         board={board}
+                        onToggleIsStarred={onToggleIsStarred}
                     />)}
                 </div>
             </section>
