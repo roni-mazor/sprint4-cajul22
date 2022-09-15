@@ -66,7 +66,7 @@ export function LoginSignup(props) {
                 <button>Login!</button>
             </form>}
             <div className="signup-section">
-                {isSignup && <form className="signup-form" onSubmit={onSubmit}>
+                {isSignup && <form className="signup-form flex column" onSubmit={onSubmit}>
                     <input
                         type="text"
                         name="fullname"

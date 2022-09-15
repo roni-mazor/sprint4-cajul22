@@ -3,12 +3,16 @@
 
 // BASE
 @import 'base/basic';
+@import 'base/helpers';
 
 // VIEWS
-@import'views/workspace.scss';
+@import './views/home';
+@import'./views/workspace.scss';
+@import './views/login-page';
 
 // CMPS
 @import './cmps/app-header';
+@import './cmps/login-signup';
 @import './cmps/board-list';
 @import './cmps/board-preview';
 @import './cmps/member-avatar';

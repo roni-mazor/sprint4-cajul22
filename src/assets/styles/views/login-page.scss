@@ -1,0 +1,22 @@
+.login-container {
+
+    .login-logo {
+        width: 25px;
+    }
+
+    .login-screen-img.left {
+        max-width: 30%;
+        flex: 1;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+
+    .login-screen-img.right {
+        max-width: 30%;
+        flex: 1;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}

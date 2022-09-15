@@ -2,7 +2,7 @@ import { TaskPreview } from "./task-preview"
 import { BsPlusLg, BsThreeDots } from 'react-icons/bs'
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { titleUpdate } from "../store/board.actions"
+// import { titleUpdate } from "../store/board.actions"
 
 export const BoardGroup = ({ group }) => {
     const dispatch = useDispatch()
@@ -12,7 +12,7 @@ export const BoardGroup = ({ group }) => {
         setTitle(target.value)
     }
     const onTitleUpdate = () => {
-        dispatch(titleUpdate(title, group.id))
+        // dispatch(titleUpdate(title, group.id))
     }
     return (
 

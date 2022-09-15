@@ -22,11 +22,7 @@ async function query(filterBy) {
         "_id": board._id,
         "title": board.title,
         "isStarred": board.isStarred,
-<<<<<<< HEAD
         "style": board.style
-=======
-        "style": board
->>>>>>> 024ff663fb7a21df5987b613abf4195170dd8e63
     }))
     console.log('boards from service:', myBoards)
     return myBoards
