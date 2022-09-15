@@ -4,13 +4,14 @@ const initialState = {
     filterBy: null,
     isLoading: false
 }
+
 export function boardReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_BOARDS':
-            return { ...state, boards: action.boards }
+            return { ...state, boards: action.board }
         case 'SET_BOARD':
-            return { ...state, board: action.board }
+            return { ...state, board: { ...action.board } }
         case 'SET_STARRED':
             return {
                 ...state,
@@ -19,7 +20,5 @@ export function boardReducer(state = initialState, action) {
 
         default:
             return state
-
-    }
-
+        }
 }

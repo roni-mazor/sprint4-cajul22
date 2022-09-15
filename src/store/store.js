@@ -5,9 +5,11 @@ import thunk from 'redux-thunk'
 
 
 import { boardReducer } from './board.reducer';
+import { userReducer } from './user.reducer';
 
 const rootReducer = combineReducers({
     boardModule: boardReducer,
+    userModule: userReducer
 
 })
 
