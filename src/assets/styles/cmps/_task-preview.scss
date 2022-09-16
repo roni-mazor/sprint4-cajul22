@@ -13,10 +13,36 @@
 
     .labels-container {
         display: flex;
+        gap: 3px;
+        flex-wrap: wrap;
+        margin-block-end: 4px;
 
-        &>* {
-            width: 10px;
-            height: 40px;
+        .label-btn {
+            width: 40px;
+            height: 8px;
+            border-radius: 4px;
+            padding: 0 8px;
+            display: inline-block;
+            position: relative;
+            box-sizing: border-box;
+            line-height: 16px;
+            color: #172b4d;
+            font-size: 12px;
+            font-weight: 400;
+            text-align: left;
+            vertical-align: middle;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            transition: 0.6s;
+
+            &.open {
+                min-width: 56px;
+                height: 16px;
+                transition: 0.6s;
+            }
+
+
         }
     }
 
