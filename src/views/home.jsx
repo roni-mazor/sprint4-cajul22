@@ -1,13 +1,24 @@
-import { NavLink } from "react-router-dom"
+import { useState, useEffect } from 'react'
+import { NavLink, useNavigate } from "react-router-dom"
+import { userService } from "../services/user.service"
 import { SiTrello } from 'react-icons/si'
 import HeroImg from '../assets/img/home-hero.png'
 
 export function Home() {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(userService.getLoggedinUser)
+    const navigate = useNavigate()
+
+    useEffect(() => {      
+      if(isLoggedIn) navigate('/workspace')
+    }, [])
+
     return <section className="home-container">
         <header className="home-header-container flex align-center">
             <NavLink to="/workspace" className="home-logo flex align-center"><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></NavLink>
+            <span></span>
             <NavLink to="/login" className="home-login">Log in</NavLink>
-            <NavLink to="/signup" className="home-signup">Sign up</NavLink>
+            <NavLink to="/signup" className="home-signup flex align-center">Get Jello for free</NavLink>
         </header>
         <div className="hero-container flex align-center">
             <section className="hero-content flex column justify-content">

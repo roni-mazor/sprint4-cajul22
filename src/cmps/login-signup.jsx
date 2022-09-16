@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import { userService } from '../services/user.service'
 import GuestImg from '../assets/img/guest-img.svg'
@@ -8,6 +8,7 @@ import { ImgUploader } from '../cmps/img-uploader'
 export function LoginSignup(props) {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(props.isSignup)
@@ -29,11 +30,12 @@ export function LoginSignup(props) {
         setCredentials({ ...credentials, [field]: value })
     }
 
-    const onLogin = (ev = null) => {
+    const onSubmitLogin = (ev = null) => {
+        console.log('credentials:', credentials)        
         if (ev) ev.preventDefault()
         if (!credentials.username) return
         dispatch(props.onLogin(credentials))
-        clearState()
+        navigate('/workspace')
     }
 
     const onSubmit = (ev = null) => {
@@ -41,10 +43,11 @@ export function LoginSignup(props) {
         if (!credentials.username || !credentials.password || !credentials.fullname) return
         console.log(credentials)
         dispatch(props.onSignup(credentials))
-        clearState()
+        navigate('/workspace')
     }
 
     const toggleSignup = () => {
+        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
         setIsSignup(!isSignup)
     }
     const onUploaded = (imgUrl) => {
@@ -54,36 +57,31 @@ export function LoginSignup(props) {
     return (
         <section className='login-signup-container'>
             <div className="login-section">
-                {!isSignup && <form className="login-form flex column" onSubmit={onLogin}>
-                    {/* <select
-                    name="username"
-                    value={credentials.username}
-                    onChange={handleChange}
-                >
-                    <option value="">Select User</option>
-                    {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-                </select> */}
-                    <h1>Login to Jello</h1>
-                    <input
-                        type="text"
-                        name="fullname"
-                        value={credentials.fullname}
-                        placeholder="Full name"
-                        onChange={handleChange}
-                        required
-                    />
+                {!isSignup && <form className="login-form flex column" onSubmit={onSubmitLogin}>
+                    <h1>Login in to Jello</h1>
                     <input
                         type="text"
                         name="username"
                         value={credentials.username}
-                        placeholder="User name"
+                        placeholder="User Name"
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        value={credentials.password}
+                        placeholder="Password"
                         onChange={handleChange}
                         required
                     />
                     <button>Login</button>
+                    <span>OR</span>
+                    <NavLink className="as-guest-btn flex align-center" to="/workspace"><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
+                    <hr />
                     <div className='login-bottom-navigation flex align-center'>
                         <NavLink to="/">Back Home</NavLink>
-                        <NavLink onClick={toggleSignup}>Log In</NavLink>
+                        <NavLink onClick={toggleSignup}>Sign Up</NavLink>
                     </div>
                 </form>}
             </div>
