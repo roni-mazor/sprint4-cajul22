@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
-import { loadBoard } from "../store/board.actions"
+import { loadBoard, saveBoard } from "../store/board.actions"
 import { AppHeader } from "../cmps/app-header"
+import { TxtCompose } from "../cmps/txt-compose"
+import { boardService } from "../services/board.service"
 
 export const BoardDetails = () => {
     const params = useParams()
@@ -15,13 +17,24 @@ export const BoardDetails = () => {
         dispatch(loadBoard(params.boardId))
     }, [])
 
+    const onCreateGroup = (txt) => {
+        console.log(txt)
+        const group = boardService.createGroup(txt)
+        const b = { ...board }
+        b.groups.push(group)
+        dispatch(saveBoard(b))
+    }
+
     console.log(board)
     if (board) return (
         <section className="board-container">
-            <AppHeader/>
-            <BoardHeader members={board.members} />
+            <AppHeader />
+            <BoardHeader name={board.title} members={board.members} />
             <main className="board-main-content">
                 {board.groups.map(group => <BoardGroup key={group.id} group={group} boardId={board._id} />)}
+                <section className="group-content group-compose">
+                    <TxtCompose type={'list'} returnTxt={onCreateGroup} />
+                </section>
             </main>
         </section>
     )
