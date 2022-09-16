@@ -5,7 +5,7 @@
 
 const board1 = {
     "_id": "b101",
-    "title": "Robot dev proj",
+    "title": "labbbbels",
     "isStarred": false,
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,
