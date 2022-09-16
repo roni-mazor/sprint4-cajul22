@@ -1,11 +1,12 @@
 .app-header {
+    padding: 6px 4px;
     background-color: #026aa7;
-    height: 45px;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: 35px;
     color: whitesmoke;
+
+    & .header-logo{
+        width: 50px;
+    }
 
     &.board {
         background-color: rgba(0, 0, 0, 0.744);
@@ -24,7 +25,6 @@
         cursor: pointer;
 
         span {
-            // width: 20px;
             margin-inline-end: 5px;
         }
     }
@@ -32,9 +32,7 @@
     .log-sig {
         margin-top: 3px;
         margin-bottom: 0;
-        margin-inline-end: 10px;
-        font-size: 1.9em;
-        // height: 45px;
+        font-size: 1.4em;
         cursor: pointer;
     }
 }
