@@ -19,7 +19,7 @@ export function App() {
         <Route path="/board/:boardId" element={<BoardDetails />} />
         <Route path="/board/:boardId/:groupId/:taskId" element={<TaskDetails />} />
       </Routes>
-    </div>
+    </div >
   )
 }
 
