@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { userService } from '../services/user.service'
 import { ImgUploader } from '../cmps/img-uploader'
 
-export function LoginSignup(props) {
+export function LoginSignup(props) {    
 
     const dispatch = useDispatch()
 
