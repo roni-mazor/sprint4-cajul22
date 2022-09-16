@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useParams } from "react-router-dom"
+import { Outlet, useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
 import { loadBoard } from "../store/board.actions"
@@ -18,11 +18,12 @@ export const BoardDetails = () => {
     console.log(board)
     if (board) return (
         <section className="board-container">
-            <AppHeader/>
+            <AppHeader board={board} />
             <BoardHeader members={board.members} />
             <main className="board-main-content">
                 {board.groups.map(group => <BoardGroup key={group.id} group={group} boardId={board._id} />)}
             </main>
+            <Outlet />
         </section>
     )
 }
