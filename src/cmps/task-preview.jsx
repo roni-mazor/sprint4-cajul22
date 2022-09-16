@@ -12,7 +12,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                 {task.labelIds.map((id) => {
                     const label = labels.find(l => l.id === id)
                     console.log(label)
-                    return <div style={{ backgroundColor: label.color }} ></div>
+                    return <div key={id} style={{ backgroundColor: label.color }} ></div>
                 })}
             </section>
             <p>{task.title}</p>

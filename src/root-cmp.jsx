@@ -12,12 +12,13 @@ export function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/workspace" element={<Workspace />} />
-        <Route path="/login" element={<LoginPage isSignup={false}/>} />
-        <Route path="/signup" element={<LoginPage isSignup={true}/>} />
-        <Route path="/board/:boardId" element={<BoardDetails />} />
-        <Route path="/board/:boardId/:groupId/:taskId" element={<TaskDetails />} />
+        <Route path="" element={<Home />} />
+        <Route path="workspace" element={<Workspace />} />
+        <Route path="login" element={<LoginPage isSignup={false} />} />
+        <Route path="signup" element={<LoginPage isSignup={true} />} />
+        <Route path="board/:boardId" element={<BoardDetails />} >
+          <Route path=":groupId/:taskId" element={<TaskDetails />} />
+        </Route>
       </Routes>
     </div >
   )

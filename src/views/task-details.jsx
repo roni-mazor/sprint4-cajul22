@@ -5,12 +5,15 @@ import { useNavigate, useParams } from "react-router-dom"
 import { IoMdClose } from 'react-icons/io'
 
 
-import { TaskTitle } from "../cmps/task-details/task-title"
-import { TaskDescription } from "../cmps/task-details/task-description"
-import { TaskAttachments } from "../cmps/task-details/task-attachments"
-import { TaskActivities } from "../cmps/task-details/task-activities"
+import { TaskTitle } from "../cmps/task/task-title"
+import { TaskDescription } from "../cmps/task/task-description"
+import { TaskAttachments } from "../cmps/task/task-attachments"
+import { TaskActivities } from "../cmps/task/task-activities"
 import { LabelPicker } from "../cmps/label-picker"
 import { saveTask } from "../store/board.actions"
+import { uploadService } from "../services/upload.service"
+import { ImgUploader } from "../cmps/img-uploader"
+import { utilService } from "../services/util.service"
 
 
 export const TaskDetails = () => {
@@ -62,6 +65,15 @@ export const TaskDetails = () => {
         newTask.title = value
         onSaveTask(newTask)
     }
+
+    const onUploadImg = async (ev) => {
+        const url = await uploadService.uploadImg(ev)
+        let newTask = task
+        if (!newTask.attachment) newTask.attachment = []
+        newTask.attachment.unshift({ id: utilService.makeId(5), url })
+        console.log('newTask:', newTask)
+        onSaveTask(newTask)
+    }
     console.log('task:', task)
     if (!task) return <h1>Loading...</h1>
     return (
@@ -73,15 +85,23 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div>
                         <TaskDescription />
-                        <TaskAttachments />
+                        {task.attachment && <TaskAttachments task={task} />}
                         <TaskActivities />
                     </div>
                     <aside className="details-side-bar">
-                        <button onClick={toggleModal}>labels</button>
-                        <button onClick={toggleModal}>date</button>
-                        <button onClick={toggleModal}>attachments</button>
+                        <button onClick={toggleModal}>Labels</button>
+                        <button onClick={toggleModal}>Date</button>
+                        {/* <button onClick={toggleModal}>Attachments</button> */}
+                        {/* <ImgUploader onUploadImg={onUploadImg}/> */}
+                        <label htmlFor="Attachment">
+                            <input type="file" id="Attachment" onChange={onUploadImg} />
+                        </label>
                     </aside>
-                    {isModalOpen && < LabelPicker task={task} onSaveTask={onSaveTask} labels={board.labels} toggleModal={toggleModal} />}
+                    {isModalOpen && < LabelPicker
+                        task={task}
+                        onSaveTask={onSaveTask}
+                        labels={board.labels}
+                        toggleModal={toggleModal} />}
                 </section>
                 <button className="close-modal"
                     onClick={onCloseModal}><IoMdClose /></button>
