@@ -13,14 +13,15 @@ export function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/workspace" element={<Workspace />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/board/:boardId" element={<BoardDetails />} />
-        <Route path="/board/:boardId/:groupId/:taskId" element={<TaskDetails />} />
+        <Route path="" element={<Home />} />
+        <Route path="workspace" element={<Workspace />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="signup" element={<SignupPage />} />
+        <Route path="board/:boardId" element={<BoardDetails />} >
+          <Route path=":groupId/:taskId" element={<TaskDetails />} />
+        </Route>
       </Routes>
-    </div>
+    </div >
   )
 }
 

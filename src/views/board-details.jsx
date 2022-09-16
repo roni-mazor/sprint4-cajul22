@@ -28,7 +28,7 @@ export const BoardDetails = () => {
     console.log(board)
     if (board) return (
         <section className="board-container">
-            <AppHeader />
+            <AppHeader board={board}/>
             <BoardHeader name={board.title} members={board.members} />
             <main className="board-main-content">
                 {board.groups.map(group => <BoardGroup key={group.id} group={group} boardId={board._id} />)}

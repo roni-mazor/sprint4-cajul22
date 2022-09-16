@@ -15,55 +15,69 @@
     z-index: 15;
 }
 
-.task-details-content {
-
+.task-details-modal {
     background-color: #f5f5f5;
     display: flex;
+    // justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
     margin: auto;
     max-width: 48rem;
     min-height: 600px;
     position: relative;
     z-index: 20;
-    flex-direction: column;
-    flex-grow: 3;
 
-    textarea {
-        background-color: hsla(0, 0%, 100%, 0);
-        font-size: 1.25rem;
-        font-weight: 600;
-        height: 2.05rem;
-        line-height: 1.5rem;
-        margin: -4px -8px;
-        padding: 4px 8px;
-        width: 90%;
+    .close-modal {
+        font-size: 1.4rem;
+        align-items: center;
+        background-color: #00000014;
         border: none;
-        border-radius: 3px;
-        box-shadow: none;
-        color: #172b4d;
-        display: block;
-        outline: none;
-        overflow: hidden;
-        overflow-wrap: break-word;
-        resize: none;
-        text-decoration: none;
-
-        &:focus {
-            box-shadow: inset 0 0 0 2px #0079bf;
-        }
-    }
-
-    span {
-        font-size: 2em;
+        border-radius: 50%;
+        color: #42526e;
+        display: flex;
+        height: 40px;
+        justify-content: center;
+        margin: 4px;
+        padding: 4px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 40px;
+        z-index: 2;
     }
 
     .task-details-title {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-inline-start: 20px;
+        margin-inline-start: 15px;
         margin-top: 15px;
-        margin-bottom: 50px;
+
+        textarea {
+            font-size: 1.25rem;
+            background-color: inherit;
+            height: 2.2rem;
+            max-width: 33rem;
+        }
+
+        span {
+            font-size: 2em;
+            margin-inline-end: 15px;
+        }
     }
+
+    .task-details-content {
+        display: flex;
+
+        span {
+            font-size: 2em;
+        }
+
+        .task-details-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-inline-start: 20px;
+            margin-top: 15px;
+            margin-bottom: 50px;
+        }
 
 
         .details-side-bar {
@@ -73,85 +87,89 @@
             margin-left: 0;
             max-width: 240px;
             min-width: 200px;
-            float: right;
-        }
+            align-items: center;
+            gap: 5px;
+            // margin-top: 20px;
 
-    .description-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-inline-start: 17px;
-        margin-bottom: 50px;
-
-        textarea {
-            background-color: #091e420a;
-            margin-inline-start: 43px;
-        }
-
-    }
-
-    .description-title {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 15px;
-
-        h1 {
-
-            font-size: 1.25rem;
-        }
-    }
-
-    .attachments-container {
-
-        margin-inline-start: 15px;
-
-        .attachments-title {
-            h1 {
-                font-size: 1.25rem;
+            >* {
+                width: 9rem;
             }
+        }
 
+        .description-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-inline-start: 17px;
             margin-bottom: 50px;
-            gap: 15px;
+
+            textarea {
+                background-color: #091e420a;
+                margin-inline-start: 43px;
+            }
+
         }
 
-    }
+        .description-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
 
-    .activities-container {
-        margin-inline-start: 15px;
-
-        .activities-title {
             h1 {
+
                 font-size: 1.25rem;
             }
-
-            gap: 15px;
         }
 
-        textarea {
-            font-size: 1rem;
-            background-color: #fff;
-            border: none;
-            border-radius: 3px;
-            box-shadow: none;
-            box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
-            box-sizing: content-box;
-            box-sizing: initial;
-            flex: 1 1;
-            height: 20px;
-            min-height: 20px;
-            overflow: hidden;
-            overflow-wrap: break-word;
-            padding: 8px 12px;
-            resize: none;
+        .attachments-container {
 
-            &:focus {
-                box-shadow: inset 0 0 0 1px rgb(194 188 188);
+            margin-inline-start: 15px;
+
+            .attachments-title {
+                h1 {
+                    font-size: 1.25rem;
+                }
+
+                margin-bottom: 50px;
+                gap: 15px;
+            }
+
+        }
+
+        .activities-container {
+            margin-inline-start: 15px;
+
+            .activities-title {
+                h1 {
+                    font-size: 1.25rem;
+                }
+
+                gap: 15px;
+            }
+
+            textarea {
+                font-size: 1rem;
+                background-color: #fff;
+                border: none;
+                border-radius: 3px;
+                box-shadow: none;
+                box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
+                box-sizing: content-box;
+                box-sizing: initial;
+                flex: 1 1;
+                height: 20px;
+                min-height: 20px;
+                overflow: hidden;
+                overflow-wrap: break-word;
+                padding: 8px 12px;
+                resize: none;
+
+                &:focus {
+                    box-shadow: inset 0 0 0 1px rgb(194 188 188);
+                }
             }
         }
-    }
 
-    .task-btn {
-        flex-grow: 1;
     }
 }

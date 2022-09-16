@@ -99,6 +99,7 @@ const board1 = {
             },
             "task": {
                 "id": "c101",
+                "labelIds":[],
                 "title": "Replace Logo"
             }
         }
@@ -220,10 +221,12 @@ const board2 = {
             "tasks": [
                 {
                     "id": "c401",
+                    "labelIds":[],
                     "title": "Replace logo"
                 },
                 {
                     "id": "c402",
+                    "labelIds":[],
                     "title": "Add Samples"
                 }
             ],
@@ -235,19 +238,24 @@ const board2 = {
             "tasks": [
                 {
                     "id": "c205",
+                    "labelIds":[],
                     "title": "Replace logo"
                 },
                 {
                     "id": "c204",
+                    "labelIds":[],
                     "title": "Add Samples"
                 }, {
                     "id": "c202",
+                    "labelIds":[],
                     "title": "Replace logo"
                 }, {
                     "id": "c203",
+                    "labelIds":[],
                     "title": "Replace logo"
                 }, {
                     "id": "c201",
+                    "labelIds":[],
                     "title": "Replace logo"
                 },
             ],
@@ -266,6 +274,7 @@ const board2 = {
             },
             "task": {
                 "id": "c101",
+                "labelIds":[],
                 "title": "Replace Logo"
             }
         }
@@ -310,10 +319,12 @@ const board3 = {
             "tasks": [
                 {
                     "id": "c101",
+                    "labelIds":[],
                     "title": "Replace logo"
                 },
                 {
                     "id": "c102",
+                    "labelIds":[],
                     "title": "Add Samples"
                 }
             ],
@@ -326,6 +337,7 @@ const board3 = {
                 {
                     "id": "c103",
                     "title": "Do that",
+                    "labelIds":[],
                     "archivedAt": 1589983468418,
                 }
             ],
@@ -344,6 +356,7 @@ const board3 = {
             },
             "task": {
                 "id": "c101",
+                "labelIds":[],
                 "title": "Replace Logo"
             }
         }
