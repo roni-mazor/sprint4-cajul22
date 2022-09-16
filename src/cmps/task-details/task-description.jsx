@@ -6,7 +6,7 @@ export const TaskDescription = () => {
             <div className="description-title">
                 <span> <IoMdList /></span>   <h1>description</h1>
             </div>
-            <textarea name="" id="" cols="60" rows="2"></textarea>
+            <textarea className='simple-txtarea' name="" id="" cols="60" rows="2"></textarea>
         </section>
     )
 }

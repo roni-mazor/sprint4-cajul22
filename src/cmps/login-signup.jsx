@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
+import { NavLink } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import { userService } from '../services/user.service'
+import GuestImg from '../assets/img/guest-img.svg'
 import { ImgUploader } from '../cmps/img-uploader'
 
-export function LoginSignup(props) {    
-
+export function LoginSignup(props) {
+    
     const dispatch = useDispatch()
 
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
-    const [isSignup, setIsSignup] = useState(false)
+    const [isSignup, setIsSignup] = useState(props.isSignup)
     const [users, setUsers] = useState([])
 
     useEffect(() => {
@@ -50,10 +52,7 @@ export function LoginSignup(props) {
     }
 
     return (
-        <div className="login-page">
-            <p>
-                <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
-            </p>
+        <div className="login-page">           
             {!isSignup && <form className="login-form" onSubmit={onLogin}>
                 <select
                     name="username"
@@ -63,15 +62,16 @@ export function LoginSignup(props) {
                     <option value="">Select User</option>
                     {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
                 </select>
-                <button>Login!</button>
+                <button>Login</button>
             </form>}
             <div className="signup-section">
                 {isSignup && <form className="signup-form flex column" onSubmit={onSubmit}>
+                    <h1>Sign up for your account</h1>
                     <input
                         type="text"
                         name="fullname"
                         value={credentials.fullname}
-                        placeholder="Fullname"
+                        placeholder="Full name"
                         onChange={handleChange}
                         required
                     />
@@ -79,7 +79,7 @@ export function LoginSignup(props) {
                         type="text"
                         name="username"
                         value={credentials.username}
-                        placeholder="Username"
+                        placeholder="User name"
                         onChange={handleChange}
                         required
                     />
@@ -91,8 +91,15 @@ export function LoginSignup(props) {
                         onChange={handleChange}
                         required
                     />
-                    <ImgUploader onUploaded={onUploaded} />
-                    <button >Signup!</button>
+                    <button href="/workspace" >Sign up</button>
+                    <span>OR</span>
+                    <NavLink className="as-guest-btn flex align-center" to="/workspace"><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
+                    <hr />
+                    <div className='login-bottom-navigation flex align-center'>
+                    <NavLink to="/">Back Home</NavLink>
+                    <NavLink onClick={toggleSignup}>Log In</NavLink>
+                    </div>
+                    {/* <ImgUploader onUploaded={onUploaded} /> */}
                 </form>}
             </div>
         </div>

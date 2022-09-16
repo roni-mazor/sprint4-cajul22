@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
+import { IoMdClose } from 'react-icons/io'
+
 
 import { TaskTitle } from "../cmps/task-details/task-title"
 import { TaskDescription } from "../cmps/task-details/task-description"
@@ -56,27 +58,35 @@ export const TaskDetails = () => {
 
     const handleChange = (ev) => {
         const value = ev.target.value
-        // console.log('value:', value)
+        let newTask = task
+        newTask.title = value
+        onSaveTask(newTask)
     }
-
+    console.log('task:', task)
     if (!task) return <h1>Loading...</h1>
     return (
         <div className="task-details-container" onClick={onCloseModal}>
-                <section className="task-details-content " onClick={onStopPropagation}>
-                               <TaskTitle task={task}
-                        handleChange={handleChange} />
-                    <TaskDescription />
-                    <TaskAttachments />
-                    <TaskActivities />
+            <section className="task-details-modal" onClick={onStopPropagation}>
+                <TaskTitle task={task}
+                    handleChange={handleChange} />
 
-                <aside className="details-side-bar">
-                    <button onClick={toggleModal}>labels</button>
-                    <button onClick={toggleModal}>date</button>
-                    <button onClick={toggleModal}>attachments</button>
-                </aside>
-                {isModalOpen && < LabelPicker task={task} onSaveTask={onSaveTask}  toggleModal={toggleModal} />}
+                <section className="task-details-content " >
+                    <div>
+                        <TaskDescription />
+                        <TaskAttachments />
+                        <TaskActivities />
+                    </div>
+                    <aside className="details-side-bar">
+                        <button onClick={toggleModal}>labels</button>
+                        <button onClick={toggleModal}>date</button>
+                        <button onClick={toggleModal}>attachments</button>
+                    </aside>
+                    {isModalOpen && < LabelPicker task={task} onSaveTask={onSaveTask} toggleModal={toggleModal} />}
                 </section>
-                          
+                <button className="close-modal"
+                    onClick={onCloseModal}><IoMdClose /></button>
+            </section>
+
         </div>
     )
 }

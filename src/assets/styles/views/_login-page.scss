@@ -1,10 +1,25 @@
 .login-container {
     background-color: #fbfbfb;
     height: 100vh;
-    width: 100vw;
+    width: 100vw;   
 
-    .login-logo {
-        width: 25px;
+    .signup-login-logo {
+        gap: 5px;
+        margin: 40px;
+        font-size: 1.45em;
+        
+        & .jello-logo{
+            font-size: 1.134em;;
+            color: #0052cc;
+            // margin: 0 5px;
+        }
+        
+        & .jello-logo-text{
+            font-family: "roboto";
+            font-weight: bold;
+            font-size: 1.134em;
+            margin: 0;
+        }
     }
 
     .login-screen-img.left {
@@ -13,13 +28,17 @@
         position: absolute;
         left: 0;
         bottom: 0;
+        width: 300px;
     }
-
+    
     .login-screen-img.right {
         max-width: 30%;
         flex: 1;
         position: absolute;
         right: 0;
         bottom: 0;
+        width: 300px;
     }
+
+    
 }
