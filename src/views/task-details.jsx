@@ -81,7 +81,7 @@ export const TaskDetails = () => {
                         <button onClick={toggleModal}>date</button>
                         <button onClick={toggleModal}>attachments</button>
                     </aside>
-                    {isModalOpen && < LabelPicker task={task} onSaveTask={onSaveTask} labels={board.labels} toggleModal={toggleModal} />}
+                    {isModalOpen && < LabelPicker task={task} onSaveTask={onSaveTask} toggleModal={toggleModal} />}
                 </section>
                 <button className="close-modal"
                     onClick={onCloseModal}><IoMdClose /></button>
