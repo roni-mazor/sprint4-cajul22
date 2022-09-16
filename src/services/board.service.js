@@ -68,7 +68,8 @@ async function saveTask(boardId, groupId, task) {
 function createTask(title) {
     return {
         "id": utilService.makeId(),
-        "title": title
+        "title": title,
+        "labelIds": []
     }
 }
 function createGroup(title) {

@@ -6,7 +6,7 @@ import GuestImg from '../assets/img/guest-img.svg'
 import { ImgUploader } from '../cmps/img-uploader'
 
 export function LoginSignup(props) {
-    
+
     const dispatch = useDispatch()
 
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
@@ -52,18 +52,41 @@ export function LoginSignup(props) {
     }
 
     return (
-        <div className="login-page">           
-            {!isSignup && <form className="login-form" onSubmit={onLogin}>
-                <select
+        <section className='login-signup-container'>
+            <div className="login-section">
+                {!isSignup && <form className="login-form flex column" onSubmit={onLogin}>
+                    {/* <select
                     name="username"
                     value={credentials.username}
                     onChange={handleChange}
                 >
                     <option value="">Select User</option>
                     {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-                </select>
-                <button>Login</button>
-            </form>}
+                </select> */}
+                    <h1>Login to Jello</h1>
+                    <input
+                        type="text"
+                        name="fullname"
+                        value={credentials.fullname}
+                        placeholder="Full name"
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="username"
+                        value={credentials.username}
+                        placeholder="User name"
+                        onChange={handleChange}
+                        required
+                    />
+                    <button>Login</button>
+                    <div className='login-bottom-navigation flex align-center'>
+                        <NavLink to="/">Back Home</NavLink>
+                        <NavLink onClick={toggleSignup}>Log In</NavLink>
+                    </div>
+                </form>}
+            </div>
             <div className="signup-section">
                 {isSignup && <form className="signup-form flex column" onSubmit={onSubmit}>
                     <h1>Sign up for your account</h1>
@@ -96,12 +119,12 @@ export function LoginSignup(props) {
                     <NavLink className="as-guest-btn flex align-center" to="/workspace"><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
                     <hr />
                     <div className='login-bottom-navigation flex align-center'>
-                    <NavLink to="/">Back Home</NavLink>
-                    <NavLink onClick={toggleSignup}>Log In</NavLink>
+                        <NavLink to="/">Back Home</NavLink>
+                        <NavLink onClick={toggleSignup}>Log In</NavLink>
                     </div>
                     {/* <ImgUploader onUploaded={onUploaded} /> */}
                 </form>}
             </div>
-        </div>
+        </section>
     )
 }

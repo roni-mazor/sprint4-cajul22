@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import { Routes, Route } from 'react-router'
 import { Workspace } from "./views/workspace"
 import { BoardDetails } from "./views/board-details"
 import { LoginPage } from './views/login-page'
 import { Home } from './views/home'
-import { TaskDetails } from './views/task-details';
+import { TaskDetails } from './views/task-details'
 import './assets/styles/styles.scss'
 
 

@@ -79,3 +79,18 @@ export function saveTask(boardId, groupId, task) {
 
     }
 }
+
+export function toggleLabelTxt() {
+    return (dispatch) => {
+        dispatch({ type: 'TOGGLE_LABEL_TXT' })
+    }
+}
+export function saveLabels(labels) {
+    return (dispatch, getState) => {
+        const board = getState().boardModule.board
+        board.labels = labels
+        boardService.save(board)
+
+        dispatch({ type: 'SET_BOARD', board })
+    }
+}

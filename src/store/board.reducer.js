@@ -2,7 +2,8 @@ const initialState = {
     board: null,
     boards: null,
     filterBy: null,
-    isLoading: false
+    isLoading: false,
+    isLabelTxtOpen: false,
 }
 
 export function boardReducer(state = initialState, action) {
@@ -17,8 +18,10 @@ export function boardReducer(state = initialState, action) {
                 ...state,
                 boards: state.boards.map(board => board._id === action.board._id ? action.board : board)
             }
+        case 'TOGGLE_LABEL_TXT':
+            return { ...state, isLabelTxtOpen: !state.isLabelTxtOpen }
 
         default:
             return state
-        }
+    }
 }

@@ -98,10 +98,9 @@ export const TaskDetails = () => {
                         </label>
                     </aside>
                     {isModalOpen && < LabelPicker
-                        task={task}
-                        onSaveTask={onSaveTask}
-                        labels={board.labels}
-                        toggleModal={toggleModal} />}
+                     task={task} 
+                     onSaveTask={onSaveTask}
+                      toggleModal={toggleModal} />}
                 </section>
                 <button className="close-modal"
                     onClick={onCloseModal}><IoMdClose /></button>
