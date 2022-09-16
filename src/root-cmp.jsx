@@ -5,7 +5,7 @@ import { BoardDetails } from "./views/board-details"
 import { LoginPage } from './views/login-page'
 import { SignupPage } from './views/signup-page'
 import { Home } from './views/home'
-import {  TaskDetails } from './views/task-details';
+import { TaskDetails } from './views/task-details';
 import './assets/styles/styles.scss'
 
 

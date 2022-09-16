@@ -11,7 +11,8 @@ export const boardService = {
     save,
     getTaskById,
     createTask,
-    createGroup
+    createGroup,
+    saveTask
 }
 
 async function query(filterBy) {
@@ -51,6 +52,17 @@ async function save(board) {
         board.createdAt = Date.now()
         return storageService.post(STORAGE_KEY, board)
     }
+}
+
+async function saveTask(boardId, groupId, task) {
+    const board = await getById(boardId)
+    const groupIdx = board.groups.findIndex(g => g.id === groupId)
+    board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.map(t => {
+        if (t.id === task.id) return task
+        else return t
+    })
+    save(board)
+
 }
 
 function createTask(title) {

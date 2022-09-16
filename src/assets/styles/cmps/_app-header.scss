@@ -5,12 +5,36 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .logo{
-        margin-inline-start: 10px;
-        cursor: pointer;
+    color: whitesmoke;
+
+    &.board {
+        background-color: rgba(0, 0, 0, 0.744);
     }
-    .log-sig{
+
+    a {
+        height: inherit;
+    }
+
+    .logo {
+        margin-top: 10px;
+        margin-bottom: 0;
+        display: flex;
+        margin-inline-start: 10px;
+        align-items: center;
+        cursor: pointer;
+
+        span {
+            // width: 20px;
+            margin-inline-end: 5px;
+        }
+    }
+
+    .log-sig {
+        margin-top: 3px;
+        margin-bottom: 0;
         margin-inline-end: 10px;
+        font-size: 1.9em;
+        // height: 45px;
         cursor: pointer;
     }
 }
