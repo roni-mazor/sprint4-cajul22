@@ -3,9 +3,10 @@ import { BsThreeDots } from 'react-icons/bs'
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { saveGroup } from "../store/board.actions"
-import { TaskCompose } from "./task-compose"
+import { TxtCompose } from "./txt-compose"
+import { boardService } from "../services/board.service"
 
-export const BoardGroup = ({ group ,boardId}) => {
+export const BoardGroup = ({ group, boardId }) => {
     const dispatch = useDispatch()
     const [title, setTitle] = useState(group.title)
 
@@ -18,13 +19,12 @@ export const BoardGroup = ({ group ,boardId}) => {
         dispatch(saveGroup(g))
     }
 
-    const addTask = (task) => {
+    const addTask = (txt) => {
+        const task = boardService.createTask(txt)
         const g = { ...group }
         g.tasks.push(task)
-        console.log(g)
         dispatch(saveGroup(g))
     }
-    console.log(group)
     return (
 
         <section className="group-content">
@@ -37,9 +37,9 @@ export const BoardGroup = ({ group ,boardId}) => {
             </header>
             <ul className="task-container">
                 {group.tasks.map(task => <TaskPreview
-                 key={task.id} task={task} groupId={group.id} boardId={boardId} />)}
+                    key={task.id} task={task} groupId={group.id} boardId={boardId} />)}
             </ul>
-            <TaskCompose addTask={addTask} />
+            <TxtCompose type={'card'} returnTxt={addTask} />
 
         </section>
 

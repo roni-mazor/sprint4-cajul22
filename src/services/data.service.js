@@ -18,13 +18,33 @@ const board1 = {
     "labels": [
         {
             "id": "l101",
-            "title": "Done",
-            "color": "#61bd4f"
+            "title": "",
+            "color": "#5AAC44"
         },
         {
             "id": "l102",
-            "title": "Progress",
-            "color": "#61bd33"
+            "title": "",
+            "color": "#E6C60D;"
+        },
+        {
+            "id": "l103",
+            "title": "",
+            "color": "#E79217"
+        },
+        {
+            "id": "l104",
+            "title": "",
+            "color": "#CF513D"
+        },
+        {
+            "id": "l105",
+            "title": "",
+            "color": "#CD8DE5"
+        },
+        {
+            "id": "l106",
+            "title": "",
+            "color": "#5BA4CF"
         }
     ],
     "members": [
@@ -42,10 +62,12 @@ const board1 = {
             "tasks": [
                 {
                     "id": "c101",
+                    "labelIds": [],
                     "title": "Replace logo"
                 },
                 {
                     "id": "c102",
+                    "labelIds": [],
                     "title": "Add Samples"
                 }
             ],
@@ -57,6 +79,7 @@ const board1 = {
             "tasks": [
                 {
                     "id": "c103",
+                    "labelIds": ["l101", "l102"],
                     "title": "Do that",
                     "archivedAt": 1589983468418,
                 }
@@ -96,13 +119,33 @@ const board2 = {
     "labels": [
         {
             "id": "l101",
-            "title": "Done",
-            "color": "#61bd4f"
+            "title": "",
+            "color": "#5AAC44"
         },
         {
             "id": "l102",
-            "title": "Progress",
-            "color": "#61bd33"
+            "title": "",
+            "color": "#E6C60D;"
+        },
+        {
+            "id": "l103",
+            "title": "",
+            "color": "#E79217"
+        },
+        {
+            "id": "l104",
+            "title": "",
+            "color": "#CF513D"
+        },
+        {
+            "id": "l105",
+            "title": "",
+            "color": "#CD8DE5"
+        },
+        {
+            "id": "l106",
+            "title": "",
+            "color": "#5BA4CF"
         }
     ],
     "members": [
@@ -130,11 +173,14 @@ const board2 = {
             "tasks": [
                 {
                     "id": "c10431",
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "labelIds": ["l101", "l102"],
+
                 },
                 {
                     "id": "c102121",
-                    "title": "Add Samples"
+                    "title": "Add Samples",
+                    "labelIds": ["l101", "l102"],
                 }
             ],
             "style": {}
@@ -146,26 +192,28 @@ const board2 = {
                 {
                     "id": "c1033",
                     "title": "Do that",
-                    "archivedAt": 1589983468418,
+                    "labelIds": ["l101", "l102"],
                 }
             ],
             "style": {}
-        },{
+        }, {
             "id": "g1031",
             "title": "Group 1",
             "archivedAt": 1589983468418,
             "tasks": [
                 {
                     "id": "c1012",
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "labelIds": ["l101", "l102"],
                 },
                 {
                     "id": "c1011",
-                    "title": "Add Samples"
+                    "title": "Add Samples",
+                    "labelIds": ["l101", "l102"],
                 }
             ],
             "style": {}
-        },{
+        }, {
             "id": "g120",
             "title": "Group 1",
             "archivedAt": 1589983468418,
@@ -180,7 +228,7 @@ const board2 = {
                 }
             ],
             "style": {}
-        },{
+        }, {
             "id": "g110",
             "title": "Group 1",
             "archivedAt": 1589983468418,

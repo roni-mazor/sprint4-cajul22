@@ -10,9 +10,10 @@ export const boardService = {
     getById,
     save,
     getTaskById,
-    createTask
+    createTask,
+    createGroup,
+    saveTask
 }
-
 
 async function query(filterBy) {
     let myBoards = await storageService.query(STORAGE_KEY)
@@ -49,14 +50,32 @@ async function save(board) {
         return storageService.put(STORAGE_KEY, board)
     } else {
         board.createdAt = Date.now()
-        // board.inStock = true
         return storageService.post(STORAGE_KEY, board)
     }
+}
+
+async function saveTask(boardId, groupId, task) {
+    const board = await getById(boardId)
+    const groupIdx = board.groups.findIndex(g => g.id === groupId)
+    board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.map(t => {
+        if (t.id === task.id) return task
+        else return t
+    })
+    save(board)
+
 }
 
 function createTask(title) {
     return {
         "id": utilService.makeId(),
         "title": title
+    }
+}
+function createGroup(title) {
+    return {
+        "id": utilService.makeId(),
+        "title": title,
+        "archivedAt": 1589983468418,
+        "tasks": [],
     }
 }

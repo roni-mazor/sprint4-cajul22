@@ -52,3 +52,30 @@ export function saveGroup(group) {
         }
     }
 }
+export function saveBoard(board) {
+
+    return async (dispatch,) => {
+        try {
+
+            boardService.save(board)
+            dispatch({ type: 'SET_BOARD', board })
+        } catch (err) {
+            console.log('Couldnt update board: ', err);
+        }
+    }
+}
+
+export function saveTask(boardId, groupId, task) {
+    return async (dispatch, getState) => {
+        boardService.saveTask(boardId, groupId, task)
+        const board = getState().boardModule.board
+        const groupIdx = board.groups.findIndex(g => g.id === groupId)
+        board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.map(t => {
+            if (t.id === task.id) return task
+            else return t
+        })
+
+        dispatch({ type: 'SET_BOARD', board })
+
+    }
+}
