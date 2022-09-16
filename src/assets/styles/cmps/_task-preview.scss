@@ -11,6 +11,15 @@
     padding: 6px 8px 2px;
     text-decoration: none;
 
+    .labels-container {
+        display: flex;
+
+        &>* {
+            width: 10px;
+            height: 40px;
+        }
+    }
+
     &:hover {
         text-decoration: none;
     }
