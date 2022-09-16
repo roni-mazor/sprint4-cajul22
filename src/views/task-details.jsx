@@ -6,29 +6,44 @@ import { IoMdList } from 'react-icons/io'
 
 
 import { boardService } from "../services/board.service"
+import { LabelPicker } from "../cmps/label-picker"
+import { saveTask } from "../store/board.actions"
 
 
 export const TaskDetails = () => {
     const params = useParams()
 
     // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const { boardId, groupId, taskId } = params
     const board = useSelector(state => state.boardModule.board)
     const [task, setTask] = useState()
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
         loadTask()
     }, [])
+    useEffect(() => {
+        loadTask()
+    }, [board])
 
     const loadTask = () => {
 
+        // const currTask =  boardService.getTaskById(boardId, groupId, taskId)
         const group = board.groups.find(group => group.id === groupId)
         const currTask = group.tasks.find(task => task.id === taskId)
-        // const currTask =  boardService.getTaskById(boardId, groupId, taskId)
         setTask(currTask)
     }
 
-    // console.log('task:', task)
+    const toggleModal = () => {
+        setIsModalOpen(prevState => !prevState)
+    }
+
+
+
+    const onSaveTask = (newTask) => {
+        dispatch(saveTask(boardId, groupId, newTask))
+    }
 
     if (!task) return <h1>Loading...</h1>
     return (
@@ -43,6 +58,12 @@ export const TaskDetails = () => {
                     </div>
                     <textarea name="" id="" cols="60" rows="2"></textarea>
                 </div>
+                <aside className="details-side-bar">
+                    <button onClick={toggleModal}>labels</button>
+                    <button onClick={toggleModal}>date</button>
+                    <button onClick={toggleModal}>attachments</button>
+                </aside>
+                {isModalOpen && < LabelPicker task={task} onSaveTask={onSaveTask} labels={board.labels} toggleModal={toggleModal} />}
             </section>
         </div>
     )
