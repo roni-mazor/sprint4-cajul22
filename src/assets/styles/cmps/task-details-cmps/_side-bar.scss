@@ -1,0 +1,55 @@
+.task-details-container {
+    .details-side-bar {
+        float: right;
+        overflow: hidden;
+        width: calc(100% - 600px);
+        z-index: 10;
+        padding: 0 8px 8px 16px;
+
+        h3 {
+            color: #5e6c84;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 20px;
+            margin-bottom: -4px;
+            margin-top: 16px;
+        }
+
+        button {
+            background-color: #091e420a;
+            border: none;
+            border-radius: 3px;
+            color: #172b4d;
+            display: block;
+            height: 32px;
+            margin-top: 8px;
+            //max- width: 300px; in MQ the width needs to be maximum 300px!
+            max-width: 168px;
+            min-width: 136px;
+            overflow: hidden;
+            padding: 6px 12px;
+            position: relative;
+            transition-duration: 85ms;
+            transition-property: background-color,
+                border-color,
+                box-shadow;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            transition-timing-function: ease;
+
+            svg {
+                font-size: 16px;
+                line-height: 20px;
+            }
+
+            &:hover {
+                background-color: #00000014;
+            }
+        }
+    }
+
+}

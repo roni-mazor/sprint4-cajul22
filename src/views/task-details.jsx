@@ -6,25 +6,24 @@ import { IoMdClose, } from 'react-icons/io'
 import { AiOutlineUser } from 'react-icons/ai'
 
 
-import { TaskTitle } from "../cmps/task/task-title"
-import { TaskDescription } from "../cmps/task/task-description"
-import { TaskAttachments } from "../cmps/task/task-attachments"
-import { TaskActivities } from "../cmps/task/task-activities"
-import { LabelPicker } from "../cmps/label-picker"
+import { TaskTitle } from "../cmps/task-details/task-title"
+import { TaskDescription } from "../cmps/task-details/task-description"
+import { TaskAttachments } from "../cmps/task-details/task-attachments"
+import { TaskActivities } from "../cmps/task-details/task-activities"
 import { saveTask } from "../store/board.actions"
 import { loadUsers } from "../store/user.actions"
 import { uploadService } from "../services/upload.service"
 import { ImgUploader } from "../cmps/img-uploader"
 import { utilService } from "../services/util.service"
-import { TaskAdditivesModal } from "../cmps/task/task-additives-modal"
-import { Members } from "../cmps/task/task-members"
+import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
+import { Members } from "../cmps/task-details/task-members"
 
 
 import { BsTag } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TbCheckbox } from 'react-icons/tb'
 import { ImAttachment } from 'react-icons/im'
-import { LabelShower } from "../cmps/task/label-shower"
+import { LabelShower } from "../cmps/task-details/label-shower"
 
 
 export const TaskDetails = () => {
