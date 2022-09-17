@@ -94,3 +94,22 @@ export function saveLabels(labels) {
         dispatch({ type: 'SET_BOARD', board })
     }
 }
+export function removeLabel(labels, removedLabelId) {
+    return (dispatch, getState) => {
+        const board = getState().boardModule.board
+        board.labels = labels
+
+        board.groups = board.groups.map((group) => {
+            return {
+                ...group, tasks: group.tasks.map(task => {
+                    return { ...task, labelIds: task.labelIds.filter(id => id !== removedLabelId) }
+                })
+            }
+        })
+
+
+        console.log(board)
+        boardService.save(board)
+        dispatch({ type: 'SET_BOARD', board })
+    }
+}

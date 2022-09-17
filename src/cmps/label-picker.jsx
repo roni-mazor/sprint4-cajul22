@@ -3,14 +3,16 @@ import { FaPencilAlt } from 'react-icons/fa'
 import { FiChevronLeft } from 'react-icons/fi'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { saveLabels } from '../store/board.actions'
+import { removeLabel, saveLabels } from '../store/board.actions'
 import { useSelector } from 'react-redux'
 import { boardService } from '../services/board.service'
 
 
 export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
-    const labels = useSelector(state => state.boardModule.board.labels)
     const [labelEdit, setLabelEdit] = useState(null)
+    const [filterBy, setFilterBy] = useState('')
+    let labels = useSelector(state => state.boardModule.board.labels)
+    labels = labels.filter(label => label.title.includes(filterBy))
     const dispatch = useDispatch()
     const colors = [
         '#B7DDB0', '#F5EA92', '#FAD29C', '#EFB3AB', '#DFC0EB',
@@ -47,7 +49,8 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
     }
     const onDeleteLabel = () => {
         let newLabels = labels.filter(l => (l.id !== labelEdit.id))
-        dispatch(saveLabels(newLabels))
+        dispatch(removeLabel(newLabels, labelEdit.id))
+        // dispatch(saveLabels(newLabels))
         setLabelEdit(null)
     }
     const onCreateLabel = () => {
@@ -67,6 +70,10 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
                 </header>
 
                 <hr />
+                <input className="label-title-input"
+                    type="text" placeholder='Search labels...'
+                    onChange={({ target: { value } }) => { setFilterBy(value) }}
+                    value={filterBy} />
 
                 <ul ul className="labels-container">
                     {labels.map(label => (
@@ -102,7 +109,7 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
                 <hr />
                 <p>Title</p>
                 <input className="label-title-input"
-                    type="text" placeholder='title'
+                    type="text"
                     onChange={onChangeLabelTitle}
                     value={labelEdit.title} />
                 <p>Select a color</p>

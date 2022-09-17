@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { IoMdClose } from 'react-icons/io'
+import { IoMdClose, } from 'react-icons/io'
 
 
 import { TaskTitle } from "../cmps/task/task-title"
@@ -19,6 +19,12 @@ import { TaskAdditivesModal } from "../cmps/task/task-additives-modal"
 import { Members } from "../cmps/members"
 
 
+import { BsTag } from 'react-icons/bs'
+import { AiOutlineClockCircle } from 'react-icons/ai'
+import { TbCheckbox } from 'react-icons/tb'
+import { ImAttachment } from 'react-icons/im'
+
+
 export const TaskDetails = () => {
     const params = useParams()
     const navigate = useNavigate()
@@ -28,6 +34,8 @@ export const TaskDetails = () => {
     const members = useSelector(state => state.userModule.users)
     const [task, setTask] = useState()
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
+    const group = board.groups.find(group => group.id === groupId)
+    const user = useSelector(state=>state.userModule.user)
 
     useEffect(() => {
         loadTask()
@@ -84,19 +92,23 @@ export const TaskDetails = () => {
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
                 <TaskTitle task={task}
-                    handleChange={handleChange} />
+                    handleChange={handleChange}
+                    group={group} />
 
                 <section className="task-details-content " >
                     <div>
                         <TaskDescription />
                         <Members task={task}/>
                         {task.attachment && <TaskAttachments task={task} />}
-                        <TaskActivities />
+                        <TaskActivities user={user} />
                     </div>
                     <aside className="details-side-bar">
-                        <button onClick={() => toggleAdditivesModal('label-picker')}>Labels</button>
-                        <button onClick={toggleAdditivesModal}>Date</button>
-                        <button onClick={toggleAdditivesModal}>Attachments</button>
+                        <h3>Add to card</h3>
+                        <button onClick={() => toggleAdditivesModal('label-picker')}><BsTag /> Labels</button>
+                        <button onClick={toggleAdditivesModal}><AiOutlineClockCircle /> Dates</button>
+                        <button onClick={toggleAdditivesModal}><ImAttachment /> Attachments</button>
+                        <button>Cover</button>
+                        <button><TbCheckbox /> CheckList</button>
                         <button onClick={() => toggleAdditivesModal('members')}>members</button>
                         {/* <ImgUploader onUploadImg={onUploadImg} /> */}
                         {/* <label htmlFor="Attachment">
