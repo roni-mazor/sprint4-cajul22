@@ -1,4 +1,5 @@
 import { LabelPicker } from "../addivities-modal/label-picker"
+import { AttachmentPicker } from "./attachment-picker"
 import { MemberPicker } from "./member-picker"
 
 export const TaskAdditivesModal = ({ onSaveTask, task, toggleModal, type }) => {
@@ -19,6 +20,13 @@ export const TaskAdditivesModal = ({ onSaveTask, task, toggleModal, type }) => {
                         task={task}
                         onSaveTask={onSaveTask}
                         toggleModal={toggleModal} />
+                )
+            case 'attachment':
+                return (
+                    <AttachmentPicker 
+                    task={task}
+                    onSaveTask={onSaveTask}
+                    toggleModal={toggleModal}/>
                 )
         }
     }

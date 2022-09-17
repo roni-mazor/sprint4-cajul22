@@ -4,6 +4,10 @@ import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { IoMdClose, } from 'react-icons/io'
 import { AiOutlineUser } from 'react-icons/ai'
+import { BsTag, BsSquareHalf } from 'react-icons/bs'
+import { AiOutlineClockCircle } from 'react-icons/ai'
+import { TbCheckbox } from 'react-icons/tb'
+import { ImAttachment } from 'react-icons/im'
 
 
 import { TaskTitle } from "../cmps/task-details/task-title"
@@ -19,10 +23,6 @@ import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-moda
 import { Members } from "../cmps/task-details/task-members"
 
 
-import { BsTag } from 'react-icons/bs'
-import { AiOutlineClockCircle } from 'react-icons/ai'
-import { TbCheckbox } from 'react-icons/tb'
-import { ImAttachment } from 'react-icons/im'
 import { LabelShower } from "../cmps/task-details/label-shower"
 
 
@@ -79,14 +79,7 @@ export const TaskDetails = () => {
         onSaveTask(newTask)
     }
 
-    const onUploadImg = async (ev) => {
-        const url = await uploadService.uploadImg(ev)
-        let newTask = task
-        if (!newTask.attachment) newTask.attachment = []
-        newTask.attachment.unshift({ id: utilService.makeId(5), url })
-        console.log('newTask:', newTask)
-        onSaveTask(newTask)
-    }
+   
     console.log('task:', task)
     if (!task) return <h1>Loading...</h1>
     return (
@@ -98,26 +91,24 @@ export const TaskDetails = () => {
 
                 <section className="task-details-content " >
                     <div>
-                        <Members user={user} toggleModal={toggleAdditivesModal}/>
-                        <LabelShower toggleModal={toggleAdditivesModal}  labelIds={task.labelIds} />
-                        <TaskDescription />
+                        <Members user={user} toggleModal={toggleAdditivesModal} />
+                        <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
+                        <TaskDescription task={task} />
                         {task.attachment && <TaskAttachments task={task} />}
                         <TaskActivities user={user} />
                     </div>
                     <aside className="details-side-bar">
                         <h3>Suggested</h3>
-                        <button /*onClick={() => toggleAdditivesModal('members')}*/><AiOutlineUser/>Join</button>
+                        <button /*onClick={() => toggleAdditivesModal('members')}*/><AiOutlineUser />Join</button>
                         <h3>Add to card</h3>
-                        <button onClick={() => toggleAdditivesModal('members')}><AiOutlineUser/>Members</button>
+                        <button onClick={() => toggleAdditivesModal('members')}><AiOutlineUser />Members</button>
                         <button onClick={() => toggleAdditivesModal('label-picker')}><BsTag /> Labels</button>
                         <button onClick={toggleAdditivesModal}><AiOutlineClockCircle /> Dates</button>
-                        <button onClick={toggleAdditivesModal}><ImAttachment /> Attachments</button>
-                        <button>Cover</button>
+                        <button onClick={() => toggleAdditivesModal('attachment')}><ImAttachment /> Attachments</button>
+                        <button><span><BsSquareHalf /></span> Cover</button>
                         <button><TbCheckbox /> CheckList</button>
                         {/* <ImgUploader onUploadImg={onUploadImg} /> */}
-                        {/* <label htmlFor="Attachment">
-                            <input type="file" id="Attachment" onChange={onUploadImg} />
-                        </label> */}
+                       
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
                         type={isAdditivesModalOpen}
