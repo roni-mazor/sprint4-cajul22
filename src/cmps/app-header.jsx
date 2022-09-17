@@ -25,7 +25,7 @@ export const AppHeader = ({ board }) => {
             </Link>
             <Link to="">
                 <h4 className="log-sig">
-                    {(!member.imgUrl) && <BsPersonCircle />}
+                    {(!member?.imgUrl) && <BsPersonCircle />}
                     {member?.imgUrl && <MemberPreview member={member}/>}
                 </h4>
             </Link>
