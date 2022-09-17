@@ -8,20 +8,29 @@
 
 // VIEWS
 @import './views/home';
-@import'./views/workspace.scss';
-@import'views/task-details-container.scss';
+@import'./views/workspace';
+@import'views/task-details-container';
 @import './views/login-page';
-@import './views/_app.scss';
+@import './views/app';
 
 // CMPS
+@import './cmps/task-details-cmps/task-title';
+@import './cmps/task-details-cmps/members-container';
+@import './cmps/task-details-cmps/label-shower';
+@import './cmps/task-details-cmps/task-description';
+@import './cmps/task-details-cmps/attachments';
+@import './cmps/task-details-cmps/task-activites';
+@import './cmps/task-details-cmps/side-bar';
+
+
 @import './cmps/app-header';
 @import './cmps/login-signup';
-@import './cmps/board-list';
-@import './cmps/board-preview';
+@import './cmps/board-cmps/board-list';
+@import './cmps/board-cmps/board-preview';
 @import './cmps/member-avatar';
-@import './cmps/_board-main-content.scss';
-@import './cmps/_group-content.scss';
-@import './cmps/_group-compose.scss';
-@import './cmps/_task-preview.scss';
-@import './cmps/_board-header.scss';
-@import './cmps/_labels-modal.scss';
+@import './cmps/board-cmps/board-main-content';
+@import './cmps/group-cmps/group-content';
+@import './cmps/group-cmps/group-compose';
+@import './cmps/group-cmps/task-preview';
+@import './cmps/board-cmps/board-header';
+@import './cmps/labels-modal';

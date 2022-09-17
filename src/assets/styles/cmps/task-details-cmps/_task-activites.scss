@@ -1,0 +1,42 @@
+.task-details-container {
+    .activities-container {
+        margin-inline-start: 15px;
+
+        .activities-title {
+            height: 32px;
+            padding: 8px 0;
+
+            h3 {
+                font-size: 16px;
+                line-height: 20px;
+            }
+
+            gap: 15px;
+        }
+
+        div:nth-child(2) {
+            gap: 15px;
+
+            textarea {
+                font-size: 1rem;
+                background-color: #fff;
+                border: none;
+                border-radius: 3px;
+                box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
+                box-sizing: initial;
+                flex: 1 1;
+                height: 20px;
+                min-height: 20px;
+                overflow: hidden;
+                padding: 8px 12px;
+                resize: none;
+                width: 508px;
+
+                &:focus {
+                    border: none;
+                }
+            }
+        }
+
+    }
+}

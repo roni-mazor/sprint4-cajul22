@@ -1,12 +1,12 @@
 import { VscChromeClose } from 'react-icons/vsc'
-import { FaPencilAlt } from 'react-icons/fa'
-import { FiChevronLeft } from 'react-icons/fi'
+// import { FaPencilAlt } from 'react-icons/fa'
+// import { FiChevronLeft } from 'react-icons/fi'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { saveLabels } from '../store/board.actions'
+// import { useDispatch } from 'react-redux'
+// import { saveLabels } from '../store/board.actions'
 import { useSelector } from 'react-redux'
-import { boardService } from '../services/board.service'
-import { MemberPreview } from './member-preview'
+// import { boardService } from '../../services/board.service'
+// import { MemberPreview } from '../member-preview'
 
 
 export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {

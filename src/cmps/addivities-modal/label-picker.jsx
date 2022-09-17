@@ -3,9 +3,9 @@ import { FaPencilAlt } from 'react-icons/fa'
 import { FiChevronLeft } from 'react-icons/fi'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { removeLabel, saveLabels } from '../store/board.actions'
+import { removeLabel, saveLabels } from '../../store/board.actions'
 import { useSelector } from 'react-redux'
-import { boardService } from '../services/board.service'
+import { boardService } from '../../services/board.service'
 
 
 export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
