@@ -157,6 +157,35 @@
             }
         }
 
+        .members-container {
+            position: relative;
+            left: 65px;
+            color: #5e6c84;
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            line-height: 20px;
+            
+            & p {
+                margin: 0 8px 4px 0;
+            }
+
+            & .add-task-member{
+                border: 1px solid #091e4205;
+                border-radius: 50px;
+                background-color: #42526e19;
+                color: #7b7b7b;
+                width: 30px;
+                height: 30px;
+                font-size: 2em;
+                
+                &:hover{
+                    background-color: #42526e21;                    
+                }
+            }
+        }
+
         .description-container {
             display: flex;
             flex-direction: column;
