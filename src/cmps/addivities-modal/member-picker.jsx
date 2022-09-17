@@ -5,17 +5,15 @@ import { useState } from 'react'
 // import { useDispatch } from 'react-redux'
 // import { saveLabels } from '../store/board.actions'
 import { useSelector } from 'react-redux'
+import { MemberPreview } from '../member-preview'
 // import { boardService } from '../../services/board.service'
 // import { MemberPreview } from '../member-preview'
 
 
 export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const members = useSelector(state => state.userModule.users)
-    const [searchInput, setSearchInput] = useState('')
 
-    const checkMembers = () => {
-        console.log('members:', members)
-    }
+    const [searchInput, setSearchInput] = useState('')
 
     // const onChangeLabelColor = (color) => {
     //     setLabelEdit((prevLabel) => ({ ...prevLabel, color }))
@@ -61,13 +59,10 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
             <p>Board members</p>
             <ul className="labels-container">
                 {members.map(member => (
-                    <li key={member.fullname} className='member-container'>
-                        lalal
-                        {/* <label className='flex'>
-                            <MemberPreview member={member} />
-                            {member.fullname}
-                            {`(${member.username})`}
-                        </label> */}
+                    <li key={member.fullname} className='member-container flex align-center'>
+                        <MemberPreview member={member}/>
+                        <p>{member.username}</p>
+                        <p>{`(${member.fullname})`}</p>
                     </li>
                 ))}
             </ul>

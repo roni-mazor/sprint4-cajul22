@@ -12,6 +12,10 @@
     right: 0;
     top: 0;
     z-index: 15;
+
+    & .details-side-bar .box{
+            transform: rotateZ(269deg) scaleX(0.6);
+    }
 }
 
 .task-details-modal {

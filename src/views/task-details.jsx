@@ -9,6 +9,11 @@ import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TbCheckbox } from 'react-icons/tb'
 import { ImAttachment } from 'react-icons/im'
 
+import { BsTag, BsSquareHalf } from 'react-icons/bs'
+import { AiOutlineClockCircle } from 'react-icons/ai'
+import { TbCheckbox } from 'react-icons/tb'
+import { ImAttachment } from 'react-icons/im'
+
 
 import { TaskTitle } from "../cmps/task-details/task-title"
 import { TaskDescription } from "../cmps/task-details/task-description"
@@ -32,14 +37,15 @@ export const TaskDetails = () => {
     const dispatch = useDispatch()
     const { boardId, groupId, taskId } = params
     const board = useSelector(state => state.boardModule.board)
-    const members = useSelector(state => state.userModule.users)
+    const users = useSelector(state => state.userModule.users)
+    const user = useSelector(state => state.userModule.user)
     const [task, setTask] = useState()
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
     const group = board.groups.find(group => group.id === groupId)
-    const user = useSelector(state => state.userModule.user)
 
     useEffect(() => {
-        loadTask()
+        loadTask() 
+        dispatch(loadUsers())              
     }, [])
 
     useEffect(() => {
@@ -107,8 +113,6 @@ export const TaskDetails = () => {
                         <button onClick={() => toggleAdditivesModal('attachment')}><ImAttachment /> Attachments</button>
                         <button><span><BsSquareHalf /></span> Cover</button>
                         <button><TbCheckbox /> CheckList</button>
-                        {/* <ImgUploader onUploadImg={onUploadImg} /> */}
-                       
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
                         type={isAdditivesModalOpen}

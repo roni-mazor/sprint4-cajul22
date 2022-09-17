@@ -4,22 +4,22 @@ import { userService } from "../services/user.service"
 import { useSelector, useDispatch } from "react-redux"
 import { SiTrello } from 'react-icons/si'
 import HeroImg from '../assets/img/home-hero.png'
+import { loadUsers } from '../store/user.actions'
 
 export function Home() {
     
     // const [isLoggedIn, setIsLoggedIn] = useState(userService.getLoggedinUser)
     const loggedIn = useSelector(state => state.userModule.user)
+    const users = useSelector(state => state.userModule.users)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    
     useEffect(() => {
-        if (!loggedIn) userService.createUsers()
-            // navigate('/workspace')
-            // dispatch(loadLoggedInUser())             
+        if (!loggedIn) userService.createUsers()               
+        // navigate('/workspace')
+        // dispatch(loadLoggedInUser())             
     }, [])
-
-    const member = useSelector(state => state.userModule.user)
-
+    
     return <section className="home-container">
         <header className="home-header-container flex align-center">
             <NavLink to="/workspace" className="home-logo flex align-center"><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></NavLink>
