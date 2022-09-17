@@ -72,7 +72,6 @@ async function signup(userCred) {
     const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
     // socketService.login(user._id)
-    console.log('user:', user)
     
     return saveLocalUser(user)
 }
@@ -103,9 +102,9 @@ function getLoggedinUser() {
 
 
 // ;(async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov 2', username: 'admin 2', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
+//     await userService.signup({fullname: 'Yoav', username: 'Yoav', password:'123',score: 10000, isAdmin: true, imgUrl:})
+//     await userService.signup({fullname: 'Roni', username: 'Roni', password:'123', score: 10000, isAdmin: true, imgUrl:})
+//     await userService.signup({fullname: 'Omer', username: 'Rafa', password:'123', score: 10000, isAdmin: true, imgUrl:})
 // })()
 
 
