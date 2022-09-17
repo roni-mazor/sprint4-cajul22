@@ -19,7 +19,7 @@ export const AppHeader = ({ board }) => {
 
     // console.log(isLoggedIn)
     return (
-        <header className="app-header flex align-center justify-between"/*{board ? 'app-header board' : 'app-header'}*/>
+        <header className={board ? 'app-header board' : 'app-header'}>
             <Link to="/workspace" className="header-logo flex align-center">
                 <img src="https://a.trellocdn.com/prgb/dist/images/header-logo-spirit.d947df93bc055849898e.gif" alt="" />
             </Link>
