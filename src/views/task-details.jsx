@@ -24,6 +24,7 @@ import { BsTag } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TbCheckbox } from 'react-icons/tb'
 import { ImAttachment } from 'react-icons/im'
+import { LabelShower } from "../cmps/task/label-shower"
 
 
 export const TaskDetails = () => {
@@ -99,6 +100,7 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div>
                         <Members user={user} toggleModal={toggleAdditivesModal}/>
+                        <LabelShower toggleModal={toggleAdditivesModal}  labelIds={task.labelIds} />
                         <TaskDescription />
                         {task.attachment && <TaskAttachments task={task} />}
                         <TaskActivities user={user} />

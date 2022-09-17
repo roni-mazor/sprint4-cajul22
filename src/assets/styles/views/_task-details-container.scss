@@ -50,6 +50,64 @@
         }
     }
 
+
+    .label-shower {
+        margin: 10px 8px 8px 60px;
+
+        h3 {
+            color: #5e6c84;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-top: 0;
+            margin-right: 8px;
+            margin-bottom: 4px;
+            margin-left: 0;
+            line-height: 20px;
+        }
+
+        .labels-shower-container {
+            display: flex;
+            gap: 4px;
+
+            .add-label-btn {
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 3px;
+                width: 32px;
+                background-color: rgba(9, 30, 66, 0.04);
+
+                &:hover {
+                    background-color: #00000014;
+                }
+            }
+
+            .label-shower-btn {
+                border: none;
+                position: relative;
+                border-radius: 3px;
+                max-width: 100%;
+                min-width: 48px;
+                height: 32px;
+                line-height: 32px;
+                color: #172b4d;
+                font-size: 14px;
+                font-weight: 400;
+                text-align: left;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
     .task-details-title {
         margin: 12px 40px 8px 56px;
         position: relative;
