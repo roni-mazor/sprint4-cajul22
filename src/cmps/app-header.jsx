@@ -15,8 +15,8 @@ export const AppHeader = ({ board }) => {
             </Link>
             <Link to="">
                 <h4 className="log-sig">
-                    {!isLoggedIn.imgUrl && <BsPersonCircle />}
-                    {isLoggedIn.imgUrl && <img src={isLoggedIn.imgUrl} alt="" />}
+                    {/* {!isLoggedIn.imgUrl && <BsPersonCircle />} */}
+                    {/* {isLoggedIn.imgUrl && <img src={isLoggedIn.imgUrl} alt="" />} */}
                 </h4>
             </Link>
         </header>
