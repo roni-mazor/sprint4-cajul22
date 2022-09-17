@@ -35,10 +35,10 @@ export function LoginSignup(props) {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
         dispatch(props.onLogin(credentials))
-        navigate('/workspace')
+        .then(navigate('/workspace'))
     }
 
-    const onSubmit = (ev = null) => {
+    const onSubmitSignup = (ev = null) => {
         if (ev) ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
         console.log(credentials)
@@ -77,7 +77,7 @@ export function LoginSignup(props) {
                     />
                     <button>Login</button>
                     <span>OR</span>
-                    <NavLink className="as-guest-btn flex align-center" to="/workspace"><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
+                    <NavLink className="as-guest-btn flex align-center" to="/workspace" onSubmit={onSubmitLogin}><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
                     <hr />
                     <div className='login-bottom-navigation flex align-center'>
                         <NavLink to="/">Back Home</NavLink>
@@ -86,7 +86,7 @@ export function LoginSignup(props) {
                 </form>}
             </div>
             <div className="signup-section">
-                {isSignup && <form className="signup-form flex column" onSubmit={onSubmit}>
+                {isSignup && <form className="signup-form flex column" onSubmit={onSubmitSignup}>
                     <h1>Sign up for your account</h1>
                     <input
                         type="text"
@@ -114,13 +114,12 @@ export function LoginSignup(props) {
                     />
                     <button href="/workspace" >Sign up</button>
                     <span>OR</span>
-                    <NavLink className="as-guest-btn flex align-center" to="/workspace"><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
+                    <NavLink className="as-guest-btn flex align-center" to="/workspace" onSubmit={onSubmitLogin}><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
                     <hr />
                     <div className='login-bottom-navigation flex align-center'>
                         <NavLink to="/">Back Home</NavLink>
                         <NavLink onClick={toggleSignup}>Log In</NavLink>
                     </div>
-                    {/* <ImgUploader onUploaded={onUploaded} /> */}
                 </form>}
             </div>
         </section>

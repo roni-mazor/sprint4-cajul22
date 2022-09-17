@@ -11,10 +11,12 @@ import { TaskAttachments } from "../cmps/task/task-attachments"
 import { TaskActivities } from "../cmps/task/task-activities"
 import { LabelPicker } from "../cmps/label-picker"
 import { saveTask } from "../store/board.actions"
+import { loadUsers } from "../store/user.actions"
 import { uploadService } from "../services/upload.service"
 import { ImgUploader } from "../cmps/img-uploader"
 import { utilService } from "../services/util.service"
 import { TaskAdditivesModal } from "../cmps/task/task-additives-modal"
+import { Members } from "../cmps/members"
 
 
 export const TaskDetails = () => {
@@ -23,12 +25,14 @@ export const TaskDetails = () => {
     const dispatch = useDispatch()
     const { boardId, groupId, taskId } = params
     const board = useSelector(state => state.boardModule.board)
+    const members = useSelector(state => state.userModule.users)
     const [task, setTask] = useState()
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
 
     useEffect(() => {
         loadTask()
     }, [])
+
     useEffect(() => {
         loadTask()
     }, [board])
@@ -85,6 +89,7 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div>
                         <TaskDescription />
+                        <Members task={task}/>
                         {task.attachment && <TaskAttachments task={task} />}
                         <TaskActivities />
                     </div>
@@ -92,6 +97,7 @@ export const TaskDetails = () => {
                         <button onClick={() => toggleAdditivesModal('label-picker')}>Labels</button>
                         <button onClick={toggleAdditivesModal}>Date</button>
                         <button onClick={toggleAdditivesModal}>Attachments</button>
+                        <button onClick={() => toggleAdditivesModal('members')}>members</button>
                         {/* <ImgUploader onUploadImg={onUploadImg} /> */}
                         {/* <label htmlFor="Attachment">
                             <input type="file" id="Attachment" onChange={onUploadImg} />

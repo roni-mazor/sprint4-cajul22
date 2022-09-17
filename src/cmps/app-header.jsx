@@ -1,14 +1,23 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { loadLoggedInUser } from "../store/user.actions"
 import { userService } from '../services/user.service'
-import { SiTrello } from 'react-icons/si'
 import { BsPersonCircle } from 'react-icons/bs'
+import { MemberPreview } from './member-preview'
 
 export const AppHeader = ({ board }) => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(userService.getLoggedinUser)
+    const dispatch = useDispatch()
+    const member = useSelector(state => state.userModule.user)
 
-    console.log(isLoggedIn)
+    useEffect(() => {
+        // dispatch(loadLoggedInUser())
+        console.log('isLoggedIn.imgUrl:', member.imgUrl)
+
+    }, [])
+
+    // console.log(isLoggedIn)
     return (
         <header className="app-header flex align-center justify-between"/*{board ? 'app-header board' : 'app-header'}*/>
             <Link to="/workspace" className="header-logo flex align-center">
@@ -16,8 +25,8 @@ export const AppHeader = ({ board }) => {
             </Link>
             <Link to="">
                 <h4 className="log-sig">
-                    {!isLoggedIn?.imgUrl && <BsPersonCircle />}
-                    {isLoggedIn?.imgUrl && <img src={isLoggedIn.imgUrl} alt="" />}
+                    {(!member.imgUrl) && <BsPersonCircle />}
+                    {member?.imgUrl && <MemberPreview member={member}/>}
                 </h4>
             </Link>
         </header>

@@ -3,6 +3,7 @@ import { storageService } from './async-storage.service'
 // import { store } from '../store/store'
 // import { getActionSetWatchedUser } from '../store/review.actions'
 // import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
+import guest from '../assets/img/guest-img.svg'
 import { showSuccessMsg } from '../services/event-bus.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
@@ -17,7 +18,8 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore
+    changeScore,
+    createUsers
 }
 
 window.userService = userService
@@ -30,7 +32,7 @@ function getUsers() {
 
 function onUserUpdate(user) {
     showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
-//     // store.dispatch(getActionSetWatchedUser(user))
+    //     // store.dispatch(getActionSetWatchedUser(user))
 }
 
 async function getById(userId) {
@@ -68,11 +70,11 @@ async function login(userCred) {
 async function signup(userCred) {
     userCred.score = 10000
     console.log('userCred:', userCred)
-    
+
     const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
     // socketService.login(user._id)
-    
+
     return saveLocalUser(user)
 }
 async function logout() {
@@ -101,11 +103,12 @@ function getLoggedinUser() {
 }
 
 
-// ;(async ()=>{
-//     await userService.signup({fullname: 'Yoav', username: 'Yoav', password:'123',score: 10000, isAdmin: true, imgUrl:})
-//     await userService.signup({fullname: 'Roni', username: 'Roni', password:'123', score: 10000, isAdmin: true, imgUrl:})
-//     await userService.signup({fullname: 'Omer', username: 'Rafa', password:'123', score: 10000, isAdmin: true, imgUrl:})
-// })()
+async function createUsers() {
+    await userService.signup({ fullname: 'yoav', username: 'yoav', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
+    await userService.signup({ fullname: 'roni', username: 'roni', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
+    await userService.signup({ fullname: 'omer', username: 'omer', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
+    await userService.signup({ fullname: 'demoguest', username: 'demoguest', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
+}
 
 
 

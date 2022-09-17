@@ -1,6 +1,7 @@
 import { LabelPicker } from "../label-picker"
+import { MemberPicker } from "../member-picker"
 
-export const TaskAdditivesModal = ({ onSaveTask, task, toggleModal, type }) => {
+export const TaskAdditivesModal = ({ onSaveTask, task, toggleModal, type}) => {
 
     const renderModalByType = () => {
         switch (type) {
@@ -11,6 +12,14 @@ export const TaskAdditivesModal = ({ onSaveTask, task, toggleModal, type }) => {
                         onSaveTask={onSaveTask}
                         toggleModal={toggleModal} />
                 )
+            case 'members':
+                return (
+                    
+                    < MemberPicker
+                    task={task}
+                    onSaveTask={onSaveTask}
+                    toggleModal={toggleModal} />
+                    )
         }
     }
 
