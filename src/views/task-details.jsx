@@ -14,18 +14,17 @@ import { saveTask } from "../store/board.actions"
 import { uploadService } from "../services/upload.service"
 import { ImgUploader } from "../cmps/img-uploader"
 import { utilService } from "../services/util.service"
+import { TaskAdditivesModal } from "../cmps/task/task-additives-modal"
 
 
 export const TaskDetails = () => {
     const params = useParams()
     const navigate = useNavigate()
-
-    // const dispatch = useDispatch()
     const dispatch = useDispatch()
     const { boardId, groupId, taskId } = params
     const board = useSelector(state => state.boardModule.board)
     const [task, setTask] = useState()
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
 
     useEffect(() => {
         loadTask()
@@ -49,8 +48,9 @@ export const TaskDetails = () => {
     const onStopPropagation = (ev) => {
         ev.stopPropagation()
     }
-    const toggleModal = () => {
-        setIsModalOpen(prevState => !prevState)
+    const toggleAdditivesModal = (type) => {
+        if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
+        else setIsAdditivesModalOpen(type)
     }
 
 
@@ -89,18 +89,19 @@ export const TaskDetails = () => {
                         <TaskActivities />
                     </div>
                     <aside className="details-side-bar">
-                        <button onClick={toggleModal}>Labels</button>
-                        <button onClick={toggleModal}>Date</button>
-                        {/* <button onClick={toggleModal}>Attachments</button> */}
-                        {/* <ImgUploader onUploadImg={onUploadImg}/> */}
-                        <label htmlFor="Attachment">
+                        <button onClick={() => toggleAdditivesModal('label-picker')}>Labels</button>
+                        <button onClick={toggleAdditivesModal}>Date</button>
+                        <button onClick={toggleAdditivesModal}>Attachments</button>
+                        {/* <ImgUploader onUploadImg={onUploadImg} /> */}
+                        {/* <label htmlFor="Attachment">
                             <input type="file" id="Attachment" onChange={onUploadImg} />
-                        </label>
+                        </label> */}
                     </aside>
-                    {isModalOpen && < LabelPicker
-                     task={task} 
-                     onSaveTask={onSaveTask}
-                      toggleModal={toggleModal} />}
+                    {isAdditivesModalOpen && <TaskAdditivesModal
+                        type={isAdditivesModalOpen}
+                        task={task}
+                        onSaveTask={onSaveTask}
+                        toggleModal={toggleAdditivesModal} />}
                 </section>
                 <button className="close-modal"
                     onClick={onCloseModal}><IoMdClose /></button>

@@ -8,6 +8,7 @@ export const AppHeader = ({ board }) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(userService.getLoggedinUser)
 
+    console.log(isLoggedIn)
     return (
         <header className="app-header flex align-center justify-between"/*{board ? 'app-header board' : 'app-header'}*/>
             <Link to="/workspace" className="header-logo flex align-center">
@@ -15,8 +16,8 @@ export const AppHeader = ({ board }) => {
             </Link>
             <Link to="">
                 <h4 className="log-sig">
-                    {!isLoggedIn.imgUrl && <BsPersonCircle />}
-                    {isLoggedIn.imgUrl && <img src={isLoggedIn.imgUrl} alt="" />}
+                    {!isLoggedIn?.imgUrl && <BsPersonCircle />}
+                    {isLoggedIn?.imgUrl && <img src={isLoggedIn.imgUrl} alt="" />}
                 </h4>
             </Link>
         </header>

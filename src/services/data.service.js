@@ -126,7 +126,7 @@ const board2 = {
         {
             "id": "l102",
             "title": "",
-            "color": "#E6C60D;"
+            "color": "#E6C60D"
         },
         {
             "id": "l103",
