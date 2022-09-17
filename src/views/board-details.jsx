@@ -7,6 +7,7 @@ import { loadBoard, saveBoard } from "../store/board.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
 import { boardService } from "../services/board.service"
+import { background } from '../assets/img/micr4679.jpg'
 
 export const BoardDetails = () => {
     const params = useParams()
@@ -27,16 +28,18 @@ export const BoardDetails = () => {
 
     console.log(board)
     if (board) return (
-        <section className="board-container">
-            <AppHeader board={board}/>
-            <BoardHeader name={board.title} members={board.members} />
-            <main className="board-main-content">
-                {board.groups.map(group => <BoardGroup key={group.id} group={group} boardId={board._id} />)}
-                <section className="group-content group-compose">
-                    <TxtCompose type={'list'} returnTxt={onCreateGroup} />
-                </section>
-            </main>
-            <Outlet />
-        </section>
+        <>
+            <AppHeader board={board} />
+            <section className="board-container" >
+                <BoardHeader name={board.title} members={board.members} />
+                <main className="board-main-content">
+                    {board.groups.map(group => <BoardGroup key={group.id} group={group} boardId={board._id} />)}
+                    <section className="group-content group-compose">
+                        <TxtCompose type={'list'} returnTxt={onCreateGroup} />
+                    </section>
+                </main>
+                <Outlet />
+            </section>
+        </>
     )
 }

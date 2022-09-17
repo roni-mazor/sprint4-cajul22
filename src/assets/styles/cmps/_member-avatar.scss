@@ -1,9 +1,10 @@
 .member-avatar {
-    background-color: lightcoral;
+    background-color: #026aa7;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     margin: 0 0 0 -2px;
+    color: snow;
 
     .member-avatar-img {
         object-fit: cover;
@@ -15,5 +16,14 @@
 
     &:hover {
         opacity: 0.8;
+    }
+
+    .log-sig {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -2px;
+        font-size: 2.1em;
+        cursor: pointer;
     }
 }

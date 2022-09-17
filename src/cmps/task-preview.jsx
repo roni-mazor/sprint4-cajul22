@@ -14,7 +14,8 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
 
 
     }
-
+    console.log(task.labelIds)
+    console.log(labels)
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
@@ -22,6 +23,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
             <section className="labels-container">
                 {task.labelIds.map((id) => {
                     const label = labels.find(l => l.id === id)
+                    console.log(label)
                     return <div key={id} className={`label-btn ${openLabelClassName}`} onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
                         {isLabelTxtOpen && <span>{label.title}</span>}
                     </div>
