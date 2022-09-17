@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { saveLabels } from '../store/board.actions'
 import { useSelector } from 'react-redux'
+import { boardService } from '../services/board.service'
 
 
 export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
@@ -37,17 +38,21 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
     }
 
     const saveLabelChanges = () => {
-        let newLabels = labels.map(l => {
-            if (l.id === labelEdit.id) return labelEdit
-            else return l
-        })
-        dispatch(saveLabels(newLabels))
+        let newLabelIdx = labels.findIndex(l => l.id === labelEdit.id)
+        if (newLabelIdx === -1) labels.push(labelEdit)
+        else labels.splice(newLabelIdx, 1, labelEdit)
+
+        dispatch(saveLabels(labels))
         setLabelEdit(null)
     }
     const onDeleteLabel = () => {
         let newLabels = labels.filter(l => (l.id !== labelEdit.id))
         dispatch(saveLabels(newLabels))
         setLabelEdit(null)
+    }
+    const onCreateLabel = () => {
+        setLabelEdit(boardService.createLabel())
+
     }
 
     return (
@@ -80,7 +85,9 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
                             </label>
                         </li>
                     ))}
-                </ul></>}
+                </ul>
+                <button className='create-label-btn' onClick={onCreateLabel}>Create a new label</button>
+            </>}
 
             {labelEdit && <>
                 <header className="edit-label-header">

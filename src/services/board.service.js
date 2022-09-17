@@ -12,7 +12,8 @@ export const boardService = {
     getTaskById,
     createTask,
     createGroup,
-    saveTask
+    saveTask,
+    createLabel
 }
 
 async function query(filterBy) {
@@ -72,6 +73,7 @@ function createTask(title) {
         "labelIds": []
     }
 }
+
 function createGroup(title) {
     return {
         "id": utilService.makeId(),
@@ -79,4 +81,13 @@ function createGroup(title) {
         "archivedAt": 1589983468418,
         "tasks": [],
     }
+}
+
+function createLabel() {
+    return {
+        "id": utilService.makeId(),
+        "title": "",
+        "color": "#fff"
+    }
+
 }
