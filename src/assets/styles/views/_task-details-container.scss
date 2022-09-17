@@ -16,9 +16,9 @@
 }
 
 .task-details-modal {
+    border-radius: 2px;
     background-color: #f5f5f5;
     display: flex;
-    // justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
     margin: auto;
@@ -30,7 +30,7 @@
     .close-modal {
         font-size: 1.4rem;
         align-items: center;
-        background-color: #00000014;
+        background-color: transparent;
         border: none;
         border-radius: 50%;
         color: #42526e;
@@ -44,27 +44,109 @@
         top: 0;
         width: 40px;
         z-index: 2;
+
+        &:hover {
+            background-color: #00000014;
+        }
+    }
+
+
+    .label-shower {
+        margin: 10px 8px 8px 60px;
+
+        h3 {
+            color: #5e6c84;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-top: 0;
+            margin-right: 8px;
+            margin-bottom: 4px;
+            margin-left: 0;
+            line-height: 20px;
+        }
+
+        .labels-shower-container {
+            display: flex;
+            gap: 4px;
+
+            .add-label-btn {
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 3px;
+                width: 32px;
+                background-color: rgba(9, 30, 66, 0.04);
+
+                &:hover {
+                    background-color: #00000014;
+                }
+            }
+
+            .label-shower-btn {
+                border: none;
+                position: relative;
+                border-radius: 3px;
+                max-width: 100%;
+                min-width: 48px;
+                height: 32px;
+                line-height: 32px;
+                color: #172b4d;
+                font-size: 14px;
+                font-weight: 400;
+                text-align: left;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
     }
 
     .task-details-title {
-        margin-inline-start: 15px;
-        margin-top: 15px;
+        margin: 12px 40px 8px 56px;
+        position: relative;
+        flex-wrap: wrap;
 
         textarea {
             font-size: 1.25rem;
-            background-color: inherit;
-            height: 2.2rem;
-            max-width: 33rem;
+            background-color: transparent;
+            height: 33px;
+            line-height: 16px;
+            width: 100%;
+            margin-inline-end: 10px;
+
+            &:focus {
+                background-color: white;
+            }
         }
 
         span {
+            left: -40px;
+            position: absolute;
+            top: 2px;
             font-size: 2em;
-            margin-inline-end: 15px;
         }
+
+        p.mini-title {
+            color: #5e6c84;
+            display: inline-block;
+            margin: 4px 8px 4px 2px;
+            background-color: transparent;
+        }
+
     }
 
     .task-details-content {
+        width: 100%;
         display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
 
         span {
             font-size: 2em;
@@ -81,18 +163,84 @@
 
 
         .details-side-bar {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            margin-left: 0;
-            max-width: 240px;
-            min-width: 200px;
-            align-items: center;
-            gap: 5px;
-            // margin-top: 20px;
+            float: right;
+            overflow: hidden;
+            width: calc(100% - 600px);
+            z-index: 10;
+            padding: 0 8px 8px 16px;
 
-            >* {
-                width: 9rem;
+            h3 {
+                color: #5e6c84;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 20px;
+                margin-bottom: -4px;
+                margin-top: 16px;
+            }
+
+            button {
+                background-color: #091e420a;
+                border: none;
+                border-radius: 3px;
+                color: #172b4d;
+                display: block;
+                height: 32px;
+                margin-top: 8px;
+                //max- width: 300px; in MQ the width needs to be maximum 300px!
+                max-width: 168px;
+                min-width: 136px;
+                overflow: hidden;
+                padding: 6px 12px;
+                position: relative;
+                transition-duration: 85ms;
+                transition-property: background-color,
+                    border-color,
+                    box-shadow;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                transition-timing-function: ease;
+
+                svg {
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+
+                &:hover {
+                    background-color: #00000014;
+                }
+            }
+        }
+
+        .members-container {
+            position: relative;
+            left: 65px;
+            color: #5e6c84;
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            line-height: 20px;
+            
+            & p {
+                margin: 0 8px 4px 0;
+            }
+
+            & .add-task-member{
+                border: 1px solid #091e4205;
+                border-radius: 50px;
+                background-color: #42526e19;
+                color: #7b7b7b;
+                width: 30px;
+                height: 30px;
+                font-size: 2em;
+                
+                &:hover{
+                    background-color: #42526e21;                    
+                }
             }
         }
 
@@ -102,6 +250,8 @@
             align-items: flex-start;
             margin-inline-start: 17px;
             margin-bottom: 50px;
+            padding: 8px 0;
+
 
             textarea {
                 background-color: #091e420a;
@@ -111,14 +261,19 @@
         }
 
         .description-title {
+            height: 32px;
+            padding: 8px 0;
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: 15px;
 
-            h1 {
-
-                font-size: 1.25rem;
+            h3 {
+                display: inline-block;
+                margin: 0;
+                min-height: 18px;
+                min-width: 40px;
+                width: auto;
             }
         }
 
@@ -161,34 +316,42 @@
             margin-inline-start: 15px;
 
             .activities-title {
-                h1 {
-                    font-size: 1.25rem;
+                height: 32px;
+                padding: 8px 0;
+
+                h3 {
+                    font-size: 16px;
+                    line-height: 20px;
                 }
 
                 gap: 15px;
             }
 
-            textarea {
-                font-size: 1rem;
-                background-color: #fff;
-                border: none;
-                border-radius: 3px;
-                box-shadow: none;
-                box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
-                box-sizing: content-box;
-                box-sizing: initial;
-                flex: 1 1;
-                height: 20px;
-                min-height: 20px;
-                overflow: hidden;
-                overflow-wrap: break-word;
-                padding: 8px 12px;
-                resize: none;
+            div:nth-child(2) {
+                gap: 15px;
 
-                &:focus {
-                    box-shadow: inset 0 0 0 1px rgb(194 188 188);
+                textarea {
+                    font-size: 1rem;
+                    background-color: #fff;
+                    border: none;
+                    border-radius: 3px;
+                    box-shadow: inset 0 0 0 1px rgb(9 30 66 / 13%);
+                    box-sizing: initial;
+                    flex: 1 1;
+                    height: 20px;
+                    min-height: 20px;
+                    overflow: hidden;
+                    padding: 8px 12px;
+                    resize: none;
+                    width: 508px;
+
+                    &:focus {
+                        border: none;
+                        // box-shadow: inset 0 0 0 1px rgb(194 188 188);
+                    }
                 }
             }
+
         }
 
     }

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { IoMdClose } from 'react-icons/io'
+import { IoMdClose, } from 'react-icons/io'
+import { AiOutlineUser } from 'react-icons/ai'
 
 
 import { TaskTitle } from "../cmps/task/task-title"
@@ -11,25 +12,37 @@ import { TaskAttachments } from "../cmps/task/task-attachments"
 import { TaskActivities } from "../cmps/task/task-activities"
 import { LabelPicker } from "../cmps/label-picker"
 import { saveTask } from "../store/board.actions"
+import { loadUsers } from "../store/user.actions"
 import { uploadService } from "../services/upload.service"
 import { ImgUploader } from "../cmps/img-uploader"
 import { utilService } from "../services/util.service"
+import { TaskAdditivesModal } from "../cmps/task/task-additives-modal"
+import { Members } from "../cmps/task/task-members"
+
+
+import { BsTag } from 'react-icons/bs'
+import { AiOutlineClockCircle } from 'react-icons/ai'
+import { TbCheckbox } from 'react-icons/tb'
+import { ImAttachment } from 'react-icons/im'
+import { LabelShower } from "../cmps/task/label-shower"
 
 
 export const TaskDetails = () => {
     const params = useParams()
     const navigate = useNavigate()
-
-    // const dispatch = useDispatch()
     const dispatch = useDispatch()
     const { boardId, groupId, taskId } = params
     const board = useSelector(state => state.boardModule.board)
+    const members = useSelector(state => state.userModule.users)
     const [task, setTask] = useState()
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
+    const group = board.groups.find(group => group.id === groupId)
+    const user = useSelector(state => state.userModule.user)
 
     useEffect(() => {
         loadTask()
     }, [])
+
     useEffect(() => {
         loadTask()
     }, [board])
@@ -49,8 +62,9 @@ export const TaskDetails = () => {
     const onStopPropagation = (ev) => {
         ev.stopPropagation()
     }
-    const toggleModal = () => {
-        setIsModalOpen(prevState => !prevState)
+    const toggleAdditivesModal = (type) => {
+        if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
+        else setIsAdditivesModalOpen(type)
     }
 
 
@@ -80,27 +94,37 @@ export const TaskDetails = () => {
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
                 <TaskTitle task={task}
-                    handleChange={handleChange} />
+                    handleChange={handleChange}
+                    group={group} />
 
                 <section className="task-details-content " >
                     <div>
+                        <Members user={user} toggleModal={toggleAdditivesModal}/>
+                        <LabelShower toggleModal={toggleAdditivesModal}  labelIds={task.labelIds} />
                         <TaskDescription />
                         {task.attachment && <TaskAttachments task={task} />}
-                        <TaskActivities />
+                        <TaskActivities user={user} />
                     </div>
                     <aside className="details-side-bar">
-                        <button onClick={toggleModal}>Labels</button>
-                        <button onClick={toggleModal}>Date</button>
-                        {/* <button onClick={toggleModal}>Attachments</button> */}
-                        {/* <ImgUploader onUploadImg={onUploadImg}/> */}
-                        <label htmlFor="Attachment">
+                        <h3>Suggested</h3>
+                        <button /*onClick={() => toggleAdditivesModal('members')}*/><AiOutlineUser/>Join</button>
+                        <h3>Add to card</h3>
+                        <button onClick={() => toggleAdditivesModal('members')}><AiOutlineUser/>Members</button>
+                        <button onClick={() => toggleAdditivesModal('label-picker')}><BsTag /> Labels</button>
+                        <button onClick={toggleAdditivesModal}><AiOutlineClockCircle /> Dates</button>
+                        <button onClick={toggleAdditivesModal}><ImAttachment /> Attachments</button>
+                        <button>Cover</button>
+                        <button><TbCheckbox /> CheckList</button>
+                        {/* <ImgUploader onUploadImg={onUploadImg} /> */}
+                        {/* <label htmlFor="Attachment">
                             <input type="file" id="Attachment" onChange={onUploadImg} />
-                        </label>
+                        </label> */}
                     </aside>
-                    {isModalOpen && < LabelPicker
-                     task={task} 
-                     onSaveTask={onSaveTask}
-                      toggleModal={toggleModal} />}
+                    {isAdditivesModalOpen && <TaskAdditivesModal
+                        type={isAdditivesModalOpen}
+                        task={task}
+                        onSaveTask={onSaveTask}
+                        toggleModal={toggleAdditivesModal} />}
                 </section>
                 <button className="close-modal"
                     onClick={onCloseModal}><IoMdClose /></button>

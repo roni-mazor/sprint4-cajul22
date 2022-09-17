@@ -14,7 +14,7 @@ const board1 = {
         "fullname": "Abi Abambi",
         "imgUrl": "http://some-img"
     },
-    "style": {},
+    "style": { background: '#5AAC44' },
     "labels": [
         {
             "id": "l101",
@@ -51,7 +51,17 @@ const board1 = {
         {
             "_id": "u101",
             "fullname": "Tal Tarablus",
-            "imgUrl": "https://www.google.com"
+            "imgUrl": ""
+        },
+        {
+            "_id": "u102",
+            "fullname": "Tal Tarablus",
+            "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg"
+        },
+        {
+            "_id": "u103",
+            "fullname": "Tal Tarablus",
+            "imgUrl": ""
         }
     ],
     "groups": [
@@ -79,7 +89,7 @@ const board1 = {
             "tasks": [
                 {
                     "id": "c103",
-                    "labelIds": ["l101", "l102"],
+                    "labelIds": [],
                     "title": "Do that",
                     "archivedAt": 1589983468418,
                 }
@@ -99,7 +109,7 @@ const board1 = {
             },
             "task": {
                 "id": "c101",
-                "labelIds":[],
+                "labelIds": [],
                 "title": "Replace Logo"
             }
         }
@@ -126,7 +136,7 @@ const board2 = {
         {
             "id": "l102",
             "title": "",
-            "color": "#E6C60D;"
+            "color": "#E6C60D"
         },
         {
             "id": "l103",
@@ -221,12 +231,12 @@ const board2 = {
             "tasks": [
                 {
                     "id": "c401",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Replace logo"
                 },
                 {
                     "id": "c402",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Add Samples"
                 }
             ],
@@ -238,24 +248,24 @@ const board2 = {
             "tasks": [
                 {
                     "id": "c205",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Replace logo"
                 },
                 {
                     "id": "c204",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Add Samples"
                 }, {
                     "id": "c202",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Replace logo"
                 }, {
                     "id": "c203",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Replace logo"
                 }, {
                     "id": "c201",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Replace logo"
                 },
             ],
@@ -274,7 +284,7 @@ const board2 = {
             },
             "task": {
                 "id": "c101",
-                "labelIds":[],
+                "labelIds": [],
                 "title": "Replace Logo"
             }
         }
@@ -308,7 +318,7 @@ const board3 = {
         {
             "_id": "u101",
             "fullname": "Tal Tarablus",
-            "imgUrl": "https://www.google.com"
+            "imgUrl": ""
         }
     ],
     "groups": [
@@ -319,12 +329,12 @@ const board3 = {
             "tasks": [
                 {
                     "id": "c101",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Replace logo"
                 },
                 {
                     "id": "c102",
-                    "labelIds":[],
+                    "labelIds": [],
                     "title": "Add Samples"
                 }
             ],
@@ -337,7 +347,7 @@ const board3 = {
                 {
                     "id": "c103",
                     "title": "Do that",
-                    "labelIds":[],
+                    "labelIds": [],
                     "archivedAt": 1589983468418,
                 }
             ],
@@ -356,7 +366,7 @@ const board3 = {
             },
             "task": {
                 "id": "c101",
-                "labelIds":[],
+                "labelIds": [],
                 "title": "Replace Logo"
             }
         }

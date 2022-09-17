@@ -1,11 +1,12 @@
 .app-header {
+    padding: 6px 4px;
     background-color: #026aa7;
     height: 45px;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     color: whitesmoke;
+
+    & .header-logo{
+        width: 60px;
+    }
 
     &.board {
         background-color: rgba(0, 0, 0, 0.744);
@@ -34,7 +35,6 @@
         margin-bottom: 0;
         margin-inline-end: 10px;
         font-size: 1.9em;
-        // height: 45px;
         cursor: pointer;
     }
 }

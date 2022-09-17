@@ -8,11 +8,12 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
     const dispatch = useDispatch()
 
-    const openLabelTxt = (ev) => {
+    const onToggleLabelTxt = (ev) => {
         ev.preventDefault()
         dispatch(toggleLabelTxt())
     }
-
+    console.log(task.labelIds)
+    console.log(labels)
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
@@ -20,8 +21,8 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
             <section className="labels-container">
                 {task.labelIds.map((id) => {
                     const label = labels.find(l => l.id === id)
-                    return <div key={id} className={`label-btn ${openLabelClassName}`} onClick={openLabelTxt} style={{ backgroundColor: label.color }} >
-                        {toggleLabelTxt && label.title}
+                    return <div key={id} className={`label-btn ${openLabelClassName}`} onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
+                        {isLabelTxtOpen && <span>{label.title}</span>}
                     </div>
                 })}
             </section>

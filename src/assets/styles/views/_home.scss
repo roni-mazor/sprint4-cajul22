@@ -1,77 +1,107 @@
-.home-container{
+.home-container {
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient( rgba(225, 219, 255, 0.4), #ffffff);
+    background-image: linear-gradient(rgba(225, 219, 255, 0.4), #ffffff);
 
     .home-header-container {
-        padding: 16px;
-        
+        height: 60px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 0px 0px #00000029;
+        transition: 0.5s box-shadow;
+
+        &:hover {
+            box-shadow: 0px 1px 20px 0px #00000029;
+        }
+
         .home-logo {
-            flex: 1;
-            gap: 5px;
-            
-            & .jello-logo{
-                font-size: 1.134em;;
+            gap: 8px;
+            align-self: flex-start;
+            padding: 0.5rem 1.5rem;
+
+            & .jello-logo {
+                font-size: 1.5em;
                 color: #0052cc;
                 // margin: 0 5px;
             }
-            
-            & .jello-logo-text{
-                font-family: "roboto";
+
+            & .jello-logo-text {
+                font-family: fira-reg;
                 font-weight: bold;
-                font-size: 1.134em;
+                font-size: 1.65em;
                 margin: 0;
             }
         }
-        
-        .home-login {
-            padding: 4px 8px;
-            color: #0065ff;
-            font-family: sans-serif;
-            font-size: 0.85em;
+
+        & span {
+            flex: 1;
         }
-        
+
+        .home-login {
+            padding: 0.5rem 1.5rem;
+            font-family: var(--base);
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+
         .home-signup {
-            // margin-inline-end:  15px;
-            font-size: 0.75em;
-            font-weight: bold;
+            font-size: 1.2em;
             color: #ffffff;
             background-color: #0065ff;
-            border-radius: 3px;
-            font-family: sans-serif;
-            padding: 4px 8px;
+            font-family: fira-reg;
+            height: 100%;
+            padding: 0.5rem 1.5rem;
         }
     }
 
-    .hero-container{
-        padding: 100px 40px;   
+    .hero-container {
+        padding: 100px 40px;
         justify-content: center;
         margin: auto;
-        max-width: 720px;  
-        
-        & h1{
-            font-family: "fira-reg";
-            line-height: 1;   
+        gap: 40px;
+        max-width: 3000px;
+
+        & h1 {
+            font-family: fira-reg;
+            font-weight: 600;
+            line-height: 1;
             margin-bottom: 0;
-            font-size: 1.85em;
-        }
-        .hero-img{
-            width: auto;
-            max-height: 350px;
-        }
-        
-        & p{
-            font-family: sans-serif;
+            font-size: 2.75rem;
+            text-align: left;
         }
 
-        & .hero-demo-btn{
+        .hero-img {
+            width: auto;
+            max-height: 600px;
+        }
+
+        & p {
+            color: #091e42;
+            font-family: Charlie Text, sans-serif;
+            font-size: 1.25rem;
+            letter-spacing: 1.4px;
+            margin-bottom: 24px;
+            padding-right: 15px;
+        }
+
+        & .hero-demo-btn {
             width: 35%;
-            height: 30px;
-            justify-content: center;
-            color: #ffffff;
-            font-family: sans-serif;
+            align-items: center;
             background-color: #0065ff;
-            border-radius: 3px;
+            border-radius: 6px;
+            color: #fff;
+            display: flex;
+            font-family: Charlie Text, sans-serif;
+            font-size: 1.25rem;
+            justify-content: center;
+            letter-spacing: 1px;
+            margin-right: 15px;
+            padding: 6px 0;
+            transition: background-color .15s ease-in;
+
+            &:hover {
+                background-color: #0056d9;
+                cursor: pointer;
+            }
         }
     }
 }

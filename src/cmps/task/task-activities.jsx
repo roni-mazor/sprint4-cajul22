@@ -1,14 +1,17 @@
 import { GrList } from 'react-icons/gr'
+import { MemberPreview } from '../member-preview'
 
 
-export const TaskActivities = () => {
+export const TaskActivities = ({ user }) => {
     return (
         <section className="activities-container">
             <div className="activities-title flex align-center">
-                <span> <GrList /></span><h1>Activities</h1>
+                <span> <GrList /></span><h3>Activity</h3>
             </div>
-            
-            <textarea name="" id="" cols="60" rows="2" placeholder='Write a comment'></textarea>
+            <div className='flex'>
+                <MemberPreview member={user} />
+                <textarea name="" id="" cols="60" rows="2" placeholder='Write a comment'></textarea>
+            </div>
         </section>
     )
 }

@@ -16,6 +16,18 @@ export function loadUsers() {
     }
 }
 
+export function loadLoggedInUser() {
+    
+    return async dispatch => {
+        try {
+            const user = await userService.getLoggedinUser()
+            dispatch({ type: 'SET_USER', user })
+        } catch (err) {
+            console.log('UserActions: err in loadUsers', err)
+        }
+    }
+}
+
 export function removeUser(userId) {
     return async dispatch => {
         try {
@@ -27,10 +39,11 @@ export function removeUser(userId) {
     }
 }
 
-export function onLogin(credentials) {
+export function onLogin(credentials = { username: 'demoguest', password: '123'}) {
     return async (dispatch) => {
         try {
             const user = await userService.login(credentials)
+            console.log('credentials:', user)    
             dispatch({
                 type: 'SET_USER',
                 user

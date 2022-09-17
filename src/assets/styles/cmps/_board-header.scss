@@ -1,5 +1,32 @@
 .board-header {
     display: flex;
     align-items: center;
-    gap: 15px
+    background-color: transparent;
+    justify-content: space-between;
+    margin: 5px 0;
+
+    span {
+        margin: 0 0 0 6px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: white;
+    }
+
+    .show-menu-btn {
+        background-color: #ffffff3d;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 14px;
+        height: 32px;
+        line-height: 32px;
+        margin: 0 4px 4px 0;
+        overflow: hidden;
+        position: relative;
+
+        &:hover {
+            background-color: hsla(0, 0%, 100%, .459)
+        }
+    }
 }
