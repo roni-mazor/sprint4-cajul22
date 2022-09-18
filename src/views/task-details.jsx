@@ -92,8 +92,11 @@ export const TaskDetails = () => {
 
                 <section className="task-details-content " >
                     <div>
+                        <div className="flex">
                         <Members user={user} toggleModal={toggleAdditivesModal} />
                         <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
+
+                        </div>
                         <TaskDescription task={task} />
                         {task.attachment && <TaskAttachments task={task} />}
                         <TaskActivities user={user} />
