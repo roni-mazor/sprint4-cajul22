@@ -10,7 +10,6 @@ import { TbCheckbox } from 'react-icons/tb'
 import { ImAttachment } from 'react-icons/im'
 
 
-
 import { TaskTitle } from "../cmps/task-details/task-title"
 import { TaskDescription } from "../cmps/task-details/task-description"
 import { TaskAttachments } from "../cmps/task-details/task-attachments"
