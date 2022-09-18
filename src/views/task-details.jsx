@@ -39,8 +39,8 @@ export const TaskDetails = () => {
     const group = board.groups.find(group => group.id === groupId)
 
     useEffect(() => {
-        loadTask() 
-        dispatch(loadUsers())              
+        loadTask()
+        dispatch(loadUsers())
     }, [])
 
     useEffect(() => {
@@ -80,12 +80,13 @@ export const TaskDetails = () => {
         onSaveTask(newTask)
     }
 
-   
+
     console.log('task:', task)
     if (!task) return <h1>Loading...</h1>
     return (
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
+                {task.cover && <header className="task-details-header" style={{ backgroundImage: `url(${task.cover})` }}></header>}
                 <TaskTitle task={task}
                     handleChange={handleChange}
                     group={group} />
@@ -93,13 +94,14 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div>
                         <div className="flex">
-                        <Members user={user} toggleModal={toggleAdditivesModal} />
-                        <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
+                            <Members user={user} toggleModal={toggleAdditivesModal} />
+                            <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
                         </div>
                         <TaskDescription task={task}
-                         onSaveTask={onSaveTask}/>
-                        {task.attachment && <TaskAttachments task={task} />}
+                            onSaveTask={onSaveTask} />
+                        {(task.attachment || task.attachment.legnth > 0) && <TaskAttachments task={task}
+                            onSaveTask={onSaveTask} />}
                         <TaskActivities user={user} />
                     </div>
                     <aside className="details-side-bar">
