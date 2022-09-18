@@ -36,7 +36,7 @@ export const TxtCompose = ({ type, returnTxt }) => {
                 :
                 <section className="task-compose">
                     <div onClick={toggleModal} className="compose-btn">
-                        <span><BsPlusLg /></span><span>Add a {type}</span>
+                        <span className="plus-sign" ><BsPlusLg /></span><span>Add a {type}</span>
                     </div>
                 </section>}
         </>

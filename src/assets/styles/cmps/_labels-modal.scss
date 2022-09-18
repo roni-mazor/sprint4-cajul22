@@ -105,15 +105,6 @@
             display: flex;
             list-style: none;
 
-            input[type="checkbox"] {
-                width: 17px;
-                margin-right: 9px;
-
-                &:hover {
-                    background-color: lighten(#dfe1e6, 5%);
-                }
-            }
-
             .label-display-btn {
                 display: inline-block;
                 margin-bottom: 0;
@@ -244,5 +235,5 @@
         color: #5e6c84;
         cursor: pointer;
     }
-   
+
 }
