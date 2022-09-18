@@ -1,26 +1,28 @@
 import { VscChromeClose } from 'react-icons/vsc'
-// import { FaPencilAlt } from 'react-icons/fa'
-// import { FiChevronLeft } from 'react-icons/fi'
 import { useState } from 'react'
 // import { useDispatch } from 'react-redux'
-// import { saveLabels } from '../store/board.actions'
 import { useSelector } from 'react-redux'
 import { MemberPreview } from '../member-preview'
-// import { boardService } from '../../services/board.service'
-// import { MemberPreview } from '../member-preview'
-
+import { utilService } from '../../services/util.service'
 
 export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const board = useSelector(state => state.boardModule.board)
 
-    const [searchInput, setSearchInput] = useState('')
+    const [filterBy, setFilterBy] = useState('')
+    let members = useSelector(state => state.boardModule.board.members)
+    members = members.filter(member => member.fullname.includes(filterBy))
 
-    // const onChangeLabelColor = (color) => {
-    //     setLabelEdit((prevLabel) => ({ ...prevLabel, color }))
-    // }
-    const onChangeLabelTitle = ({ target: { value } }) => {
-        setSearchInput((prevSearch) => ({ ...prevSearch, searchInput: value }))
+    const onAddMemberToTask = (memberId) => {
+        const member = board.members.find(member => member._id === memberId)
+        // console.log('task:', task)       
+        task.members = [...task.members, member]
+        
+        onSaveTask(task)
     }
+
+    //// const onChangeLabelTitle = ({ target: { value } }) => {
+    //     setSearchInput((prevSearch) => ({ ...prevSearch, searchInput: value }))
+    // }
 
     // const saveLabelChanges = () => {
     //     let newLabelIdx = labels.findIndex(l => l.id === labelEdit.id)
@@ -54,15 +56,17 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
 
             <input className="label-title-input"
                 type="text" placeholder='Search members'
-                onChange={onChangeLabelTitle}
-                value={searchInput.searchInput} />
+                onChange={({ target: { value } }) => { setFilterBy(value) }}
+                value={filterBy} />
             <p>Board members</p>
             <ul className="labels-container">
                 {board.members.map(member => (
-                    <li key={member.fullname} className='member-container flex align-center'>
-                        <MemberPreview member={member}/>
-                        <p>{member.username}</p>
-                        <p>{`(${member.fullname})`}</p>
+                    <li key={utilService.makeId(5)} >
+                        <span className='member-container flex align-center' onClick={() => onAddMemberToTask(member._id)}>
+                            <MemberPreview member={member} />
+                            <p>{member.username}</p>
+                            <p>{`(${member.fullname})`}</p>
+                        </span>
                     </li>
                 ))}
             </ul>

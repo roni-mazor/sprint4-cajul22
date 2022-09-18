@@ -67,5 +67,20 @@
         max-width: 85%;
         margin: 0 0 4px 0;
     }
+<<<<<<< HEAD
 }
+=======
+
+    .task-user-container {
+        flex-direction: row-reverse;
+
+        & .task-users {
+            border-radius: 25px;
+            width: 30px;
+            height: 30px;
+
+
+        }
+    }
+>>>>>>> 363318d318056c1ddc1f159fad362e370a8dfbbd
 }

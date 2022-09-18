@@ -50,17 +50,17 @@ const board1 = {
     "members": [
         {
             "_id": "u101",
-            "fullname": "Tal Tarablus",
+            "fullname": "taal Tarasdgblus",
             "imgUrl": ""
         },
         {
             "_id": "u102",
-            "fullname": "Tal Tarablus",
+            "fullname": "tabu Tarablus",
             "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg"
         },
         {
             "_id": "u103",
-            "fullname": "Tal Tarablus",
+            "fullname": "roni Tarablus",
             "imgUrl": ""
         }
     ],
@@ -73,12 +73,16 @@ const board1 = {
                 {
                     "id": "c101",
                     "labelIds": [],
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "members": [],
+                    "isUserJoined": false
                 },
                 {
                     "id": "c102",
                     "labelIds": [],
-                    "title": "Add Samples"
+                    "title": "Add Samples",
+                    "members": [],
+                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -92,6 +96,8 @@ const board1 = {
                     "labelIds": [],
                     "title": "Do that",
                     "archivedAt": 1589983468418,
+                    "members": [],
+                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -110,7 +116,9 @@ const board1 = {
             "task": {
                 "id": "c101",
                 "labelIds": [],
-                "title": "Replace Logo"
+                "title": "Replace Logo",
+                "members": [],
+                "isUserJoined": false
             }
         }
     ],
@@ -186,12 +194,16 @@ const board2 = {
                     "id": "c10431",
                     "title": "Replace logo",
                     "labelIds": ["l101", "l102"],
+                    "members": [],
+                    "isUserJoined": false
 
                 },
                 {
                     "id": "c102121",
                     "title": "Add Samples",
                     "labelIds": ["l101", "l102"],
+                    "members": [],
+                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -204,6 +216,8 @@ const board2 = {
                     "id": "c1033",
                     "title": "Do that",
                     "labelIds": ["l101", "l102"],
+                    "members": [],
+                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -216,11 +230,15 @@ const board2 = {
                     "id": "c1012",
                     "title": "Replace logo",
                     "labelIds": ["l101", "l102"],
+                    "members": [],
+                    "isUserJoined": false
                 },
                 {
                     "id": "c1011",
                     "title": "Add Samples",
                     "labelIds": ["l101", "l102"],
+                    "members": [],
+                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -232,12 +250,16 @@ const board2 = {
                 {
                     "id": "c401",
                     "labelIds": [],
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "members": [],
+                    "isUserJoined": false
                 },
                 {
                     "id": "c402",
                     "labelIds": [],
-                    "title": "Add Samples"
+                    "title": "Add Samples",
+                    "members": [],
+                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -249,24 +271,34 @@ const board2 = {
                 {
                     "id": "c205",
                     "labelIds": [],
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "members": [],
+                    "isUserJoined": false
                 },
                 {
                     "id": "c204",
                     "labelIds": [],
-                    "title": "Add Samples"
+                    "title": "Add Samples",
+                    "members": [],
+                    "isUserJoined": false
                 }, {
                     "id": "c202",
                     "labelIds": [],
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "members": [],
+                    "isUserJoined": false
                 }, {
                     "id": "c203",
                     "labelIds": [],
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "members": [],
+                    "isUserJoined": false
                 }, {
                     "id": "c201",
                     "labelIds": [],
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "members": [],
+                    "isUserJoined": false
                 },
             ],
             "style": {}
@@ -285,7 +317,9 @@ const board2 = {
             "task": {
                 "id": "c101",
                 "labelIds": [],
-                "title": "Replace Logo"
+                "title": "Replace Logo",
+                "members": [],
+                "isUserJoined": false
             }
         }
     ],
@@ -330,12 +364,16 @@ const board3 = {
                 {
                     "id": "c101",
                     "labelIds": [],
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "members": [],
+                    "isUserJoined": false
                 },
                 {
                     "id": "c102",
                     "labelIds": [],
-                    "title": "Add Samples"
+                    "title": "Add Samples",
+                    "members": [],
+                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -349,6 +387,8 @@ const board3 = {
                     "title": "Do that",
                     "labelIds": [],
                     "archivedAt": 1589983468418,
+                    "members": [],
+                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -367,7 +407,9 @@ const board3 = {
             "task": {
                 "id": "c101",
                 "labelIds": [],
-                "title": "Replace Logo"
+                "title": "Replace Logo",
+                "members": [],
+                    "isUserJoined": false
             }
         }
     ],
