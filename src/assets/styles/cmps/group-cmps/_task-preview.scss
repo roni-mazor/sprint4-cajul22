@@ -51,6 +51,8 @@
     }
 
     p {
+        overflow-wrap: break-word;
+        max-width: 85%;
         margin: 0;
     }
 }
