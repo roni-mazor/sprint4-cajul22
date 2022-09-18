@@ -6,14 +6,12 @@ import { LoginPage } from './views/login-page'
 import { Home } from './views/home'
 import { TaskDetails } from './views/task-details'
 import './assets/styles/styles.scss'
-import { useSelector } from 'react-redux'
 
 
 export function App() {
-  const board = useSelector(state => state.boardModule.board)
-  const style = (board) ? board.style : { background: '#fff' }
+
   return (
-    <div className="App" style={style}>
+    <div className="App" >
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="workspace" element={<Workspace />} />

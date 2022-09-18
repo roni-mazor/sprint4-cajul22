@@ -26,9 +26,18 @@
         font-size: 14px;
         height: 32px;
         line-height: 32px;
-        margin: 0 4px 4px 0;
+        margin: 0 8px 4px 0;
         overflow: hidden;
         position: relative;
+        padding-left: 32px;
+        padding-right: 10px;
+
+        svg {
+            position: absolute;
+            top: 9px;
+            font-size: 17px;
+            left: 7px;
+        }
 
 
         &:hover {

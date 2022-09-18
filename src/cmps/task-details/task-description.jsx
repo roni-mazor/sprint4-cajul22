@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { IoMdList } from 'react-icons/io'
 
-export const TaskDescription = ({task}) => {
+export const TaskDescription = ({ task }) => {
 
     const [focused, setFocused] = useState(false)
     const [txt, setTxt] = useState('')

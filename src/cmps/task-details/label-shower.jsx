@@ -3,19 +3,21 @@ import { BsPlusLg } from 'react-icons/bs'
 
 export const LabelShower = ({ labelIds, toggleModal }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
-
+    console.log('labels', labels)
+    console.log('labelIds', labelIds)
     return (
         <section className="label-shower">
             <h3>Labels</h3>
             <section className="labels-shower-container">
                 {labelIds.map((id) => {
                     const label = labels.find(l => l.id === id)
+                    if (!label) return
                     return <button key={id} className="label-shower-btn" onClick={() => { toggleModal('label-picker') }}
                         style={{ backgroundColor: label.color }} >
                         {label.title}
                     </button>
                 })}
-                <button className="add-label-btn"><BsPlusLg /></button>
+                <button onClick={() => { toggleModal('label-picker') }} className="add-label-btn"><BsPlusLg /></button>
             </section>
         </section>
     )
