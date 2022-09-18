@@ -1,8 +1,9 @@
 import { LabelPicker } from "../addivities-modal/label-picker"
 import { AttachmentPicker } from "./attachment-picker"
+import { GroupActions } from "./group-actions"
 import { MemberPicker } from "./member-picker"
 
-export const TaskAdditivesModal = ({ onSaveTask, task, toggleModal, type }) => {
+export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, type }) => {
 
     const renderModalByType = () => {
         switch (type) {
@@ -23,10 +24,16 @@ export const TaskAdditivesModal = ({ onSaveTask, task, toggleModal, type }) => {
                 )
             case 'attachment':
                 return (
-                    <AttachmentPicker 
-                    task={task}
-                    onSaveTask={onSaveTask}
-                    toggleModal={toggleModal}/>
+                    <AttachmentPicker
+                        task={task}
+                        onSaveTask={onSaveTask}
+                        toggleModal={toggleModal} />
+                )
+            case 'group-actions':
+                return (
+                    <GroupActions
+                        onRemoveGroup={onRemoveGroup}
+                        toggleModal={toggleModal} />
                 )
         }
     }

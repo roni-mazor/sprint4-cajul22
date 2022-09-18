@@ -35,7 +35,20 @@ export const BoardDetails = () => {
         dispatch(updateIsStarred(board))
     }
     const handleTaskDrag = ({ source, destination, draggableId }) => {
-        console.log()
+        const sIndex = source.index
+        const sourceGroupId = source.droppableId
+        const dIndex = destination.index
+        const destinationGroupId = destination.droppableId
+        const taskId = draggableId
+
+        const groups = [...board.groups]
+        const sGroup = groups.find((g) => g.id === sourceGroupId)
+        const [task] = sGroup.tasks.splice(sIndex, 1)
+        const dGroup = groups.find((g) => g.id === destinationGroupId)
+        dGroup.tasks.splice(dIndex, 0, task)
+
+        const b = { ...board, groups }
+        dispatch(saveBoard(b))
 
     }
 

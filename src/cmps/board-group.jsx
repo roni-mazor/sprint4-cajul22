@@ -2,15 +2,20 @@ import { TaskPreview } from "./task-preview"
 import { BsThreeDots } from 'react-icons/bs'
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { saveGroup } from "../store/board.actions"
+import { removeGroup, saveGroup } from "../store/board.actions"
 import { TxtCompose } from "./txt-compose"
 import { boardService } from "../services/board.service"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
-
+import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
 export const BoardGroup = ({ group, boardId, groupIndex }) => {
     const dispatch = useDispatch()
     const [title, setTitle] = useState(group.title)
+    const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
 
+    const toggleAdditivesModal = (type) => {
+        if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
+        else setIsAdditivesModalOpen(type)
+    }
 
     const changeGroupTitle = ({ target }) => {
         setTitle(target.value)
@@ -27,14 +32,15 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
         dispatch(saveGroup(g))
     }
 
-    // const handleOnDragEnd = (result) => {
-    //     const tasks = Array.from(group.tasks)
-    //     const [reorderedItem] = tasks.splice(result.source.index, 1)
-    //     tasks.splice(result.destination.index, 0, reorderedItem)
-    //     const g = { ...group, tasks }
-    //     dispatch(saveGroup(g))
-    //     console.log(result)
+    const onRemoveGroup = () => {
+        dispatch(removeGroup(group.id))
+    }
+
+    // const onOpenModal = () => {
+
     // }
+
+
 
     // {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
 
@@ -50,9 +56,9 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
                     onChange={changeGroupTitle}
                     onBlur={onTitleUpdate}
                     value={title} />
-                <button className="group-actions-btn"><BsThreeDots /></button>
+                <button onClick={() => { toggleAdditivesModal('group-actions') }} className="group-actions-btn"><BsThreeDots /></button>
             </header>
-             {/* )}
+            {/* )}
 
         </Draggable> */}
 
@@ -84,7 +90,12 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
 
 
 
-
+            {isAdditivesModalOpen && <TaskAdditivesModal
+                type={isAdditivesModalOpen}
+                // task={task}
+                // onSaveTask={onSaveTask} 
+                onRemoveGroup={onRemoveGroup}
+                toggleModal={toggleAdditivesModal} />}
 
             <TxtCompose type={'card'} returnTxt={addTask} />
         </>

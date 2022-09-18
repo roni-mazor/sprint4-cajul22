@@ -1,138 +1,203 @@
-.add-features-modal {
+.additives-modal-container {
     width: 304px;
-    background-color: white;
-    padding: 0 12px 12px 12px;
-    border-radius: 3px;
-    box-shadow: 0px 0px 1px 1px #dfe1e6;
+    max-height: 520px;
+    position: absolute;
+    right: 0;
+    z-index: 100;
 
 
-    p {
-        color: #5e6c84;
-    }
 
-    hr {
-        background-color: #091e4221;
-        border: 0;
-        height: 1px;
-        margin: 16px 0;
-        padding: 0;
-        width: 100%
-    }
+    .add-features-modal {
+        width: 304px;
+        background-color: white;
+        padding: 0 12px 12px 12px;
+        border-radius: 3px;
+        box-shadow: 0px 0px 1px 1px #dfe1e6;
 
-    .edit-label-header {
-        height: 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 0;
 
-        &~hr {
-            margin-top: 0;
+        p {
+            color: #5e6c84;
         }
 
-        div {
+        hr {
+            background-color: #091e4221;
+            border: 0;
+            height: 1px;
+            margin: 16px 0;
+            padding: 0;
+            width: 100%
+        }
+
+        .edit-label-header {
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin: 0;
-            color: #5e6c84;
-            font-size: 16px;
-        }
 
-        span {
-            color: #5e6c84;
-            font-size: 18px;
-            cursor: pointer;
-
-            &:hover {
-                color: #172b4d;
+            &~hr {
+                margin-top: 0;
             }
-        }
-    }
-
-    .label-colors-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 3px;
-        margin-bottom: 15px;
-
-        button {
-            border: none;
-            width: 51px;
-            height: 32px;
-            background-color: transparent;
-            padding: 1px;
 
             div {
-                position: relative;
-                border-radius: 3px;
-                width: 100%;
-                height: 100%;
+                margin: 0;
+                color: #5e6c84;
+                font-size: 16px;
+            }
+
+            span {
+                color: #5e6c84;
+                font-size: 18px;
                 cursor: pointer;
-            }
 
-            &.chosen {
-                border: 2px #0079BF solid;
-                border-radius: 3px;
+                &:hover {
+                    color: #172b4d;
+                }
             }
         }
-    }
 
-    .create-label-btn {
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: 400;
-        margin: auto;
-        border-radius: 3px;
-        cursor: pointer;
-        padding: 6px 12px;
-        background-color: rgba(9, 30, 66, 0.04);
-        border: none;
-        color: #172b4d;
-        width: 100%;
-
-        &:hover {
-            background-color: lighten(#dfe1e6, 5%);
-        }
-    }
-
-
-    .labels-container {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        list-style: none;
-        padding: 0;
-
-        .label-container label {
+        .label-colors-container {
             display: flex;
-            list-style: none;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-bottom: 15px;
 
-            .label-display-btn {
-                display: inline-block;
-                margin-bottom: 0;
-                border-radius: 3px;
-                padding: 0 12px;
-                max-width: 100%;
-                min-width: 48px;
+            button {
+                border: none;
+                width: 51px;
                 height: 32px;
-                line-height: 32px;
-                color: #172b4d;
-                font-size: 14px;
-                font-weight: 400;
-                text-align: left;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                flex: 1;
+                background-color: transparent;
+                padding: 1px;
 
-                span {
-                    font-size: 22px;
+                div {
+                    position: relative;
+                    border-radius: 3px;
+                    width: 100%;
+                    height: 100%;
+                    cursor: pointer;
                 }
 
+                &.chosen {
+                    border: 2px #0079BF solid;
+                    border-radius: 3px;
+                }
+            }
+        }
+
+        .create-label-btn {
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 400;
+            margin: auto;
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 6px 12px;
+            background-color: rgba(9, 30, 66, 0.04);
+            border: none;
+            color: #172b4d;
+            width: 100%;
+
+            &:hover {
+                background-color: lighten(#dfe1e6, 5%);
+            }
+        }
+
+
+        .labels-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            list-style: none;
+            padding: 0;
+
+            .label-container label {
+                display: flex;
+                list-style: none;
+
+                .label-display-btn {
+                    display: inline-block;
+                    margin-bottom: 0;
+                    border-radius: 3px;
+                    padding: 0 12px;
+                    max-width: 100%;
+                    min-width: 48px;
+                    height: 32px;
+                    line-height: 32px;
+                    color: #172b4d;
+                    font-size: 14px;
+                    font-weight: 400;
+                    text-align: left;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    flex: 1;
+
+                    span {
+                        font-size: 22px;
+                    }
+
+                }
+
+                .edit-btn {
+                    border: none;
+                    color: #172b4d;
+                    background-color: transparent;
+                    font-size: 14px;
+                    line-height: 20px;
+                    font-weight: 400;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    padding: 4px 8px;
+                    margin: 2px 4px;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: lighten(#dfe1e6, 5%);
+                    }
+                }
             }
 
-            .edit-btn {
+        }
+
+        .label-title-input {
+            outline: none;
+            border: none;
+            color: #172b4d;
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 400;
+            transition-property: background-color, border-color, box-shadow;
+            transition-duration: 85ms;
+            transition-timing-function: ease;
+            border-radius: 3px;
+            padding: 8px 12px;
+            box-shadow: inset 0 0 0 2px #dfe1e6;
+            background-color: #fafbfc;
+            width: 100%;
+            margin-bottom: 0;
+
+            &:focus {
+                box-shadow: inset 0 0 0 2px #0079BF;
+            }
+
+            &:hover:not(:focus) {
+                background-color: lighten(#dfe1e6, 5%);
+            }
+        }
+
+        .save-delete-label {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+
+            button {
+                background-color: var(--ds-background-danger-bold, #b04632);
+                box-shadow: none;
                 border: none;
-                color: #172b4d;
-                background-color: transparent;
+                color: #ffffff;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: 400;
@@ -141,99 +206,44 @@
                 justify-content: center;
                 border-radius: 3px;
                 cursor: pointer;
-                padding: 4px 8px;
-                margin: 2px 4px;
+                padding: 6px 12px;
                 text-decoration: none;
+                white-space: normal;
 
-                &:hover {
-                    background-color: lighten(#dfe1e6, 5%);
+                &.save-label-btn {
+                    background-color: #0079bf;
+                }
+
+                &.delete-label-btn {
+                    background-color: #b04632;
                 }
             }
         }
 
-    }
-
-    .label-title-input {
-        outline: none;
-        border: none;
-        color: #172b4d;
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: 400;
-        transition-property: background-color, border-color, box-shadow;
-        transition-duration: 85ms;
-        transition-timing-function: ease;
-        border-radius: 3px;
-        padding: 8px 12px;
-        box-shadow: inset 0 0 0 2px #dfe1e6;
-        background-color: #fafbfc;
-        width: 100%;
-        margin-bottom: 0;
-
-        &:focus {
-            box-shadow: inset 0 0 0 2px #0079BF;
-        }
-
-        &:hover:not(:focus) {
-            background-color: lighten(#dfe1e6, 5%);
-        }
-    }
-
-    .save-delete-label {
-        display: flex;
-        justify-content: space-between;
-        color: white;
-
-        button {
-            background-color: var(--ds-background-danger-bold, #b04632);
-            box-shadow: none;
+        .attach-btn {
+            background-color: #091e420a;
             border: none;
-            color: #ffffff;
-            font-size: 14px;
-            line-height: 20px;
-            font-weight: 400;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 3px;
+            box-shadow: none;
             cursor: pointer;
+            display: inline-block;
+            font-weight: 400;
+            line-height: 20px;
+            margin: 8px 4px 0 0;
             padding: 6px 12px;
-            text-decoration: none;
-            white-space: normal;
+            text-align: center;
+            transition: all .4s;
 
-            &.save-label-btn {
-                background-color: #0079bf;
-            }
-
-            &.delete-label-btn {
-                background-color: #b04632;
+            &:hover {
+                background-color: #091e4214;
+                border: none;
+                box-shadow: none;
             }
         }
-    }
 
-    .attach-btn {
-        background-color: #091e420a;
-        border: none;
-        box-shadow: none;
-        cursor: pointer;
-        display: inline-block;
-        font-weight: 400;
-        line-height: 20px;
-        margin: 8px 4px 0 0;
-        padding: 6px 12px;
-        text-align: center;
-        transition: all .4s;
-
-        &:hover {
-            background-color: #091e4214;
-            border: none;
-            box-shadow: none;
+        label {
+            color: #5e6c84;
+            cursor: pointer;
         }
-    }
 
-    label {
-        color: #5e6c84;
-        cursor: pointer;
     }
-
 }
