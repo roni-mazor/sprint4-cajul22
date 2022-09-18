@@ -4,6 +4,7 @@
     background-color: transparent;
     justify-content: space-between;
     margin: 5px 0;
+    height: 35px;
 
     span {
         margin: 0 0 0 6px;
@@ -11,6 +12,10 @@
         align-items: center;
         gap: 15px;
         color: white;
+
+        h1 {
+            margin-inline-start: 8px;
+        }
     }
 
     .show-menu-btn {
@@ -25,8 +30,14 @@
         overflow: hidden;
         position: relative;
 
+
         &:hover {
             background-color: hsla(0, 0%, 100%, .459)
         }
+    }
+
+    .member-avatar {
+        margin-inline-end: -5px;
+        cursor: pointer;
     }
 }

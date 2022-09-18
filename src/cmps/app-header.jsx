@@ -23,12 +23,12 @@ export const AppHeader = ({ board }) => {
             <Link to="/workspace" className="header-logo flex align-center">
                 <img src="https://a.trellocdn.com/prgb/dist/images/header-logo-spirit.d947df93bc055849898e.gif" alt="" />
             </Link>
-            <Link to="">
+            {/* <Link to=""> */}
                 <h4 className="log-sig">
                     {(!member?.imgUrl) && <BsPersonCircle />}
                     {member?.imgUrl && <MemberPreview member={member}/>}
                 </h4>
-            </Link>
+            {/* </Link> */}
         </header>
     )
 }

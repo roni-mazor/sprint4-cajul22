@@ -7,9 +7,6 @@
     height: 45px;
     color: whitesmoke;
 
-    & .header-logo{
-        width: 60px;
-    }
 
     &.board {
         background-color: rgba(0, 0, 0, 0.744);
@@ -19,8 +16,9 @@
         height: inherit;
     }
 
-    .logo {
-        margin-top: 10px;
+    .header-logo {
+        // margin-top: 10px;
+        width: 85px;
         margin-bottom: 0;
         display: flex;
         margin-inline-start: 10px;
@@ -33,11 +31,27 @@
         }
     }
 
+    // .member-avatar {
+    //     margin-top: 3px;
+    //     margin-inline-end: 10px;
+    //     font-size: 1.9em;
+    //     cursor: pointer;
     .log-sig {
         margin-top: 3px;
-        margin-bottom: 0;
+        margin-bottom: 12px;
         margin-inline-end: 10px;
         font-size: 1.9em;
         cursor: pointer;
+
+        img {
+            object-fit: cover;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            // margin-bottom: 1px;
+        }
     }
+
+    // }
+
 }

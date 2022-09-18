@@ -1,6 +1,6 @@
 .task-details-modal {
     .task-details-title {
-        margin: 12px 40px 8px 56px;
+        margin: 22px 40px 8px 61px;
         position: relative;
         flex-wrap: wrap;
 
@@ -11,6 +11,7 @@
             line-height: 16px;
             width: 100%;
             margin-inline-end: 10px;
+            margin-inline-start: -16px;
 
             &:focus {
                 background-color: white;
@@ -21,7 +22,7 @@
             left: -40px;
             position: absolute;
             top: 2px;
-            font-size: 2em;
+            font-size: 1.5em;
         }
 
         p.mini-title {

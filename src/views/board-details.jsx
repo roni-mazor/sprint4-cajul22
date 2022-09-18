@@ -28,7 +28,7 @@ export const BoardDetails = () => {
 
     console.log(board)
     if (board) return (
-        <>
+        <div>
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} />
@@ -40,6 +40,6 @@ export const BoardDetails = () => {
                 </main>
                 <Outlet />
             </section>
-        </>
+        </div>
     )
 }
