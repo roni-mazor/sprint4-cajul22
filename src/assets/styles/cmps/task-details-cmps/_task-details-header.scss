@@ -9,6 +9,10 @@
         background-origin: content-box;
         padding: 0px;
         box-sizing: border-box;
-        background-position: center center;
+        background-position: center ;
+        background-repeat: no-repeat;
+        position: relative;
+        transition: opacity 85ms;
+        width: 100%;
     }
 }

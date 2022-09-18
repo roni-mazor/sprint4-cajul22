@@ -23,14 +23,22 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
     }
 
     const onUploadImg = async (ev) => {
-        const url = await uploadService.uploadImg(ev)
-        onSaveUrl(url)
+        const img = await uploadService.uploadImg(ev)
+        onSaveUrl(img)
     }
 
-    const onSaveUrl = (url) => {
+    const onSaveUrl = (img) => {
         let newTask = task
         if (!newTask.attachment) newTask.attachment = []
-        newTask.attachment.unshift({ id: utilService.makeId(5), url, createdAt: Date.now() })
+        newTask.attachment.unshift({
+            id: utilService.makeId(5),
+            url: img.url,
+            name: img.name,
+            height: img.height,
+            width: img.width,
+            createdAt: Date.now()
+        })
+        console.log('img:', img)
         console.log('newTask:', newTask)
         onSaveTask(newTask)
     }

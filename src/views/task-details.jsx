@@ -86,7 +86,7 @@ export const TaskDetails = () => {
     return (
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
-                {task.cover && <header className="task-details-header" style={{ backgroundImage: `url(${task.cover})` }}></header>}
+                {task.cover && <header className="task-details-header" style={{ backgroundImage: `url(${task.cover.url})` }}></header>}
                 <TaskTitle task={task}
                     handleChange={handleChange}
                     group={group} />
@@ -100,7 +100,7 @@ export const TaskDetails = () => {
                         </div>
                         <TaskDescription task={task}
                             onSaveTask={onSaveTask} />
-                        {(task.attachment || task.attachment.legnth > 0) && <TaskAttachments task={task}
+                        {(task?.attachment || task?.attachment?.legnth > 0) && <TaskAttachments task={task}
                             onSaveTask={onSaveTask} />}
                         <TaskActivities user={user} />
                     </div>

@@ -12,9 +12,18 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         ev.preventDefault()
         dispatch(toggleLabelTxt())
     }
+
+    const getCoverHeight = () => {
+        if (!task.cover) return
+        if (task.cover.height > 1000) return 260
+        if (task.cover.height < 290) return task.cover.height
+        else return task.cover.height / 4
+    }
+
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
+            {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url})`, height: `${getCoverHeight()}px` }}></div>}
             <header className="task-header"></header>
             <section className="labels-container">
                 {task.labelIds.map((id) => {
