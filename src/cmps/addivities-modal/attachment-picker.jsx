@@ -30,7 +30,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
     const onSaveUrl = (url) => {
         let newTask = task
         if (!newTask.attachment) newTask.attachment = []
-        newTask.attachment.unshift({ id: utilService.makeId(5), url })
+        newTask.attachment.unshift({ id: utilService.makeId(5), url, createdAt: Date.now() })
         console.log('newTask:', newTask)
         onSaveTask(newTask)
     }
