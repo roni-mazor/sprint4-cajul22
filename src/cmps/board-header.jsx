@@ -1,16 +1,22 @@
 import { MemberPreview } from "./member-preview"
 import { BsThreeDots } from 'react-icons/bs'
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { RiUserAddLine } from 'react-icons/ri'
 
-export const BoardHeader = ({ members, name }) => {
+export const BoardHeader = ({ board, onToggleIsStarred, members }) => {
+
 
 
     return (
         <header className="board-header">
             <span>
-            <h1 className="board-title">{name}</h1>
-            <section className="avatars-container" style={{ display: "flex" }}>
-                {members.map(member => <MemberPreview member={member} />)}
-            </section>
+                <h1 className="board-title">{board.title}</h1>
+                <span className={board.isStarred ? 'starred true' : 'starred'}
+                    onClick={onToggleIsStarred}>
+                    {board.isStarred ? <AiFillStar /> : <AiOutlineStar />}</span><p>|</p>                 <section className="avatars-container" style={{ display: "flex" }}>
+                    {members.map(member => <MemberPreview member={member} />)}
+                </section>
+                <button className="add-board-user"><RiUserAddLine /> Share</button>
             </span>
             <button className="show-menu-btn"><BsThreeDots /> Show menu</button>
         </header>

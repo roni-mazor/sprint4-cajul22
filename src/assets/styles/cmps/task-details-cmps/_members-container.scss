@@ -2,6 +2,7 @@
     .members-container {
         position: relative;
         left: 65px;
+        top: 11px;
         color: #5e6c84;
         display: block;
         font-size: 12px;
@@ -10,7 +11,15 @@
         line-height: 20px;
         margin-inline-end: 20px;
         margin-inline-start: -8px;
-        
+        margin-bottom: 35px;
+
+        & .member-avatar-img {
+            cursor: pointer;
+            overflow: hidden;
+            width: 32px;
+            padding: 2px 0 0 2px;
+        }
+
         & p {
             margin: 0 8px 4px 0;
         }
@@ -20,9 +29,10 @@
             border-radius: 50px;
             background-color: #42526e19;
             color: #7b7b7b;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             font-size: 2em;
+            
 
             &:hover {
                 background-color: #42526e21;

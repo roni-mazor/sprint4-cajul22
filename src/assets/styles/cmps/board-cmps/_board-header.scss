@@ -3,8 +3,23 @@
     align-items: center;
     background-color: transparent;
     justify-content: space-between;
-    margin: 5px 0;
+    margin-top: 5px;
+    margin-bottom: 10px;
     height: 35px;
+    
+    .add-board-user{ 
+        padding: 6px 12px;       
+        height: 35px;
+        font-size: 14px;
+        font-family: var(--base);
+        background-color: #fff;
+        border: none;
+        border-radius: 3px;
+
+        & svg{
+            font-size: 12px;
+        }
+    }
 
     span {
         margin: 0 0 0 6px;
@@ -13,9 +28,44 @@
         gap: 15px;
         color: white;
 
-        h1 {
+        .board-title {
             margin-inline-start: 8px;
         }
+
+        .starred {
+            background-color: rgba(255, 255, 255, 0.2392156863);
+            border-radius: 3px;
+            /* color: var(--dynamic-text-color, #fff); */
+            cursor: pointer;
+            float: left;
+            font-size: 17px;
+            height: 32px;
+            line-height: 32px;
+            max-width: 400px;
+            overflow: hidden;
+            padding: 7px;
+            position: relative;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            margin-inline-end: -7px;
+            transition: all .4s;
+
+            &:hover {
+                color: #f2d600;
+                background-color: rgba(255, 255, 255, 0.349);
+                // transform: scale(1.2);
+            }
+
+            &.true {
+                color: gold;
+
+            }
+        }
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.368);
+        margin-inline-end: -7px;
     }
 
     .show-menu-btn {
@@ -46,7 +96,7 @@
     }
 
     .member-avatar {
-        margin-inline-end: -5px;
+        margin-inline-end: -1px;
         cursor: pointer;
     }
 }

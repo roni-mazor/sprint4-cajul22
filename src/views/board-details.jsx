@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
-import { loadBoard, saveBoard } from "../store/board.actions"
+import { loadBoard, saveBoard, updateIsStarred } from "../store/board.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
 import { boardService } from "../services/board.service"
+import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 // import { background } from '../assets/img/micr4679.jpg'
 
@@ -17,6 +18,7 @@ export const BoardDetails = () => {
     const style = (board) ? board.style : { background: '#fff' }
 
     useEffect(() => {
+        // console.log('board:', board)
         dispatch(loadBoard(params.boardId))
     }, [])
 
@@ -28,32 +30,23 @@ export const BoardDetails = () => {
         dispatch(saveBoard(b))
     }
 
+    const onToggleIsStarred = () => {
+        board.isStarred = !board.isStarred
+        dispatch(updateIsStarred(board))
+    }
     const handleTaskDrag = ({ source, destination, draggableId }) => {
         console.log()
-
-        const sIndex = source.index
-        const sourceGroupId = source.droppableId
-        const dIndex = destination.index
-        const destinationGroupId = destination.droppableId
-        const taskId = draggableId
-
-        const groups = [...board.groups]
-        const sGroup = groups.find((g) => g.id === sourceGroupId)
-        const [task] = sGroup.tasks.splice(sIndex, 1)
-        const dGroup = groups.find((g) => g.id === destinationGroupId)
-        dGroup.tasks.splice(dIndex, 0, task)
-
-        const b = { ...board, groups }
-        dispatch(saveBoard(b))
 
     }
 
 
-    if (board) return (
+    if (!board) return <LoaderIcon />
+    return (
         <div className="board-wrapper" style={{ backgroundImage: `url(${style}` }}>
             <AppHeader board={board} />
             <section className="board-container" >
-                <BoardHeader name={board.title} members={board.members} />
+                <BoardHeader name={board.title} members={board.members} board={board}
+                    onToggleIsStarred={onToggleIsStarred} />
 
 
                 <DragDropContext onDragStart={console.log}>

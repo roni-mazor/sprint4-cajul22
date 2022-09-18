@@ -1,34 +1,44 @@
 .task-details-modal {
     .task-details-title {
-        margin: 22px 40px 8px 61px;
         position: relative;
         flex-wrap: wrap;
+        margin: 17px 40px 8px 60px;
+        min-height: 32px;
+        z-index: 1;
 
         textarea {
-            font-size: 1.25rem;
-            background-color: transparent;
-            height: 33px;
-            line-height: 16px;
             width: 100%;
-            margin-inline-end: 10px;
-            margin-inline-start: -16px;
+            background: #0000;
+            border-radius: 3px;
+            box-shadow: none;
+            font-size: 20px;
+            font-weight: 600;
+            height: 32px;
+            line-height: 24px;
+            margin: 0 -10px;
+            min-height: 24px;
+            padding: 4px 8px;
+            
+            resize: none;
+
 
             &:focus {
                 background-color: white;
+                box-shadow: inset 0 0 0 2px #0079bf;
             }
         }
 
         span {
             left: -40px;
             position: absolute;
-            top: 2px;
+            top: 5px;
             font-size: 1.5em;
         }
 
         p.mini-title {
             color: #5e6c84;
             display: inline-block;
-            margin: 4px 8px 4px 2px;
+            margin: 0 0 0 -2px;
             background-color: transparent;
         }
 

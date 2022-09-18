@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    delay
+    delay,
+    getMonthName
 }
 
 function makeId(length = 6) {
@@ -38,3 +39,9 @@ function delay(ms = 1500) {
     })
 }
 
+function getMonthName(date) {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+    return monthNames[date.getMonth()]
+}

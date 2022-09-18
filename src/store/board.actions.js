@@ -2,7 +2,16 @@ import { boardService } from "../services/board.service"
 
 export function loadBoard(boardId) {
     return async (dispatch) => {
+        console.log('boardId:', boardId)
         const board = await boardService.getById(boardId)
+        dispatch({ type: 'SET_BOARD', board })
+    }
+}
+
+export function resetBoard() {
+    return (dispatch) => {
+        const board = {}
+
         dispatch({ type: 'SET_BOARD', board })
     }
 }
