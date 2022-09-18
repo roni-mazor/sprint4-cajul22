@@ -7,6 +7,7 @@ import { loadBoard, saveBoard } from "../store/board.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
 import { boardService } from "../services/board.service"
+import { LoaderIcon } from "../cmps/loader-icon"
 // import { background } from '../assets/img/micr4679.jpg'
 
 export const BoardDetails = () => {
@@ -35,7 +36,8 @@ export const BoardDetails = () => {
 
 
 
-    if (board) return (
+    if (!board) return <LoaderIcon />
+    return (
         <div className="board-wrapper" style={{ backgroundImage: `url(${style}` }}>
             <AppHeader board={board} />
             <section className="board-container" >
