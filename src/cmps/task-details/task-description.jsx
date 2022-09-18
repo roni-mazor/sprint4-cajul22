@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { IoMdList } from 'react-icons/io'
+import { GrTextAlignFull } from 'react-icons/gr'
 
 export const TaskDescription = ({ task, onSaveTask }) => {
 
@@ -35,7 +35,7 @@ export const TaskDescription = ({ task, onSaveTask }) => {
     return (
         <section className="description-container">
             <div className="description-title">
-                <span> <IoMdList /></span>   <h3>Description</h3>
+                <span> <GrTextAlignFull /></span>   <h3>Description</h3>
             </div>
             <textarea onFocus={onFocus} onBlur={onBlur} onChange={onHandleChange}
                 className='simple-txtarea description-txtarea' cols="60" rows="2"

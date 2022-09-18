@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { AppHeader } from "../cmps/app-header"
+import { LoaderIcon } from "../cmps/loader-icon"
 import { BoardList } from "../cmps/board-list"
 import { boardService } from "../services/board.service"
 import { loadBoards, resetBoard, updateIsStarred } from "../store/board.actions"
@@ -26,7 +27,7 @@ export const Workspace = () => {
         // dispatch(loadBoards())
     }
  console.log('boards:', boards)
-    if (!boards) return <h1>Loading...</h1>
+    if (!boards) return <LoaderIcon />
     return (
         <React.Fragment>
             <AppHeader />
