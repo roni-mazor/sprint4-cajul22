@@ -100,7 +100,7 @@ export const TaskDetails = () => {
                         </div>
                         <TaskDescription task={task}
                             onSaveTask={onSaveTask} />
-                        {(task.attachment || task.attachment.legnth > 0) && <TaskAttachments task={task}
+                        {(task?.attachment || task?.attachment?.legnth > 0) && <TaskAttachments task={task}
                             onSaveTask={onSaveTask} />}
                         <TaskActivities user={user} />
                     </div>
