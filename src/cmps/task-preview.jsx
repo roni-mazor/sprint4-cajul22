@@ -12,8 +12,6 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         ev.preventDefault()
         dispatch(toggleLabelTxt())
     }
-    console.log(task.labelIds)
-    console.log(labels)
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
