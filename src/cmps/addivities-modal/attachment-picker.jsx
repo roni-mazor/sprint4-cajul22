@@ -20,6 +20,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
     const onHandleChange = ({ target }) => {
         const value = target.value
         setTxt(value)
+        console.log('txt:', txt)
     }
 
     const onUploadImg = async (ev) => {
@@ -28,19 +29,21 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
     }
 
     const onSaveUrl = (img) => {
+        console.log('img:', img)
         let newTask = task
-        if (!newTask.attachment) newTask.attachment = []
-        newTask.attachment.unshift({
+        if (!newTask.attachments) newTask.attachments = []
+        newTask.attachments.unshift({
             id: utilService.makeId(5),
-            url: img.url,
-            name: img.name,
-            height: img.height,
+            url: img.url||img,
+            name: img.name||'Media url',
+            height: img.height||2000,
             width: img.width,
             createdAt: Date.now()
         })
         console.log('img:', img)
         console.log('newTask:', newTask)
         onSaveTask(newTask)
+        toggleModal()
     }
 
     return (

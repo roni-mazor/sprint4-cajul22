@@ -6,10 +6,11 @@ import { BsSquareHalf } from 'react-icons/bs'
 
 import { utilService } from '../../services/util.service'
 
-export const TaskAttachments = ({ task, onSaveTask }) => {
+export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
     // const attachments = task.attachment
-    const [attachments, setAttachments] = useState(task.attachment)
-    const dispatch = useDispatch()
+    // const [attachments, setAttachments] = useState(task.attachment)
+    // const dispatch = useDispatch()
+    const { attachments } = task
 
     const getFormatedTime = (time) => {
         const date = new Date(time)
@@ -23,11 +24,11 @@ export const TaskAttachments = ({ task, onSaveTask }) => {
 
     const onRemoveAttachment = (attachmentId) => {
         console.log('attachmentId :', attachmentId)
-        let newAttachments = attachments.filter(attachment => attachment.id !== attachmentId)
-        let newTask = task
-        newTask.attachment = newAttachments
-        // setAttachments(newAttachments)
-        onSaveTask(newTask)
+        task.attachments = attachments.filter(attachment => attachment.id !== attachmentId)
+        // let newTask = task
+        // removeAttachments(newAttachments)
+        task.cover = ''
+        onSaveTask(task)
     }
 
     const onMakeCover = (attachmentId) => {
@@ -36,6 +37,12 @@ export const TaskAttachments = ({ task, onSaveTask }) => {
         let newTask = task
         newTask.cover = selectedAttach
         onSaveTask(newTask)
+    }
+
+    const onRemoveCover = () => {
+       
+        task.cover = ''
+        onSaveTask(task)
     }
     // console.log('date:', date)
     return (
@@ -59,7 +66,9 @@ export const TaskAttachments = ({ task, onSaveTask }) => {
                                     <span className="icon">
                                         <BsSquareHalf />
                                     </span>
-                                    <span onClick={() => onMakeCover(attachment.id)}> Make cover</span>
+                                    {attachment.id !== task?.cover?.id && <span onClick={() => onMakeCover(attachment.id)}> Make cover</span>}
+                                    {attachment.id === task?.cover?.id && <span onClick={() => onRemoveCover(attachment.id)}> Remove cover</span>}
+                                    {/* <span onClick={() => onMakeCover(attachment.id)}> Make cover</span> */}
                                 </span>
                             </p>
                         </div>

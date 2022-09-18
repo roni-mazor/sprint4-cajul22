@@ -17,24 +17,30 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         if (!task.cover) return
         if (task.cover.height > 1000) return 260
         if (task.cover.height < 290) return task.cover.height
+        if (task.cover.height < 800) return task.cover.height / 3
         else return task.cover.height / 4
     }
 
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
-            {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url})`, height: `${getCoverHeight()}px` }}></div>}
-            <header className="task-header"></header>
-            <section className="labels-container">
-                {task.labelIds.map((id) => {
-                    const label = labels.find(l => l.id === id)
-                    return <div key={id} className={`label-btn ${openLabelClassName}`} onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
-                        {isLabelTxtOpen && <span>{label.title}</span>}
-                    </div>
-                })}
-            </section>
-            <p>{task.title}</p>
-            <section className="task-badges"></section>
+            {/* <header className="task-header"> */}
+            {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
+
+            {/* </header> */}
+            <div className="task-content">
+
+                <section className="labels-container">
+                    {task.labelIds.map((id) => {
+                        const label = labels.find(l => l.id === id)
+                        return <div key={id} className={`label-btn ${openLabelClassName}`} onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
+                            {isLabelTxtOpen && <span>{label.title}</span>}
+                        </div>
+                    })}
+                </section>
+                <p>{task.title}</p>
+                <section className="task-badges"></section>
+            </div>
         </Link>
     )
 }

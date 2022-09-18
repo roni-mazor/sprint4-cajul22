@@ -1,5 +1,6 @@
 import { LabelPicker } from "../addivities-modal/label-picker"
 import { AttachmentPicker } from "./attachment-picker"
+import { Checklist } from "./checklist-picker"
 import { GroupActions } from "./group-actions"
 import { MemberPicker } from "./member-picker"
 
@@ -33,6 +34,13 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                 return (
                     <GroupActions
                         onRemoveGroup={onRemoveGroup}
+                        toggleModal={toggleModal} />
+                )
+            case 'check-list':
+                return (
+                    <Checklist
+                        task={task}
+                        onSaveTask={onSaveTask}
                         toggleModal={toggleModal} />
                 )
         }

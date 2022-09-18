@@ -24,6 +24,7 @@ import { Members } from "../cmps/task-details/task-members"
 
 
 import { LabelShower } from "../cmps/task-details/label-shower"
+import { TaskChecklist } from "../cmps/task-details/task-checklist"
 
 
 export const TaskDetails = () => {
@@ -51,7 +52,9 @@ export const TaskDetails = () => {
 
         // const currTask =  boardService.getTaskById(boardId, groupId, taskId)
         const group = board.groups.find(group => group.id === groupId)
-        const currTask = group.tasks.find(task => task.id === taskId)
+        let currTask = group.tasks.find(task => task.id === taskId)
+        if (!currTask.attachments) currTask.attachments = []
+        if (!currTask.checklists) currTask.checklists = []
         setTask(currTask)
     }
 
@@ -80,9 +83,9 @@ export const TaskDetails = () => {
         onSaveTask(newTask)
     }
 
-
     console.log('task:', task)
     if (!task) return <h1>Loading...</h1>
+    console.log('task.attachments.length:', task.attachments.length)
     return (
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
@@ -100,8 +103,10 @@ export const TaskDetails = () => {
                         </div>
                         <TaskDescription task={task}
                             onSaveTask={onSaveTask} />
-                        {(task?.attachment || task?.attachment?.legnth > 0) && <TaskAttachments task={task}
+                        {task?.attachments?.length > 0 && <TaskAttachments task={task}
                             onSaveTask={onSaveTask} />}
+                        <TaskChecklist task={task}/>
+                        {/* {task?.checklists?.length >0 &&<TaskChecklist/>} */}
                         <TaskActivities user={user} />
                     </div>
                     <aside className="details-side-bar">
@@ -113,7 +118,7 @@ export const TaskDetails = () => {
                         <button onClick={toggleAdditivesModal}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={() => toggleAdditivesModal('attachment')}><ImAttachment /> Attachments</button>
                         <button><span><BsSquareHalf /></span> Cover</button>
-                        <button><TbCheckbox /> CheckList</button>
+                        <button onClick={() => toggleAdditivesModal('check-list')}><TbCheckbox /> CheckList</button>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
                         type={isAdditivesModalOpen}

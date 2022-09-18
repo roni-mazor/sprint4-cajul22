@@ -8,20 +8,21 @@
     margin-bottom: 8px;
     min-height: 20px;
     position: relative;
-    padding: 6px 8px 2px;
     text-decoration: none;
     
+    
     .task-cover {
-        border-radius: 3px;
+        border-radius: 3px 3px 0 0;
         background-color: #443d34;
         background-size: cover;
-        background-position: 50%;
+        background-position: center;
         background-repeat: no-repeat;
         margin-bottom: 5px;
-        // height: 143.68229166666666px;
-
+        
     }
-
+    .task-content{
+        
+        padding: 6px 8px 2px;
     .labels-container {
         display: flex;
         gap: 3px;
@@ -66,4 +67,5 @@
         max-width: 85%;
         margin: 0 0 4px 0;
     }
+}
 }
