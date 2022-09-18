@@ -5,16 +5,17 @@ import { AppHeader } from "../cmps/app-header"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { BoardList } from "../cmps/board-list"
 import { boardService } from "../services/board.service"
-import { loadBoards, updateIsStarred } from "../store/board.actions"
-// import Loader from '../assets/img/jello-loader.svg'
+import { loadBoards, resetBoard, updateIsStarred } from "../store/board.actions"
 
 export const Workspace = () => {
+
 
     const boards = useSelector(state => state.boardModule.boards)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(loadBoards())
+        // dispatch(resetBoard())
     }, [])
 
     const onToggleIsStarred = async (boardId) => {

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
-import { loadBoard, saveBoard } from "../store/board.actions"
+import { loadBoard, saveBoard, updateIsStarred } from "../store/board.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
 import { boardService } from "../services/board.service"
@@ -17,6 +17,7 @@ export const BoardDetails = () => {
     const style = (board) ? board.style : { background: '#fff' }
 
     useEffect(() => {
+        // console.log('board:', board)
         dispatch(loadBoard(params.boardId))
     }, [])
 
@@ -28,6 +29,10 @@ export const BoardDetails = () => {
         dispatch(saveBoard(b))
     }
 
+    const onToggleIsStarred = () => {
+        board.isStarred = !board.isStarred
+        dispatch(updateIsStarred(board))
+    }
     console.log(board)
     console.log(style)
     // style={{backgroundImage:`url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=
@@ -41,7 +46,8 @@ export const BoardDetails = () => {
         <div className="board-wrapper" style={{ backgroundImage: `url(${style}` }}>
             <AppHeader board={board} />
             <section className="board-container" >
-                <BoardHeader name={board.title} members={board.members} />
+                <BoardHeader name={board.title} members={board.members} board={board}
+                    onToggleIsStarred={onToggleIsStarred} />
                 <main className="board-main-content">
                     {board.groups.map(group => <BoardGroup key={group.id} group={group} boardId={board._id} />)}
                     <section className="group-content group-compose">
