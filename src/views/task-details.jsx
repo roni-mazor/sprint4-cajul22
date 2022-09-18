@@ -15,12 +15,13 @@ import { TaskDescription } from "../cmps/task-details/task-description"
 import { TaskAttachments } from "../cmps/task-details/task-attachments"
 import { TaskActivities } from "../cmps/task-details/task-activities"
 import { saveTask } from "../store/board.actions"
-import { loadUsers } from "../store/user.actions"
+import { loadUser, loadUsers } from "../store/user.actions"
 import { uploadService } from "../services/upload.service"
 import { ImgUploader } from "../cmps/img-uploader"
 import { utilService } from "../services/util.service"
 import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
 import { Members } from "../cmps/task-details/task-members"
+import { LoaderIcon } from "../cmps/loader-icon"
 
 
 import { LabelShower } from "../cmps/task-details/label-shower"
@@ -35,6 +36,7 @@ export const TaskDetails = () => {
     const users = useSelector(state => state.userModule.users)
     const user = useSelector(state => state.userModule.user)
     const [task, setTask] = useState()
+    let [isJoined, setIsJoined] = useState(false)
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
     const group = board.groups.find(group => group.id === groupId)
 
@@ -42,17 +44,19 @@ export const TaskDetails = () => {
         loadTask()
         dispatch(loadUsers())
     }, [])
-
+    
     useEffect(() => {
         loadTask()
+        
     }, [board])
-
+    
     const loadTask = () => {
-
+        
         // const currTask =  boardService.getTaskById(boardId, groupId, taskId)
         const group = board.groups.find(group => group.id === groupId)
         const currTask = group.tasks.find(task => task.id === taskId)
         setTask(currTask)
+        if(currTask.isUserJoined) return setIsJoined(true)
     }
 
     const onCloseModal = () => {
@@ -65,6 +69,17 @@ export const TaskDetails = () => {
     const toggleAdditivesModal = (type) => {
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
         else setIsAdditivesModalOpen(type)
+    }
+
+    const onAddUserToTask = () => {
+        toggleSuggestedJoin()
+        task.members = [...task.members, user]
+        task.isUserJoined = true
+        onSaveTask(task)
+    }
+
+    const toggleSuggestedJoin = () => {        
+        setIsJoined(isJoined = !isJoined)
     }
 
 
@@ -82,7 +97,7 @@ export const TaskDetails = () => {
 
 
     console.log('task:', task)
-    if (!task) return <h1>Loading...</h1>
+    if (!task) return <LoaderIcon />
     return (
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
@@ -94,19 +109,21 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div>
                         <div className="flex">
-                            <Members user={user} toggleModal={toggleAdditivesModal} />
+                            {task?.members && <Members members={task.members} toggleModal={toggleAdditivesModal} />}
                             <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
                         </div>
                         <TaskDescription task={task}
                             onSaveTask={onSaveTask} />
-                        {(task.attachment || task.attachment.legnth > 0) && <TaskAttachments task={task}
+                        {(task?.attachment || task?.attachment?.legnth > 0) && <TaskAttachments task={task}
                             onSaveTask={onSaveTask} />}
                         <TaskActivities user={user} />
                     </div>
                     <aside className="details-side-bar">
-                        <h3>Suggested</h3>
-                        <button /*onClick={() => toggleAdditivesModal('members')}*/><AiOutlineUser />Join</button>
+                        {!isJoined && <div>
+                            <h3>Suggested</h3>
+                            <button onClick={onAddUserToTask}><AiOutlineUser />Join</button>
+                        </div>}
                         <h3>Add to card</h3>
                         <button onClick={() => toggleAdditivesModal('members')}><AiOutlineUser />Members</button>
                         <button onClick={() => toggleAdditivesModal('label-picker')}><BsTag /> Labels</button>

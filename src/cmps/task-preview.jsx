@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { toggleLabelTxt } from "../store/board.actions"
+import GuestImg from '../assets/img/guest-img.svg'
+import { Members } from "../cmps/task-details/task-members"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
@@ -25,6 +27,9 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                 })}
             </section>
             <p>{task.title}</p>
+            <section className="task-user-container flex">
+            {task?.members && task.members.map(member => <img className="task-users" src={member?.imgUrl ? member?.imgUrl : GuestImg} alt="" /> )}
+            </section>
             <section className="task-badges"></section>
         </Link>
     )
