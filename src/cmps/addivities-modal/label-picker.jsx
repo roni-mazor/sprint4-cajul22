@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { removeLabel, saveLabels } from '../../store/board.actions'
 import { useSelector } from 'react-redux'
 import { boardService } from '../../services/board.service'
+import { Checkbox } from '@mui/material'
 
 
 export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
@@ -79,10 +80,13 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
                     {labels.map(label => (
                         <li className='label-container'>
                             <label >
-                                <input type="checkbox" name={label.id}
+                                {/* <input type="checkbox" name={label.id}
                                     checked={(task.labelIds.includes(label.id))}
                                     onChange={() => { onLabelCheck(label.id) }}
-                                />
+                                /> */}
+                                <Checkbox onChange={() => { onLabelCheck(label.id) }}
+                                    checked={(task.labelIds.includes(label.id))}
+                                    name={label.id} size="small" style={{ padding: '5px 9px' }} />
                                 <div className='label-display-btn' style={{ backgroundColor: label.color }}>
                                     <span>{label.title}</span>
                                 </div>
