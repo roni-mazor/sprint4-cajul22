@@ -7,12 +7,13 @@ import { loadBoard, saveBoard } from "../store/board.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
 import { boardService } from "../services/board.service"
-import { background } from '../assets/img/micr4679.jpg'
+// import { background } from '../assets/img/micr4679.jpg'
 
 export const BoardDetails = () => {
     const params = useParams()
     const dispatch = useDispatch()
     const board = useSelector(state => state.boardModule.board)
+    const style = (board) ? board.style : { background: '#fff' }
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
@@ -27,8 +28,15 @@ export const BoardDetails = () => {
     }
 
     console.log(board)
+    console.log(style)
+    // style={{backgroundImage:`url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=
+    // rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80
+    //     )`
+
+
+
     if (board) return (
-        <>
+        <div className="board-wrapper" style={{ backgroundImage: `url(${style}` }}>
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} />
@@ -40,6 +48,6 @@ export const BoardDetails = () => {
                 </main>
                 <Outlet />
             </section>
-        </>
+        </div>
     )
 }

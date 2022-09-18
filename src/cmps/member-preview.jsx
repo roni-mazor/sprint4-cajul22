@@ -1,4 +1,3 @@
-import { BsPersonCircle } from 'react-icons/bs'
 import GuestImg from '../assets/img/guest-img.svg'
 export const MemberPreview = ({ member }) => {
 

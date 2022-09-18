@@ -9,10 +9,6 @@ import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TbCheckbox } from 'react-icons/tb'
 import { ImAttachment } from 'react-icons/im'
 
-import { BsTag, BsSquareHalf } from 'react-icons/bs'
-import { AiOutlineClockCircle } from 'react-icons/ai'
-import { TbCheckbox } from 'react-icons/tb'
-import { ImAttachment } from 'react-icons/im'
 
 
 import { TaskTitle } from "../cmps/task-details/task-title"
