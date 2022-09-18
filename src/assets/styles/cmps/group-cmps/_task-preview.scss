@@ -10,6 +10,17 @@
     position: relative;
     padding: 6px 8px 2px;
     text-decoration: none;
+    
+    .task-cover {
+        border-radius: 3px;
+        background-color: #443d34;
+        background-size: cover;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        margin-bottom: 5px;
+        // height: 143.68229166666666px;
+
+    }
 
     .labels-container {
         display: flex;

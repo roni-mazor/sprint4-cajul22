@@ -26,6 +26,7 @@ export const TaskAttachments = ({ task, onSaveTask }) => {
         let newAttachments = attachments.filter(attachment => attachment.id !== attachmentId)
         let newTask = task
         newTask.attachment = newAttachments
+        // setAttachments(newAttachments)
         onSaveTask(newTask)
     }
 
@@ -33,7 +34,7 @@ export const TaskAttachments = ({ task, onSaveTask }) => {
         let selectedAttach = attachments.find(attachment => attachment.id === attachmentId)
         console.log('selectedAttach:', selectedAttach)
         let newTask = task
-        newTask.cover = selectedAttach.url
+        newTask.cover = selectedAttach
         onSaveTask(newTask)
     }
     // console.log('date:', date)
@@ -48,7 +49,7 @@ export const TaskAttachments = ({ task, onSaveTask }) => {
                         <div key={attachment.id}>
                             <a href={attachment.url} style={{ backgroundImage: `url(${attachment.url})` }}></a>
                             <p className="flex column">
-                                <span className="attachment-url">Media url</span>
+                                <span className="attachment-url">{attachment.name}</span>
                                 <span className="attachment-details">
                                     <span> Added <span></span>{getFormatedTime(attachment.createdAt)} - </span>
                                     <span className="delete-attachment"

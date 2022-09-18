@@ -101,7 +101,7 @@ export const TaskDetails = () => {
     return (
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
-                {task.cover && <header className="task-details-header" style={{ backgroundImage: `url(${task.cover})` }}></header>}
+                {task.cover && <header className="task-details-header" style={{ backgroundImage: `url(${task.cover.url})` }}></header>}
                 <TaskTitle task={task}
                     handleChange={handleChange}
                     group={group} />

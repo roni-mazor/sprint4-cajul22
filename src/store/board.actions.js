@@ -122,3 +122,12 @@ export function removeLabel(labels, removedLabelId) {
         dispatch({ type: 'SET_BOARD', board })
     }
 }
+
+export function removeGroup(groupId) {
+    return (dispatch, getState) => {
+        const board = getState().boardModule.board
+        board.groups = board.groups.filter(g => g.id !== groupId)
+        boardService.save(board)
+        dispatch({ type: 'SET_BOARD', board })
+    }
+}
