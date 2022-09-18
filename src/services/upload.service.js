@@ -20,6 +20,7 @@ async function uploadImg(ev) {
     const { url } = await res.json()
     // document.body.append(elImg)
     // elImg.src = url
+    // console.log('res:', res)
     return url
   } catch (err) {
     console.error(err)

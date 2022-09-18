@@ -4,22 +4,51 @@
         margin-inline-start: 15px;
 
         .img-container {
+            border-radius: 3px;
+            margin: 0 0 8px;
+            margin-inline-start: 33px;
+            min-height: 80px;
+            overflow: hidden;
+            position: relative;
 
             div {
-                background-color: #091e420a;
-                background-position: 50%;
-                background-repeat: no-repeat;
-                background-size: contain;
-                border-radius: 3px;
-                height: 80px;
-                left: 0;
-                margin-top: -40px;
-                position: absolute;
-                text-align: center;
-                text-decoration: none;
-                top: 50%;
-                width: 112px;
-                z-index: 1;
+                position: relative;
+                margin-bottom: 20px;
+
+                a {
+                    background-color: #091e420a;
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    border-radius: 7px;
+                    height: 80px;
+                    left: 0;
+                    margin-top: -40px;
+                    position: absolute;
+                    text-align: center;
+                    text-decoration: none;
+                    top: 50%;
+                    width: 112px;
+                    z-index: 1;
+                }
+
+                p {
+                    box-sizing: border-box;
+                    cursor: pointer;
+                    margin: 0;
+                    min-height: 80px;
+                    padding: 8px 8px 8px 128px;
+                    z-index: 0;
+
+                    span {
+                        font-size: 0.875rem;
+                    }
+
+                    .attachment-url {
+                        word-wrap: break-word;
+                        font-weight: 700;
+                    }
+                }
             }
         }
 
@@ -28,7 +57,7 @@
                 font-size: 1.25rem;
             }
 
-            margin-bottom: 50px;
+            margin-bottom: -13px;
             gap: 15px;
         }
 

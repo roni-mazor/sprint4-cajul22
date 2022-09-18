@@ -97,7 +97,8 @@ export const TaskDetails = () => {
                         <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
                         </div>
-                        <TaskDescription task={task} />
+                        <TaskDescription task={task}
+                         onSaveTask={onSaveTask}/>
                         {task.attachment && <TaskAttachments task={task} />}
                         <TaskActivities user={user} />
                     </div>

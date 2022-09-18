@@ -1,24 +1,34 @@
 import { useEffect, useRef, useState } from 'react'
 import { IoMdList } from 'react-icons/io'
 
-export const TaskDescription = ({ task }) => {
+export const TaskDescription = ({ task, onSaveTask }) => {
 
     const [focused, setFocused] = useState(false)
-    const [txt, setTxt] = useState('')
+    const [txt, setTxt] = useState(task.description)
     const onFocus = () => setFocused(true)
-    const onBlur = () => setFocused(false)
+    const onBlur = () => {
+        setTimeout(() => {
+
+            setFocused(false)
+        }, 200)
+    }
 
     const onHandleChange = ({ target }) => {
         const { value } = target
+        // setTxt(value)
         setTxt(value)
+        // console.log('value:', value)
     }
 
     const onSaveTxt = () => {
-
+        let newTask = task
+        newTask.description = txt
+        console.log('newTask:', newTask)
+        onSaveTask(newTask)
     }
 
     const onCancel = () => {
-        setTxt('')
+        // setTxt('')
     }
 
     // console.log('txt:', txt)
@@ -30,7 +40,7 @@ export const TaskDescription = ({ task }) => {
             <textarea onFocus={onFocus} onBlur={onBlur} onChange={onHandleChange}
                 className='simple-txtarea description-txtarea' cols="60" rows="2"
                 placeholder='Add more detailed description...'
-                value={task.description}></textarea>
+                value={txt}></textarea>
             {focused && <div className='description-btn'>
                 <button className='description-btn save'
                     onClick={onSaveTxt}>Save</button>
