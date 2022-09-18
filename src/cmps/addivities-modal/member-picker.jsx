@@ -11,7 +11,7 @@ import { MemberPreview } from '../member-preview'
 
 
 export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
-    const members = useSelector(state => state.userModule.users)
+    const board = useSelector(state => state.boardModule.board)
 
     const [searchInput, setSearchInput] = useState('')
 
@@ -58,7 +58,7 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
                 value={searchInput.searchInput} />
             <p>Board members</p>
             <ul className="labels-container">
-                {members.map(member => (
+                {board.members.map(member => (
                     <li key={member.fullname} className='member-container flex align-center'>
                         <MemberPreview member={member}/>
                         <p>{member.username}</p>
