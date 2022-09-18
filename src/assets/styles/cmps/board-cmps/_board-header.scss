@@ -6,6 +6,20 @@
     margin-top: 5px;
     margin-bottom: 10px;
     height: 35px;
+    
+    .add-board-user{ 
+        padding: 6px 12px;       
+        height: 35px;
+        font-size: 14px;
+        font-family: var(--base);
+        background-color: #fff;
+        border: none;
+        border-radius: 3px;
+
+        & svg{
+            font-size: 12px;
+        }
+    }
 
     span {
         margin: 0 0 0 6px;

@@ -8,6 +8,7 @@ import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
 import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 // import { background } from '../assets/img/micr4679.jpg'
 
 export const BoardDetails = () => {
@@ -33,12 +34,10 @@ export const BoardDetails = () => {
         board.isStarred = !board.isStarred
         dispatch(updateIsStarred(board))
     }
-    console.log(board)
-    console.log(style)
-    // style={{backgroundImage:`url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=
-    // rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80
-    //     )`
+    const handleTaskDrag = ({ source, destination, draggableId }) => {
+        console.log()
 
+    }
 
 
     if (!board) return <LoaderIcon />
@@ -48,14 +47,53 @@ export const BoardDetails = () => {
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} board={board}
                     onToggleIsStarred={onToggleIsStarred} />
-                <main className="board-main-content">
-                    {board.groups.map(group => <BoardGroup key={group.id} group={group} boardId={board._id} />)}
-                    <section className="group-content group-compose">
-                        <TxtCompose type={'list'} returnTxt={onCreateGroup} />
-                    </section>
-                </main>
+
+
+                <DragDropContext onDragStart={console.log}>
+                    <main className="board-main-content">
+
+                        <Droppable droppableId="group" direction="horizontal">
+                            {/* {...provided.droppableProps} ref={provided.innerRef} */}
+
+                            {(provided) => (
+                                <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
+
+                                    <DragDropContext onDragEnd={handleTaskDrag} >
+                                        {board.groups.map((group, index) => {
+                                            return (
+
+                                                <Draggable key={group.id} index={index} draggableId={group.id}>
+                                                    {(provided) => (
+                                                        <section {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                            <section className="group-content"  >
+
+                                                                <BoardGroup groupIndex={index} key={group.id} group={group} boardId={board._id} />
+
+                                                            </section>
+                                                        </section>)}
+
+                                                </Draggable>
+                                            )
+                                        })}
+                                    </DragDropContext>
+
+
+                                    {provided.placeholder}
+                                </section>)}
+
+                        </Droppable>
+                        <section className="group-content group-compose">
+                            <TxtCompose type={'list'} returnTxt={onCreateGroup} />
+                        </section>
+                    </main>
+                </DragDropContext>
+
+
+
+
+
                 <Outlet />
             </section>
-        </div>
+        </div >
     )
 }

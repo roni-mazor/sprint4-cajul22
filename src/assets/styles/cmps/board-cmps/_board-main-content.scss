@@ -16,5 +16,11 @@
     box-sizing: border-box;
     background-size: cover;
     padding: 0 13px 8px;
+    height: 85.6vh;
 
+    .groups-main-container {
+        display: flex;
+        align-items: start;
+        margin-bottom: 8px;
+    }
 }

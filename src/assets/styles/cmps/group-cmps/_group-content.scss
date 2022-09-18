@@ -78,9 +78,9 @@
 
             .plus-sign {
                 position: absolute;
-                font-size: 14px;
-                top: 5.5px;
-                left: 5px;
+                font-size: 13px;
+                top: 6px;
+                left: 11px;
                 color: #5e6c84;
 
             }
@@ -149,6 +149,7 @@
         flex-direction: column;
         padding: 0;
         margin: 0 4px;
+        min-height: 1px;
     }
 
 }
