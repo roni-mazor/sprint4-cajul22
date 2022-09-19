@@ -3,9 +3,9 @@ import { BsThreeDots } from 'react-icons/bs'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { RiUserAddLine } from 'react-icons/ri'
 
-export const BoardHeader = ({ board, onToggleIsStarred, members }) => {    
+export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal }) => {
     console.log('members:', members)
-    
+
 
     return (
         <header className="board-header">
@@ -19,7 +19,7 @@ export const BoardHeader = ({ board, onToggleIsStarred, members }) => {
                 </section>
                 <button className="add-board-user"><RiUserAddLine /> Share</button>
             </span>
-            <button className="show-menu-btn"><BsThreeDots /> Show menu</button>
+            <button onClick={toggleMenuModal} className="show-menu-btn"><BsThreeDots /> Show menu</button>
         </header>
     )
 }

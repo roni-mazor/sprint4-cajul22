@@ -19,9 +19,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
     }, [])
 
     const onHandleChange = ({ target: { value } }) => {
-        // const value = target.value
         setTxt(value)
-        console.log('txt:', txt)
     }
 
     const onUploadImg = async (ev) => {
