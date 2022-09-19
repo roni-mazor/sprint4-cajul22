@@ -1,0 +1,94 @@
+.task-checklist {
+
+    .checklist-preview {
+        margin-inline-start: 21px;
+        margin-top: 35px;
+        margin-bottom: 35px;
+
+        button {
+            align-items: center;
+            background-color: #091e420a;
+            border: none;
+            border-radius: 3px;
+            box-shadow: none;
+            box-sizing: border-box;
+            color: #172b4d;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            justify-content: center;
+            line-height: 20px;
+            padding: 6px 12px;
+            text-decoration: none;
+            transition-duration: 85ms;
+            transition-property: background-color, border-color, box-shadow;
+            transition-timing-function: ease;
+            white-space: normal;
+
+            &:hover {
+                background-color: #091e4214;
+
+            }
+        }
+
+        .checklist-title {
+            height: 32px;
+            padding: 8px 0;
+            margin-bottom: 10px;
+
+            div {
+                // textarea {
+                //     background: #0000;
+                //     border-radius: 3px;
+                //     box-shadow: none;
+                //     font-size: 20px;
+                //     font-weight: 600;
+                //     height: 32px;
+                //     line-height: 24px;
+                //     margin: 0 -10px;
+                //     min-height: 24px;
+                //     padding: 4px 8px;
+                // }
+
+                h3 {
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+
+                gap: 15px;
+            }
+
+        }
+
+        .progress {
+            position: relative;
+
+            span {
+                color: #5e6c84;
+                font-size: 11px;
+                left: 0;
+                line-height: 10px;
+                position: absolute;
+                text-align: center;
+                top: -1px;
+                width: 32px;
+            }
+
+            .progress-bar {
+                background: #091e4214;
+                border-radius: 4px;
+                clear: both;
+                height: 8px;
+                margin: 0 0 0 40px;
+                overflow: hidden;
+                position: relative;
+            }
+        }
+
+        .add-checklist-item-btn {
+            margin-top: 8px;
+            margin-left: 40px
+        }
+    }
+}

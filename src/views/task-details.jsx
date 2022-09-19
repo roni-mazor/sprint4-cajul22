@@ -119,7 +119,8 @@ export const TaskDetails = () => {
                             onSaveTask={onSaveTask} />
                         {task?.attachments?.length > 0 && <TaskAttachments task={task}
                             onSaveTask={onSaveTask} />}
-                        <TaskChecklist task={task}/>
+                        <TaskChecklist task={task}
+                       onSaveTask={onSaveTask} />
                         {/* {task?.checklists?.length >0 &&<TaskChecklist/>} */}
                         <TaskActivities user={user} />
                     </div>

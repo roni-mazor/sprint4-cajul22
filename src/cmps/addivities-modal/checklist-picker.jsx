@@ -22,6 +22,7 @@ export const Checklist = ({ task, onSaveTask, toggleModal }) => {
         })
        
         onSaveTask(task)
+        toggleModal()
     }
 
     return (
