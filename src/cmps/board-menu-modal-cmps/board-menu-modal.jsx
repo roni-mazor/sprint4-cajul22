@@ -6,7 +6,7 @@ import { DefaultBoardMenuModal } from './default-board-menu-modal'
 import { FilterBoardMenuModal } from './filter-board-menu-modal'
 
 
-export const BoardMenuModal = ({ board, isOpen, toggleMenuModal }) => {
+export const BoardMenuModal = ({ board, isOpen, toggleMenuModal, setFilterBy, filterBy }) => {
 
     const [modalState, setModalState] = useState('default')
 
@@ -25,6 +25,8 @@ export const BoardMenuModal = ({ board, isOpen, toggleMenuModal }) => {
                     board={board} toggleMenuModal={toggleMenuModal} />)
             case 'filter-cards':
                 return (<FilterBoardMenuModal
+                    filterBy={filterBy}
+                    setFilterBy={setFilterBy}
                     setModalState={setModalState}
                     board={board} toggleMenuModal={toggleMenuModal} />)
         }

@@ -18,6 +18,7 @@ export const BoardDetails = () => {
     const board = useSelector(state => state.boardModule.board)
     const style = (board) ? board.style : { background: '#fff' }
     const [MenuModalOpen, setMenuModalOpen] = useState(false)
+    const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '',members:[] })
 
     useEffect(() => {
         // console.log('board:', board)
@@ -62,10 +63,28 @@ export const BoardDetails = () => {
         setMenuModalOpen(prevState => !prevState)
     }
 
+    const getFilteredBoard = () => {
+        const b = {
+            ...board, groups: board.groups.map(g => {
+                return {
+                    ...g, tasks: g.tasks.filter(t => {
+                        const regex = new RegExp(filterBy.txt, 'i')
+                        return (
+                            filterBy.labelIds.every(id => t.labelIds.includes(id)) &&
+                            regex.test(t.title)
+                        )
+                    })
+                }
+            })
+        }
+        return b
+    }
+
 
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={{ backgroundImage: `url(${style})` }}>
+            {/* {getFilteredBoard()} */}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader toggleMenuModal={toggleMenuModal} name={board.title} members={board.members} board={board}
@@ -81,7 +100,7 @@ export const BoardDetails = () => {
                                 <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
 
 
-                                    {board.groups.map((group, index) => {
+                                    {getFilteredBoard().groups.map((group, index) => {
                                         return (
 
                                             <Draggable key={group.id} index={index} draggableId={group.id}>
@@ -113,7 +132,8 @@ export const BoardDetails = () => {
 
 
                 <Outlet />
-                <BoardMenuModal board={board} toggleMenuModal={toggleMenuModal} isOpen={MenuModalOpen} />
+                <BoardMenuModal filterBy={filterBy} setFilterBy={setFilterBy}
+                    board={board} toggleMenuModal={toggleMenuModal} isOpen={MenuModalOpen} />
             </section>
         </div >
     )

@@ -20,28 +20,6 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
         onSaveTask(task)
     }
 
-    //// const onChangeLabelTitle = ({ target: { value } }) => {
-    //     setSearchInput((prevSearch) => ({ ...prevSearch, searchInput: value }))
-    // }
-
-    // const saveLabelChanges = () => {
-    //     let newLabelIdx = labels.findIndex(l => l.id === labelEdit.id)
-    //     if (newLabelIdx === -1) labels.push(labelEdit)
-    //     else labels.splice(newLabelIdx, 1, labelEdit)
-
-    //     dispatch(saveLabels(labels))
-    //     setLabelEdit(null)
-    // }
-    // const onDeleteLabel = () => {
-    //     let newLabels = labels.filter(l => (l.id !== labelEdit.id))
-    //     dispatch(saveLabels(newLabels))
-    //     setLabelEdit(null)
-    // }
-    // const onCreateLabel = () => {
-    //     setLabelEdit(boardService.createLabel())
-
-    // }
-
     return (
         <section className="add-features-modal">
             <header className='edit-label-header'>
