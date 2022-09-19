@@ -17,7 +17,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
         }
     }, [])
 
-    const onHandleChange = ({ target:{value} }) => {
+    const onHandleChange = ({ target: { value } }) => {
         setTxt(value)
     }
 
@@ -27,14 +27,27 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
     }
 
     const onSaveUrl = (img) => {
+        if (!img?.url) {
+            console.log('hey')
+            const image = new Image()
+            image.onload = () => {
+                console.log('width!' ,image.width)
+                console.log('height',image.height)
+                console.log(image)
+            }
+            image.src = img
+
+
+        }
+
         console.log('img:', img)
         let newTask = task
         if (!newTask.attachments) newTask.attachments = []
         newTask.attachments.unshift({
             id: utilService.makeId(5),
-            url: img.url||img,
-            name: img.name||'Media url',
-            height: img.height||2000,
+            url: img.url || img,
+            name: img.name || 'Media url',
+            height: img.height || 2000,
             width: img.width,
             createdAt: Date.now()
         })
