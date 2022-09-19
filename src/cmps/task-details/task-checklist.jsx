@@ -1,6 +1,6 @@
 import { ChecklistPreview } from "./checklist-preview"
 
-export const TaskChecklist = ({ task }) => {
+export const TaskChecklist = ({ task, onSaveTask }) => {
     return (
         <section className="task-checklist">
             {/* <div className="checklist-title flex align-center">
@@ -8,7 +8,9 @@ export const TaskChecklist = ({ task }) => {
             </div> */}
             {task.checklists.map(checklist => <ChecklistPreview
                 key={checklist.id}
-                checklist={checklist} />)}
+                task={task}
+                checklist={checklist}
+                onSaveTask={onSaveTask} />)}
         </section>
     )
 }

@@ -24,12 +24,20 @@
     .task-content {
 
         padding: 6px 8px 2px;
+        position: relative;
+
+        overflow: hidden;
+        padding: 6px 8px 2px;
+        position: relative;
+        z-index: 10;
 
         .labels-container {
             display: flex;
             gap: 3px;
             flex-wrap: wrap;
             margin-block-end: 4px;
+            // margin-top: -5px;
+            margin-bottom: 4px;
 
             .label-btn {
                 width: 40px;
@@ -76,6 +84,8 @@
 
         .task-user-container {
             flex-direction: row-reverse;
+            float: right;
+            margin: 0 -2px 0 0;
 
             & .task-users {
                 border-radius: 25px;
@@ -83,6 +93,26 @@
                 height: 30px;
 
 
+            }
+        }
+
+        .task-badges {
+            // float: left;
+            margin-left: 3px;
+            margin-bottom: 10px;
+            max-width: 100%;
+
+            &.attached {
+                color: #6b778c;
+                font-size: 12px;
+                height: 20px;
+                line-height: 20px;
+                width: 20px;
+                margin-bottom: 5px;
+                // svg{
+
+                //     font-size: 16px;
+                // }
             }
         }
     }
