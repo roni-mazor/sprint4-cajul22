@@ -3,7 +3,7 @@ import { BsThreeDots } from 'react-icons/bs'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { RiUserAddLine } from 'react-icons/ri'
 
-export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal }) => {
+export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal,onToggleIsShareBoardModal }) => {
     return (
         <header className="board-header">            
             <span>
