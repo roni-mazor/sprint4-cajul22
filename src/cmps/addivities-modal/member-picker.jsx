@@ -10,7 +10,7 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
 
     const [filterBy, setFilterBy] = useState('')
     let members = useSelector(state => state.boardModule.board.members)
-    members = members.filter(member => member.fullname.includes(filterBy))
+    // members = members.filter(member => member.fullname.includes(filterBy))
 
     const onAddMemberToTask = (memberId) => {
         const member = board.members.find(member => member._id === memberId)
@@ -19,28 +19,6 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
         
         onSaveTask(task)
     }
-
-    //// const onChangeLabelTitle = ({ target: { value } }) => {
-    //     setSearchInput((prevSearch) => ({ ...prevSearch, searchInput: value }))
-    // }
-
-    // const saveLabelChanges = () => {
-    //     let newLabelIdx = labels.findIndex(l => l.id === labelEdit.id)
-    //     if (newLabelIdx === -1) labels.push(labelEdit)
-    //     else labels.splice(newLabelIdx, 1, labelEdit)
-
-    //     dispatch(saveLabels(labels))
-    //     setLabelEdit(null)
-    // }
-    // const onDeleteLabel = () => {
-    //     let newLabels = labels.filter(l => (l.id !== labelEdit.id))
-    //     dispatch(saveLabels(newLabels))
-    //     setLabelEdit(null)
-    // }
-    // const onCreateLabel = () => {
-    //     setLabelEdit(boardService.createLabel())
-
-    // }
 
     return (
         <section className="add-features-modal">

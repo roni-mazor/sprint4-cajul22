@@ -71,7 +71,9 @@ function createTask(title) {
     return {
         "id": utilService.makeId(),
         "title": title,
-        "labelIds": []
+        "labelIds": [],
+        "members": [],
+        "isUserJoined": false
     }
 }
 

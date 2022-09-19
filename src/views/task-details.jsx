@@ -111,7 +111,7 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div>
                         <div className="flex">
-                            {task?.members && <Members members={task.members} toggleModal={toggleAdditivesModal} />}
+                            {task.members !== [] && <Members members={task.members} toggleModal={toggleAdditivesModal} />}
                             <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
                         </div>
