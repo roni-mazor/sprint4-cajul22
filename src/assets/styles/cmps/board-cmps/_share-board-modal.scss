@@ -1,0 +1,91 @@
+.share-board-container {
+    z-index: 20;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: #000000a3;
+
+    .share-board-modal {
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        background-color: rgb(252, 252, 252);
+
+        color: var(--ds-text, #172b4d);
+        font-family: var(--base);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        width: 600px;
+        min-height: 200px;
+        padding: 20px 0px 0px 24px;
+
+        .share-board-header {
+            font-size: 20px;
+            margin: 0px 24px 16px 0px;
+            align-items: center;
+            min-height: 32px;
+        }
+
+        .member-search-container {
+
+            .add-member-input-container {
+
+                min-height: 28px;
+                height: 40px;
+                margin: 0 8px 0 0;
+                max-width: 380px;
+                border: none;
+                background-color: #fafbfc;
+                border-radius: 3px;
+                box-shadow: inset 0 0 0 2px #dfe1e6;
+                box-sizing: border-box;
+                max-width: 512px;
+                min-height: 32px;
+                padding: 6px 12px;
+                width: 100%;
+                font-size: 14px;
+                overflow-x: auto;
+                overflow-y: hidden;
+
+                &:active{ //why is it turning black?!
+                    box-shadow: inset 0 0 0 2px #0079bf;
+                    border: none;
+                }
+            }
+
+            & button {
+                font-size: 14px;
+                height: 40px;
+                margin-inline-end: 24px;
+                width: unset;
+                border-radius: 3px;
+                background-color: #0079bf;
+                border: none;
+                box-shadow: none;
+                color: #fff;
+
+                align-items: center;
+                // background-color: var(--ds-background-neutral, #091e420a);
+                border: none;
+                border-radius: 3px;
+                box-shadow: none;
+                box-sizing: border-box;
+                // color: var(--ds-text, #172b4d);
+                cursor: pointer;
+                display: inline-flex;
+                font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                justify-content: center;
+                line-height: 20px;
+                padding: 6px 12px;
+                text-decoration: none;
+                transition-duration: 85ms;
+                transition-property: background-color, border-color, box-shadow;
+                transition-timing-function: ease;
+                white-space: normal;
+            }
+        }
+    }
+}
