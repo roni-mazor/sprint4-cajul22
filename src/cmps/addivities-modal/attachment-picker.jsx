@@ -17,10 +17,8 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
         }
     }, [])
 
-    const onHandleChange = ({ target }) => {
-        const value = target.value
+    const onHandleChange = ({ target:{value} }) => {
         setTxt(value)
-        console.log('txt:', txt)
     }
 
     const onUploadImg = async (ev) => {
@@ -63,7 +61,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
             {/* <p>Computer</p> */}
             <hr />
             <h5>Attach a link</h5>
-            <input className='label-title-input' type="text" placeholder='paste link here' onChange={onHandleChange} />
+            <input className='label-title-input' type="text" placeholder='paste link here' value={txt} onChange={onHandleChange} />
             <button className='attach-btn' onClick={() => onSaveUrl(txt)}>Attach</button>
         </section>
     )
