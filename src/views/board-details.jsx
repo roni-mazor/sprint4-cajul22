@@ -77,7 +77,7 @@ export const BoardDetails = () => {
                             {(provided) => (
                                 <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
 
-                                    {/* <DragDropContext onDragEnd={handleTaskDrag} > */}
+                                    <DragDropContext onDragEnd={handleTaskDrag} >
                                     {board.groups.map((group, index) => {
                                         return (
 
@@ -94,7 +94,7 @@ export const BoardDetails = () => {
                                             </Draggable>
                                         )
                                     })}
-                                    {/* </DragDropContext> */}
+                                    </DragDropContext>
 
 
                                     {provided.placeholder}

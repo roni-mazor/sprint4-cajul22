@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import { toggleLabelTxt } from "../store/board.actions"
 import GuestImg from '../assets/img/guest-img.svg'
 import { ImAttachment } from 'react-icons/im'
+import { TbCheckbox } from 'react-icons/tb'
+
 import { Members } from "../cmps/task-details/task-members"
 import { useEffect, useState } from "react"
 
@@ -11,6 +13,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
     const [attachCount, setAttachCount] = useState(0)
+    const [checklistCount, setChecklistCount] = useState(0)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -22,6 +25,23 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         dispatch(toggleLabelTxt())
     }
 
+    const getDoneChecklist = () => {
+        // let isDone
+        const checklists = task?.checklists?.forEach(checklist => {
+            var totalTodos = 0
+
+            const isDone = checklist.list.reduce((doneTodos, todo) => {
+                if (todo.isDone) doneTodos++
+                totalTodos++
+                // console.log('isDone:', doneTodos)
+                return doneTodos
+            }, 0)
+            return isDone
+
+        })
+        console.log('checklists:', checklists)
+    }
+    getDoneChecklist()
     const getCoverHeight = () => {
         if (!task.cover) return
         if (task.cover.height > 1000) return task.cover.height * 0.1
@@ -55,6 +75,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                 <section className="task-badges">
                     {task?.attachments?.length > 0 && <span className="task-badges attached">
                         <ImAttachment />  {attachCount}</span>}
+                    <span><TbCheckbox /></span>
                 </section>
             </div>
         </Link>
