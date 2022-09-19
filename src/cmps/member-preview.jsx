@@ -4,8 +4,11 @@ export const MemberPreview = ({ member }) => {
     // const userInitials = (member.fullname.split(' ')).map(str => str.charAt(0).toUpperCase()).join('')
     return (
         <section className="member-avatar">
-            {member?.imgUrl ? <img src={member.imgUrl} alt="upload an image" className="member-avatar-img" />
-                : /*<h4 className="log-sig"><BsPersonCircle /></h4>*/ <img src={GuestImg} alt="upload an image" className="member-avatar-img" />}
+            {/* {console.log('member:', member)
+            } */}
+            <img src={member?.imgUrl ? member?.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
+            {/* {member?.imgUrl ? <img src={member?.imgUrl ? member?.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
+                : <img src={GuestImg} alt="upload an image" className="member-avatar-img" />} */}
         </section>
     )
 }

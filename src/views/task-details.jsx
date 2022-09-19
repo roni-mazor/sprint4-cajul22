@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { IoMdClose, } from 'react-icons/io'
 import { AiOutlineUser } from 'react-icons/ai'
@@ -69,6 +68,7 @@ export const TaskDetails = () => {
     const onStopPropagation = (ev) => {
         ev.stopPropagation()
     }
+    
     const toggleAdditivesModal = (type) => {
         console.log('isAdditivesModalOpen:', isAdditivesModalOpen)
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
@@ -112,7 +112,7 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div>
                         <div className="flex">
-                            {task?.members && <Members members={task.members} toggleModal={toggleAdditivesModal} />}
+                            {task.members !== [] && <Members members={task.members} toggleModal={toggleAdditivesModal} />}
                             <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
                         </div>
