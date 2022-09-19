@@ -13,11 +13,9 @@ export const AppHeader = ({ board }) => {
 
     useEffect(() => {
         // dispatch(loadLoggedInUser())
-        console.log('isLoggedIn.imgUrl:', member.imgUrl)
 
     }, [])
 
-    // console.log(isLoggedIn)
     return (
         <header className={board ? 'app-header board' : 'app-header'}>
             <Link to="/workspace" className="header-logo flex align-center">
