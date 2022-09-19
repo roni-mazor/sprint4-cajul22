@@ -10,6 +10,7 @@ import { ShareBoard } from "../cmps/share-board"
 import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
+import { BoardMenuModal } from "../cmps/board-cmps/board-menu-modal"
 // import { background } from '../assets/img/micr4679.jpg'
 
 export const BoardDetails = () => {
@@ -18,6 +19,7 @@ export const BoardDetails = () => {
     let [isShareBoardModal, setIsShareBoardModal] = useState(false)
     const board = useSelector(state => state.boardModule.board)
     const style = (board) ? board.style : { background: '#fff' }
+    const [MenuModalOpen, setMenuModalOpen] = useState(false)
 
     useEffect(() => {
         // console.log('board:', board)
@@ -43,6 +45,7 @@ export const BoardDetails = () => {
     }
 
     const handleTaskDrag = ({ source, destination, draggableId }) => {
+
         const sIndex = source.index
         const sourceGroupId = source.droppableId
         const dIndex = destination.index
@@ -60,6 +63,10 @@ export const BoardDetails = () => {
 
     }
 
+    const toggleMenuModal = () => {
+        setMenuModalOpen(prevState => !prevState)
+    }
+
 
     if (!board) return <LoaderIcon />
     return (
@@ -75,30 +82,29 @@ export const BoardDetails = () => {
                 <DragDropContext onDragStart={console.log}>
                     <main className="board-main-content">
 
-                        <Droppable droppableId="group" direction="horizontal">
-                            {/* {...provided.droppableProps} ref={provided.innerRef} */}
+                        <Droppable droppableId="group" >
 
                             {(provided) => (
                                 <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
 
-                                    <DragDropContext onDragEnd={handleTaskDrag} >
-                                        {board.groups.map((group, index) => {
-                                            return (
+                                    {/* <DragDropContext onDragEnd={handleTaskDrag} > */}
+                                    {board.groups.map((group, index) => {
+                                        return (
 
-                                                <Draggable key={group.id} index={index} draggableId={group.id}>
-                                                    {(provided) => (
-                                                        <section {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                            <section className="group-content"  >
+                                            <Draggable key={group.id} index={index} draggableId={group.id}>
+                                                {(provided) => (
+                                                    <section {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                        <section className="group-content"  >
 
-                                                                <BoardGroup groupIndex={index} key={group.id} group={group} boardId={board._id} />
+                                                            <BoardGroup groupIndex={index} key={group.id} group={group} boardId={board._id} />
 
-                                                            </section>
-                                                        </section>)}
+                                                        </section>
+                                                    </section>)}
 
-                                                </Draggable>
-                                            )
-                                        })}
-                                    </DragDropContext>
+                                            </Draggable>
+                                        )
+                                    })}
+                                    {/* </DragDropContext> */}
 
 
                                     {provided.placeholder}
@@ -116,6 +122,7 @@ export const BoardDetails = () => {
 
 
                 <Outlet />
+                <BoardMenuModal board={board} toggleMenuModal={toggleMenuModal} isOpen={MenuModalOpen} />
             </section>
         </div >
     )

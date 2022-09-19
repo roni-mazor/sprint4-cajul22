@@ -39,7 +39,7 @@ export const TaskDescription = ({ task, onSaveTask }) => {
             </div>
             <textarea onFocus={onFocus} onBlur={onBlur} onChange={onHandleChange}
                 className='simple-txtarea description-txtarea' cols="60" rows="2"
-                placeholder='Add more detailed description...'
+                placeholder='Add a more detailed description...'
                 value={txt}></textarea>
             {focused && <div className='description-btn'>
                 <button className='description-btn save'

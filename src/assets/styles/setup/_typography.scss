@@ -1,16 +1,28 @@
 @font-face {
-    font-family: roboto;
+    font-family: Roboto;
     src: url(../../fonts/RobotoMono-Medium.ttf);
 }
+
 @font-face {
     font-family: fira-reg;
     src: url(../../fonts/FiraSans-Regular.ttf);
 }
+
 @font-face {
     font-family: fira-semiBold;
     src: url(../../fonts/FiraSans-SemiBold.ttf);
 }
 
-:root{
-    --base: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+@font-face {
+    font-family: Ubuntu;
+    src: url(../../fonts/Ubuntu-Regular.ttf);
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url(../../fonts/NotoSans-Medium.ttf);
+}
+
+:root {
+    --base: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, NotoSans, Ubuntu,"Helvetica Neue", Arial, sans-serif;
 }

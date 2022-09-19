@@ -5,7 +5,7 @@ import { RiUserAddLine } from 'react-icons/ri'
 
 export const BoardHeader = ({ board, onToggleIsStarred, members, onToggleIsShareBoardModal }) => {    
     console.log('members:', members)
-    
+
 
     return (
         <header className="board-header">            
@@ -21,7 +21,7 @@ export const BoardHeader = ({ board, onToggleIsStarred, members, onToggleIsShare
                 onClick={onToggleIsShareBoardModal}
                 ><RiUserAddLine /> Share</button>
             </span>
-            <button className="show-menu-btn"><BsThreeDots /> Show menu</button>
+            <button onClick={toggleMenuModal} className="show-menu-btn"><BsThreeDots /> Show menu</button>
         </header>
     )
 }

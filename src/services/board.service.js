@@ -13,7 +13,8 @@ export const boardService = {
     createTask,
     createGroup,
     saveTask,
-    createLabel
+    createLabel,
+    createNewAttachment
 }
 
 async function query(filterBy) {
@@ -88,6 +89,18 @@ function createLabel() {
         "id": utilService.makeId(),
         "title": "",
         "color": "#fff"
+    }
+
+}
+
+function createNewAttachment(url, height, width, name = 'Media url') {
+    return {
+        id: utilService.makeId(5),
+        url,
+        name,
+        height,
+        width,
+        createdAt: Date.now()
     }
 
 }

@@ -1,0 +1,87 @@
+.board-menu-modal {
+    bottom: 0;
+    position: fixed;
+    right: 0px;
+    top: 45px;
+    background-color: #f4f5f7;
+    transition-duration: .1s;
+    transition-property: transform, width;
+    transition-timing-function: ease-in;
+    width: 339px;
+    z-index: 5;
+    padding: 0 6px 0 12px;
+    transform: translateX(400px);
+
+    &.open {
+        position: absolute;
+        transform: translate(0, 0);
+    }
+
+    hr {
+        margin-top: 0;
+        background-color: #091e4221;
+        border: 0;
+        height: 1px;
+        padding: 0;
+        width: 100%
+    }
+
+    .menu-modal-header {
+        height: 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+
+        h3 {
+            font-size: 16px;
+            color: #172b4d;
+            flex: 1;
+            line-height: 20px;
+            margin: 14px 32px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        span {
+            color: #172b4d;
+            font-size: 18px;
+            cursor: pointer;
+
+            &:hover {
+                color: #172b4d;
+            }
+        }
+    }
+
+    .background-change-btn {
+        display: flex;
+        padding: 6px;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        margin: 6px 0;
+        border-radius: 3px;
+
+        &:hover {
+            background-color: #dfe2eb;
+        }
+
+        span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .menu-background-display {
+            background-position: 50%;
+            background-size: cover;
+            border-radius: 3px;
+            height: 20px;
+            width: 20px;
+
+
+        }
+    }
+
+
+}

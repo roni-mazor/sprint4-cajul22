@@ -44,21 +44,21 @@ export const TaskDetails = () => {
         loadTask()
         dispatch(loadUsers())
     }, [])
-    
+
     useEffect(() => {
         loadTask()
-        
+
     }, [board])
-    
+
     const loadTask = () => {
-        
+
         // const currTask =  boardService.getTaskById(boardId, groupId, taskId)
         const group = board.groups.find(group => group.id === groupId)
         let currTask = group.tasks.find(task => task.id === taskId)
         if (!currTask.attachments) currTask.attachments = []
         if (!currTask.checklists) currTask.checklists = []
         setTask(currTask)
-        if(currTask.isUserJoined) return setIsJoined(true)
+        if (currTask.isUserJoined) return setIsJoined(true)
     }
 
     const onCloseModal = () => {
@@ -81,7 +81,7 @@ export const TaskDetails = () => {
         onSaveTask(task)
     }
 
-    const toggleSuggestedJoin = () => {        
+    const toggleSuggestedJoin = () => {
         setIsJoined(isJoined = !isJoined)
     }
 
@@ -119,7 +119,8 @@ export const TaskDetails = () => {
                             onSaveTask={onSaveTask} />
                         {task?.attachments?.length > 0 && <TaskAttachments task={task}
                             onSaveTask={onSaveTask} />}
-                        <TaskChecklist task={task}/>
+                        <TaskChecklist task={task}
+                       onSaveTask={onSaveTask} />
                         {/* {task?.checklists?.length >0 &&<TaskChecklist/>} */}
                         <TaskActivities user={user} />
                     </div>
@@ -131,7 +132,7 @@ export const TaskDetails = () => {
                         <h3>Add to card</h3>
                         <button onClick={() => toggleAdditivesModal('members')}><AiOutlineUser />Members</button>
                         <button onClick={() => toggleAdditivesModal('label-picker')}><BsTag /> Labels</button>
-                        <button onClick={toggleAdditivesModal}><AiOutlineClockCircle /> Dates</button>
+                        <button onClick={() => toggleAdditivesModal('date-picker')}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={() => toggleAdditivesModal('attachment')}><ImAttachment /> Attachments</button>
                         <button><span><BsSquareHalf /></span> Cover</button>
                         <button onClick={() => toggleAdditivesModal('check-list')}><TbCheckbox /> CheckList</button>
