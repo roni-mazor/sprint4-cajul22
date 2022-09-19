@@ -32,33 +32,37 @@
             }
         }
 
-        .checklist-title {
-            height: 32px;
-            padding: 8px 0;
-            margin-bottom: 10px;
+        .checklist-title-container {
+            // display: inline-block;
+            gap: 15px;
 
-            div {
-                // textarea {
-                //     background: #0000;
-                //     border-radius: 3px;
-                //     box-shadow: none;
-                //     font-size: 20px;
-                //     font-weight: 600;
-                //     height: 32px;
-                //     line-height: 24px;
-                //     margin: 0 -10px;
-                //     min-height: 24px;
-                //     padding: 4px 8px;
-                // }
+            .checklist-title {
+                height: 32px;
+                padding: 8px 0;
+                margin-bottom: 10px;
+
+
+                .title-txtarea  {
+                    overflow: hidden;
+                    overflow-wrap: break-word;
+                    resize: none;
+                    height: 54px;
+                    background: #091e420a;
+                    border-color: #091e4221;
+                    box-shadow: inset 0 0 0 1px #091e4221;
+                    margin-bottom: 4px;
+                    font-size: 16px;
+                    line-height: 19px;
+                }
 
                 h3 {
                     font-size: 16px;
                     line-height: 20px;
                 }
 
-                gap: 15px;
-            }
 
+
+            }
         }
 
 
@@ -102,7 +106,7 @@
         .add-checklist {
 
             margin-top: 8px;
-            margin-left: 40px;
+            margin-left: 32px;
 
 
             textarea {
@@ -199,7 +203,7 @@
                 }
 
                 svg {
-                    height: 20px;
+                    // height: 20px;
                     margin-inline-end: 3px;
                 }
 

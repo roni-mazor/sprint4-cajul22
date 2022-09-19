@@ -13,7 +13,6 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
     const [attachCount, setAttachCount] = useState(0)
-    const [checklistCount, setChecklistCount] = useState(0)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -26,22 +25,24 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     }
 
     const getDoneChecklist = () => {
-        // let isDone
-        const checklists = task?.checklists?.forEach(checklist => {
-            var totalTodos = 0
-
+        if (!task.checklists) return
+        const todos = task.checklists.reduce((totalTodos, checklist) => {
+            // let totalTodos = 0
             const isDone = checklist.list.reduce((doneTodos, todo) => {
                 if (todo.isDone) doneTodos++
                 totalTodos++
-                // console.log('isDone:', doneTodos)
                 return doneTodos
             }, 0)
-            return isDone
+            return { isDone, totalTodos }
 
-        })
-        console.log('checklists:', checklists)
+        }, 0)
+        // console.log('todos:', todos)
+        return {
+            isDone: todos.isDone,
+            totalTodos: todos.totalTodos
+        }
     }
-    getDoneChecklist()
+    // getDoneChecklist()
     const getCoverHeight = () => {
         if (!task.cover) return
         if (task.cover.height > 1000) return task.cover.height * 0.1
@@ -51,6 +52,21 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         else return task.cover.height * 0.4
     }
 
+    const dispalyDoneChecklist = () => {
+        const todos = getDoneChecklist()
+        return `${todos.isDone}/${todos.totalTodos}`
+    }
+
+    const allDone = () => {
+        let isAllDone = false
+        const todos = getDoneChecklist()
+        if (!todos) return
+        if (todos.isDone === todos.totalTodos && todos.totalTodos > 0)
+            isAllDone = true
+        // console.log('todos:', todos)
+        return isAllDone
+    }
+    const isAllDone = allDone()
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
@@ -75,7 +91,10 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                 <section className="task-badges">
                     {task?.attachments?.length > 0 && <span className="task-badges attached">
                         <ImAttachment />  {attachCount}</span>}
-                    <span><TbCheckbox /></span>
+                    {task?.checklists?.length > 0 &&
+                        <span className={isAllDone ? 'task-badges checklist done' : 'task-badges checklist'}>
+                            <span><TbCheckbox /></span>
+                            {dispalyDoneChecklist()}</span>}
                 </section>
             </div>
         </Link>

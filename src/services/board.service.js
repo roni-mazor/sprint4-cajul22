@@ -104,3 +104,6 @@ function createNewAttachment(url, height, width, name = 'Media url') {
     }
 
 }
+
+
+ 
