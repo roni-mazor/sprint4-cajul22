@@ -1,4 +1,5 @@
 import { LabelPicker } from "../addivities-modal/label-picker"
+import { TodoModal } from "../task-details/todo.modal"
 import { AttachmentPicker } from "./attachment-picker"
 import { Checklist } from "./checklist-picker"
 import { DatePickerModal } from "./date-picker"
@@ -47,6 +48,13 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
             case 'date-picker':
                 return (
                     <DatePickerModal
+                        task={task}
+                        onSaveTask={onSaveTask}
+                        toggleModal={toggleModal} />
+                )
+            case 'todo':
+                return (
+                    <TodoModal
                         task={task}
                         onSaveTask={onSaveTask}
                         toggleModal={toggleModal} />

@@ -70,6 +70,7 @@ export const TaskDetails = () => {
     }
     
     const toggleAdditivesModal = (type) => {
+        console.log('isAdditivesModalOpen:', isAdditivesModalOpen)
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
         else setIsAdditivesModalOpen(type)
     }
@@ -98,7 +99,7 @@ export const TaskDetails = () => {
         onSaveTask(newTask)
     }
 
-    console.log('task:', task)
+    // console.log('task:', task)
     if (!task) return <LoaderIcon />
     return (
         <div className="task-details-container" onClick={onCloseModal}>
@@ -119,8 +120,11 @@ export const TaskDetails = () => {
                             onSaveTask={onSaveTask} />
                         {task?.attachments?.length > 0 && <TaskAttachments task={task}
                             onSaveTask={onSaveTask} />}
-                        <TaskChecklist task={task}
-                       onSaveTask={onSaveTask} />
+                        {task?.checklists?.length >0 &&<TaskChecklist
+                            task={task}
+                            onSaveTask={onSaveTask}
+                            toggleModal={toggleAdditivesModal}
+                             />}
                         {/* {task?.checklists?.length >0 &&<TaskChecklist/>} */}
                         <TaskActivities user={user} />
                     </div>
@@ -141,7 +145,8 @@ export const TaskDetails = () => {
                         type={isAdditivesModalOpen}
                         task={task}
                         onSaveTask={onSaveTask}
-                        toggleModal={toggleAdditivesModal} />}
+                        toggleModal={toggleAdditivesModal}
+                        />}
                 </section>
                 <button className="close-modal"
                     onClick={onCloseModal}><IoMdClose /></button>
