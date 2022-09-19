@@ -9,7 +9,7 @@ import { TxtCompose } from "../cmps/txt-compose"
 import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
-import { BoardMenuModal } from "../cmps/board-cmps/board-menu-modal"
+import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
 // import { background } from '../assets/img/micr4679.jpg'
 
 export const BoardDetails = () => {
@@ -18,6 +18,7 @@ export const BoardDetails = () => {
     const board = useSelector(state => state.boardModule.board)
     const style = (board) ? board.style : { background: '#fff' }
     const [MenuModalOpen, setMenuModalOpen] = useState(false)
+    const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '',members:[] })
 
     useEffect(() => {
         // console.log('board:', board)
@@ -36,49 +37,70 @@ export const BoardDetails = () => {
         board.isStarred = !board.isStarred
         dispatch(updateIsStarred(board))
     }
-    const handleTaskDrag = ({ source, destination, draggableId }) => {
+    const onHandleDrag = ({ source, destination, draggableId, type }) => {
+        if (type === 'task') {
+            const sIndex = source.index
+            const sourceGroupId = source.droppableId
+            const dIndex = destination.index
+            const destinationGroupId = destination.droppableId
+            const taskId = draggableId
 
-        const sIndex = source.index
-        const sourceGroupId = source.droppableId
-        const dIndex = destination.index
-        const destinationGroupId = destination.droppableId
-        const taskId = draggableId
-
-        const groups = [...board.groups]
-        const sGroup = groups.find((g) => g.id === sourceGroupId)
-        const [task] = sGroup.tasks.splice(sIndex, 1)
-        const dGroup = groups.find((g) => g.id === destinationGroupId)
-        dGroup.tasks.splice(dIndex, 0, task)
-
+            var groups = [...board.groups]
+            const sGroup = groups.find((g) => g.id === sourceGroupId)
+            const [task] = sGroup.tasks.splice(sIndex, 1)
+            const dGroup = groups.find((g) => g.id === destinationGroupId)
+            dGroup.tasks.splice(dIndex, 0, task)
+        } else {
+            var groups = [...board.groups]
+            const [group] = groups.splice(source.index, 1)
+            groups.splice(destination.index, 0, group)
+        }
         const b = { ...board, groups }
         dispatch(saveBoard(b))
-
     }
 
     const toggleMenuModal = () => {
         setMenuModalOpen(prevState => !prevState)
     }
 
+    const getFilteredBoard = () => {
+        const b = {
+            ...board, groups: board.groups.map(g => {
+                return {
+                    ...g, tasks: g.tasks.filter(t => {
+                        const regex = new RegExp(filterBy.txt, 'i')
+                        return (
+                            filterBy.labelIds.every(id => t.labelIds.includes(id)) &&
+                            regex.test(t.title)
+                        )
+                    })
+                }
+            })
+        }
+        return b
+    }
+
 
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={{ backgroundImage: `url(${style})` }}>
+            {/* {getFilteredBoard()} */}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader toggleMenuModal={toggleMenuModal} name={board.title} members={board.members} board={board}
                     onToggleIsStarred={onToggleIsStarred} />
 
 
-                <DragDropContext onDragStart={console.log}>
+                <DragDropContext onDragEnd={onHandleDrag}>
                     <main className="board-main-content">
 
-                        <Droppable droppableId="group" >
+                        <Droppable droppableId="group" type="group" direction="horizontal" >
 
                             {(provided) => (
                                 <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
 
-                                    <DragDropContext onDragEnd={handleTaskDrag} >
-                                    {board.groups.map((group, index) => {
+
+                                    {getFilteredBoard().groups.map((group, index) => {
                                         return (
 
                                             <Draggable key={group.id} index={index} draggableId={group.id}>
@@ -94,8 +116,6 @@ export const BoardDetails = () => {
                                             </Draggable>
                                         )
                                     })}
-                                    </DragDropContext>
-
 
                                     {provided.placeholder}
                                 </section>)}
@@ -112,7 +132,8 @@ export const BoardDetails = () => {
 
 
                 <Outlet />
-                <BoardMenuModal board={board} toggleMenuModal={toggleMenuModal} isOpen={MenuModalOpen} />
+                <BoardMenuModal filterBy={filterBy} setFilterBy={setFilterBy}
+                    board={board} toggleMenuModal={toggleMenuModal} isOpen={MenuModalOpen} />
             </section>
         </div >
     )

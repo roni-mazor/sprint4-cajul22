@@ -80,10 +80,6 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
                     {labels.map(label => (
                         <li className='label-container'>
                             <label >
-                                {/* <input type="checkbox" name={label.id}
-                                    checked={(task.labelIds.includes(label.id))}
-                                    onChange={() => { onLabelCheck(label.id) }}
-                                /> */}
                                 <Checkbox onChange={() => { onLabelCheck(label.id) }}
                                     checked={(task.labelIds.includes(label.id))}
                                     name={label.id} size="small" style={{ padding: '5px 9px' }} />
