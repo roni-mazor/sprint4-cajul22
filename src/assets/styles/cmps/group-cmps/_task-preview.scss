@@ -9,8 +9,8 @@
     min-height: 20px;
     position: relative;
     text-decoration: none;
-    
-    
+
+
     .task-cover {
         border-radius: 3px 3px 0 0;
         background-color: #443d34;
@@ -18,69 +18,68 @@
         background-position: center;
         background-repeat: no-repeat;
         margin-bottom: 5px;
-        
+
     }
-    .task-content{
-        
+
+    .task-content {
+
         padding: 6px 8px 2px;
-    .labels-container {
-        display: flex;
-        gap: 3px;
-        flex-wrap: wrap;
-        margin-block-end: 4px;
 
-        .label-btn {
-            width: 40px;
-            height: 8px;
-            border-radius: 4px;
-            padding: 0 8px;
-            display: inline-block;
-            position: relative;
-            box-sizing: border-box;
-            line-height: 16px;
-            color: #172b4d;
-            font-size: 12px;
-            font-weight: 400;
-            text-align: left;
-            vertical-align: middle;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            transition: 0.6s;
+        .labels-container {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            margin-block-end: 4px;
 
-            &.open {
-                min-width: 56px;
-                height: 16px;
+            .label-btn {
+                width: 40px;
+                height: 8px;
+                border-radius: 4px;
+                padding: 0 8px;
+                display: inline-block;
+                position: relative;
+                box-sizing: border-box;
+                line-height: 16px;
+                color: #172b4d;
+                font-size: 12px;
+                font-weight: 400;
+                text-align: left;
+                vertical-align: middle;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 transition: 0.6s;
+
+                &.open {
+                    min-width: 56px;
+                    height: 16px;
+                    transition: 0.6s;
+                }
+
+
             }
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        p {
+            overflow-wrap: break-word;
+            max-width: 85%;
+            margin: 0 0 4px 0;
+        }
+
+        .task-user-container {
+            flex-direction: row-reverse;
+
+            & .task-users {
+                border-radius: 25px;
+                width: 30px;
+                height: 30px;
 
 
+            }
         }
     }
-
-    &:hover {
-        text-decoration: none;
-    }
-
-    p {
-        overflow-wrap: break-word;
-        max-width: 85%;
-        margin: 0 0 4px 0;
-    }
-<<<<<<< HEAD
-}
-=======
-
-    .task-user-container {
-        flex-direction: row-reverse;
-
-        & .task-users {
-            border-radius: 25px;
-            width: 30px;
-            height: 30px;
-
-
-        }
-    }
->>>>>>> 363318d318056c1ddc1f159fad362e370a8dfbbd
 }
