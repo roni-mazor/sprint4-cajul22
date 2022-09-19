@@ -9,7 +9,7 @@ import { TxtCompose } from "../cmps/txt-compose"
 import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
-import { BoardMenuModal } from "../cmps/board-cmps/board-menu-modal"
+import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
 // import { background } from '../assets/img/micr4679.jpg'
 
 export const BoardDetails = () => {
@@ -36,23 +36,26 @@ export const BoardDetails = () => {
         board.isStarred = !board.isStarred
         dispatch(updateIsStarred(board))
     }
-    const handleTaskDrag = ({ source, destination, draggableId }) => {
+    const onHandleDrag = ({ source, destination, draggableId, type }) => {
+        if (type === 'task') {
+            const sIndex = source.index
+            const sourceGroupId = source.droppableId
+            const dIndex = destination.index
+            const destinationGroupId = destination.droppableId
+            const taskId = draggableId
 
-        const sIndex = source.index
-        const sourceGroupId = source.droppableId
-        const dIndex = destination.index
-        const destinationGroupId = destination.droppableId
-        const taskId = draggableId
-
-        const groups = [...board.groups]
-        const sGroup = groups.find((g) => g.id === sourceGroupId)
-        const [task] = sGroup.tasks.splice(sIndex, 1)
-        const dGroup = groups.find((g) => g.id === destinationGroupId)
-        dGroup.tasks.splice(dIndex, 0, task)
-
+            var groups = [...board.groups]
+            const sGroup = groups.find((g) => g.id === sourceGroupId)
+            const [task] = sGroup.tasks.splice(sIndex, 1)
+            const dGroup = groups.find((g) => g.id === destinationGroupId)
+            dGroup.tasks.splice(dIndex, 0, task)
+        } else {
+            var groups = [...board.groups]
+            const [group] = groups.splice(source.index, 1)
+            groups.splice(destination.index, 0, group)
+        }
         const b = { ...board, groups }
         dispatch(saveBoard(b))
-
     }
 
     const toggleMenuModal = () => {
@@ -69,15 +72,15 @@ export const BoardDetails = () => {
                     onToggleIsStarred={onToggleIsStarred} />
 
 
-                <DragDropContext onDragStart={console.log}>
+                <DragDropContext onDragEnd={onHandleDrag}>
                     <main className="board-main-content">
 
-                        <Droppable droppableId="group" >
+                        <Droppable droppableId="group" type="group" direction="horizontal" >
 
                             {(provided) => (
                                 <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
 
-                                    {/* <DragDropContext onDragEnd={handleTaskDrag} > */}
+
                                     {board.groups.map((group, index) => {
                                         return (
 
@@ -94,8 +97,6 @@ export const BoardDetails = () => {
                                             </Draggable>
                                         )
                                     })}
-                                    {/* </DragDropContext> */}
-
 
                                     {provided.placeholder}
                                 </section>)}

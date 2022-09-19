@@ -5,6 +5,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 //     TimePicker,
 //     DateTimePicker,
 //     MuiPickersUtilsProvider,
+//     KeyboardDatePicker,
 // } from '@material-ui/pickers';
 import { useState } from 'react';
 
@@ -28,9 +29,7 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
                 <hr />
 
                 {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker value={selectedDate} onChange={handleDateChange} />
-                    <TimePicker value={selectedDate} onChange={handleDateChange} />
-                    <DateTimePicker value={selectedDate} onChange={handleDateChange} />
+                    
                 </MuiPickersUtilsProvider> */}
 
 

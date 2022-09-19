@@ -36,21 +36,11 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
         dispatch(removeGroup(group.id))
     }
 
-    // const onOpenModal = () => {
-
-    // }
-
-
-
-    // {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
-
+    
     return (
 
-        // <section >
+        
         <>
-            {/* <Draggable key={group.id} index={groupIndex} draggableId={group.id} >
-
-            {(provided) => ( */}
             <header className="group-header" >
                 <input type="text"
                     onChange={changeGroupTitle}
@@ -58,12 +48,8 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
                     value={title} />
                 <button onClick={() => { toggleAdditivesModal('group-actions') }} className="group-actions-btn"><BsThreeDots /></button>
             </header>
-            {/* )}
-
-        </Draggable> */}
-
-            {/* <DragDropContext onDragEnd={handleTaskDrag}> */}
-            <Droppable droppableId={`${group.id}`}>
+         
+            <Droppable droppableId={`${group.id}`} type='task'>
                 {(provided) => (
                     <ul className="task-container" {...provided.droppableProps} ref={provided.innerRef}>
 
