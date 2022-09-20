@@ -28,7 +28,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
     }
 
     const onSaveUrl = (img) => {
-        if (!img.url) {
+        if (typeof img === 'string') {
             // console.log('hey')
             const image = imgFromLink(img)
             img = image  // console.log('img:', img)

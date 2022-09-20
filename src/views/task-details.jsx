@@ -98,7 +98,7 @@ export const TaskDetails = () => {
         onSaveTask(newTask)
     }
 
-    // console.log('task:', task)
+    console.log('task:', task)
     if (!task) return <LoaderIcon />
     return (
         <div className="task-details-container" onClick={onCloseModal}>

@@ -16,7 +16,8 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        setAttachCount(task?.attachments?.length)
+        // setAttachCount(task?.attachments?.length)
+        if (!task.background||!task.cover||!task.coverCLr) task.background = 'header'
     }, [])
 
     const onToggleLabelTxt = (ev) => {
@@ -72,33 +73,41 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
             {/* <header className="task-header"> */}
-            {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
-            {task.coverClr && <div className="task-cover" style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
+            {task.background === 'header' && <div>
 
-            {/* </header> */}
-            <div className="task-content">
+                {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
+                {task.coverClr && <div className="task-cover" style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
 
-                <section className="labels-container">
-                    {task.labelIds.map((id) => {
-                        const label = labels.find(l => l.id === id)
-                        return <div key={id} className={`label-btn ${openLabelClassName}`} onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
-                            {isLabelTxtOpen && <span>{label.title}</span>}
-                        </div>
-                    })}
-                </section>
-                <p>{task.title}</p>
-                <section className="task-user-container flex">
-                    {task?.members && task.members.map(member => <img className="task-users" src={member?.imgUrl ? member?.imgUrl : GuestImg} alt="" />)}
-                </section>
-                <section className="task-badges">
-                    {task?.attachments?.length > 0 && <span className="task-badges attached">
-                        <ImAttachment />  {task.attachments.length}</span>}
-                    {task?.checklists?.length > 0 &&
-                        <span className={isAllDone ? 'task-badges checklist done' : 'task-badges checklist'}>
-                            <span><TbCheckbox /></span>
-                            {dispalyDoneChecklist()}</span>}
-                </section>
-            </div>
+                {/* </header> */}
+                <div className="task-content">
+
+                    <section className="labels-container">
+                        {task.labelIds.map((id) => {
+                            const label = labels.find(l => l.id === id)
+                            return <div key={id} className={`label-btn ${openLabelClassName}`} onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
+                                {isLabelTxtOpen && <span>{label.title}</span>}
+                            </div>
+                        })}
+                    </section>
+                    <p>{task.title}</p>
+                    <section className="task-user-container flex">
+                        {task?.members && task.members.map(member => <img className="task-users" src={member?.imgUrl ? member?.imgUrl : GuestImg} alt="" />)}
+                    </section>
+                    <section className="task-badges">
+                        {task?.attachments?.length > 0 && <span className="task-badges attached">
+                            <ImAttachment />  {task.attachments.length}</span>}
+                        {task?.checklists?.length > 0 &&
+                            <span className={isAllDone ? 'task-badges checklist done' : 'task-badges checklist'}>
+                                <span><TbCheckbox /></span>
+                                {dispalyDoneChecklist()}</span>}
+                    </section>
+                </div>
+            </div>}
+            {task.background === 'body' && <div>
+                {task.cover && <div className="mini-task" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}>
+                    <p className="img-bg">{task.title}</p></div>}
+                {task.coverClr && <div className="mini-task" style={{ backgroundColor: task.coverClr }}>  <p >{task.title}</p></div>}
+            </div>}
         </Link>
     )
 }
