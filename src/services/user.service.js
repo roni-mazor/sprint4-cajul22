@@ -107,7 +107,15 @@ async function createUsers() {
     await userService.signup({ fullname: 'yoav', username: 'yoav', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
     await userService.signup({ fullname: 'roni', username: 'roni', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
     await userService.signup({ fullname: 'omer', username: 'omer', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
-    await userService.signup({ fullname: 'demoguest', username: 'demoguest', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
+    await userService.signup({_id: "u100", fullname: 'taal Tarasdgblus', username: 'taltal', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
+    await userService.signup({_id: "u101", fullname: 'tabu Tarablus', username: 'tabu123', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
+    await userService.signup({_id: "u102", fullname: 'lenny Tarablus', username: 'lenon', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
+    await userService.signup({_id: "u103", fullname: 'Abi Abambi', username: 'bambi', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
+    await userService.signup({_id: "u104", fullname: 'Roni Mazor', username: 'roniron', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
+    await userService.signup({_id: "u105", fullname: 'Roni Mazor', username: 'roniron', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
+    await userService.signup({_id: "u106", fullname: 'Roni Mazor', username: 'roniron', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
+    await userService.signup({_id: "u107", fullname: 'Roni Mazor', username: 'roniron', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
+    await userService.signup({_id: "u108", fullname: 'demoguest', username: 'demoguest', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
 }
 
 

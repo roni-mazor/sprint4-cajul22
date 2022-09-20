@@ -10,7 +10,7 @@ const board1 = {
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,
     "createdBy": {
-        "_id": "u101",
+        "_id": "u103",
         "fullname": "Abi Abambi",
         "imgUrl": "http://some-img"
     },
@@ -47,23 +47,7 @@ const board1 = {
             "color": "#5BA4CF"
         }
     ],
-    "members": [
-        {
-            "_id": "u101",
-            "fullname": "taal Tarasdgblus",
-            "imgUrl": ""
-        },
-        {
-            "_id": "u102",
-            "fullname": "tabu Tarablus",
-            "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg"
-        },
-        {
-            "_id": "u103",
-            "fullname": "roni Tarablus",
-            "imgUrl": ""
-        }
-    ],
+    "members": [ "u100", "u101", "u102"],
     "groups": [
         {
             "id": "g101",
@@ -130,7 +114,7 @@ const board2 = {
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,
     "createdBy": {
-        "_id": "u101",
+        "_id": "u103",
         "fullname": "Abi Abambi",
         "imgUrl": "http://some-img"
     },
@@ -167,23 +151,7 @@ const board2 = {
             "color": "#5BA4CF"
         }
     ],
-    "members": [
-        {
-            "_id": "u105",
-            "fullname": "Roni Mazor",
-            "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg"
-        },
-        {
-            "_id": "u104",
-            "fullname": "Roni Mazor",
-            "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg"
-        },
-        {
-            "_id": "u103",
-            "fullname": "Roni Mazor",
-            "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg"
-        }
-    ],
+    "members": [ "u105", "u104", "u103"],
     "groups": [
         {
             "id": "g10431",
@@ -331,7 +299,7 @@ const board3 = {
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,
     "createdBy": {
-        "_id": "u101",
+        "_id": "u103",
         "fullname": "Abi Abambi",
         "imgUrl": "http://some-img"
     },
@@ -348,13 +316,7 @@ const board3 = {
             "color": "#61bd33"
         }
     ],
-    "members": [
-        {
-            "_id": "u101",
-            "fullname": "Tal Tarablus",
-            "imgUrl": ""
-        }
-    ],
+    "members": [ "u101" ],
     "groups": [
         {
             "id": "g101",
@@ -400,7 +362,7 @@ const board3 = {
             "txt": "Changed Color",
             "createdAt": 154514,
             "byMember": {
-                "_id": "u101",
+                "_id": "u103",
                 "fullname": "Abi Abambi",
                 "imgUrl": "http://some-img"
             },

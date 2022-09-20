@@ -33,6 +33,8 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
     }
 
     const addUserToBoard = (userId) => {
+        // console.log('board:', board)
+        
         const selectedUser = board.members.find(member => member._id === userId)
         if (selectedUser) {
             const selectedUsers = board.members.filter(user => user._id !== userId)
@@ -41,7 +43,7 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
             return
         }
         const addedUser = users.find(user => user._id === userId)
-        board.members = [...board.members, addedUser]
+        board.members = [...board.members, addedUser._id]
         dispatch(saveBoard(board))
     }
 

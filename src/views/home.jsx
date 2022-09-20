@@ -4,13 +4,13 @@ import { userService } from "../services/user.service"
 import { useSelector, useDispatch } from "react-redux"
 import { SiTrello } from 'react-icons/si'
 import HeroImg from '../assets/img/home-hero.png'
-import { loadUsers } from '../store/user.actions'
+// import { loadUsers } from '../store/user.actions'
 
 export function Home() {
     
     // const [isLoggedIn, setIsLoggedIn] = useState(userService.getLoggedinUser)
     const loggedIn = useSelector(state => state.userModule.user)
-    const users = useSelector(state => state.userModule.users)
+    // const users = useSelector(state => state.userModule.users)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     

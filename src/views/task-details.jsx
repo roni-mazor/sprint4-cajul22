@@ -77,8 +77,7 @@ export const TaskDetails = () => {
 
     const onAddUserToTask = () => {
         toggleSuggestedJoin()
-        task.members = [...task.members, user]
-        task.isUserJoined = true
+        task.members = [...task.members, user._id]
         onSaveTask(task)
     }
 
@@ -86,7 +85,7 @@ export const TaskDetails = () => {
         setIsJoined(isJoined = !isJoined)
     }
 
-    
+
 
     const onSaveTask = (newTask) => {
         dispatch(saveTask(boardId, groupId, newTask))
