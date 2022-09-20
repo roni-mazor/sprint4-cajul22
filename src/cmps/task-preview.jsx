@@ -17,8 +17,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // setAttachCount(task?.attachments?.length)
-        if (!task.background||!task.cover||!task.coverCLr) task.background = 'header'
+       
     }, [])
 
     const onToggleLabelTxt = (ev) => {
@@ -74,7 +73,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
             {/* <header className="task-header"> */}
-            {task.background === 'header' && <div>
+            {(!task.background||task.background === 'header') && <div>
 
                 {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
                 {task.coverClr && <div className="task-cover" style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}

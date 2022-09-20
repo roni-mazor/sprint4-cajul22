@@ -6,8 +6,8 @@ import { utilService } from '../../services/util.service'
 export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
 
     const [cardClr, setCardClr] = useState(null)
-    const [headerFocus, setHeaderFocus] = useState()
-    const [bodyFocus, setBodyFocus] = useState()
+    const [cardFocus, setCardFocus] = useState(null)
+    const [clrFocus, setClrFocus] = useState(null)
     const colors = utilService.getBackgroundColors()
 
 
@@ -21,16 +21,9 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
             backgroundColor: task.coverClr,
             opacity: 100
         })
-        if (task.background === 'header') {
-            setHeaderFocus({
-                boxShadow: '0 0 0 2px #ffffff, 0 0 0 4px #0079bf'
-            })
-        }
-        if (task.background === 'body') {
-            setBodyFocus({
-                boxShadow: '0 0 0 2px #ffffff, 0 0 0 4px #0079bf'
-            })
-        }
+        if (task.cover || task.coverClr) setCardFocus(task.background)
+        if (task.coverClr) setClrFocus(task.coverClr)
+        if (task.cover) setClrFocus(null)
         return () => {
             setCardClr(null)
         }
@@ -53,17 +46,18 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
             opacity: 100
         })
         onSaveTask(task)
+        setClrFocus(color)
     }
 
     const onToggleCover = (cover) => {
         if (!cardClr) {
-            setCardClr({ cursor: 'default' })
+            // setCardClr({ cursor: 'default' })
             return
         }
         console.log('cover:', cover)
         task.background = cover
         onSaveTask(task)
-     
+        setCardFocus(cover)
 
     }
 
@@ -81,7 +75,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
                 <div>
                     <h4>Size</h4>
                     <div className='cover-pick'>
-                        <div className=' header-cover' style={headerFocus}
+                        <div className={cardFocus === 'header' ? 'header-cover focused' : 'header-cover'}
                             onClick={() => onToggleCover('header')}>
                             <div className='card-header' style={cardClr}></div>
                             <div className='card-body'>
@@ -94,8 +88,8 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
                                 <div className='dot-corner'></div>
                             </div>
                         </div>
-                        <div style={bodyFocus}>
-                            <div className='body-cover' style={cardClr}
+                        <div className={cardFocus === 'body' ? 'focused' : ''}>
+                            <div className=' body-cover' style={cardClr}
                                 onClick={() => onToggleCover('body')}>
                                 <div className='card-body'>
                                     <div className='top-line'></div>
@@ -110,7 +104,8 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
                 <h5 className='cover-picker-title'>Colors</h5>
                 <div className='color-picker'>
                     {colors.map(color => <span key={color}
-                        className="cover-clr-picker"
+                        className={color === clrFocus ? 'cover-clr-picker focused' : 'cover-clr-picker'}
+                        // className="cover-clr-picker"
                         onClick={() => onPickColor(color)}
                         style={{ backgroundColor: color }}>
                     </span>)}
