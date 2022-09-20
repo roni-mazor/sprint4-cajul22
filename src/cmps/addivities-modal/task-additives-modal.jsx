@@ -2,6 +2,7 @@ import { LabelPicker } from "../addivities-modal/label-picker"
 import { TodoModal } from "../task-details/todo.modal"
 import { AttachmentPicker } from "./attachment-picker"
 import { Checklist } from "./checklist-picker"
+import { CoverPickerModal } from "./cover-picker"
 import { DatePickerModal } from "./date-picker"
 import { GroupActions } from "./group-actions"
 import { MemberPicker } from "./member-picker"
@@ -48,6 +49,13 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
             case 'date-picker':
                 return (
                     <DatePickerModal
+                        task={task}
+                        onSaveTask={onSaveTask}
+                        toggleModal={toggleModal} />
+                )
+            case 'cover-picker':
+                return (
+                    <CoverPickerModal
                         task={task}
                         onSaveTask={onSaveTask}
                         toggleModal={toggleModal} />

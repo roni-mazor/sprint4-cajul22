@@ -109,24 +109,28 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
     // console.log('checklist:', checklist)
     return (
         <section className="checklist-preview">
-            <div className="checklist-title flex align-center justify-between" onClick={onTitleFocus}>
+            {!titleFocus && <div className="checklist-title flex align-center justify-between"
+             onClick={onTitleFocus}>
                 <div className="flex align-center" >
-                    {!titleFocus && <div className='flex align-center checklist-title-container'
-
-                    ><span> <BsCheck2Square /></span><h3>{checklist.title}</h3></div>}
-                    {titleFocus && <div>
-                        <textarea className='title-txtarea simple-txtarea'
-                            cols="60" rows="2" onChange={onHandleChange}
-                            value={txt}></textarea>
-                        <div className="checklist-title-edit-btns">
-                            <button className="save" onClick={() => onSaveTitle(checklist.id)}>Save</button>
-                            <button className="cancel" onClick={onTitleBlur}><IoMdClose /></button>
-                        </div>
-                    </div>}
+                    <div className='flex align-center checklist-title-container'>
+                        <span> <BsCheck2Square /></span>
+                        <h3>{checklist.title}</h3></div>
                 </div>
-                {!titleFocus && <button className='delete-checklist'
-                    onClick={() => onRemoveChecklist(checklist.id)}>Delete</button>}
-            </div>
+                <button className='delete-checklist'
+                    onClick={() => onRemoveChecklist(checklist.id)}>Delete</button>
+            </div>}
+            {titleFocus && <div className='title-txtarea-container flex'>
+                <span> <BsCheck2Square /></span>
+                <div>
+                    <textarea className='title-txtarea simple-txtarea'
+                        cols="60" rows="2" onChange={onHandleChange}
+                        value={txt}></textarea>
+                    <div className="checklist-title-edit-btns">
+                        <button className="save" onClick={() => onSaveTitle(checklist.id)}>Save</button>
+                        <button className="cancel" onClick={onTitleBlur}><IoMdClose /></button>
+                    </div>
+                </div>
+            </div>}
             <div className='progress'>
                 <span>{getProgressPercent()}</span>
                 <div className='progress-bar'>
@@ -153,9 +157,9 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
                         cols="60" rows="2"
                         placeholder='Add an item'
                     ></textarea>
-                    <button className='add-btn'
+                    <button className='save'
                         onClick={onSaveTxt}>Add</button>
-                    <button className='cancel-btn'
+                    <button className='cancel'
                         onClick={onClearFocus}>Cancel</button>
                 </div>}
             </div>

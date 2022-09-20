@@ -113,7 +113,7 @@
             .label-container label {
                 display: flex;
                 list-style: none;
-                position:relative;
+                position: relative;
 
                 .label-display-btn {
                     display: inline-block;
@@ -275,5 +275,42 @@
                 box-shadow: none;
             }
         }
+
+        .cover-modal {
+            button {
+                background-color: #091e420a;
+                color: #172b4d;
+                margin-bottom: 17px;
+
+                &:hover {
+                    background-color: #091e4214;
+                }
+            }
+
+            .color-picker {
+                display: grid;
+                gap: 8px;
+                padding: 4px;
+                margin: 0 -4px;
+                overflow-x: hidden;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+
+                .cover-clr-picker {
+                    margin: 0;
+                    border-radius: 3px;
+                    height: 72px;
+                    width: 100%;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    box-shadow: none;
+                    width: 50px;
+                    height: 32px;
+                    cursor: pointer;
+                }
+            }
+        }
+
     }
 }

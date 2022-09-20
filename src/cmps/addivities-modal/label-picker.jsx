@@ -7,6 +7,7 @@ import { removeLabel, saveLabels } from '../../store/board.actions'
 import { useSelector } from 'react-redux'
 import { boardService } from '../../services/board.service'
 import { Checkbox } from '@mui/material'
+import { utilService } from '../../services/util.service'
 
 
 export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
@@ -15,13 +16,7 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
     let labels = useSelector(state => state.boardModule.board.labels)
     labels = labels.filter(label => label.title.includes(filterBy))
     const dispatch = useDispatch()
-    const colors = [
-        '#B7DDB0', '#F5EA92', '#FAD29C', '#EFB3AB', '#DFC0EB',
-        '#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5',
-        '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1',
-        '#8BBDD9', '#8FDFEB', '#B3F1D0', '#F9C2E4', '#FF8ED4',
-        '#026AA7', '#00AECC', '#6DECA9', '#C1C7D0', '#E568AF',
-    ]
+    const colors = utilService.getColors()
 
     const onLabelCheck = (labelId) => {
         const t = { ...task }

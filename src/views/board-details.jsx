@@ -18,9 +18,9 @@ export const BoardDetails = () => {
     const dispatch = useDispatch()
     let [isShareBoardModal, setIsShareBoardModal] = useState(false)
     const board = useSelector(state => state.boardModule.board)
-    const style = (board) ? board.style : { background: '#fff' }
+    // const style = (board) ? board.style : { background: '#fff' }
     const [MenuModalOpen, setMenuModalOpen] = useState(false)
-    const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '',members:[] })
+    const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [] })
 
     useEffect(() => {
         // console.log('board:', board)
@@ -68,6 +68,7 @@ export const BoardDetails = () => {
     }
 
     const toggleMenuModal = () => {
+        console.log('opeinig')
         setMenuModalOpen(prevState => !prevState)
     }
 
@@ -88,15 +89,16 @@ export const BoardDetails = () => {
         return b
     }
 
-
+    console.log(board)
     if (!board) return <LoaderIcon />
     return (
-        <div className="board-wrapper" style={{ backgroundImage: `url(${style}` }}>
-            {isShareBoardModal && <ShareBoard onToggleIsShareBoardModal={onToggleIsShareBoardModal}/>}
+        <div className="board-wrapper" style={board.style}>
+            {isShareBoardModal && <ShareBoard onToggleIsShareBoardModal={onToggleIsShareBoardModal} />}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} board={board}
                     onToggleIsStarred={onToggleIsStarred}
+                    toggleMenuModal={toggleMenuModal}
                     onToggleIsShareBoardModal={onToggleIsShareBoardModal} />
 
 

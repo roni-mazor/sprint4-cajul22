@@ -39,7 +39,7 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                 </span>
             </header>
             <hr />
-            <section className="filter-container">
+            <section className="labels-container">
                 <h4>keywords</h4>
                 <input className="filter-text-input"
                     type="text" placeholder='Enter a keyword...'
@@ -47,14 +47,14 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                     value={filterBy.txt} />
                 <p>Search cards, members, labels, and more.</p>
             </section>
-            <hr />
 
-            <section classname="filter-container">
+
+            <section classname="labels-container">
                 <h4>Members</h4>
                 <ul className="labels-container">
                     {board.members.map(member => (
-                        <li key={member._id} >
-                            <label className="flex">
+                        <li key={member._id} className='label-container'>
+                            <label >
                                 <Checkbox
                                     checked={(filterBy.members.includes(member._id))}
                                     size="small" style={{ padding: '5px 9px' }}
@@ -70,7 +70,7 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                     ))}
                 </ul>
             </section>
-            <hr />
+
             <section className="filter-container">
                 <h4>Labels</h4>
                 <ul className="labels-container">
