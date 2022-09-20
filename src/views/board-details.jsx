@@ -41,7 +41,7 @@ export const BoardDetails = () => {
     }
 
     const onToggleIsShareBoardModal = () => {
-        console.log('isShareBoardModal:', isShareBoardModal)
+        // console.log('isShareBoardModal:', isShareBoardModal)
         setIsShareBoardModal(isShareBoardModal = !isShareBoardModal)
     }
 
@@ -91,6 +91,8 @@ export const BoardDetails = () => {
 
     // console.log(board)
     if (!board) return <LoaderIcon />
+    console.log('task:', board)
+    
     return (
         <div className="board-wrapper" style={board.style}>
             {isShareBoardModal && <ShareBoard onToggleIsShareBoardModal={onToggleIsShareBoardModal} />}

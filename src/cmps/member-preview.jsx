@@ -9,40 +9,44 @@ export const MemberPreview = ({ memberId, infoReq, addUserToBoard, onAddMemberTo
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch(loadUsers())
+       dispatch(loadUsers())
         getCurrMember()
     }, [])
 
+
+
+
     const getCurrMember = () => {
+        console.log('users:', users)
+        
         const currMember = users.find(user => user._id === memberId)
-        console.log('currMember:', currMember)
+         console.log('currMember:', currMember)
 
         setRenderedMember(currMember)
     }
 
     // const userInitials = (member.fullname.split(' ')).map(str => str.charAt(0).toUpperCase()).join('')
-    console.log('currMember:', renderedMember)
     return (
         <section>
-            {infoReq === 'boardHeader' && <section className="member-avatar flex" title={`${renderedMember?.fullname}`}>                
-                <img src={renderedMember?.imgUrl ? renderedMember.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
+            {infoReq === 'boardHeader' && <section className="member-avatar flex" title={`${renderedMember?.fullname}`}>
+                <img src={renderedMember?.imgUrl ? renderedMember?.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
             </section>}
             
             {infoReq === 'picker' && <section className="member-avatar flex" title={`${renderedMember?.fullname}`} onClick={() => onAddMemberToTask(renderedMember._id)}>
                 {/* infoReq === 'picker' &&  */}
-                <img src={renderedMember?.imgUrl ? renderedMember.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
+                <img src={renderedMember?.imgUrl ? renderedMember?.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
                 <pre className="picker-pre">
-                    <p>{renderedMember.fullname ? renderedMember.fullname : 'loading...'}</p>
-                    <p>{renderedMember.username ? `(${renderedMember.username})` : 'loading...'}</p>
+                    <p>{renderedMember?.fullname ? renderedMember?.fullname : 'loading...'}</p>
+                    <p>{renderedMember?.username ? `(${renderedMember?.username})` : 'loading...'}</p>
                 </pre>
             </section>}
 
             {infoReq === 'boardList' && <section className="member-avatar flex" title={`${renderedMember?.fullname}`}>
                 {/* infoReq === 'boardList' &&  */}
-                <img src={renderedMember?.imgUrl ? renderedMember.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
+                <img src={renderedMember?.imgUrl ? renderedMember?.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
                 <pre className="board-list-pre">
-                    <p>{renderedMember.fullname ? renderedMember.fullname : 'loading...'}</p>
-                    <p>@{renderedMember.username ? renderedMember.username : 'loading...'}</p>
+                    <p>{renderedMember?.fullname ? renderedMember?.fullname : 'loading...'}</p>
+                    <p>@{renderedMember?.username ? renderedMember?.username : 'loading...'}</p>
                 </pre>
                 <span></span>
                 <button className='toggle' onClick={() => addUserToBoard(renderedMember._id)}>Remove</button>

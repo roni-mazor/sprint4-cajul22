@@ -36,6 +36,7 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
         dispatch(removeGroup(group.id))
     }
 
+    console.log('group:', group)
     
     return (
 

@@ -1,5 +1,18 @@
 
 
+const user1 = { "_id": "u120", "fullname": "yoav", "username": "yoav", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png" }
+const user2 = { "_id": "u121", "fullname": "roni", "username": "roni", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png" }
+const user3 = { "_id": "u122", "fullname": "omer", "username": "omer", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png" }
+const user4 = { "_id": "u100", "fullname": "taal Tarasdgblus", "username": "taltal", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "/static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" }
+const user5 = { "_id": "u101", "fullname": "tabu Tarablus", "username": "tabu123", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
+const user6 = { "_id": "u102", "fullname": "lenny Tarablus", "username": "lenon", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "/static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" }
+const user7 = { "_id": "u103", "fullname": "Abi Abambi", "username": "bambi", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "/static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" }
+const user8 = { "_id": "u104", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
+const user9 = { "_id": "u105", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
+const user10 = { "_id": "u106", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
+const user11 = { "_id": "u107", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
+const user12 = { "_id": "u108", "fullname": "demoguest", "username": "demoguest", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" }
+
 
 
 
@@ -51,7 +64,11 @@ const board1 = {
             "color": "#5BA4CF"
         }
     ],
-    "members": ["u100", "u101", "u102"],
+    "members": [
+        { "_id": "u122", "fullname": "omer", "username": "omer", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png" },
+        { "_id": "u100", "fullname": "taal Tarasdgblus", "username": "taltal", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "/static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" },
+        { "_id": "u101", "fullname": "tabu Tarablus", "username": "tabu123", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
+    ],
     "groups": [
         {
             "id": "g101",
@@ -157,7 +174,12 @@ const board2 = {
             "color": "#5BA4CF"
         }
     ],
-    "members": ["u105", "u104", "u103"],
+    "members": [
+        { "_id": "u121", "fullname": "roni", "username": "roni", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png" },
+        { "_id": "u100", "fullname": "taal Tarasdgblus", "username": "taltal", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "/static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" },
+        { "_id": "u102", "fullname": "lenny Tarablus", "username": "lenon", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "/static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" },
+        { "_id": "u107", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
+    ],
     "groups": [
         {
             "id": "g10431",
@@ -324,7 +346,13 @@ const board3 = {
             "color": "#61bd33"
         }
     ],
-    "members": ["u101"],
+    "members": [
+        { "_id": "u120", "fullname": "yoav", "username": "yoav", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png" },
+        { "_id": "u121", "fullname": "roni", "username": "roni", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png" },
+        { "_id": "u101", "fullname": "tabu Tarablus", "username": "tabu123", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" },
+        { "_id": "u105", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" },
+        { "_id": "u108", "fullname": "demoguest", "username": "demoguest", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" }
+    ],
     "groups": [
         {
             "id": "g101",
@@ -389,4 +417,19 @@ export const boards = [
     { ...board1 },
     { ...board2 },
     { ...board3 },
+]
+
+export const users = [
+    { ...user1 },
+    { ...user2 },
+    { ...user3 },
+    { ...user4 },
+    { ...user5 },
+    { ...user6 },
+    { ...user7 },
+    { ...user8 },
+    { ...user9 },
+    { ...user10 },
+    { ...user11 },
+    { ...user12 }
 ]
