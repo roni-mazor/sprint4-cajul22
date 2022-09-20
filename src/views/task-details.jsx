@@ -68,7 +68,7 @@ export const TaskDetails = () => {
     const onStopPropagation = (ev) => {
         ev.stopPropagation()
     }
-    
+
     const toggleAdditivesModal = (type) => {
         console.log('isAdditivesModalOpen:', isAdditivesModalOpen)
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
@@ -104,7 +104,12 @@ export const TaskDetails = () => {
     return (
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
-                {task.cover && <header className="task-details-header" style={{ backgroundImage: `url(${task.cover.url})` }}></header>}
+                {task.cover &&
+                    <header className="task-details-header"
+                        style={{ backgroundImage: `url(${task.cover.url})` }}></header>}
+                {task.coverClr &&
+                    <header className="task-details-header"
+                        style={{ backgroundColor: task.coverClr, height:'116px' }}></header>}
                 <TaskTitle task={task}
                     handleChange={handleChange}
                     group={group} />
@@ -120,11 +125,11 @@ export const TaskDetails = () => {
                             onSaveTask={onSaveTask} />
                         {task?.attachments?.length > 0 && <TaskAttachments task={task}
                             onSaveTask={onSaveTask} />}
-                        {task?.checklists?.length >0 &&<TaskChecklist
+                        {task?.checklists?.length > 0 && <TaskChecklist
                             task={task}
                             onSaveTask={onSaveTask}
                             toggleModal={toggleAdditivesModal}
-                             />}
+                        />}
                         {/* {task?.checklists?.length >0 &&<TaskChecklist/>} */}
                         <TaskActivities user={user} />
                     </div>
@@ -138,7 +143,7 @@ export const TaskDetails = () => {
                         <button onClick={() => toggleAdditivesModal('label-picker')}><BsTag /> Labels</button>
                         <button onClick={() => toggleAdditivesModal('date-picker')}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={() => toggleAdditivesModal('attachment')}><ImAttachment /> Attachments</button>
-                        <button><span><BsSquareHalf /></span> Cover</button>
+                        <button onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                         <button onClick={() => toggleAdditivesModal('check-list')}><TbCheckbox /> CheckList</button>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
@@ -146,7 +151,7 @@ export const TaskDetails = () => {
                         task={task}
                         onSaveTask={onSaveTask}
                         toggleModal={toggleAdditivesModal}
-                        />}
+                    />}
                 </section>
                 <button className="close-modal"
                     onClick={onCloseModal}><IoMdClose /></button>

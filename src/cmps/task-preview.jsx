@@ -68,10 +68,12 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     }
     const isAllDone = allDone()
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
+    // console.log('task.cover:', task.cover)
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
             {/* <header className="task-header"> */}
             {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
+            {task.coverClr && <div className="task-cover" style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
 
             {/* </header> */}
             <div className="task-content">
@@ -90,7 +92,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                 </section>
                 <section className="task-badges">
                     {task?.attachments?.length > 0 && <span className="task-badges attached">
-                        <ImAttachment />  {attachCount}</span>}
+                        <ImAttachment />  {task.attachments.length}</span>}
                     {task?.checklists?.length > 0 &&
                         <span className={isAllDone ? 'task-badges checklist done' : 'task-badges checklist'}>
                             <span><TbCheckbox /></span>
