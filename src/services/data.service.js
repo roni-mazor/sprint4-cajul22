@@ -137,7 +137,9 @@ const board2 = {
         "fullname": "Abi Abambi",
         "imgUrl": "http://some-img"
     },
-    "style": 'https://images.unsplash.com/photo-1662673966349-7cff6c14a298?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80',
+    "style": {
+        backgroundImage: 'url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'
+    },
     "labels": [
         {
             "id": "l101",
@@ -338,7 +340,9 @@ const board3 = {
         "fullname": "Abi Abambi",
         "imgUrl": "http://some-img"
     },
-    "style": {},
+    "style": {
+        backgroundImage: 'url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'
+    },
     "labels": [
         {
             "id": "l101",
