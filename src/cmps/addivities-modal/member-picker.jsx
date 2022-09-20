@@ -18,18 +18,18 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
     }, [txt])
 
     const onAddMemberToTask = (memberId) => {
-        let currMember = task.members.find(member => (member._id === memberId))
+        let currMember = task.members.find(member => (member === memberId))
         if(currMember){
-            // if(loggedIn._id === currMember._id) {isJoinedChange()}
-            const selectedMembers = task.members.filter(member => member._id !== memberId)
+            const selectedMembers = task.members.filter(member => member !== memberId)
             task.members = [...selectedMembers]
             onSaveTask(task)
+            console.log('task:', task)
+            
             return
         } 
 
-        currMember = board.members.find(member => member._id === memberId)
-        task.members = [...task.members, currMember]
-        
+        currMember = board.members.find(member => member === memberId)
+        task.members = [...task.members, currMember]        
         onSaveTask(task)
     }
 
@@ -65,9 +65,11 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
                 {getFilteredUsers().map(member => (
                     <li key={utilService.makeId(5)} >
                         <span className='member-container flex align-center' onClick={() => onAddMemberToTask(member._id)}>
+                            {/* {console.log('member:', member)
+                            } */}
                             <MemberPreview member={member} />
-                            <p>{member.username}</p>
-                            <p>{`(${member.fullname})`}</p>
+                            <p>{member}</p>
+                            <p>{`(${member})`}</p>
                         </span>
                     </li>
                 ))}
