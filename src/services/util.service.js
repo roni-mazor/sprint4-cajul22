@@ -5,7 +5,8 @@ export const utilService = {
     delay,
     getMonthName,
     getColors,
-     getBackgroundColors
+    getBackgroundColors,
+    debounce
 }
 
 function makeId(length = 6) {
@@ -62,4 +63,17 @@ function getBackgroundColors() {
         '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1',
         '#026AA7', '#00AECC', '#6DECA9', '#C1C7D0', '#E568AF',
     ]
+}
+
+function debounce(func, wait) {
+    let timeout
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout)
+            func(...args)
+        }
+
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+    }
 }
