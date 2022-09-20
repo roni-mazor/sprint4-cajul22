@@ -1,20 +1,32 @@
 import { useRef, useState } from 'react'
 import { BsCheck2Square, BsThreeDots } from 'react-icons/bs'
+import { IoMdClose, } from 'react-icons/io'
+
 import { Checkbox } from '@mui/material'
 
 import { utilService } from '../../services/util.service'
 import { TodoModal } from './todo.modal'
+import { TodoPreview } from './todo-preview'
 
 
 export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) => {
 
     // const addItemRef = useRef()
     const [focused, setFocused] = useState(false)
+    const [titleFocus, setTitleFocus] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [txt, setTxt] = useState(task.description)
+    const [txt, setTxt] = useState(checklist.title)
     const onFocus = () => setFocused(true)
     const onBlur = () => setFocused(false)
+    const onTitleFocus = () => {
+        setTitleFocus(true)
+    }
+    const onTitleBlur = () => {
+        setTimeout(() => {
 
+            setTitleFocus(false)
+        }, 200)
+    }
 
 
     const onRemoveChecklist = (checklistId) => {
@@ -26,15 +38,6 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
 
     const onHandleChange = ({ target: { value } }) => {
         setTxt(value)
-    }
-
-    const handleChange = ({ target }) => {
-        const value = target.value
-        // console.log('value:', value)
-        // checklist.title = value
-
-        onSaveTask(task)
-        onBlur()
     }
 
     const onSaveTxt = () => {
@@ -84,24 +87,45 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
     }
 
     const onRemoveTodo = (todoId) => {
-        // console.log('todoId:', todoId)
-        // checklist = checklist.list.filter(todo => todo.id !== todoId)
         const idx = checklist.list.findIndex(todo => todo.id === todoId)
         checklist = checklist.list.splice(idx, 1)
         onSaveTask(task)
     }
 
+    const onSaveTitle = (checklistId) => {
+        checklist.title = txt
+        onSaveTask(task)
+        onTitleBlur()
+    }
+
+    const onSaveTodo = (txt, todoId) => {
+        console.log('txt:', txt)
+        console.log('todoId:', todoId)
+        const todo = checklist.list.find(todo => todo.id === todoId)
+        todo.title = txt
+        checklist = checklist.list.map(currTodo => currTodo.id === todo.id ? todo : currTodo)
+        onSaveTask(task)
+    }
     // console.log('checklist:', checklist)
     return (
         <section className="checklist-preview">
-            <div className="checklist-title flex align-center justify-between">
-                <div className="flex align-center">
-                    <span> <BsCheck2Square /></span><h3>{checklist.title}</h3>
-                    {/* <textarea className='simple-txtarea'
-                cols="60" rows="2" onBlur={handleChange}>{task.title}</textarea> */}
+            <div className="checklist-title flex align-center justify-between" onClick={onTitleFocus}>
+                <div className="flex align-center" >
+                    {!titleFocus && <div className='flex align-center checklist-title-container'
+
+                    ><span> <BsCheck2Square /></span><h3>{checklist.title}</h3></div>}
+                    {titleFocus && <div>
+                        <textarea className='title-txtarea simple-txtarea'
+                            cols="60" rows="2" onChange={onHandleChange}
+                            value={txt}></textarea>
+                        <div className="checklist-title-edit-btns">
+                            <button className="save" onClick={() => onSaveTitle(checklist.id)}>Save</button>
+                            <button className="cancel" onClick={onTitleBlur}><IoMdClose /></button>
+                        </div>
+                    </div>}
                 </div>
-                <button className='delete-checklist'
-                    onClick={() => onRemoveChecklist(checklist.id)}>Delete</button>
+                {!titleFocus && <button className='delete-checklist'
+                    onClick={() => onRemoveChecklist(checklist.id)}>Delete</button>}
             </div>
             <div className='progress'>
                 <span>{getProgressPercent()}</span>
@@ -112,18 +136,12 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
                 </div>
             </div>
             <div className='todo-list'>
-                {checklist.list.map(todo => <div key={todo.id}
-                    className='todo-preview  flex align-center justify-between' >
-                    <div >
-                        <span><Checkbox
-                            checked={todo.isDone}
-                            onChange={() => onTodoIsDone(todo.id)} /></span>
-                        <span className={todo.isDone ? 'todo-title done' : 'todo-title'}> {todo.title}</span>
-                    </div>
-                    <span className='todo-menu' onClick={() => onRemoveTodo(todo.id)}><BsThreeDots /></span>
-                    {/* <span className='todo-menu' onClick={()=>toggleModal('todo')}><BsThreeDots /></span> */}
-
-                </div>)}
+                {checklist.list.map(todo => <TodoPreview key={todo.id}
+                    todo={todo}
+                    checklist={checklist}
+                    onSaveTodo={onSaveTodo}
+                    onTodoIsDone={onTodoIsDone}
+                    onRemoveTodo={onRemoveTodo} />)}
             </div>
             <div className='add-checklist'>
                 {!focused && <button className='add-checklist-item-btn' onClick={onFocus}>Add an item</button>}

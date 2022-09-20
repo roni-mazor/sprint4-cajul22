@@ -76,7 +76,7 @@
             color: #172b4d;
             overflow-wrap: break-word;
             max-width: 85%;
-            margin: 0 0 4px 0;
+            margin: 0 0 8px 0;
             font-size: 14px;
             font-weight: 400;
             line-height: 20px
@@ -104,16 +104,51 @@
             max-width: 100%;
 
             &.attached {
-                color: #6b778c;
+                color: #5e6c84;
                 font-size: 12px;
                 height: 20px;
                 line-height: 20px;
                 width: 20px;
                 margin-bottom: 5px;
-                // svg{
+                margin-inline-end: 5px;
+            }
 
-                //     font-size: 16px;
-                // }
+            &.checklist {
+                color: #5e6c84;
+                font-size: 12px;
+                height: 20px;
+                line-height: 20px;
+                width: 20px;
+                margin-bottom: 5px;
+                position: relative;
+
+                &.done {
+                    background-color: #61bd4f;
+                    border-radius: 3px;
+                    color: #fff;
+                    margin: 0 4px 4px 0;
+                    max-width: 100%;
+                    min-height: 20px;
+                    overflow: hidden;
+                    padding: 2px;
+                    padding-inline-end: 7px;
+                    position: relative;
+                    text-decoration: none;
+                    text-overflow: ellipsis;
+                    vertical-align: top;
+                }
+
+                span {
+                    // color: #5e6c84;
+                    margin-inline-end: 5px;
+                    font-size: 0.875rem;
+                    height: 20px;
+                    line-height: 20px;
+                    width: 20px;
+                    position: relative;
+                    top: 3px;
+                    left: 0px;
+                }
             }
         }
     }
