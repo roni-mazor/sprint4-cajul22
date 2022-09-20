@@ -55,7 +55,7 @@
     .task-compose {
         align-items: center;
         border-radius: 3px;
-        margin: 2px 0 6px 4px;
+        margin: 2px 0 6px 4px;   
         padding: 4px 8px;
         position: relative;
         white-space: nowrap;
@@ -63,7 +63,6 @@
         cursor: pointer;
         gap: 3px;
         display: block;
-        flex: 1 0 auto;
 
         .compose-btn {
             color: #5e6c84;

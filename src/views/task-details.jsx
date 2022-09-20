@@ -86,7 +86,7 @@ export const TaskDetails = () => {
         setIsJoined(isJoined = !isJoined)
     }
 
-
+    
 
     const onSaveTask = (newTask) => {
         dispatch(saveTask(boardId, groupId, newTask))
