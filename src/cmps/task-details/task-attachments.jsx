@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import { LoaderIcon } from '../loader-icon'
 import { ImAttachment } from 'react-icons/im'
 import { BsSquareHalf } from 'react-icons/bs'
 
@@ -39,8 +40,12 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
         onSaveTask(newTask)
     }
 
+    const startLoader = () => {
+        setTimeout()
+    }
+
     const onRemoveCover = () => {
-       
+
         task.cover = ''
         onSaveTask(task)
     }
@@ -54,6 +59,9 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
                 {attachments.map(attachment => {
                     return (
                         <div key={attachment.id}>
+                            {/* <section className="loader-screen" startLoader={startLoader}>
+                             <LoaderIcon />
+                            </section> */}
                             <a href={attachment.url} style={{ backgroundImage: `url(${attachment.url})` }}></a>
                             <p className="flex column">
                                 <span className="attachment-url">{attachment.name}</span>

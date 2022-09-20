@@ -23,9 +23,9 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
     useEffect(() => {
         if (txt !== '') {
             setIsSearchOpen(true)
-        }else{
+        } else {
             setIsSearchOpen(false)
-        }        
+        }
     }, [txt])
 
     const onStopPropagation = (ev) => {
@@ -46,22 +46,16 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
     }
 
     const getFilteredUsers = () => {
+        const regex = new RegExp(txt, 'i')
+        const currUsers = users.filter(user => regex.test(user.fullname))
 
-        console.log('users:', users)
-        // const regex = new RegExp(txt, 'i') 
-    //   const currUsers = users.filter(user => {regex.test(user.fullname)})
-      const currUsers = users.filter(user => {user.fullname.includes(txt)})
-       console.log('users:', currUsers)
-       
-       return currUsers       
+        return currUsers
     }
 
 
 
-    const onHandleChange = ({ target: {value} }) => {       
-        setTxt(value)        
-        // const currUsers = users.find(user => user.fullname.includes(txt))
-        // setFilteredUsers(currUsers)
+    const onHandleChange = ({ target: { value } }) => {
+        setTxt(value)
     }
 
     return <div className="share-board-container" onClick={onToggleIsShareBoardModal}>
@@ -75,14 +69,12 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
             <div className='member-search-container flex'>
                 <input className="add-member-input-container"
                     type="text" value={txt} placeholder='Email address or name'
-                    onChange={onHandleChange}
-                   /* onChange={({ target: { value } }) => { setFilterBy(value) }}
-                    value={filterBy} *//>
+                    onChange={onHandleChange}/>
                 <button>Share</button>
             </div>
             {isSearchOpen && <ul className='user-list-container flex column justify-between'>
                 {getFilteredUsers().map(user => (
-                    <li key={utilService.makeId(5)} className='flex align-center'>
+                    <li key={utilService.makeId(5)} className='flex align-center' onClick={() => addUserToBoard(user._id)}>
                         <MemberPreview member={user} />
                         <pre>
                             <p>{user.fullname}</p>
@@ -91,7 +83,7 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
                         <span></span>
                     </li>))}
             </ul>}
-            <ul className='user-list-container flex column justify-between'>
+            <ul className='board-list-container flex column justify-between'>
                 {board.members?.map(member => (
                     <li key={utilService.makeId(5)} className='flex align-center'>
                         <MemberPreview member={member} />
