@@ -89,7 +89,7 @@ export const BoardDetails = () => {
         return b
     }
 
-    console.log(board)
+    // console.log(board)
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={board.style}>

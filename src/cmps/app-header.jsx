@@ -23,8 +23,7 @@ export const AppHeader = ({ board }) => {
             </Link>
             {/* <Link to=""> */}
                 <h4 className="log-sig">
-                    {(!member?.imgUrl) && <BsPersonCircle />}
-                    {member?.imgUrl && <MemberPreview member={member}/>}
+                    <MemberPreview member={member} infoReq="boardHeader"/>
                 </h4>
             {/* </Link> */}
         </header>
