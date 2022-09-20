@@ -8,6 +8,7 @@ import { TbCheckbox } from 'react-icons/tb'
 
 import { Members } from "../cmps/task-details/task-members"
 import { useEffect, useState } from "react"
+import { MemberPreview } from "./member-preview"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)

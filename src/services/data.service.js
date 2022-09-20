@@ -14,6 +14,7 @@ const board1 = {
         "fullname": "Abi Abambi",
         "imgUrl": "http://some-img"
     },
+    "customBackgrounds": [],
     "style": {
         backgroundImage: 'url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'
     }
@@ -50,7 +51,7 @@ const board1 = {
             "color": "#5BA4CF"
         }
     ],
-    "members": [ "u100", "u101", "u102"],
+    "members": ["u100", "u101", "u102"],
     "groups": [
         {
             "id": "g101",
@@ -156,7 +157,7 @@ const board2 = {
             "color": "#5BA4CF"
         }
     ],
-    "members": [ "u105", "u104", "u103"],
+    "members": ["u105", "u104", "u103"],
     "groups": [
         {
             "id": "g10431",
@@ -323,7 +324,7 @@ const board3 = {
             "color": "#61bd33"
         }
     ],
-    "members": [ "u101" ],
+    "members": ["u101"],
     "groups": [
         {
             "id": "g101",

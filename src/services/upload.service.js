@@ -12,7 +12,6 @@ async function uploadImg(ev) {
   formData.append('upload_preset', UPLOAD_PRESET)
   formData.append('file', ev.target.files[0])
 
-
   try {
     const res = await fetch(UPLOAD_URL, {
       method: 'POST',
@@ -20,10 +19,7 @@ async function uploadImg(ev) {
     })
 
     const resData = await res.json()
-    // const url = resData.url
-
-    // console.log('ev.target.files[0]:', ev.target.files[0])
-    // console.log('resData:', resData)
+ 
     return {
       url: resData.url,
       name: resData.original_filename,
@@ -33,15 +29,7 @@ async function uploadImg(ev) {
   } catch (err) {
     console.error(err)
   }
-  // return fetch(UPLOAD_URL, {
-  //   method: 'POST',
-  //   body: formData
-  // })
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     return res
-  //   })
-  //   .catch(err => console.error(err))
+
 }
 
 export function imgFromLink(img) {

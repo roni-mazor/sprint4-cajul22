@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BsSearch } from "react-icons/bs"
 import { FiChevronLeft } from "react-icons/fi"
 import { IoMdClose } from "react-icons/io"
@@ -6,9 +6,12 @@ import { useDispatch } from "react-redux"
 import { photoService } from "../../services/photo.service"
 import { utilService } from "../../services/util.service"
 import { saveBoard } from "../../store/board.actions"
+import { BsPlusLg } from 'react-icons/bs'
+import { uploadService } from "../../services/upload.service"
 
 export const BackgroundBoardMenuModal = ({ setModalState, board, toggleMenuModal, }) => {
     const [backgroundModalState, setBackgroundModalState] = useState('background')
+
 
     const backgroundRenderedModal = () => {
         switch (backgroundModalState) {
@@ -39,6 +42,27 @@ export const BackgroundBoardMenuModal = ({ setModalState, board, toggleMenuModal
 }
 
 const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }) => {
+    const dispatch = useDispatch()
+    const onUploadImg = async (ev) => {
+        const img = await uploadService.uploadImg(ev)
+        saveBackground(img)
+    }
+
+    const saveBackground = (img) => {
+        console.log(board)
+        board.customBackgrounds.push(img.url)
+        board.style = { backgroundImage: `url(${img.url})` }
+        dispatch(saveBoard(board))
+    }
+
+    const changeBackgroundImage = (url) => {
+        board.style = { backgroundImage: `url(${url})` }
+        dispatch(saveBoard(board))
+    }
+
+
+
+
     return (
         <>
             <header className="menu-modal-header ">
@@ -62,6 +86,18 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
                 </div>
             </section>
             <hr />
+            <h3 className="big">Custom</h3>
+            <section className="backgrounds-container">
+
+                <label className="background-btn attach-image">
+                    <BsPlusLg />
+                    <input type="file" onChange={onUploadImg} hidden />
+                </label>
+                {board.customBackgrounds.length > 0 && board.customBackgrounds.map(img => (
+                    <div onClick={() => changeBackgroundImage(img)} style={{ backgroundImage: `url(${img})` }} >
+                    </div>
+                ))}
+            </section>
         </>
     )
 }
@@ -70,7 +106,28 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
 
 
 const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
-    
+    const [photos, setPhotos] = useState(null)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        loadPhotos()
+    }, [])
+
+    const loadPhotos = async (searchBy) => {
+        if (!searchBy) searchBy = 'backgrounds'
+        const photos = await photoService.getPhotos(searchBy)
+        setPhotos(photos)
+    }
+
+    const onSearchPhoto = ({ target: { value } }) => {
+        loadPhotos(value)
+    }
+    const changeBackgroundImage = (url) => {
+        board.style = { backgroundImage: `url(${url})` }
+        dispatch(saveBoard(board))
+    }
+
+
     return (<>
 
         <header className="menu-modal-header ">
@@ -83,7 +140,18 @@ const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
             </span>
         </header>
         <hr />
-        <section className="photos-container">
+        <div className="search-photos-container">
+            <input type="text" className="filter-text-input" placeholder="Photos" onChange={utilService.debounce(onSearchPhoto, 1000)} />
+            <span className='icon-container'>
+                <BsSearch />
+            </span>
+        </div>
+        <section className="backgrounds-container">
+            {photos && photos.map(p => (
+                <div onClick={() => changeBackgroundImage(p.urlFull)} style={{ backgroundImage: `url(${p.urlSmall})` }} >
+                    <a target="_blank" className="creator-link" href={p.creatorUrl}>{p.creatorName}</a>
+                </div>
+            ))}
         </section>
     </>
     )
@@ -108,8 +176,8 @@ const Colors = ({ board, toggleMenuModal, setBackgroundModalState }) => {
             </span>
         </header>
         <hr />
-        <section className="colors-container">
-            {colors.map(color => <div onClick={() => {changeBoardBackground(color)}} style={{ backgroundColor: color }}></div>)}
+        <section className="backgrounds-container">
+            {colors.map(color => <div onClick={() => { changeBoardBackground(color) }} style={{ backgroundColor: color }}></div>)}
         </section>
     </>
     )

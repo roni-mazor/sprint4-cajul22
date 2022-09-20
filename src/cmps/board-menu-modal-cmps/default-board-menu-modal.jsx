@@ -17,13 +17,13 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                 </span>
             </header>
             <hr />
-            <div onClick={()=>setModalState('background-change')} className="board-menu-nav-btn">
-                <div className='menu-background-display' style={{ backgroundImage: `url(${board.style}` }}></div>
+            <div onClick={() => setModalState('background-change')} className="board-menu-nav-btn">
+                <div className='menu-background-display' style={board.style}></div>
                 <span>
                     Change background
                 </span>
             </div>
-            <div onClick={()=>setModalState('filter-cards')} className="board-menu-nav-btn">
+            <div onClick={() => setModalState('filter-cards')} className="board-menu-nav-btn">
                 <span className='icon-container'>
                     <BsSearch />
                 </span>

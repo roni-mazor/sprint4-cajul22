@@ -19,18 +19,18 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
 
     const onAddMemberToTask = (memberId) => {
         let currMember = task.members.find(member => (member === memberId))
-        if(currMember){
+        if (currMember) {
             const selectedMembers = task.members.filter(member => member !== memberId)
             task.members = [...selectedMembers]
             onSaveTask(task)
             console.log('task:', task)
-            
             return
-        } 
-
+        }
+        
         currMember = board.members.find(member => member === memberId)
-        task.members = [...task.members, currMember]        
+        task.members = [...task.members, currMember]
         onSaveTask(task)
+        console.log('task:', task)
     }
 
     const onHandleChange = ({ target: { value } }) => {
@@ -56,24 +56,14 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
             <hr />
 
             <input className="label-title-input"
-                type="text" 
+                type="text"
                 placeholder='Search members'
                 onChange={onHandleChange}
                 value={txt} />
             <p>Board members</p>
-            <ul className="labels-container">
-                {getFilteredUsers().map(member => (
-                    <li key={utilService.makeId(5)} >
-                        <span className='member-container flex align-center' onClick={() => onAddMemberToTask(member._id)}>
-                            {/* {console.log('member:', member)
-                            } */}
-                            <MemberPreview member={member} />
-                            <p>{member}</p>
-                            <p>{`(${member})`}</p>
-                        </span>
-                    </li>
-                ))}
-            </ul>
+            <section className="avatars-container flex column">
+                {getFilteredUsers().map(memberId => <MemberPreview key={memberId} memberId={memberId} infoReq={'picker'} onAddMemberToTask={onAddMemberToTask}/>)}
+            </section>
         </section >
     )
 }
