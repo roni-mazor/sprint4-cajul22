@@ -8,6 +8,7 @@ import { TbCheckbox } from 'react-icons/tb'
 
 import { Members } from "../cmps/task-details/task-members"
 import { useEffect, useState } from "react"
+import { MemberPreview } from "./member-preview"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
@@ -87,8 +88,11 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                     })}
                 </section>
                 <p>{task.title}</p>
-                <section className="task-user-container flex">
+                {/* <section className="task-user-container flex">
                     {task?.members && task.members.map(member => <img className="task-users" src={member?.imgUrl ? member?.imgUrl : GuestImg} alt="" />)}
+                </section> */}
+                <section className="avatars-container" style={{ display: "flex" }}>
+                    {task?.members && task.members?.map(memberId => <MemberPreview key={memberId} memberId={memberId} infoReq={'boardHeader'}/>)}
                 </section>
                 <section className="task-badges">
                     {task?.attachments?.length > 0 && <span className="task-badges attached">

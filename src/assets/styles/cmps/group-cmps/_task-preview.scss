@@ -82,6 +82,10 @@
             line-height: 20px
         }
 
+        .avatars-container{
+            flex-direction: row-reverse;
+        }
+
         .task-user-container {
             flex-direction: row-reverse;
             float: right;

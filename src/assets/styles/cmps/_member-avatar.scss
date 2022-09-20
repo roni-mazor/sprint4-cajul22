@@ -1,20 +1,33 @@
 .member-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin: 0 0 0 -2px;
-    color: snow;
+    margin: 2px -2px;
+    color: rgb(38, 38, 38);
+    align-items: center;
+    cursor: pointer;
 
     .member-avatar-img {
         object-fit: cover;
-        width: 100%;
-        height: 100%;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
 
     }
 
     &:hover {
         opacity: 0.8;
+    }
+
+    & p{
+        margin: 0;
+        font-family: var(--base);
+    }
+    
+    & .board-list-pre{
+        margin-inline-start: 10px;
+    }
+    
+    & .picker-pre{
+        display: flex;
+        margin-inline-start: 10px;
     }
 
     .log-sig {
