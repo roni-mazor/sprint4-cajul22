@@ -37,7 +37,7 @@ export const BoardDetails = () => {
 
     const onToggleIsStarred = () => {
         board.isStarred = !board.isStarred
-        dispatch(updateIsStarred(board))
+        dispatch(saveBoard(board))
     }
 
     const onToggleIsShareBoardModal = () => {
@@ -103,39 +103,43 @@ export const BoardDetails = () => {
 
 
                 <DragDropContext onDragEnd={onHandleDrag}>
-                    <main className="board-main-content">
+                    <div className="board">
+                        <main className="board-main-content">
 
-                        <Droppable droppableId="group" type="group" direction="horizontal" >
+                            <Droppable droppableId="group" type="group" direction="horizontal" >
 
-                            {(provided) => (
-                                <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
+                                {(provided) => (
+                                    <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
 
 
-                                    {getFilteredBoard().groups.map((group, index) => {
-                                        return (
+                                        {getFilteredBoard().groups.map((group, index) => {
+                                            return (
 
-                                            <Draggable key={group.id} index={index} draggableId={group.id}>
-                                                {(provided) => (
-                                                    <section {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                        <section className="group-content"  >
+                                                <Draggable key={group.id} index={index} draggableId={group.id}>
+                                                    {(provided) => (
+                                                        <section {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                            <div className="group-wrapper">
+                                                                <section className="group-content"  >
 
-                                                            <BoardGroup groupIndex={index} key={group.id} group={group} boardId={board._id} />
+                                                                    <BoardGroup groupIndex={index} key={group.id} group={group} boardId={board._id} />
 
-                                                        </section>
-                                                    </section>)}
+                                                                </section>
+                                                            </div>
+                                                        </section>)}
 
-                                            </Draggable>
-                                        )
-                                    })}
+                                                </Draggable>
+                                            )
+                                        })}
 
-                                    {provided.placeholder}
-                                </section>)}
+                                        {provided.placeholder}
+                                    </section>)}
 
-                        </Droppable>
-                        <section className="group-content group-compose">
-                            <TxtCompose type={'list'} returnTxt={onCreateGroup} />
-                        </section>
-                    </main>
+                            </Droppable>
+                            <section className="group-content group-compose">
+                                <TxtCompose type={'list'} returnTxt={onCreateGroup} />
+                            </section>
+                        </main>
+                    </div>
                 </DragDropContext>
 
 

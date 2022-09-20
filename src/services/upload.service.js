@@ -19,7 +19,7 @@ async function uploadImg(ev) {
     })
 
     const resData = await res.json()
- 
+
     return {
       url: resData.url,
       name: resData.original_filename,
@@ -35,14 +35,13 @@ async function uploadImg(ev) {
 export function imgFromLink(img) {
   const image = new Image()
   image.onload = () => {
-    // console.log('width!' ,image.width)
-    // console.log('height',image.height)
   }
   image.src = img
+  // console.log('image:', image.width)
   return {
     url: image.src,
     height: image.height,
-    width: image.height
+    width: image.width
   }
 }
 

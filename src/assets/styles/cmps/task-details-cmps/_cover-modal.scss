@@ -149,6 +149,9 @@
             width: 50px;
             height: 32px;
             cursor: pointer;
+            &.focused{
+                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
+            }
         }
     }
 }

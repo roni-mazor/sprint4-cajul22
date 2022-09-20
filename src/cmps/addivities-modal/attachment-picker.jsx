@@ -32,13 +32,14 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
             // console.log('hey')
             const image = imgFromLink(img)
             img = image  // console.log('img:', img)
+            console.log('img:', img)
         }
-        console.log('img:', img)
         if (!task.attachments) task.attachments = []
         task.attachments.unshift(
             boardService.createNewAttachment(img.url, img.height, img.width, img.name)
         )
         // console.log('img:', img)
+        if (!task.background) task.background = 'header'
         onSaveTask(task)
         toggleModal()
     }

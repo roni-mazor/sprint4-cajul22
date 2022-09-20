@@ -1,6 +1,10 @@
 .board-wrapper {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
     // overflow-y: hidden;
-    width: 100%;
-    background-size: cover
+    // width: 100%;
+    background-size: cover;
+
+   
 }
