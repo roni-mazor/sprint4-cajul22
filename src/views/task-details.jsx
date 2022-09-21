@@ -22,6 +22,7 @@ import { LoaderIcon } from "../cmps/loader-icon"
 
 import { LabelShower } from "../cmps/task-details/label-shower"
 import { TaskChecklist } from "../cmps/task-details/task-checklist"
+import { DateShower } from "../cmps/task-details/date-shower"
 
 
 export const TaskDetails = () => {
@@ -139,7 +140,9 @@ export const TaskDetails = () => {
                             {(task.members.length !== 0) && <Members members={board.members} membersId={task.members} toggleModal={toggleAdditivesModal} />}
                             <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
+
                         </div>
+                        {task?.dueDate?.time && < DateShower onSaveTask={onSaveTask} toggleModal={toggleAdditivesModal} task={task} />}
                         <TaskDescription task={task}
                             onSaveActivity={onSaveActivity}
                             onSaveTask={onSaveTask} />
