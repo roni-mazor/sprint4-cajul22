@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
+import { BsSearch } from 'react-icons/bs'
+import { photoService } from '../../services/photo.service'
 import { utilService } from '../../services/util.service'
+import { color } from '@mui/system'
 
 
 export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
@@ -38,7 +41,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
     }
 
     const onPickColor = (color) => {
-        console.log('color:', color)
+        // console.log('color:', color)
         task.cover = null
         task.coverClr = color
         setCardClr({
@@ -49,12 +52,34 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
         setClrFocus(color)
     }
 
+    const onMakeCover = (cover) => {
+
+        task.cover = cover
+        task.coverClr = ''
+        setCardClr({
+            backgroundImage: `url(${cover.url})`,
+            opacity: 100
+        })
+        onSaveTask(task)
+        setClrFocus(cover)
+    }
+
+    const onMakeUnsplashCover = (cover) => {
+        task.coverClr = ''
+        task.cover = cover
+        task.cover.url = cover.urlFull
+        setCardClr({
+            backgroundImage: `url(${cover.url})`,
+            opacity: 100
+        })
+        onSaveTask(task)
+        setClrFocus(cover)
+    }
+
     const onToggleCover = (cover) => {
         if (!cardClr) {
-            // setCardClr({ cursor: 'default' })
             return
         }
-        console.log('cover:', cover)
         task.background = cover
         onSaveTask(task)
         setCardFocus(cover)
@@ -110,8 +135,65 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
                         style={{ backgroundColor: color }}>
                     </span>)}
                 </div>
+                {task.attachments.length > 0 &&
+                    <div>
+                        <h5>Attachments</h5>
+                        <div className='cover-attach-container'>
+                            {task.attachments.map(attachment => <div
+                                key={attachment.id}
+                                className={task?.cover?.id === attachment.id ? 'cover-attach focused' : 'cover-attach'}
+                                onClick={() => onMakeCover(attachment)}
+                                style={{ backgroundImage: `url(${attachment.url})` }}>
+                            </div>)}
+                        </div>
+                    </div>}
+                <h5>Photos from Unsplash</h5>
+                <Photos
+                    task={task}
+                    onMakeUnsplashCover={onMakeUnsplashCover} />
             </div>
 
         </section>
+    )
+}
+
+const Photos = ({ task, onMakeUnsplashCover }) => {
+    const [photos, setPhotos] = useState(null)
+
+    useEffect(() => {
+        loadPhotos()
+    }, [])
+
+    const loadPhotos = async (searchBy) => {
+        if (!searchBy) searchBy = 'cover'
+        let photos = await photoService.getPhotos(searchBy)
+        photos.splice(0, 4)
+        // console.log('photos:', photos)
+        setPhotos(photos)
+    }
+
+    const onSearchPhoto = ({ target: { value } }) => {
+        loadPhotos(value)
+    }
+
+
+    return (<div className='unsplash-cover'>
+
+        <div className="search-photos-container">
+            <input type="text" className="filter-text-input" placeholder="Photos" onChange={utilService.debounce(onSearchPhoto, 1000)} />
+            <span className='icon-container'>
+                <BsSearch />
+            </span>
+        </div>
+        <section className="backgrounds-container">
+            {photos && photos.map(p => (
+                <div className={task?.cover?.url === p.urlFull ? 'focused' : ''}
+                    onClick={() => onMakeUnsplashCover(p)} style={{ backgroundImage: `url(${p.urlSmall})` }} >
+                    <a target="_blank" className="creator-link" href={p.creatorUrl}>{p.creatorName}</a>
+                </div>
+
+            ))}
+        </section>
+    </div>
     )
 }

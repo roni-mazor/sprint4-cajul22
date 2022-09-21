@@ -13,8 +13,8 @@ import { TaskTitle } from "../cmps/task-details/task-title"
 import { TaskDescription } from "../cmps/task-details/task-description"
 import { TaskAttachments } from "../cmps/task-details/task-attachments"
 import { TaskActivities } from "../cmps/task-details/task-activities"
-import { saveTask } from "../store/board.actions"
-import { loadUser, loadUsers } from "../store/user.actions"
+import { saveTask, saveBoard, loadBoard } from "../store/board.actions"
+import { getLoggedinUser, loadUsers } from "../store/user.actions"
 import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
 import { Members } from "../cmps/task-details/task-members"
 import { LoaderIcon } from "../cmps/loader-icon"
@@ -30,7 +30,6 @@ export const TaskDetails = () => {
     const dispatch = useDispatch()
     const { boardId, groupId, taskId } = params
     const board = useSelector(state => state.boardModule.board)
-    // const users = useSelector(state => state.userModule.users)
     const user = useSelector(state => state.userModule.user)
     const [task, setTask] = useState()
     let [isJoined, setIsJoined] = useState(false)
@@ -38,13 +37,13 @@ export const TaskDetails = () => {
     const group = board.groups.find(group => group.id === groupId)
 
     useEffect(() => {
+        loadBoard()
         loadTask()
         dispatch(loadUsers())
     }, [])
 
     useEffect(() => {
         loadTask()
-
     }, [board])
 
     const loadTask = () => {
@@ -55,10 +54,9 @@ export const TaskDetails = () => {
         if (!currTask.attachments) currTask.attachments = []
         if (!currTask.checklists) currTask.checklists = []
         if (!currTask.members) currTask.members = []
+        isUserJoined(currTask)
         setTask(currTask)
-        console.log('task:', task)
-        
-        if (currTask.isUserJoined) return setIsJoined(true)
+        // console.log('task:', task)        
     }
 
     const onCloseModal = () => {
@@ -70,9 +68,25 @@ export const TaskDetails = () => {
     }
 
     const toggleAdditivesModal = (type) => {
-        console.log('isAdditivesModalOpen:', isAdditivesModalOpen)
+        // console.log('isAdditivesModalOpen:', isAdditivesModalOpen)
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
         else setIsAdditivesModalOpen(type)
+    }
+
+    const isUserJoined = (task) => {
+        const { members } = task
+        let loggedInUser = members.find(id => id === user._id)
+        if (loggedInUser) setIsJoined(true)
+        
+        console.log('board.members from isJoinedUser:', board.members)
+        
+        const isUserInBoard = board.members.find(member => console.log('member:', member)
+        )
+        if (!isUserInBoard) {
+            board.members = [...board.members, isUserInBoard]
+            dispatch(saveBoard(board))
+        }
+
     }
 
     const onAddUserToTask = () => {
@@ -98,22 +112,22 @@ export const TaskDetails = () => {
         onSaveTask(newTask)
     }
 
-    console.log('task:', task)
+    // console.log('task:', task)
     if (!task) return <LoaderIcon />
     return (
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
                 {task.cover &&
                     <header className="task-details-header"
-                        style={{ backgroundImage: `url(${task.cover.url})` }}>
+                        style={{ backgroundImage: `url(${task.cover.url})`, backgroundColor: task.cover.color }}>
                         <button className="cover-btn-header"
-                        onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                            onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                     </header>}
                 {task.coverClr &&
                     <header className="task-details-header"
                         style={{ backgroundColor: task.coverClr, height: '116px' }}>
                         <button className="cover-btn-header"
-                         onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                            onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                     </header>}
                 <TaskTitle task={task}
                     handleChange={handleChange}

@@ -23,7 +23,7 @@ export const TaskDescription = ({ task, onSaveTask }) => {
     const onSaveTxt = () => {
         let newTask = task
         newTask.description = txt
-        console.log('newTask:', newTask)
+        // console.log('newTask:', newTask)
         onSaveTask(newTask)
     }
 

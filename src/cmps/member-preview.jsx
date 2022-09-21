@@ -3,28 +3,26 @@ import { useSelector, useDispatch } from "react-redux"
 import { loadUsers } from "../store/user.actions"
 import {AiOutlineCheck} from 'react-icons/ai'
 import GuestImg from '../assets/img/guest-img.svg'
-export const MemberPreview = ({task, members, memberId, infoReq, addUserToBoard, onAddMemberToTask }) => {
+export const MemberPreview = ({members, memberId, infoReq, addUserToBoard, onAddMemberToTask }) => {
 
     const [renderedMember, setRenderedMember] = useState()
     const users = useSelector(state => state.userModule.users)
     const dispatch = useDispatch()
-
+    
     useEffect(() => {
         dispatch(loadUsers())
             getCurrMember()
-
     }, [])
-
+    
     const addedToTask = () => {
         // members.find(member => member._id === )
     }
 
 
-    const getCurrMember = () => {
-        console.log('members:', members) 
+    const getCurrMember = () => { 
         if(!members) return       
             const currMember = members.find(member => member._id === memberId)
-            setRenderedMember(currMember)
+            setRenderedMember(currMember)            
     }
 
     // const userInitials = (member.fullname.split(' ')).map(str => str.charAt(0).toUpperCase()).join('')
