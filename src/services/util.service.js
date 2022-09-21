@@ -6,7 +6,8 @@ export const utilService = {
     getMonthName,
     getColors,
     getBackgroundColors,
-    debounce
+    debounce,
+    getFormatedTime
 }
 
 function makeId(length = 6) {
@@ -76,4 +77,18 @@ function debounce(func, wait) {
         clearTimeout(timeout)
         timeout = setTimeout(later, wait)
     }
+}
+
+function getFormatedTime(time) {
+    
+    const date = new Date(time)
+    const month = utilService.getMonthName(date)
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minutes = date.getMinutes()
+    return `${month} ${_padNum(day)} at ${_padNum(hour)}:${_padNum(minutes)}`
+}
+
+function _padNum(num) {
+    return (num > 9) ? num + '' : '0' + num
 }

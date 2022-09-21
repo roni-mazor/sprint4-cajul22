@@ -24,6 +24,15 @@
 
         .new-comment {
             gap: 17px;
+            position: relative;
+
+            .profile-img {
+                height: 32px;
+                width: 32px;
+                position: absolute;
+                top: 7px;
+                left: 0px;
+            }
 
             .comment-box {
                 background-color: #fff;

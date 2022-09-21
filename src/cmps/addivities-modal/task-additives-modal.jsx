@@ -7,7 +7,7 @@ import { DatePickerModal } from "./date-picker"
 import { GroupActions } from "./group-actions"
 import { MemberPicker } from "./member-picker"
 
-export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, type }) => {
+export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, type ,onSaveActivity}) => {
 
     const renderModalByType = () => {
         switch (type) {
@@ -16,6 +16,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     < LabelPicker
                         task={task}
                         onSaveTask={onSaveTask}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'members':
@@ -24,6 +25,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     < MemberPicker
                         task={task}
                         onSaveTask={onSaveTask}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'attachment':
@@ -31,12 +33,14 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     <AttachmentPicker
                         task={task}
                         onSaveTask={onSaveTask}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'group-actions':
                 return (
                     <GroupActions
                         onRemoveGroup={onRemoveGroup}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'check-list':
@@ -44,6 +48,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     <Checklist
                         task={task}
                         onSaveTask={onSaveTask}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'date-picker':
@@ -51,6 +56,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     <DatePickerModal
                         task={task}
                         onSaveTask={onSaveTask}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'cover-picker':
@@ -58,6 +64,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     <CoverPickerModal
                         task={task}
                         onSaveTask={onSaveTask}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'todo':
@@ -65,6 +72,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     <TodoModal
                         task={task}
                         onSaveTask={onSaveTask}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
         }

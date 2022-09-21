@@ -318,4 +318,37 @@
             }
         }
     }
+
+    .activities-title {
+        gap: 10px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        margin-inline-start: 14px;
+    }
+
+    .menu-activities-wrapper {
+height: 100%;
+        .board-menu-activities {
+            overflow-y: hidden;
+            .activity-container {
+                gap: 10px;
+                margin-bottom: 10px;
+
+                .profile-img {
+                    height: 32px;
+                    width: 32px;
+                }
+
+                .activity {
+                    span {
+                        font-weight: 900;
+                    }
+
+                    a {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
 }

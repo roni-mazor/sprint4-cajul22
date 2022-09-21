@@ -5,24 +5,19 @@ import { BsSquareHalf } from 'react-icons/bs'
 
 import { utilService } from '../../services/util.service'
 
-export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
+export const TaskAttachments = ({ task, onSaveTask, removeAttachments,onSaveActivity }) => {
 
     const { attachments } = task
 
-    const getFormatedTime = (time) => {
-        const date = new Date(time)
-        const month = utilService.getMonthName(date)
-        const day = date.getDate()
-        const hour = date.getHours()
-        const minutes = date.getMinutes()
-        return `${month} ${day} at ${hour}:${minutes}`
-    }
+    const formatedTime = utilService.getFormatedTime
+
 
     const onRemoveAttachment = (attachmentId) => {
         console.log('attachmentId :', attachmentId)
         task.attachments = attachments.filter(attachment => attachment.id !== attachmentId)
         task.cover = ''
         onSaveTask(task)
+        onSaveActivity('removed an attachment')
     }
 
     const onMakeCover = (attachmentId) => {
@@ -31,16 +26,18 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
 
         task.cover = selectedAttach
         task.coverClr = ''
+        onSaveActivity('changed the cover')
         onSaveTask(task)
     }
-
+    
     const startLoader = () => {
         setTimeout()
     }
-
+    
     const onRemoveCover = () => {
-
+        
         task.cover = ''
+        onSaveActivity('removed the cover')
         onSaveTask(task)
     }
     // console.log('date:', date)
@@ -60,7 +57,7 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
                             <p className="flex column">
                                 <span className="attachment-url">{attachment.name}</span>
                                 <span className="attachment-details">
-                                    <span> Added <span></span>{getFormatedTime(attachment.createdAt)} - </span>
+                                    <span> Added <span></span>{formatedTime(attachment.createdAt)} - </span>
                                     <span className="delete-attachment"
                                         onClick={() => onRemoveAttachment(attachment.id)}>Delete</span>
                                 </span>

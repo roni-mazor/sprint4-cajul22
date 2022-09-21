@@ -7,7 +7,7 @@ import { TodoModal } from './todo.modal'
 import { TodoPreview } from './todo-preview'
 
 
-export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) => {
+export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onSaveActivity }) => {
 
     const [focused, setFocused] = useState(false)
     const [titleFocus, setTitleFocus] = useState(false)
@@ -27,7 +27,7 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
 
     const onRemoveChecklist = (checklistId) => {
         task.checklists = task.checklists.filter(checklist => checklist.id !== checklistId)
-
+        // onSaveActivity(`removed checklist: ${checklist.title}`)
         onSaveTask(task)
     }
 
@@ -45,6 +45,7 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
         })
         // console.log('checklist:', checklist)
         onSaveTask(task)
+        // onSaveActivity(`add a todo: ${txt}`)
         setTxt('')
         onBlur()
 
@@ -61,6 +62,8 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
         todo.isDone = !todo.isDone
         checklist = checklist.list.map(currTodo => currTodo.id === todo.id ? todo : currTodo)
         onSaveTask(task)
+        // if (todo.isDone) onSaveActivity(`has marked todo as done`)
+        // if (!todo.isDone) onSaveActivity(`has marked todo as undone`)
         // console.log('todo:', todo)
     }
 
@@ -84,11 +87,13 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
         const idx = checklist.list.findIndex(todo => todo.id === todoId)
         checklist = checklist.list.splice(idx, 1)
         onSaveTask(task)
+        // onSaveActivity(`removed todo`)
     }
 
     const onSaveTitle = () => {
         checklist.title = txt
         onSaveTask(task)
+        // onSaveActivity(`changed checklist title to ${txt}`)
         onTitleBlur()
     }
 
@@ -98,13 +103,14 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
         const todo = checklist.list.find(todo => todo.id === todoId)
         todo.title = txt
         checklist = checklist.list.map(currTodo => currTodo.id === todo.id ? todo : currTodo)
+        // onSaveActivity(`changed todo title to ${txt}`)
         onSaveTask(task)
     }
     // console.log('checklist:', checklist)
     return (
         <section className="checklist-preview">
             {!titleFocus && <div className="checklist-title flex align-center justify-between"
-             onClick={onTitleFocus}>
+                onClick={onTitleFocus}>
                 <div className="flex align-center" >
                     <div className='flex align-center checklist-title-container'>
                         <span className='task-icon'> <BsCheck2Square /></span>

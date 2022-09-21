@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { loadUsers } from "../store/user.actions"
 import { AiOutlineCheck } from 'react-icons/ai'
 import GuestImg from '../assets/img/guest-img.svg'
-export const MemberPreview = ({ members, memberId, infoReq, addUserToBoard, onAddMemberToTask }) => {
+export const MemberPreview = ({user, members, memberId, infoReq, addUserToBoard, onAddMemberToTask }) => {
 
     const [renderedMember, setRenderedMember] = useState()
 
