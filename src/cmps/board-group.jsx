@@ -17,30 +17,27 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
         else setIsAdditivesModalOpen(type)
     }
 
-    const changeGroupTitle = ({ target }) => {
-        setTitle(target.value)
+    const changeGroupTitle = ({ target: { value } }) => {
+        setTitle(value)
     }
     const onTitleUpdate = () => {
-        const g = { ...group, title }
-        dispatch(saveGroup(g))
+        group.title = title
+        dispatch(saveGroup(group))
     }
 
     const addTask = (txt) => {
         const task = boardService.createTask(txt)
-        const g = { ...group }
-        g.tasks.push(task)
-        dispatch(saveGroup(g))
+        group.tasks.push(task)
+        dispatch(saveGroup(group))
     }
 
     const onRemoveGroup = () => {
         dispatch(removeGroup(group.id))
     }
 
-    // console.log('group:', group)
-    
     return (
 
-        
+
         <>
             <header className="group-header" >
                 <input type="text"
@@ -49,9 +46,10 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
                     value={title} />
                 <button onClick={() => { toggleAdditivesModal('group-actions') }} className="group-actions-btn"><BsThreeDots /></button>
             </header>
-         
+
             <Droppable droppableId={`${group.id}`} type='task'>
                 {(provided) => (
+                    //wrap it up with a div for scrolling
                     <ul className="task-container" {...provided.droppableProps} ref={provided.innerRef}>
 
                         {group.tasks.map((task, index) => {
@@ -73,20 +71,13 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
                     </ul>
                 )}
             </Droppable>
-            {/* </DragDropContext> */}
-
-
 
             {isAdditivesModalOpen && <TaskAdditivesModal
                 type={isAdditivesModalOpen}
-                // task={task}
-                // onSaveTask={onSaveTask} 
                 onRemoveGroup={onRemoveGroup}
                 toggleModal={toggleAdditivesModal} />}
 
             <TxtCompose type={'card'} returnTxt={addTask} />
         </>
-        // </section>
-
     )
 }

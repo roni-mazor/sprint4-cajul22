@@ -80,12 +80,12 @@ export const TaskDetails = () => {
         
         console.log('board.members from isJoinedUser:', board.members)
         
-        const isUserInBoard = board.members.find(member => console.log('member:', member)
-        )
-        if (!isUserInBoard) {
-            board.members = [...board.members, isUserInBoard]
-            dispatch(saveBoard(board))
-        }
+        // const isUserInBoard = board.members.find(member => console.log('member:', member)
+        // )
+        // if (!isUserInBoard) {
+        //     board.members = [...board.members, isUserInBoard]
+        //     dispatch(saveBoard(board))
+        // }
 
     }
 

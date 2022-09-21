@@ -15,21 +15,16 @@ import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
 export const BoardDetails = () => {
     const params = useParams()
     const dispatch = useDispatch()
-    let [isShareBoardModal, setIsShareBoardModal] = useState(false)
+    let [isShareModalOpen, setIsShareModalOpen] = useState(false)
     const board = useSelector(state => state.boardModule.board)
-    const [MenuModalOpen, setMenuModalOpen] = useState(false)
+    const [isMenuModalOpen, setIsMenuModalOpen] = useState(false)
     const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMemebers: false })
 
     useEffect(() => {
-        // console.log('board:', board)
         dispatch(loadBoard(params.boardId))
-        // return () => {
-        //     dispatch(resetBoard())
-        // }
     }, [])
 
     const onCreateGroup = (txt) => {
-        console.log(txt)
         const group = boardService.createGroup(txt)
         const b = { ...board }
         b.groups.push(group)
@@ -41,9 +36,8 @@ export const BoardDetails = () => {
         dispatch(saveBoard(board))
     }
 
-    const onToggleIsShareBoardModal = () => {
-        // console.log('isShareBoardModal:', isShareBoardModal)
-        setIsShareBoardModal(isShareBoardModal = !isShareBoardModal)
+    const onToggleShareModal = () => {
+        setIsShareModalOpen(isShareModalOpen = !isShareModalOpen)
     }
 
     const onHandleDrag = ({ source, destination, draggableId, type }) => {
@@ -69,72 +63,57 @@ export const BoardDetails = () => {
     }
 
     const toggleMenuModal = () => {
-        console.log('opeinig')
-        setMenuModalOpen(prevState => !prevState)
+        setIsMenuModalOpen(prevState => !prevState)
     }
 
     const getFilteredBoard = () => {
-        const b = {
-            ...board, groups: board.groups.map(g => {
+        return {
+            ...board, groups: board.groups.map(group => {
                 return {
-                    ...g, tasks: g.tasks.filter(t => {
+                    ...group, tasks: group.tasks.filter(task => {
                         const regex = new RegExp(filterBy.txt, 'i')
                         return (
-                            filterBy.labelIds.every(id => t.labelIds.includes(id)) &&
-                            regex.test(t.title)
+                            filterBy.labelIds.every(id => task.labelIds.includes(id)) &&
+                            regex.test(task.title)
                         )
                     })
                 }
             })
         }
-        return b
     }
 
-    // console.log(board)
     if (!board) return <LoaderIcon />
-    // console.log('task:', board)
-    
     return (
         <div className="board-wrapper" style={board.style} >
 
-            {isShareBoardModal && <ShareBoard members={board.members} onToggleIsShareBoardModal={onToggleIsShareBoardModal} />}
+            {isShareModalOpen && <ShareBoard members={board.members} onToggleShareModal={onToggleShareModal} />}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} board={board}
                     onToggleIsStarred={onToggleIsStarred}
                     toggleMenuModal={toggleMenuModal}
-                    onToggleIsShareBoardModal={onToggleIsShareBoardModal} />
-
+                    onToggleShareModal={onToggleShareModal} />
 
                 <DragDropContext onDragEnd={onHandleDrag}>
                     <div className="board">
                         <main className="board-main-content">
-
                             <Droppable droppableId="group" type="group" direction="horizontal" >
-
                                 {(provided) => (
                                     <section className="groups-main-container" {...provided.droppableProps} ref={provided.innerRef}  >
-
-
                                         {getFilteredBoard().groups.map((group, index) => {
                                             return (
-
                                                 <Draggable key={group.id} index={index} draggableId={group.id}>
                                                     {(provided) => (
                                                         <section {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                             <div className="group-wrapper">
                                                                 <section className="group-content"  >
-
                                                                     <BoardGroup groupIndex={index} key={group.id} group={group} boardId={board._id} />
-
                                                                 </section>
                                                             </div>
                                                         </section>)}
-
                                                 </Draggable>
                                             )
                                         })}
-
                                         {provided.placeholder}
                                     </section>)}
 
@@ -146,13 +125,9 @@ export const BoardDetails = () => {
                     </div>
                 </DragDropContext>
 
-
-
-
-
                 <Outlet />
                 <BoardMenuModal filterBy={filterBy} setFilterBy={setFilterBy}
-                    board={board} toggleMenuModal={toggleMenuModal} isOpen={MenuModalOpen} />
+                    board={board} toggleMenuModal={toggleMenuModal} isOpen={isMenuModalOpen} />
             </section>
         </div >
     )

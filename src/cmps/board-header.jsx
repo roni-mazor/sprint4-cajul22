@@ -3,8 +3,8 @@ import { BsThreeDots } from 'react-icons/bs'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { RiUserAddLine } from 'react-icons/ri'
 
-export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal, onToggleIsShareBoardModal }) => {
-    
+export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal, onToggleShareModal }) => {
+    console.log(members)
     return (
         <header className="board-header"> 
             <span>                
@@ -16,7 +16,7 @@ export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal
                     {members.map(member => <MemberPreview key={member._id} memberId={member._id} members={members} infoReq={'boardHeader'}/>)}
                 </section>
                 <button className="add-board-user"
-                onClick={onToggleIsShareBoardModal}
+                onClick={onToggleShareModal}
                 ><RiUserAddLine /> Share</button>
             </span>
             <button onClick={toggleMenuModal} className="show-menu-btn"><BsThreeDots /> Show menu</button>

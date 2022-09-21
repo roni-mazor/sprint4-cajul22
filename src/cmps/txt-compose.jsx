@@ -18,8 +18,8 @@ export const TxtCompose = ({ type, returnTxt }) => {
         setComposeMode(false)
     }
 
-    const handleTxtChange = ({ target }) => {
-        setTxt(target.value)
+    const handleTxtChange = ({ target:{value} }) => {
+        setTxt(value)
     }
     return (
         <>
