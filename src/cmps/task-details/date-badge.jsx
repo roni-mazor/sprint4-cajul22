@@ -12,17 +12,25 @@ export const DateBadge = ({ task, onSaveTask }) => {
 
     const onChangeDone = (ev) => {
         ev.preventDefault()
-        
+        ev.stopPropagation()
         task.dueDate.isDone = !task.dueDate.isDone
         onSaveTask(task)
     }
 
+    const getBgColor = () => {
+        if (task.dueDate.isDone) {
+            return { background: '#61bd4f' }
+        } else if (!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 0) {
+            return { background: '#ec9488' }
+        } else return { background: '#fff', color: '#5e6c84' }
+    }
+
     return (
-        <span className="date-badge">
+        <span className="date-badge" style={getBgColor()}>
             <Checkbox className="date-checkbox"
-                onChange={onChangeDone}
+                onClick={onChangeDone}
                 checked={(task.dueDate.isDone)}
-                size="smaller" style={{ padding: '5px 9px' }} />
+                size="small" style={{ padding: '0', margin: '0' }} />
             <span className="clock-icon"><AiOutlineClockCircle /></span>
             <span>{getDate()}</span>
         </span>
