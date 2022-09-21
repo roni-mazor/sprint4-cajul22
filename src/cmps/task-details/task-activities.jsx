@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GrList } from 'react-icons/gr'
 import { useSelector } from 'react-redux'
 import { MemberPreview } from '../member-preview'
+import GuestImg from '../../assets/img/guest-img.svg'
 
 
 export const TaskActivities = ({ task, onSaveTask, user }) => {
     const [focused, setFocused] = useState(false)
     const [txt, setTxt] = useState('')
+
 
     const onFocus = () => setFocused(true)
     const onBlur = () => {
@@ -22,15 +24,19 @@ export const TaskActivities = ({ task, onSaveTask, user }) => {
         // console.log(value);
         setTxt(value)
     }
-console.log('user:', user)
+    console.log('user:', user)
     return (
         <section className="activities-container">
             <div className="activities-title flex align-center">
                 <span className='task-icon'> <GrList /></span><h3>Activity</h3>
+                <button className='show-acts'>Show details</button>
             </div>
             <div className='new-comment flex'>
+                <div className='profile-img'>
+                    <img src={user.imgUrl} alt="" />
+                </div>
                 <div className={focused ? 'comment-box flex column focused' : 'comment-box flex column'}>
-                    <MemberPreview member={user} />
+                    {/* <MemberPreview user={user} /> */}
                     <textarea
                         onFocus={onFocus}
                         onBlur={onBlur}

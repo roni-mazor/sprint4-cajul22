@@ -5,7 +5,7 @@ import { imgFromLink, uploadService } from '../../services/upload.service'
 import { utilService } from '../../services/util.service'
 
 
-export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
+export const AttachmentPicker = ({ task, toggleModal, onSaveTask ,onSaveActivity}) => {
 
 
     const [txt, setTxt] = useState('')
@@ -41,6 +41,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
         // console.log('img:', img)
         if (!task.background) task.background = 'header'
         onSaveTask(task)
+        onSaveActivity(`added an attachment`)
         toggleModal()
     }
 

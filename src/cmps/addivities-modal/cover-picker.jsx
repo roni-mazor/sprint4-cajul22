@@ -5,7 +5,7 @@ import { photoService } from '../../services/photo.service'
 import { utilService } from '../../services/util.service'
 
 
-export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
+export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity }) => {
 
     const [cardClr, setCardClr] = useState(null)
     const [cardFocus, setCardFocus] = useState(null)
@@ -37,6 +37,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
         task.coverClr = ''
         task.cover = null
         onSaveTask(task)
+        onSaveActivity(`removed the cover`)
         setCardClr({})
         setCardFocus(null)
         setClrFocus(null)
@@ -56,6 +57,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
             opacity: 1
         })
         onSaveTask(task)
+        onSaveActivity(`changed the cover`)
         setClrFocus(color)
     }
 
@@ -68,6 +70,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
             opacity: 1
         })
         onSaveTask(task)
+        onSaveActivity(`changed the cover`)
         setClrFocus(cover)
         if (!cardFocus) setCardFocus('header')
     }
@@ -81,6 +84,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
             opacity: 1
         })
         onSaveTask(task)
+        onSaveActivity(`changed the cover`)
         setClrFocus(cover)
         if (!cardFocus) setCardFocus('header')
     }

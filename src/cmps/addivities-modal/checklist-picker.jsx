@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
 import { utilService } from '../../services/util.service'
 
-export const Checklist = ({ task, onSaveTask, toggleModal }) => {
+export const Checklist = ({ task, onSaveTask, toggleModal, onSaveActivity }) => {
 
     const [txt, setTxt] = useState('Checklist')
 
@@ -14,14 +14,15 @@ export const Checklist = ({ task, onSaveTask, toggleModal }) => {
     }
 
     const onCreateChecklist = () => {
-        
-        task.checklists.push( {
+
+        task.checklists.push({
             id: utilService.makeId(5),
             title: txt,
             list: []
         })
-       
+
         onSaveTask(task)
+        onSaveActivity(`add a checklist: ${txt}`)
         toggleModal()
     }
 

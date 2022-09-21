@@ -1,8 +1,15 @@
+import { Link } from "react-router-dom"
+
 import { BsSearch } from "react-icons/bs"
 import { IoMdClose } from "react-icons/io"
+import { GrList } from 'react-icons/gr'
+
+
+import { utilService } from "../../services/util.service"
+
 
 export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal }) => {
-
+    const formatedTime = utilService.getFormatedTime
 
     return (
         <>
@@ -31,6 +38,30 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                 <span>
                     Filter cards
                 </span>
+            </div>
+            <hr />
+            <div className="activities-title flex">
+                <span className='task-icon'> <GrList /></span><h3>Activity</h3>
+            </div>
+            <div className="menu-activities-wrapper">
+                <div className="board-menu-activities">
+                    {board.activities.map(activity => <div className="activity-container flex">
+                        <div className="profile-img">
+                            <img src={activity.byMember.imgUrl} alt="" />
+                        </div>
+                        <div className="activity flex column">
+                            <div>
+                                <span>{activity.byMember.fullname} </span>
+                                <Link onClick={toggleMenuModal}
+                                    to={`/board/${board._id}/${activity.groupId}/${activity.taskId}`}>
+                                    {activity.txt}
+                                </Link>
+                            </div>
+                            <div>{formatedTime(activity.createdAt)}</div>
+                        </div>
+                    </div>)}
+                </div>
+
             </div>
         </>
     )

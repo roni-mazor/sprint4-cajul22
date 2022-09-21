@@ -2,7 +2,7 @@ import { TaskPreview } from "./task-preview"
 import { BsThreeDots } from 'react-icons/bs'
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { removeGroup, saveGroup } from "../store/board.actions"
+import { removeGroup, saveActivity, saveGroup } from "../store/board.actions"
 import { TxtCompose } from "./txt-compose"
 import { boardService } from "../services/board.service"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
@@ -28,6 +28,7 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
     const addTask = (txt) => {
         const task = boardService.createTask(txt)
         group.tasks.push(task)
+        dispatch(saveActivity(task.id, group.id, 'added a task'))
         dispatch(saveGroup(group))
     }
 

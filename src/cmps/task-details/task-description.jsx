@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { GrTextAlignFull } from 'react-icons/gr'
 
-export const TaskDescription = ({ task, onSaveTask }) => {
+export const TaskDescription = ({ task, onSaveTask, onSaveActivity }) => {
 
     const [focused, setFocused] = useState(false)
     const [txt, setTxt] = useState(task.description)
@@ -15,7 +15,7 @@ export const TaskDescription = ({ task, onSaveTask }) => {
 
     const onHandleChange = ({ target }) => {
         const { value } = target
-       
+
         setTxt(value)
         // console.log('value:', value)
     }
@@ -24,6 +24,7 @@ export const TaskDescription = ({ task, onSaveTask }) => {
         let newTask = task
         newTask.description = txt
         // console.log('newTask:', newTask)
+        onSaveActivity(`changed the description`)
         onSaveTask(newTask)
     }
 

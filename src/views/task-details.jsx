@@ -13,7 +13,7 @@ import { TaskTitle } from "../cmps/task-details/task-title"
 import { TaskDescription } from "../cmps/task-details/task-description"
 import { TaskAttachments } from "../cmps/task-details/task-attachments"
 import { TaskActivities } from "../cmps/task-details/task-activities"
-import { saveTask, saveBoard, loadBoard } from "../store/board.actions"
+import { saveTask, saveBoard, loadBoard, saveActivity } from "../store/board.actions"
 import { getLoggedinUser, loadUsers } from "../store/user.actions"
 import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
 import { Members } from "../cmps/task-details/task-members"
@@ -77,15 +77,16 @@ export const TaskDetails = () => {
         const { members } = task
         let loggedInUser = members.find(id => id === user._id)
         if (loggedInUser) setIsJoined(true)
-        
+
         // console.log('board.members from isJoinedUser:', board.members)
-      
+
     }
 
     const onAddUserToTask = () => {
         toggleSuggestedJoin()
         task.members = [...task.members, user._id]
         onSaveTask(task)
+        onSaveActivity(`joined to the task`)
     }
 
     const toggleSuggestedJoin = () => {
@@ -97,11 +98,15 @@ export const TaskDetails = () => {
     const onSaveTask = (newTask) => {
         dispatch(saveTask(boardId, groupId, newTask))
     }
+    const onSaveActivity = (txt) => {
+        dispatch(saveActivity(task.id, groupId, txt))
+    }
 
     const handleChange = (ev) => {
         const value = ev.target.value
         let newTask = task
         newTask.title = value
+        onSaveActivity(`changed the task title to ${value}`)
         onSaveTask(newTask)
     }
 
@@ -136,19 +141,22 @@ export const TaskDetails = () => {
 
                         </div>
                         <TaskDescription task={task}
+                            onSaveActivity={onSaveActivity}
                             onSaveTask={onSaveTask} />
                         {task?.attachments?.length > 0 && <TaskAttachments task={task}
+                            onSaveActivity={onSaveActivity}
                             onSaveTask={onSaveTask} />}
                         {task?.checklists?.length > 0 && <TaskChecklist
                             task={task}
+                            onSaveActivity={onSaveActivity}
                             onSaveTask={onSaveTask}
                             toggleModal={toggleAdditivesModal}
                         />}
-                        {/* {task?.checklists?.length >0 &&<TaskChecklist/>} */}
+                        
                         <TaskActivities
-                         user={user} 
-                         task={task}
-                         onSaveTask={onSaveTask}/>
+                            user={user}
+                            task={task}
+                            onSaveTask={onSaveTask} />
                     </div>
                     <aside className="details-side-bar">
                         {!isJoined && <div>
@@ -167,6 +175,7 @@ export const TaskDetails = () => {
                         type={isAdditivesModalOpen}
                         task={task}
                         onSaveTask={onSaveTask}
+                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleAdditivesModal}
                     />}
                 </section>

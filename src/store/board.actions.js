@@ -1,4 +1,5 @@
 import { boardService } from "../services/board.service"
+import { utilService } from "../services/util.service"
 
 export function loadBoard(boardId) {
     return async (dispatch) => {
@@ -129,10 +130,28 @@ export function removeGroup(groupId) {
     }
 }
 
-export function removeAttachment(groupId,taskId) {
+export function removeAttachment(groupId, taskId) {
     return (dispatch, getState) => {
         const board = getState().boardModule.board
         board.groups = board.groups.filter(g => g.id !== groupId)
+        boardService.save(board)
+        dispatch({ type: 'SET_BOARD', board })
+    }
+}
+
+export function saveActivity(taskId, groupId, txt) {
+    return (dispatch, getState) => {
+        const board = getState().boardModule.board
+        const user = getState().userModule.user
+        const addedActivity = {
+            id: utilService.makeId(4),
+            byMember: user,
+            createdAt: Date.now(),
+            taskId,
+            groupId,
+            txt
+        }
+        board.activities.unshift(addedActivity)
         boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
     }
