@@ -6,7 +6,7 @@ export const TaskActivities = ({ user }) => {
     return (
         <section className="activities-container">
             <div className="activities-title flex align-center">
-                <span> <GrList /></span><h3>Activity</h3>
+                <span className='task-icon'> <GrList /></span><h3>Activity</h3>
             </div>
             <div className='flex'>
                 <MemberPreview member={user} />

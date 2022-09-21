@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { BsThreeDots } from 'react-icons/bs'
+import { VscChromeClose } from 'react-icons/vsc';
 import { IoMdClose, } from 'react-icons/io'
 
 import { Checkbox } from '@mui/material'
@@ -24,14 +25,12 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
 
     const handleChange = ({ target: { value } }) => {
         setTxt(value)
-        // console.log('value:', value)
     }
 
 
 
-    const onSaveTitle = (ev) => {
-        // ev.stopPropagation()
-        console.log('txt:', txt)
+    const onSaveTitle = () => {
+        // console.log('txt:', txt)
         onSaveTodo(txt, todo.id)
     }
 
@@ -43,7 +42,8 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
                 <span><Checkbox
                     onClick={onStopProp}
                     checked={todo.isDone}
-                    onChange={() => onTodoIsDone(todo.id)} /></span>
+                    onChange={() => onTodoIsDone(todo.id)} />
+                </span>
                 {!focused && <span className={todo.isDone ? 'todo-title done' : 'todo-title'}>
                     {todo.title}</span>}
                 {focused && <div>
@@ -61,7 +61,7 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
                     </div>
                 </div>}
             </div>
-            {!focused && <span className='todo-menu' onClick={() => onRemoveTodo(todo.id)}><BsThreeDots /></span>}
+            {!focused && <span className='todo-menu' onClick={() => onRemoveTodo(todo.id)}> < VscChromeClose /></span>}
             {/* <span className='todo-menu' onClick={()=>toggleModal('todo')}><BsThreeDots /></span> */}
 
         </div>

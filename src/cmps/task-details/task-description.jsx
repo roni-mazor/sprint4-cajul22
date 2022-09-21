@@ -15,7 +15,7 @@ export const TaskDescription = ({ task, onSaveTask }) => {
 
     const onHandleChange = ({ target }) => {
         const { value } = target
-        // setTxt(value)
+       
         setTxt(value)
         // console.log('value:', value)
     }
@@ -28,14 +28,14 @@ export const TaskDescription = ({ task, onSaveTask }) => {
     }
 
     const onCancel = () => {
-        // setTxt('')
+        onBlur()
     }
 
     // console.log('txt:', txt)
     return (
         <section className="description-container">
             <div className="description-title">
-                <span> <GrTextAlignFull /></span>   <h3>Description</h3>
+                <span className='task-icon'> <GrTextAlignFull /></span>   <h3>Description</h3>
             </div>
             <textarea onFocus={onFocus} onBlur={onBlur} onChange={onHandleChange}
                 className='simple-txtarea description-txtarea' cols="60" rows="2"
