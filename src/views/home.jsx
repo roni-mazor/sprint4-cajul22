@@ -2,27 +2,27 @@ import { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
 import { userService } from "../services/user.service"
 import { useSelector, useDispatch } from "react-redux"
+import { loadUsers } from "../store/user.actions"
+import { loadBoards} from "../store/board.actions"
 import { SiTrello } from 'react-icons/si'
 import HeroImg from '../assets/img/home-hero.png'
-// import { loadUsers } from '../store/user.actions'
 
 export function Home() {
-    
-    // const [isLoggedIn, setIsLoggedIn] = useState(userService.getLoggedinUser)
-    const loggedIn = useSelector(state => state.userModule.user)
-    // const users = useSelector(state => state.userModule.users)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+    const boards = useSelector(state => state.boardModule.boards)
+    const users = useSelector(state => state.userModule.users)
     
     useEffect(() => {
-        if (!loggedIn) userService.createUsers()               
-        // navigate('/workspace')
-        // dispatch(loadLoggedInUser())             
+        dispatch(loadUsers())  
+        dispatch(loadBoards())                         
     }, [])
+    
+    console.log('boards:', boards)
     
     return <section className="home-container">
         <header className="home-header-container flex align-center">
-            <NavLink to="/workspace" className="home-logo flex align-center"><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></NavLink>
+            <NavLink to="/workspace" className="home-logo flex align-center" boards={boards}><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></NavLink>
             <span></span>
             <NavLink to="/login" className="home-login">Log in</NavLink>
             <NavLink to="/signup" className="home-signup flex align-center">Get Jello for free</NavLink>

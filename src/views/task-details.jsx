@@ -58,6 +58,8 @@ export const TaskDetails = () => {
         if (!currTask.attachments) currTask.attachments = []
         if (!currTask.checklists) currTask.checklists = []
         setTask(currTask)
+        console.log('task:', task)
+        
         if (currTask.isUserJoined) return setIsJoined(true)
     }
 

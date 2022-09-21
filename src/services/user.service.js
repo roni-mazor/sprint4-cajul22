@@ -1,4 +1,6 @@
-import { storageService } from './async-storage.service'
+import { storageService } from "./async-storage.service"
+import { users } from "./data.service"
+import { utilService } from "./util.service"
 // import { httpService } from './http.service'
 // import { store } from '../store/store'
 // import { getActionSetWatchedUser } from '../store/review.actions'
@@ -7,6 +9,7 @@ import guest from '../assets/img/guest-img.svg'
 import { showSuccessMsg } from '../services/event-bus.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const STORAGE_KEY = 'users'
 
 export const userService = {
     login,
@@ -19,14 +22,22 @@ export const userService = {
     remove,
     update,
     changeScore,
-    createUsers
 }
 
 window.userService = userService
 
 
-function getUsers() {
-    return storageService.query('user')
+async function getUsers() {
+    let rawUsers = await storageService.query(STORAGE_KEY)
+
+    if(!rawUsers || !rawUsers.length){
+        storageService.postMany(STORAGE_KEY, users)
+        rawUsers = users
+    }
+    console.log('rawUsers:', rawUsers)
+    
+    return rawUsers
+    // return storageService.query('user')
     // return httpService.get(`user`)
 }
 
@@ -58,7 +69,7 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
+    const users = await storageService.query('users')
     const user = users.find(user => user.username === userCred.username)
     // const user = await httpService.post('auth/login', userCred)
     if (user) {
@@ -100,22 +111,6 @@ function saveLocalUser(user) {
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
-}
-
-
-async function createUsers() {
-    await userService.signup({ fullname: 'yoav', username: 'yoav', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
-    await userService.signup({ fullname: 'roni', username: 'roni', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
-    await userService.signup({ fullname: 'omer', username: 'omer', password: '123', score: 10000, isAdmin: true, imgUrl: 'https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png' })
-    await userService.signup({_id: "u100", fullname: 'taal Tarasdgblus', username: 'taltal', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
-    await userService.signup({_id: "u101", fullname: 'tabu Tarablus', username: 'tabu123', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
-    await userService.signup({_id: "u102", fullname: 'lenny Tarablus', username: 'lenon', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
-    await userService.signup({_id: "u103", fullname: 'Abi Abambi', username: 'bambi', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
-    await userService.signup({_id: "u104", fullname: 'Roni Mazor', username: 'roniron', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
-    await userService.signup({_id: "u105", fullname: 'Roni Mazor', username: 'roniron', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
-    await userService.signup({_id: "u106", fullname: 'Roni Mazor', username: 'roniron', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
-    await userService.signup({_id: "u107", fullname: 'Roni Mazor', username: 'roniron', password: '123', score: 10000, isAdmin: true, imgUrl: `http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg` })
-    await userService.signup({_id: "u108", fullname: 'demoguest', username: 'demoguest', password: '123', score: 10000, isAdmin: true, imgUrl: `${guest}` })
 }
 
 
