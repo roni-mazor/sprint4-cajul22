@@ -7,6 +7,8 @@ import { loadBoards} from "../store/board.actions"
 import { SiTrello } from 'react-icons/si'
 import { onSignUp } from '../store/user.actions'
 import HeroImg from '../assets/img/home-hero.png'
+import GuestImg from '../assets/img/guest-img.svg'
+
 
 export function Home() {
 
@@ -26,7 +28,7 @@ export function Home() {
         if(demoUser) {
             navigate('/workspace')
         }else{
-            dispatch(onSignUp({ username: 'demo', password: 'demo', fullname: 'demo' }))
+            dispatch(onSignUp({ username: 'demo', password: 'demo', fullname: 'demo' ,imgUrl: GuestImg}))
                 .then(navigate('/workspace'))
         }
 

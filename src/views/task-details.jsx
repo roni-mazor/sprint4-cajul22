@@ -78,16 +78,9 @@ export const TaskDetails = () => {
         const { members } = task
         let loggedInUser = members.find(id => id === user._id)
         if (loggedInUser) setIsJoined(true)
-
-        console.log('board.members from isJoinedUser:', board.members)
-
-        // const isUserInBoard = board.members.find(member => console.log('member:', member)
-        // )
-        // if (!isUserInBoard) {
-        //     board.members = [...board.members, isUserInBoard]
-        //     dispatch(saveBoard(board))
-        // }
-
+        
+        // console.log('board.members from isJoinedUser:', board.members)
+      
     }
 
     const onAddUserToTask = () => {
@@ -135,7 +128,7 @@ export const TaskDetails = () => {
                     group={group} />
 
                 <section className="task-details-content " >
-                    <div>
+                    <div className="task-details-main">
                         <div className="flex">
                             {console.log('task:', task)
                             }
@@ -155,7 +148,10 @@ export const TaskDetails = () => {
                             toggleModal={toggleAdditivesModal}
                         />}
                         {/* {task?.checklists?.length >0 &&<TaskChecklist/>} */}
-                        <TaskActivities user={user} />
+                        <TaskActivities
+                         user={user} 
+                         task={task}
+                         onSaveTask={onSaveTask}/>
                     </div>
                     <aside className="details-side-bar">
                         {!isJoined && <div>
