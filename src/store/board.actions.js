@@ -9,7 +9,7 @@ export function loadBoard(boardId) {
 
 export function resetBoard() {
     return (dispatch) => {
-        const board = {}
+        const board = null
 
         dispatch({ type: 'SET_BOARD', board })
     }

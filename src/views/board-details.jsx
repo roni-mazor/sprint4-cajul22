@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
-import { loadBoard, saveBoard, updateIsStarred } from "../store/board.actions"
+import { loadBoard, resetBoard, saveBoard, updateIsStarred } from "../store/board.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
 import { ShareBoard } from "../cmps/share-board"
@@ -23,6 +23,9 @@ export const BoardDetails = () => {
     useEffect(() => {
         // console.log('board:', board)
         dispatch(loadBoard(params.boardId))
+        // return () => {
+        //     dispatch(resetBoard())
+        // }
     }, [])
 
     const onCreateGroup = (txt) => {
@@ -90,7 +93,7 @@ export const BoardDetails = () => {
     // console.log(board)
     if (!board) return <LoaderIcon />
     console.log('task:', board)
-    
+
     return (
         <div className="board-wrapper" style={board.style}>
             {isShareBoardModal && <ShareBoard onToggleIsShareBoardModal={onToggleIsShareBoardModal} />}

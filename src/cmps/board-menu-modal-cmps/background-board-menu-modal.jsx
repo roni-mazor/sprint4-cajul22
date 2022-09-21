@@ -93,7 +93,7 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
                     <BsPlusLg />
                     <input type="file" onChange={onUploadImg} hidden />
                 </label>
-                {board.customBackgrounds.length > 0 && board.customBackgrounds.map(img => (
+                {board?.customBackgrounds?.length > 0 && board.customBackgrounds.map(img => (
                     <div onClick={() => changeBackgroundImage(img)} style={{ backgroundImage: `url(${img})` }} >
                     </div>
                 ))}
