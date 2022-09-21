@@ -1,12 +1,13 @@
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { toggleLabelTxt } from "../store/board.actions"
+import { saveTask, toggleLabelTxt } from "../store/board.actions"
 import GuestImg from '../assets/img/guest-img.svg'
 import { ImAttachment } from 'react-icons/im'
 import { TbCheckbox } from 'react-icons/tb'
 
 import { useEffect, useState } from "react"
+import { DateBadge } from "./task-details/date-badge"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
@@ -21,6 +22,10 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     const onToggleLabelTxt = (ev) => {
         ev.preventDefault()
         dispatch(toggleLabelTxt())
+    }
+
+    const onSaveTask = (newTask) => {
+        dispatch(saveTask(boardId, groupId, newTask))
     }
 
     const getDoneChecklist = () => {
@@ -86,26 +91,28 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
             {(!task.background || task.background === 'header') && <div>
 
                 {task.cover && <div className="task-cover"
-                 style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
-                {task.coverClr && <div className="task-cover" 
-                style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
+                    style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
+                {task.coverClr && <div className="task-cover"
+                    style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
 
                 <div className="task-content">
 
                     <section className="labels-container">
                         {task.labelIds.map((id) => {
                             const label = labels.find(l => l.id === id)
-                            return <div key={id} className={`label-btn ${openLabelClassName}`} 
-                            onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
+                            return <div key={id} className={`label-btn ${openLabelClassName}`}
+                                onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
                                 {isLabelTxtOpen && <span>{label.title}</span>}
                             </div>
                         })}
                     </section>
                     <p>{task.title}</p>
                     <section className="task-user-container flex">
-                        {getTaskMembers().map(member => <img className="task-users" src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
+                        {getTaskMembers().map(member => <img className="task-users"
+                            src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
                     </section>
                     <section className="task-badges">
+                        {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
                         {task?.attachments?.length > 0 && <span className="task-badges attached">
                             <ImAttachment />  {task.attachments.length}</span>}
                         {task?.checklists?.length > 0 &&

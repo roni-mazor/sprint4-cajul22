@@ -1,4 +1,40 @@
 .add-features-modal {
+
+
+
+
+
+    .date-btn {
+        background-color: #0079bf;
+        box-shadow: none;
+        border: none;
+        color: #ffffff;
+        width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 6px 12px;
+        margin-bottom: 6px;
+
+        &:hover {
+            background-color: darken(#0079bf, 5%);
+        }
+
+        &.remove-btn {
+            color: #172b4d;
+            background-color: hsl(218deg 54% 20% / 4%);
+
+            &:hover {
+                background-color: hsl(218deg 54% 20% / 10%);
+
+            }
+        }
+    }
+
     .date-picker-container {
         display: flex;
         justify-content: center;

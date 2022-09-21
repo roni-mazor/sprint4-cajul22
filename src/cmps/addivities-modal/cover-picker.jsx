@@ -3,7 +3,6 @@ import { VscChromeClose } from 'react-icons/vsc'
 import { BsSearch } from 'react-icons/bs'
 import { photoService } from '../../services/photo.service'
 import { utilService } from '../../services/util.service'
-import { color } from '@mui/system'
 
 
 export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {

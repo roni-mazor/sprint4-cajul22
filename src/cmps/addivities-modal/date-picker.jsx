@@ -8,11 +8,23 @@ import { useState } from 'react';
 
 export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
 
-    const [selectedDate, handleDateChange] = useState(new Date());
+    const [selectedDate, handleDateChange] = useState(task?.dueDate?.time || new Date())
 
-    const dateFormatter = str => {
-        return str
+
+    const onSaveDate = () => {
+        task.dueDate = {
+            time: selectedDate.getTime() + ((new Date()).getHours() - 12) * 60 * 60 * 1000,
+            isDone: false
+        }
+        onSaveTask(task)
     }
+
+
+    const onRemoveDate = () => {
+        task.dueDate = {}
+        onSaveTask(task)
+    }
+
     return (
         <section >
             <section className="add-features-modal">
@@ -33,8 +45,8 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
                             margin="normal"
                             id="date-picker-inline"
                             label="Date picker inline"
-                            // value={selectedDate}
-                            onChange={console.log}
+                            value={selectedDate}
+                            onChange={handleDateChange}
                             KeyboardButtonProps={{
                                 'aria-label': 'change date',
                             }}
@@ -43,7 +55,8 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
                 </div>
 
 
-                <button  >Save date</button>
+                <button onClick={onSaveDate} className="date-btn" >Save</button>
+                <button onClick={onRemoveDate} className="date-btn remove-btn" >Remove</button>
             </section>
         </section >
     )

@@ -102,6 +102,23 @@
             margin-bottom: 10px;
             max-width: 100%;
 
+            .date-badge {
+                .date-checkbox {
+                    display: none;
+                }
+
+
+                &:hover {
+                    .clock-icon {
+                        display: none;
+                    }
+
+                    .date-checkbox {
+                        display: inline-block
+                    }
+                }
+            }
+
             &.attached {
                 color: #5e6c84;
                 font-size: 12px;
