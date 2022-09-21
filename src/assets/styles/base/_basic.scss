@@ -14,7 +14,25 @@ body {
     margin: 0;
     // max-width: 1024px;
     margin: 0;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, NotoSans, Ubuntu,"Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, NotoSans, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+
+    & ::-webkit-scrollbar {
+        // padding: 5px;
+        width: 12px;
+    }
+
+    /* Track */
+    & ::-webkit-scrollbar-track {
+        background-color: #091e4214;
+        border-radius: 10px;
+        // width: 5px;
+    }
+
+    /* Handle */
+    & ::-webkit-scrollbar-thumb {
+        background: rgb(202 188 188 / 55%);
+        border-radius: 5px;
+    }
 }
 
 

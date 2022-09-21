@@ -105,7 +105,7 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
 
 
 
-const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
+ const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
     const [photos, setPhotos] = useState(null)
     const dispatch = useDispatch()
 

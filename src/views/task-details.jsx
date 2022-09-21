@@ -56,8 +56,7 @@ export const TaskDetails = () => {
         if (!currTask.checklists) currTask.checklists = []
         if (!currTask.members) currTask.members = []
         setTask(currTask)
-        console.log('task:', task)
-        
+
         if (currTask.isUserJoined) return setIsJoined(true)
     }
 
@@ -70,7 +69,7 @@ export const TaskDetails = () => {
     }
 
     const toggleAdditivesModal = (type) => {
-        console.log('isAdditivesModalOpen:', isAdditivesModalOpen)
+        // console.log('isAdditivesModalOpen:', isAdditivesModalOpen)
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
         else setIsAdditivesModalOpen(type)
     }
@@ -98,22 +97,22 @@ export const TaskDetails = () => {
         onSaveTask(newTask)
     }
 
-    console.log('task:', task)
+    // console.log('task:', task)
     if (!task) return <LoaderIcon />
     return (
         <div className="task-details-container" onClick={onCloseModal}>
             <section className="task-details-modal" onClick={onStopPropagation}>
                 {task.cover &&
                     <header className="task-details-header"
-                        style={{ backgroundImage: `url(${task.cover.url})` }}>
+                        style={{ backgroundImage: `url(${task.cover.url})`, backgroundColor: task.cover.color }}>
                         <button className="cover-btn-header"
-                        onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                            onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                     </header>}
                 {task.coverClr &&
                     <header className="task-details-header"
                         style={{ backgroundColor: task.coverClr, height: '116px' }}>
                         <button className="cover-btn-header"
-                         onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                            onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                     </header>}
                 <TaskTitle task={task}
                     handleChange={handleChange}

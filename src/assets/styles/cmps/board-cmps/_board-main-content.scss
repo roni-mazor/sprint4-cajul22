@@ -3,9 +3,15 @@
     flex-direction: column;
     flex: 1;
 
+    & ::-webkit-scrollbar {
+
+        height: 12px;
+    }
+
     .board {
         position: relative;
         flex-grow: 1;
+
         .board-main-content {
             display: flex;
             align-items: flex-start;
