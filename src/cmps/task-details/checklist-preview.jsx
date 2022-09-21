@@ -2,8 +2,6 @@ import { useRef, useState } from 'react'
 import { BsCheck2Square, BsThreeDots } from 'react-icons/bs'
 import { IoMdClose, } from 'react-icons/io'
 
-import { Checkbox } from '@mui/material'
-
 import { utilService } from '../../services/util.service'
 import { TodoModal } from './todo.modal'
 import { TodoPreview } from './todo-preview'
@@ -11,10 +9,8 @@ import { TodoPreview } from './todo-preview'
 
 export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) => {
 
-    // const addItemRef = useRef()
     const [focused, setFocused] = useState(false)
     const [titleFocus, setTitleFocus] = useState(false)
-    const [isModalOpen, setIsModalOpen] = useState(false)
     const [txt, setTxt] = useState(checklist.title)
     const onFocus = () => setFocused(true)
     const onBlur = () => setFocused(false)
@@ -81,8 +77,6 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
         let percentage
         if (checklist.list.length === 0) percentage = 0
         else percentage = Math.round((count / checklist.list.length * 100))
-
-        // console.log('percentage:', percentage)
         return `${percentage}%`
     }
 
@@ -92,7 +86,7 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
         onSaveTask(task)
     }
 
-    const onSaveTitle = (checklistId) => {
+    const onSaveTitle = () => {
         checklist.title = txt
         onSaveTask(task)
         onTitleBlur()
@@ -113,7 +107,7 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
              onClick={onTitleFocus}>
                 <div className="flex align-center" >
                     <div className='flex align-center checklist-title-container'>
-                        <span> <BsCheck2Square /></span>
+                        <span className='task-icon'> <BsCheck2Square /></span>
                         <h3>{checklist.title}</h3></div>
                 </div>
                 <button className='delete-checklist'
@@ -151,7 +145,6 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal }) =
                 {!focused && <button className='add-checklist-item-btn' onClick={onFocus}>Add an item</button>}
                 {focused && <div>
                     <textarea
-                        // onBlur={onClearFocus}
                         onChange={onHandleChange}
                         className='simple-txtarea'
                         cols="60" rows="2"

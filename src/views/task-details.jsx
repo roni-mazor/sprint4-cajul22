@@ -105,10 +105,16 @@ export const TaskDetails = () => {
             <section className="task-details-modal" onClick={onStopPropagation}>
                 {task.cover &&
                     <header className="task-details-header"
-                        style={{ backgroundImage: `url(${task.cover.url})` }}></header>}
+                        style={{ backgroundImage: `url(${task.cover.url})` }}>
+                        <button className="cover-btn-header"
+                        onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                    </header>}
                 {task.coverClr &&
                     <header className="task-details-header"
-                        style={{ backgroundColor: task.coverClr, height:'116px' }}></header>}
+                        style={{ backgroundColor: task.coverClr, height: '116px' }}>
+                        <button className="cover-btn-header"
+                         onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                    </header>}
                 <TaskTitle task={task}
                     handleChange={handleChange}
                     group={group} />

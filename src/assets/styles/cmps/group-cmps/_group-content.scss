@@ -85,27 +85,43 @@
                     color: #5e6c84;
 
                 }
+
+                &:hover {
+                    background-color: darken(#ebecf0, 6%);
+
+                    // .compose-btn {
+                    //     :last-child {
+                    //         color: black;
+                    //     }
+                    // }
+                }
             }
 
-            &:hover {
-                background-color: darken(#ebecf0, 6%);
-
-                // .compose-btn {
-                //     :last-child {
-                //         color: black;
-                //     }
-                // }
-            }
         }
 
         .add-task-modal {
             margin: 2px 0 8px 4px;
 
-            .compose-btns-container {
-                display: flex;
-                align-items: flex-start;
-                margin-block-start: 3px;
+            textarea {
+                background-color: #fff;
+                border: none;
+                border-radius: 3px;
+                box-shadow: 0 1px 0 #c0c6d0;
+                cursor: text;
+                height: 75px;
+                line-height: 20px;
+                outline: none;
+                overflow-wrap: break-word;
+                padding: 6px 8px 2px;
+                resize: none;
+                width: 100%;
             }
+        }
+
+        .compose-btns-container {
+            display: flex;
+            align-items: flex-start;
+            margin-block-start: 3px;
 
             .add-task-btn {
                 align-items: center;
@@ -126,21 +142,6 @@
                 opacity: .6;
                 padding: 4px;
                 cursor: pointer;
-            }
-
-            textarea {
-                background-color: #fff;
-                border: none;
-                border-radius: 3px;
-                box-shadow: 0 1px 0 #c0c6d0;
-                cursor: text;
-                height: 75px;
-                line-height: 20px;
-                outline: none;
-                overflow-wrap: break-word;
-                padding: 6px 8px 2px;
-                resize: none;
-                width: 100%;
             }
         }
 

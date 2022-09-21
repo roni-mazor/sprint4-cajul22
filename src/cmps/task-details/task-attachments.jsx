@@ -1,6 +1,4 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
 import { LoaderIcon } from '../loader-icon'
 import { ImAttachment } from 'react-icons/im'
 import { BsSquareHalf } from 'react-icons/bs'
@@ -8,15 +6,12 @@ import { BsSquareHalf } from 'react-icons/bs'
 import { utilService } from '../../services/util.service'
 
 export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
-    // const attachments = task.attachment
-    // const [attachments, setAttachments] = useState(task.attachment)
-    // const dispatch = useDispatch()
+
     const { attachments } = task
 
     const getFormatedTime = (time) => {
         const date = new Date(time)
         const month = utilService.getMonthName(date)
-        // date.getMonth()
         const day = date.getDate()
         const hour = date.getHours()
         const minutes = date.getMinutes()
@@ -26,8 +21,6 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
     const onRemoveAttachment = (attachmentId) => {
         console.log('attachmentId :', attachmentId)
         task.attachments = attachments.filter(attachment => attachment.id !== attachmentId)
-        // let newTask = task
-        // removeAttachments(newAttachments)
         task.cover = ''
         onSaveTask(task)
     }
@@ -54,7 +47,7 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
     return (
         <section className="attachments-container">
             <div className="attachments-title flex align-center">
-                <span> <ImAttachment /></span>   <h1>Attachments</h1>
+                <span className='task-icon'> <ImAttachment /></span>   <h1>Attachments</h1>
             </div>
             <section className='img-container'>
                 {attachments.map(attachment => {
@@ -77,15 +70,11 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
                                     </span>
                                     {attachment.id !== task?.cover?.id && <span onClick={() => onMakeCover(attachment.id)}> Make cover</span>}
                                     {attachment.id === task?.cover?.id && <span onClick={() => onRemoveCover(attachment.id)}> Remove cover</span>}
-                                    {/* <span onClick={() => onMakeCover(attachment.id)}> Make cover</span> */}
                                 </span>
                             </p>
                         </div>
                     )
                 })}
-
-
-                {/* {attachments.map(attachment => <img key={attachment.id} src={attachment.url} alt="whatever" />)} */}
             </section>
         </section >
     )

@@ -8,6 +8,7 @@
         flex-grow: 1;
         .board-main-content {
             display: flex;
+            align-items: flex-start;
             flex: 1;
             margin-bottom: 8px;
             overflow-x: auto;

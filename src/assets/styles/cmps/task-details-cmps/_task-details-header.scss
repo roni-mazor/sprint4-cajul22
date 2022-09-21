@@ -9,10 +9,32 @@
         background-origin: content-box;
         padding: 0px;
         box-sizing: border-box;
-        background-position: center ;
+        background-position: center;
         background-repeat: no-repeat;
         position: relative;
         transition: opacity 85ms;
         width: 100%;
+
+        .cover-btn-header {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: #00000014;
+            border-radius: 3px;
+            border: none;
+            color: #172b4d;
+            padding: 8px 12px 6px 9px;
+            text-decoration: none;
+
+            svg {
+                transform: rotate(270deg);
+                font-size: 10px;
+
+            }
+
+            &:hover {
+                background-color: #00000029;
+            }
+        }
     }
 }

@@ -11,14 +11,12 @@ import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
-// import { background } from '../assets/img/micr4679.jpg'
 
 export const BoardDetails = () => {
     const params = useParams()
     const dispatch = useDispatch()
     let [isShareBoardModal, setIsShareBoardModal] = useState(false)
     const board = useSelector(state => state.boardModule.board)
-    // const style = (board) ? board.style : { background: '#fff' }
     const [MenuModalOpen, setMenuModalOpen] = useState(false)
     const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [] })
 
