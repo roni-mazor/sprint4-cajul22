@@ -119,7 +119,7 @@ export const TaskDetails = () => {
             <section className="task-details-modal" onClick={onStopPropagation}>
                 {task.cover &&
                     <header className="task-details-header"
-                        style={{ backgroundImage: `url(${task.cover.url})` }}>
+                        style={{ backgroundImage: `url(${task.cover.url})`, backgroundColor: task.cover.color }}>
                         <button className="cover-btn-header"
                             onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                     </header>}

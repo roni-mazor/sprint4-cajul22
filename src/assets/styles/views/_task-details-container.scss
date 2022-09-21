@@ -72,12 +72,8 @@
             margin-top: 15px;
             margin-bottom: 50px;
         }
-        // div{
-        //     display: grid;
-        //     grid-template-columns: 20px 1fr;
-        //     >*:not(.task-icon) {
-        //         grid-column: 2;
-        //     }
-        // }
+        div{
+           flex: 1;
+        }
     }
 }

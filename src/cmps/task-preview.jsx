@@ -42,6 +42,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     }
     const getCoverHeight = () => {
         if (!task.cover) return
+        if (task.cover.height > 3000) return task.cover.height * 0.05
         if (task.cover.height > 1000) return task.cover.height * 0.1
         if (task.cover.height < 290) return task.cover.height
         if (task.cover.height < 600) return task.cover.height * 0.5

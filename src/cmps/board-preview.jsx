@@ -15,8 +15,8 @@ export const BoardPreview = ({ board, onToggleIsStarred }) => {
     return (
         <Link to={`/board/${board._id}`}>
             <div className='board-preview-container'>
-                <section className="board-preview" style={board.style}>
-
+                <section className="board-preview" style={board.style} >
+                
                     <h1>{board.title}</h1>
                     <div className={board.isStarred ? 'starred' : ''} onClick={onIsStarred}>
                         {!board.isStarred && <AiOutlineStar />}

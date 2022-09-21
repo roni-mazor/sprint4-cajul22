@@ -1,0 +1,36 @@
+.add-features-modal {
+    .date-picker-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .MuiPickersStaticWrapper-staticWrapperRoot {
+            min-width: 304px;
+
+            .MuiPickersBasePicker-pickerView {
+                min-width: 304px;
+
+                .MuiPickersCalendarHeader-dayLabel {
+                    font-size: 14px;
+                }
+
+                .MuiPickersDay-daySelected {
+                    background-color: #172B4D;
+                    border-radius: 3px;
+
+                    p {
+                        color: #fff;
+                    }
+
+                    &:hover {
+                        background-color: rgba(136, 127, 170, 0.075);
+
+                        p {
+                            color: #5e6c84;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

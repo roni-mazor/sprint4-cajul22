@@ -18,7 +18,8 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
             </header>
             <hr />
             <div onClick={() => setModalState('background-change')} className="board-menu-nav-btn">
-                <div className='menu-background-display' style={board.style}></div>
+                <div className='menu-background-display' style={board.style} ></div>
+
                 <span>
                     Change background
                 </span>
