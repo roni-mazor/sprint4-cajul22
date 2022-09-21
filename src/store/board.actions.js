@@ -151,6 +151,7 @@ export function saveActivity(taskId, groupId, txt) {
             groupId,
             txt
         }
+        console.log('addedActivity:', addedActivity)
         board.activities.unshift(addedActivity)
         boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
