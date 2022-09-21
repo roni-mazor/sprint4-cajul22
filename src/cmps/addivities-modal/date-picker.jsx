@@ -33,7 +33,7 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
                             margin="normal"
                             id="date-picker-inline"
                             label="Date picker inline"
-                            value={selectedDate}
+                            // value={selectedDate}
                             onChange={console.log}
                             KeyboardButtonProps={{
                                 'aria-label': 'change date',
