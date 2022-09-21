@@ -3,7 +3,6 @@ import { VscChromeClose } from 'react-icons/vsc'
 import { BsSearch } from 'react-icons/bs'
 import { photoService } from '../../services/photo.service'
 import { utilService } from '../../services/util.service'
-import { color } from '@mui/system'
 
 
 export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
@@ -18,11 +17,11 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
         if (!task.cover && !task.coverClr) return
         if (task.cover) setCardClr({
             backgroundImage: `url(${task.cover.url})`,
-            opacity: 100
+            opacity: 1
         })
         if (task.coverClr) setCardClr({
             backgroundColor: task.coverClr,
-            opacity: 100
+            opacity: 1
         })
         if (task.cover || task.coverClr) setCardFocus(task.background)
         if (task.coverClr) setClrFocus(task.coverClr)
@@ -32,21 +31,29 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
         }
     }, [])
 
-    console.log('cardClr:', cardClr)
+    console.log('cardFocus:', cardFocus)
 
     const onRemoveCover = () => {
         task.coverClr = ''
+        task.cover = null
         onSaveTask(task)
         setCardClr({})
+        setCardFocus(null)
+        setClrFocus(null)
     }
 
     const onPickColor = (color) => {
         // console.log('color:', color)
         task.cover = null
         task.coverClr = color
+        if (!cardFocus) {
+            task.background = 'header'
+            setCardFocus('header')
+        }
+
         setCardClr({
             backgroundColor: color,
-            opacity: 100
+            opacity: 1
         })
         onSaveTask(task)
         setClrFocus(color)
@@ -58,10 +65,11 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
         task.coverClr = ''
         setCardClr({
             backgroundImage: `url(${cover.url})`,
-            opacity: 100
+            opacity: 1
         })
         onSaveTask(task)
         setClrFocus(cover)
+        if (!cardFocus) setCardFocus('header')
     }
 
     const onMakeUnsplashCover = (cover) => {
@@ -70,10 +78,11 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
         task.cover.url = cover.urlFull
         setCardClr({
             backgroundImage: `url(${cover.url})`,
-            opacity: 100
+            opacity: 1
         })
         onSaveTask(task)
         setClrFocus(cover)
+        if (!cardFocus) setCardFocus('header')
     }
 
     const onToggleCover = (cover) => {

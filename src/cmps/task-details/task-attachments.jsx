@@ -27,7 +27,7 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments }) => {
 
     const onMakeCover = (attachmentId) => {
         let selectedAttach = attachments.find(attachment => attachment.id === attachmentId)
-        console.log('selectedAttach:', selectedAttach)
+        // console.log('selectedAttach:', selectedAttach)
 
         task.cover = selectedAttach
         task.coverClr = ''

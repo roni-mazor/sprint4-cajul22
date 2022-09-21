@@ -21,12 +21,12 @@ export const BoardDetails = () => {
     const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMemebers: false })
 
     useEffect(() => {
-        // console.log('board:', board)
         dispatch(loadBoard(params.boardId))
         // return () => {
-        //     dispatch(resetBoard())
-        // }
-    }, [])
+            //     dispatch(resetBoard())
+            // }
+        }, [])
+        console.log('board:', board)
 
     const onCreateGroup = (txt) => {
         console.log(txt)

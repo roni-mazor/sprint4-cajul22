@@ -52,6 +52,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
 
     const dispalyDoneChecklist = () => {
         const todos = getDoneChecklist()
+        if (!todos) return
         return `${todos.isDone}/${todos.totalTodos}`
     }
 
@@ -62,7 +63,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
             const currMember = board.members.find(member => member._id === members[i])
             taskPreviewMembers.push(currMember)
         }
-        
+
         return taskPreviewMembers
     }
 
@@ -80,7 +81,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     // console.log('task.cover:', task.cover)
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
-            {(!task.background||task.background === 'header') && <div>
+            {(!task.background || task.background === 'header') && <div>
 
                 {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
                 {task.coverClr && <div className="task-cover" style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}

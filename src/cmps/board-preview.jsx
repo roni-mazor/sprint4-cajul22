@@ -11,7 +11,7 @@ export const BoardPreview = ({ board, onToggleIsStarred }) => {
     }
 
 
-    console.log('board:', board)
+    // console.log('board:', board)
     return (
         <Link to={`/board/${board._id}`}>
             <div className='board-preview-container'>

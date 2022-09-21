@@ -28,9 +28,9 @@ export const Workspace = () => {
         // console.log('board:', board)
         board.isStarred = !board.isStarred
         dispatch(updateIsStarred(board))
-        // dispatch(loadBoards())
+    
     }
-    console.log('member:', member)
+    // console.log('member:', member)
     if (!boards) return <LoaderIcon />
     return (
         <React.Fragment>
