@@ -18,7 +18,7 @@ export const BoardDetails = () => {
     let [isShareBoardModal, setIsShareBoardModal] = useState(false)
     const board = useSelector(state => state.boardModule.board)
     const [MenuModalOpen, setMenuModalOpen] = useState(false)
-    const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [] })
+    const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMemebers: false })
 
     useEffect(() => {
         // console.log('board:', board)
@@ -95,7 +95,8 @@ export const BoardDetails = () => {
     console.log('task:', board)
 
     return (
-        <div className="board-wrapper" style={board.style}>
+        <div className="board-wrapper" style={board.style} >
+
             {isShareBoardModal && <ShareBoard members={board.members} onToggleIsShareBoardModal={onToggleIsShareBoardModal} />}
             <AppHeader board={board} />
             <section className="board-container" >

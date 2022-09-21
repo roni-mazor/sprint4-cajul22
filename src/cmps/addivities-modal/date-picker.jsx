@@ -1,9 +1,6 @@
-// import DateFnsUtils from '@date-io/date-fns';
+import DateFnsUtils from '@date-io/date-fns';
 import { VscChromeClose } from 'react-icons/vsc';
-// import {
-//     MuiPickersUtilsProvider,
-//     KeyboardDatePicker,
-// } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { useState } from 'react';
 
 
@@ -17,7 +14,7 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
         return str
     }
     return (
-        <section>
+        <section >
             <section className="add-features-modal">
                 <header className='edit-label-header'>
                     <span></span>
@@ -27,22 +24,27 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
                     </span>
                 </header>
                 <hr />
-{/* 
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                        autoOk={true}
-                        showTodayButton={true}
-                        value={selectedDate}
-                        format="YYYY-MM-DD"
-                        inputValue={inputValue}
-                        onChange={onDateChange}
-                        rifmFormatter={dateFormatter}
-                    />
-                </MuiPickersUtilsProvider> */}
+                <div className="date-picker-container">
+                    <MuiPickersUtilsProvider style={{ width: "304px" }} utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            disableToolbar
+                            variant="static"
+                            format="MM/dd/yyyy"
+                            margin="normal"
+                            id="date-picker-inline"
+                            label="Date picker inline"
+                            value={selectedDate}
+                            onChange={console.log}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                    </MuiPickersUtilsProvider>
+                </div>
 
 
                 <button  >Save date</button>
             </section>
-        </section>
+        </section >
     )
 }
