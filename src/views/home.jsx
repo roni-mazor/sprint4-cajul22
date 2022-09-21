@@ -5,27 +5,39 @@ import { useSelector, useDispatch } from "react-redux"
 import { loadUsers } from "../store/user.actions"
 import { loadBoards} from "../store/board.actions"
 import { SiTrello } from 'react-icons/si'
+import { onSignUp } from '../store/user.actions'
 import HeroImg from '../assets/img/home-hero.png'
 
 export function Home() {
-    const dispatch = useDispatch()
-    // const navigate = useNavigate()
-    const boards = useSelector(state => state.boardModule.boards)
+
     const users = useSelector(state => state.userModule.users)
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     useEffect(() => {
         dispatch(loadUsers())  
-        dispatch(loadBoards())                         
+        dispatch(loadBoards())       
     }, [])
     
-    console.log('boards:', boards)
+
+    const onStartDemo = () => {
+        const demoUser = users.find(user => user.username === 'demo')
+        if(demoUser) {
+            navigate('/workspace')
+        }else{
+            dispatch(onSignUp({ username: 'demo', password: 'demo', fullname: 'demo' }))
+                .then(navigate('/workspace'))
+        }
+
+    }
     
     return <section className="home-container">
         <header className="home-header-container flex align-center">
-            <NavLink to="/workspace" className="home-logo flex align-center" boards={boards}><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></NavLink>
+            <NavLink to="/workspace" className="home-logo flex align-center" ><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></NavLink>
             <span></span>
-            <NavLink to="/login" className="home-login">Log in</NavLink>
-            <NavLink to="/signup" className="home-signup flex align-center">Get Jello for free</NavLink>
+            <NavLink to="/login" className="home-login" demoClicked={onStartDemo}>Log in</NavLink>
+            <NavLink to="/signup" className="home-signup flex align-center" demoClicked={onStartDemo}>Get Jello for free</NavLink>
         </header>
         <div className="hero-container flex align-center">
             <section className="hero-content flex column">
@@ -36,7 +48,7 @@ export function Home() {
                     Work together in the office or from home.<br />
                     Take your team to the next level with Jello
                 </p>
-                <a href="/workspace" className="hero-demo-btn flex align-center">Start Demo</a>
+                <NavLink to="/workspace" onClick={onStartDemo} className="hero-demo-btn flex align-center">Start Demo</NavLink>
             </section>
             <img className="hero-img" src={HeroImg} alt="" />
         </div>

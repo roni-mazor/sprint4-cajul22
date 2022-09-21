@@ -1,4 +1,4 @@
-import { userService } from "../services/user.service.js";
+import { userService } from "../services/user.service.js"
 import { showErrorMsg } from '../services/event-bus.service.js'
 
 
@@ -17,7 +17,7 @@ export function loadUsers() {
 }
 
 export function loadLoggedInUser() {
-    
+
     return async dispatch => {
         try {
             const user = await userService.getLoggedinUser()
@@ -39,11 +39,11 @@ export function removeUser(userId) {
     }
 }
 
-export function onLogin(credentials = { username: 'demoguest', password: '123'}) {
+export function onLogin(credentials) {
     return async (dispatch) => {
         try {
             const user = await userService.login(credentials)
-            console.log('credentials:', user)    
+            console.log('credentials:', user)
             dispatch({
                 type: 'SET_USER',
                 user
@@ -56,27 +56,20 @@ export function onLogin(credentials = { username: 'demoguest', password: '123'})
 }
 
 
-export function onSignup(credentials) {
-    console.log('Hi!')
-    return (dispatch) => {
-        console.log('Hi!')
-        userService.signup(credentials)
-        .then(console.log('Hi!')
-        )
+export function onSignUp(credentials) {
+    return async (dispatch) => {
+        try {
+            const user = await userService.signup(credentials)
+            console.log('credentials:', user)
+            dispatch({
+                type: 'ADD_USER',
+                user
+            })
+        } catch (err) {
+            showErrorMsg('Cannot login')
+            console.log('Cannot login', err)
+        }
     }
-
-    // return async (dispatch) => {        
-    //     try {
-    //         const user = await userService.signup(credentials)
-    //         dispatch({
-    //             type: 'SET_USER',
-    //             user
-    //         })
-    //     } catch (err) {
-    //         showErrorMsg('Cannot signup')
-    //         console.log('Cannot signup', err)
-    //     }
-    // }
 }
 
 export function onLogout() {
@@ -90,18 +83,6 @@ export function onLogout() {
         } catch (err) {
             showErrorMsg('Cannot logout')
             console.log('Cannot logout', err)
-        }
-    }
-}
-
-export function loadUser(userId) {
-    return async (dispatch) => {
-        try {
-            const user = await userService.getById(userId);
-            dispatch({ type: 'SET_WATCHED_USER', user })
-        } catch (err) {
-            showErrorMsg('Cannot load user')
-            console.log('Cannot load user', err)
         }
     }
 }

@@ -15,9 +15,6 @@ import { TaskAttachments } from "../cmps/task-details/task-attachments"
 import { TaskActivities } from "../cmps/task-details/task-activities"
 import { saveTask } from "../store/board.actions"
 import { loadUser, loadUsers } from "../store/user.actions"
-import { uploadService } from "../services/upload.service"
-import { ImgUploader } from "../cmps/img-uploader"
-import { utilService } from "../services/util.service"
 import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
 import { Members } from "../cmps/task-details/task-members"
 import { LoaderIcon } from "../cmps/loader-icon"
@@ -33,7 +30,7 @@ export const TaskDetails = () => {
     const dispatch = useDispatch()
     const { boardId, groupId, taskId } = params
     const board = useSelector(state => state.boardModule.board)
-    const users = useSelector(state => state.userModule.users)
+    // const users = useSelector(state => state.userModule.users)
     const user = useSelector(state => state.userModule.user)
     const [task, setTask] = useState()
     let [isJoined, setIsJoined] = useState(false)
@@ -57,6 +54,7 @@ export const TaskDetails = () => {
         let currTask = group.tasks.find(task => task.id === taskId)
         if (!currTask.attachments) currTask.attachments = []
         if (!currTask.checklists) currTask.checklists = []
+        if (!currTask.members) currTask.members = []
         setTask(currTask)
         console.log('task:', task)
         
@@ -124,7 +122,9 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div>
                         <div className="flex">
-                            {task.members !== [] && <Members members={task.members} toggleModal={toggleAdditivesModal} />}
+                            {console.log('task:', task)
+                            }
+                            {(task.members.length !== 0) && <Members members={board.members} membersId={task.members} toggleModal={toggleAdditivesModal} />}
                             <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
                         </div>

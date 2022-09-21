@@ -14,23 +14,21 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
     const members = useSelector(state => state.boardModule.board.members)
 
     useEffect(() => {
-
+        
     }, [txt])
 
     const onAddMemberToTask = (memberId) => {
         let currMember = task.members.find(member => (member === memberId))
         if (currMember) {
-            const selectedMembers = task.members.filter(member => member !== memberId)
+            const selectedMembers = task.members.filter(id => id !== memberId)
             task.members = [...selectedMembers]
             onSaveTask(task)
-            console.log('task:', task)
             return
         }
         
-        currMember = board.members.find(member => member === memberId)
-        task.members = [...task.members, currMember]
+        currMember = board.members.find(member => member._id === memberId)
+        task.members = [...task.members, currMember._id]
         onSaveTask(task)
-        console.log('task:', task)
     }
 
     const onHandleChange = ({ target: { value } }) => {
@@ -40,6 +38,8 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
     const getFilteredUsers = () => {
         const regex = new RegExp(txt, 'i')
         const currMembers = members.filter(member => regex.test(member.fullname))
+        console.log('currMembers:', currMembers)
+        
         return currMembers
     }
 
@@ -62,7 +62,7 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
                 value={txt} />
             <p>Board members</p>
             <section className="avatars-container flex column">
-                {getFilteredUsers().map(memberId => <MemberPreview key={memberId} memberId={memberId} infoReq={'picker'} onAddMemberToTask={onAddMemberToTask}/>)}
+                {getFilteredUsers().map(member => <MemberPreview task={task} members={members} key={member._id} memberId={member._id} infoReq={'picker'} onAddMemberToTask={onAddMemberToTask}/>)}
             </section>
         </section >
     )

@@ -6,15 +6,19 @@ import { LoaderIcon } from "../cmps/loader-icon"
 import { BoardList } from "../cmps/board-list"
 import { boardService } from "../services/board.service"
 import { loadBoards, resetBoard, updateIsStarred } from "../store/board.actions"
+import { loadLoggedInUser } from "../store/user.actions"
 
 export const Workspace = () => {
 
 
+
     const boards = useSelector(state => state.boardModule.boards)
+    const member = useSelector(state => state.userModule.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(loadBoards())
+        dispatch(loadLoggedInUser())
         // dispatch(resetBoard())
     }, [])
 
@@ -26,7 +30,7 @@ export const Workspace = () => {
         dispatch(updateIsStarred(board))
         // dispatch(loadBoards())
     }
- console.log('boards:', boards)
+    console.log('member:', member)
     if (!boards) return <LoaderIcon />
     return (
         <React.Fragment>

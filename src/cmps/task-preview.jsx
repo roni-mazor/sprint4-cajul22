@@ -10,11 +10,12 @@ import { useEffect, useState } from "react"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
+    const board = useSelector(state => state.boardModule.board)
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
     const dispatch = useDispatch()
 
     useEffect(() => {
-       
+        getTaskMembers()
     }, [])
 
     const onToggleLabelTxt = (ev) => {
@@ -53,6 +54,18 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         return `${todos.isDone}/${todos.totalTodos}`
     }
 
+    const getTaskMembers = () => {
+        let taskPreviewMembers = []
+        const { members } = task
+        for (let i = 0; i < members?.length; i++) {
+            const currMember = board.members.find(member => member._id === members[i])
+            taskPreviewMembers.push(currMember)
+        }
+        console.log('taskPreviewMembers:', taskPreviewMembers)
+        
+        return taskPreviewMembers
+    }
+
     const allDone = () => {
         let isAllDone = false
         const todos = getDoneChecklist()
@@ -84,7 +97,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                     </section>
                     <p>{task.title}</p>
                     <section className="task-user-container flex">
-                        {task?.members && task.members.map(member => <img className="task-users" src={member?.imgUrl ? member?.imgUrl : GuestImg} alt="" />)}
+                        {getTaskMembers().map(member => <img className="task-users" src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
                     </section>
                     <section className="task-badges">
                         {task?.attachments?.length > 0 && <span className="task-badges attached">

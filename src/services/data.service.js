@@ -11,7 +11,6 @@ const user8 = { "_id": "u104", "fullname": "Roni Mazor", "username": "roniron", 
 const user9 = { "_id": "u105", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
 const user10 = { "_id": "u106", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
 const user11 = { "_id": "u107", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" }
-const user12 = { "_id": "u108", "fullname": "demoguest", "username": "demoguest", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" }
 
 
 
@@ -79,15 +78,11 @@ const board1 = {
                     "id": "c101",
                     "labelIds": [],
                     "title": "Replace logo",
-                    "members": [],
-                    "isUserJoined": false
                 },
                 {
                     "id": "c102",
                     "labelIds": [],
                     "title": "Add Samples",
-                    "members": [],
-                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -101,8 +96,6 @@ const board1 = {
                     "labelIds": [],
                     "title": "Do that",
                     "archivedAt": 1589983468418,
-                    "members": [],
-                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -122,8 +115,6 @@ const board1 = {
                 "id": "c101",
                 "labelIds": [],
                 "title": "Replace Logo",
-                "members": [],
-                "isUserJoined": false
             }
         }
     ],
@@ -190,16 +181,12 @@ const board2 = {
                     "id": "c10431",
                     "title": "Replace logo",
                     "labelIds": ["l101", "l102"],
-                    "members": [],
-                    "isUserJoined": false
 
                 },
                 {
                     "id": "c102121",
                     "title": "Add Samples",
                     "labelIds": ["l101", "l102"],
-                    "members": [],
-                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -212,8 +199,6 @@ const board2 = {
                     "id": "c1033",
                     "title": "Do that",
                     "labelIds": ["l101", "l102"],
-                    "members": [],
-                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -226,15 +211,11 @@ const board2 = {
                     "id": "c1012",
                     "title": "Replace logo",
                     "labelIds": ["l101", "l102"],
-                    "members": [],
-                    "isUserJoined": false
                 },
                 {
                     "id": "c1011",
                     "title": "Add Samples",
                     "labelIds": ["l101", "l102"],
-                    "members": [],
-                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -247,15 +228,11 @@ const board2 = {
                     "id": "c401",
                     "labelIds": [],
                     "title": "Replace logo",
-                    "members": [],
-                    "isUserJoined": false
                 },
                 {
                     "id": "c402",
                     "labelIds": [],
                     "title": "Add Samples",
-                    "members": [],
-                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -268,33 +245,23 @@ const board2 = {
                     "id": "c205",
                     "labelIds": [],
                     "title": "Replace logo",
-                    "members": [],
-                    "isUserJoined": false
                 },
                 {
                     "id": "c204",
                     "labelIds": [],
                     "title": "Add Samples",
-                    "members": [],
-                    "isUserJoined": false
                 }, {
                     "id": "c202",
                     "labelIds": [],
                     "title": "Replace logo",
-                    "members": [],
-                    "isUserJoined": false
                 }, {
                     "id": "c203",
                     "labelIds": [],
                     "title": "Replace logo",
-                    "members": [],
-                    "isUserJoined": false
                 }, {
                     "id": "c201",
                     "labelIds": [],
                     "title": "Replace logo",
-                    "members": [],
-                    "isUserJoined": false
                 },
             ],
             "style": {}
@@ -314,8 +281,6 @@ const board2 = {
                 "id": "c101",
                 "labelIds": [],
                 "title": "Replace Logo",
-                "members": [],
-                "isUserJoined": false
             }
         }
     ],
@@ -351,7 +316,6 @@ const board3 = {
         { "_id": "u121", "fullname": "roni", "username": "roni", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "https://skello.herokuapp.com/static/media/hero.e8878a5487f1b4b94d6f.png" },
         { "_id": "u101", "fullname": "tabu Tarablus", "username": "tabu123", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" },
         { "_id": "u105", "fullname": "Roni Mazor", "username": "roniron", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "http://res.cloudinary.com/duvl8dbu9/image/upload/v1662981650/qf57iuporlxueuicl7sn.jpg" },
-        { "_id": "u108", "fullname": "demoguest", "username": "demoguest", "password": "123", "score": 10000, "isAdmin": true, "imgUrl": "static/media/guest-img.4a000e6c2f82b9781b22d2b01718e785.svg" }
     ],
     "groups": [
         {
@@ -363,15 +327,11 @@ const board3 = {
                     "id": "c101",
                     "labelIds": [],
                     "title": "Replace logo",
-                    "members": [],
-                    "isUserJoined": false
                 },
                 {
                     "id": "c102",
                     "labelIds": [],
                     "title": "Add Samples",
-                    "members": [],
-                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -385,8 +345,6 @@ const board3 = {
                     "title": "Do that",
                     "labelIds": [],
                     "archivedAt": 1589983468418,
-                    "members": [],
-                    "isUserJoined": false
                 }
             ],
             "style": {}
@@ -406,8 +364,6 @@ const board3 = {
                 "id": "c101",
                 "labelIds": [],
                 "title": "Replace Logo",
-                "members": [],
-                "isUserJoined": false
             }
         }
     ],
@@ -430,6 +386,5 @@ export const users = [
     { ...user8 },
     { ...user9 },
     { ...user10 },
-    { ...user11 },
-    { ...user12 }
+    { ...user11 }
 ]

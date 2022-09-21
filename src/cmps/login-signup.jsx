@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
 import { useDispatch } from 'react-redux'
-import { userService } from '../services/user.service'
+import { loadUsers, onLogin, onSignUp } from "../store/user.actions"
 import GuestImg from '../assets/img/guest-img.svg'
-import { ImgUploader } from '../cmps/img-uploader'
 
 export function LoginSignup(props) {
 
@@ -12,11 +11,9 @@ export function LoginSignup(props) {
 
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(props.isSignup)
-    const [users, setUsers] = useState([])
 
     useEffect(() => {
-        userService.getUsers()
-            .then(setUsers)
+        dispatch(loadUsers())
     }, [])
 
     const clearState = () => {
@@ -31,27 +28,24 @@ export function LoginSignup(props) {
     }
 
     const onSubmitLogin = (ev = null) => {
-        console.log('credentials:', credentials)        
+        console.log('credentials:', credentials)
         if (ev) ev.preventDefault()
         if (!credentials.username) return
-        dispatch(props.onLogin(credentials))
-        .then(navigate('/workspace'))
+        dispatch(onLogin(credentials))
+            .then(navigate('/workspace'))
     }
 
     const onSubmitSignup = (ev = null) => {
         if (ev) ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
         console.log(credentials)
-        dispatch(props.onSignup(credentials))
-        navigate('/workspace')
+        dispatch(onSignUp(credentials))
+            .then(navigate('/workspace'))
     }
 
     const toggleSignup = () => {
         setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
         setIsSignup(!isSignup)
-    }
-    const onUploaded = (imgUrl) => {
-        setCredentials({ ...credentials, imgUrl })
     }
 
     return (
@@ -77,11 +71,11 @@ export function LoginSignup(props) {
                     />
                     <button>Login</button>
                     <span>OR</span>
-                    <NavLink className="as-guest-btn flex align-center" to="/workspace" onSubmit={onSubmitLogin}><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
+                    <p className="as-guest-btn flex align-center" to="/workspace" onClick={props.onStartDemo}><img src={GuestImg} alt="" /> Continue as Guest</p>
                     <hr />
                     <div className='login-bottom-navigation flex align-center'>
                         <NavLink to="/">Back Home</NavLink>
-                        <NavLink onClick={toggleSignup}>Sign Up</NavLink>
+                        <p onClick={toggleSignup}>Sign Up</p>
                     </div>
                 </form>}
             </div>
@@ -114,11 +108,11 @@ export function LoginSignup(props) {
                     />
                     <button href="/workspace" >Sign up</button>
                     <span>OR</span>
-                    <NavLink className="as-guest-btn flex align-center" to="/workspace" onSubmit={onSubmitLogin}><img src={GuestImg} alt="" /> Continue as Guest</NavLink>
+                    <p className="as-guest-btn flex align-center" to="/workspace" onClick={props.onStartDemo}><img src={GuestImg} alt="" /> Continue as Guest</p>
                     <hr />
                     <div className='login-bottom-navigation flex align-center'>
                         <NavLink to="/">Back Home</NavLink>
-                        <NavLink onClick={toggleSignup}>Log In</NavLink>
+                        <p onClick={toggleSignup}>Log In</p>
                     </div>
                 </form>}
             </div>
