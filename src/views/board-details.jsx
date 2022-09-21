@@ -25,6 +25,8 @@ export const BoardDetails = () => {
     useEffect(() => {
         // console.log('board:', board)
         dispatch(loadBoard(params.boardId))
+        console.log('params:', params)
+        
     }, [])
 
     const onCreateGroup = (txt) => {
@@ -95,7 +97,7 @@ export const BoardDetails = () => {
     
     return (
         <div className="board-wrapper" style={board.style}>
-            {isShareBoardModal && <ShareBoard onToggleIsShareBoardModal={onToggleIsShareBoardModal} />}
+            {isShareBoardModal && <ShareBoard members={board.members} onToggleIsShareBoardModal={onToggleIsShareBoardModal} />}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} board={board}

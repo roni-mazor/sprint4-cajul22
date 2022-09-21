@@ -17,7 +17,6 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
 
 
     useEffect(() => {
-        // console.log('board:', board)
         dispatch(loadUsers())
     }, [])
 
@@ -35,17 +34,17 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
 
     const addUserToBoard = (userId) => {
         console.log('userId:', userId)
-        const selectedUser = board.members.find(member => member === userId)
+        const selectedUser = board.members.find(member => member._id === userId)
         console.log('selectedUser:', selectedUser)
         
         if (selectedUser) {
-            const selectedUsers = board.members.filter(user => user !== userId)
+            const selectedUsers = board.members.filter(user => user._id !== userId)
             board.members = [...selectedUsers]
             dispatch(saveBoard(board))
             return
         }
         const addedUser = users.find(user => user._id === userId)
-        board.members = [...board.members, addedUser._id]
+        board.members = [...board.members, addedUser]
         dispatch(saveBoard(board))
     }
 
@@ -79,9 +78,8 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
             {isSearchOpen && <ul className='user-list-container flex column justify-between'>
                 {getFilteredUsers().map(user => (
                     <li key={utilService.makeId(5)} className='flex align-center' onClick={() => addUserToBoard(user._id)}>
-                        {/* {console.log('user:', users)}                         */}
-                        <section className="member-avatar" title={`${user?.fullname}`}>
-                            <img src={user?.imgUrl ? user?.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
+                        <section className="member-avatar" title={`${user.fullname}`}>
+                            <img src={user.imgUrl ? user.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
                         </section>
                         <pre>
                             <p>{user.fullname}</p>
@@ -91,22 +89,15 @@ export function ShareBoard({ onToggleIsShareBoardModal }) {
                     </li>))}
             </ul>}
             <section className='board-list-container flex column justify-between'>
-                {board.members?.map(memberId => <MemberPreview key={memberId} memberId={memberId} infoReq={'boardList'} addUserToBoard={addUserToBoard}/>)}
-            </section>
-            {/* <ul className='board-list-container flex column justify-between'>
-                {board.members?.map(member => (
-                    <li key={member} className='flex align-center'>
-                        {console.log('member:', member)
-                        }
-                        <MemberPreview member={member} />
-                        <pre>
-                            <p>{member}</p>
-                            <p>@{member}</p>
-                        </pre>
-                        <span></span>
-                        <button className='toggle' onClick={() => addUserToBoard(member._id)}>Remove</button>
-                    </li>))}
-            </ul> */}
+                {board.members.map(member => 
+                <MemberPreview 
+                members={board.members} 
+                key={member._id} 
+                memberId={member._id} 
+                infoReq={'boardList'} 
+                addUserToBoard={addUserToBoard}
+                />)}
+            </section>           
         </section>
     </div>
 }

@@ -1,11 +1,9 @@
 import { storageService } from "./async-storage.service"
 import { users } from "./data.service"
-import { utilService } from "./util.service"
 // import { httpService } from './http.service'
 // import { store } from '../store/store'
 // import { getActionSetWatchedUser } from '../store/review.actions'
 // import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
-import guest from '../assets/img/guest-img.svg'
 import { showSuccessMsg } from '../services/event-bus.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
@@ -34,7 +32,7 @@ async function getUsers() {
         storageService.postMany(STORAGE_KEY, users)
         rawUsers = users
     }
-    console.log('rawUsers:', rawUsers)
+    // console.log('rawUsers:', rawUsers)
     
     return rawUsers
     // return storageService.query('user')
@@ -82,7 +80,7 @@ async function signup(userCred) {
     userCred.score = 10000
     console.log('userCred:', userCred)
 
-    const user = await storageService.post('user', userCred)
+    const user = await storageService.post('users', userCred)
     // const user = await httpService.post('auth/signup', userCred)
     // socketService.login(user._id)
 

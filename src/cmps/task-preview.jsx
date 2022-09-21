@@ -12,12 +12,13 @@ import { MemberPreview } from "./member-preview"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
+    const board = useSelector(state => state.boardModule.board)
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
     const [attachCount, setAttachCount] = useState(0)
     const dispatch = useDispatch()
 
     useEffect(() => {
-       
+        getTaskMembers()
     }, [])
 
     const onToggleLabelTxt = (ev) => {
@@ -58,6 +59,18 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         return `${todos.isDone}/${todos.totalTodos}`
     }
 
+    const getTaskMembers = () => {
+        let taskPreviewMembers = []
+        const { members } = task
+        for (let i = 0; i < members?.length; i++) {
+            const currMember = board.members.find(member => member._id === members[i])
+            taskPreviewMembers.push(currMember)
+        }
+        console.log('taskPreviewMembers:', taskPreviewMembers)
+        
+        return taskPreviewMembers
+    }
+
     const allDone = () => {
         let isAllDone = false
         const todos = getDoneChecklist()
@@ -73,7 +86,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
             {/* <header className="task-header"> */}
-            {(!task.background||task.background === 'header') && <div>
+            {(!task.background || task.background === 'header') && <div>
 
                 {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
                 {task.coverClr && <div className="task-cover" style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
@@ -91,7 +104,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                     </section>
                     <p>{task.title}</p>
                     <section className="task-user-container flex">
-                        {task?.members && task.members.map(member => <img className="task-users" src={member?.imgUrl ? member?.imgUrl : GuestImg} alt="" />)}
+                        {getTaskMembers().map(member => <img className="task-users" src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
                     </section>
                     <section className="task-badges">
                         {task?.attachments?.length > 0 && <span className="task-badges attached">
