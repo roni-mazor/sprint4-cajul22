@@ -61,7 +61,6 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
             const currMember = board.members.find(member => member._id === members[i])
             taskPreviewMembers.push(currMember)
         }
-        console.log('taskPreviewMembers:', taskPreviewMembers)
         
         return taskPreviewMembers
     }

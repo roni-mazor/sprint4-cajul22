@@ -14,6 +14,7 @@
 
     a {
         height: inherit;
+        gap: 10px;
     }
 
     .header-logo {
@@ -29,13 +30,15 @@
             // width: 20px;
             margin-inline-end: 5px;
         }
+        
+        & .jello-logo-text {
+            font-family: fira-reg;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0;
+        }
     }
 
-    // .member-avatar {
-    //     margin-top: 3px;
-    //     margin-inline-end: 10px;
-    //     font-size: 1.9em;
-    //     cursor: pointer;
     .log-sig {
         margin-top: 3px;
         margin-bottom: 12px;

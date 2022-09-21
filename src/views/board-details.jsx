@@ -91,7 +91,7 @@ export const BoardDetails = () => {
 
     // console.log(board)
     if (!board) return <LoaderIcon />
-    console.log('task:', board)
+    // console.log('task:', board)
     
     return (
         <div className="board-wrapper" style={board.style}>
