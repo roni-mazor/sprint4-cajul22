@@ -32,14 +32,14 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                 return doneTodos
             }, 0)
             return { isDone, totalTodos }
-
+            //check maybe return the reducer immediatly
         }, 0)
-        // console.log('todos:', todos)
         return {
             isDone: todos.isDone,
             totalTodos: todos.totalTodos
         }
     }
+
     const getCoverHeight = () => {
         if (!task.cover) return
         if (task.cover.height > 3000) return task.cover.height * 0.05
@@ -57,8 +57,11 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     }
 
     const getTaskMembers = () => {
-        let taskPreviewMembers = []
         const { members } = task
+        let taskPreviewMembers = []
+        // let taskPreviewMembers = members.map((memberId) => {
+        //     return board.members.find(member => member._id === memberId)
+        // })
         for (let i = 0; i < members?.length; i++) {
             const currMember = board.members.find(member => member._id === members[i])
             taskPreviewMembers.push(currMember)
@@ -73,25 +76,27 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         if (!todos) return
         if (todos.isDone === todos.totalTodos && todos.totalTodos > 0)
             isAllDone = true
-        // console.log('todos:', todos)
         return isAllDone
     }
+
     const isAllDone = allDone()
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
-    // console.log('task.cover:', task.cover)
     return (
         <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
             {(!task.background || task.background === 'header') && <div>
 
-                {task.cover && <div className="task-cover" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
-                {task.coverClr && <div className="task-cover" style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
+                {task.cover && <div className="task-cover"
+                 style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}></div>}
+                {task.coverClr && <div className="task-cover" 
+                style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
 
                 <div className="task-content">
 
                     <section className="labels-container">
                         {task.labelIds.map((id) => {
                             const label = labels.find(l => l.id === id)
-                            return <div key={id} className={`label-btn ${openLabelClassName}`} onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
+                            return <div key={id} className={`label-btn ${openLabelClassName}`} 
+                            onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
                                 {isLabelTxtOpen && <span>{label.title}</span>}
                             </div>
                         })}

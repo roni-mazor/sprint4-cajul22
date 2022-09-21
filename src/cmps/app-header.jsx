@@ -20,7 +20,7 @@ export const AppHeader = ({ board }) => {
     return (
         <header className={board ? 'app-header board' : 'app-header'}>
             <Link to="/workspace" className="header-logo flex align-center">
-                <Link to="/workspace" className="home-logo flex align-center" ><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></Link>
+                <Link  className="home-logo flex align-center" ><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></Link>
                 <span></span>
             </Link>
             {/* <Link to=""> */}
