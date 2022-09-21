@@ -39,57 +39,63 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                 </span>
             </header>
             <hr />
-            <section className="labels-container">
-                <h4>keywords</h4>
-                <input className="filter-text-input"
-                    type="text" placeholder='Enter a keyword...'
-                    onChange={handleTextChange}
-                    value={filterBy.txt} />
-                <p>Search cards, members, labels, and more.</p>
-            </section>
+
+            <div className="filter-wrapper">
+                <div >
 
 
-            <section classname="labels-container">
-                <h4>Members</h4>
-                <ul className="labels-container">
-                    {board.members.map(member => (
-                        <li key={member._id} className='label-container'>
-                            <label >
-                                <Checkbox
-                                    checked={(filterBy.members.includes(member._id))}
-                                    size="small" style={{ padding: '5px 9px' }}
-                                    onChange={() => handleMemberCheck(member._id)}
-                                />
-                                <span className='member-container flex align-center' onClick={() => console.log(member._id)}>
-                                    <MemberPreview member={member} />
-                                    <p>{member.username}</p>
-                                    <p>{`(${member.fullname})`}</p>
-                                </span>
-                            </label>
-                        </li>
-                    ))}
-                </ul>
-            </section>
+                    <section className="labels-container">
+                        <h4>keywords</h4>
+                        <input className="filter-text-input"
+                            type="text" placeholder='Enter a keyword...'
+                            onChange={handleTextChange}
+                            value={filterBy.txt} />
+                        <p>Search cards, members, labels, and more.</p>
+                    </section>
 
-            <section className="filter-container">
-                <h4>Labels</h4>
-                <ul className="labels-container">
-                    {labels.map(label => (
-                        <li key={label.id} className='label-container'>
-                            <label >
-                                <Checkbox
-                                    checked={(filterBy.labelIds.includes(label.id))}
-                                    onChange={() => handleLabelCheck(label.id)}
-                                    name={label.id} size="small" style={{ padding: '5px 9px' }} />
-                                <div className='label-display-btn' style={{ backgroundColor: label.color }}>
-                                    <span>{label.title}</span>
-                                </div>
-                            </label>
-                        </li>
-                    ))}
-                </ul>
 
-            </section>
+                    <section classname="labels-container">
+                        <h4>Members</h4>
+                        <ul className="labels-container">
+                            {board.members.map(member => (
+                                <li key={member._id} className='label-container'>
+                                    <label >
+                                        <Checkbox
+                                            checked={(filterBy.members.includes(member._id))}
+                                            size="small" style={{ padding: '5px 9px' }}
+                                            onChange={() => handleMemberCheck(member._id)}
+                                        />
+                                        <span className='member-container flex align-center' onClick={() => console.log(member._id)}>
+                                            <MemberPreview infoReq={'boardHeader'} member={member} />
+                                            <p>{member.username}</p>
+                                            <p>{`(${member.fullname})`}</p>
+                                        </span>
+                                    </label>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+
+                    <section className="filter-container">
+                        <h4>Labels</h4>
+                        <ul className="labels-container">
+                            {labels.map(label => (
+                                <li key={label.id} className='label-container'>
+                                    <label >
+                                        <Checkbox
+                                            checked={(filterBy.labelIds.includes(label.id))}
+                                            onChange={() => handleLabelCheck(label.id)}
+                                            name={label.id} size="small" style={{ padding: '5px 9px' }} />
+                                        <div className='label-display-btn' style={{ backgroundColor: label.color }}>
+                                            <span>{label.title}</span>
+                                        </div>
+                                    </label>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                </div>
+            </div>
 
         </>
     )

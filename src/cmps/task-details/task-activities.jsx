@@ -33,7 +33,7 @@ export const TaskActivities = ({ task, onSaveTask, user }) => {
             </div>
             <div className='new-comment flex'>
                 <div className='profile-img'>
-                    <img src={user.imgUrl} alt="" />
+                    {/* <img src={user.imgUrl} alt="" /> */}
                 </div>
                 <div className={focused ? 'comment-box flex column focused' : 'comment-box flex column'}>
                     {/* <MemberPreview user={user} /> */}

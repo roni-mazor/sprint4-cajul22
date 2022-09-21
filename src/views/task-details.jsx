@@ -75,10 +75,10 @@ export const TaskDetails = () => {
     }
 
     const isUserJoined = (task) => {
-        const { members } = task
-        let loggedInUser = members.find(id => id === user._id)
-        if (loggedInUser) setIsJoined(true)
-
+        // const { members } = task
+        // let loggedInUser = members.find(id => id === user._id)
+        // if (loggedInUser) setIsJoined(true)
+        
         // console.log('board.members from isJoinedUser:', board.members)
 
     }

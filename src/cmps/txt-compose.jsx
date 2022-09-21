@@ -25,7 +25,7 @@ export const TxtCompose = ({ type, returnTxt }) => {
         <>
             {(composeMode) ?
                 <div className="add-task-modal">
-                    <textarea name="" placeholder={"enter a title for this " + type}
+                    <textarea name="" placeholder={`Enter a title for this ${type}...` }
                         value={Txt}
                         onChange={handleTxtChange}></textarea>
                     <section className="compose-btns-container">
@@ -36,7 +36,7 @@ export const TxtCompose = ({ type, returnTxt }) => {
                 :
                 <section className="task-compose">
                     <div onClick={toggleModal} className="compose-btn">
-                        <span className="plus-sign" ><BsPlusLg /></span><span>Add a {type}</span>
+                        <span className="plus-sign" ><BsPlusLg /></span><span className="compose-txt">Add a {type}</span>
                     </div>
                 </section>}
         </>

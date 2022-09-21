@@ -12,6 +12,8 @@
     padding: 0 6px 0 12px;
     transform: translateX(400px);
     box-shadow: 0px 12px 24px -6px #091e4240, 0 0 0 1px #091e4214;
+    display: flex;
+    flex-direction: column;
 
     &.open {
         position: absolute;
@@ -30,7 +32,7 @@
     h3 {
         font-size: 16px;
         color: #172b4d;
-        flex: 1;
+        margin: 8px;
         line-height: 20px;
         margin: 0;
         font-weight: 500;
@@ -55,6 +57,16 @@
         margin-bottom: 8px;
     }
 
+    .filter-wrapper {
+        flex: 1;
+        padding-right: 8px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+    }
+
     .menu-modal-header {
         height: 48px;
         display: flex;
@@ -73,6 +85,7 @@
             }
         }
     }
+
 
     .board-menu-nav-btn {
         display: flex;
@@ -135,6 +148,10 @@
 
             .member-container {
                 flex-grow: 1;
+
+                section {
+                    margin-right: 6px;
+                }
 
                 p {
                     color: #172b4d;
@@ -249,71 +266,77 @@
         }
     }
 
-    .backgrounds-container {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
+    .backgrounds-wrapper {
+        flex: 1;
+        overflow-y: auto;
 
-        div,
-        label {
-            background-size: cover;
-            border-radius: 8px;
-            height: 96px;
+        .backgrounds-container {
             width: 100%;
-            cursor: pointer;
-            float: left;
-            padding: 0 4px;
-            position: relative;
-            text-align: center;
-            transition: 0.3s;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding-right: 4px;
 
-            &.attach-image {
-                background-color: #091e420a;
+            div,
+            label {
+                background-size: cover;
                 border-radius: 8px;
                 height: 96px;
-                margin-bottom: 8px;
                 width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #5e6c84;
-
-                &:hover {
-                    background-color: #091e4218;
-                }
-            }
-
-
-            .creator-link {
-                background: #00000080;
-                border-radius: 0 0 2px 2px;
-                bottom: 0;
-                // box-sizing: border-box;
-                color: #dfe1e6;
                 cursor: pointer;
-                font-size: 12px;
-                height: 20px;
-                left: 0;
-                line-height: 16px;
-                opacity: 0;
-                overflow: hidden;
-                padding: 2px 4px;
-                position: absolute;
-                text-align: left;
-                text-decoration: underline;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                width: 100%;
-                z-index: 100;
-            }
-
-            &:hover {
-                opacity: 0.7;
+                float: left;
+                padding: 0 4px;
+                position: relative;
+                text-align: center;
                 transition: 0.3s;
 
+                &.attach-image {
+                    background-color: #091e420a;
+                    border-radius: 8px;
+                    height: 96px;
+                    margin-bottom: 8px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #5e6c84;
+
+                    &:hover {
+                        background-color: #091e4218;
+                    }
+                }
+
+
                 .creator-link {
-                    opacity: 1;
+                    background: #00000080;
+                    border-radius: 0 0 2px 2px;
+                    bottom: 0;
+                    // box-sizing: border-box;
+                    color: #dfe1e6;
+                    cursor: pointer;
+                    font-size: 12px;
+                    height: 20px;
+                    left: 0;
+                    line-height: 16px;
+                    opacity: 0;
+                    overflow: hidden;
+                    padding: 2px 4px;
+                    position: absolute;
+                    text-align: left;
+                    text-decoration: underline;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 100%;
+                    z-index: 100;
+                }
+
+                &:hover {
+                    opacity: 0.7;
+                    transition: 0.3s;
+
+                    .creator-link {
+                        opacity: 1;
+                    }
                 }
             }
         }
@@ -327,9 +350,12 @@
     }
 
     .menu-activities-wrapper {
-height: 100%;
+        height: 100%;
+
         .board-menu-activities {
             overflow-y: hidden;
+
+
             .activity-container {
                 gap: 10px;
                 margin-bottom: 10px;

@@ -87,16 +87,18 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
             </section>
             <hr />
             <h3 className="big">Custom</h3>
-            <section className="backgrounds-container">
+            <section className="backgrounds-wrapper">
+                <section className="backgrounds-container">
 
-                <label className="background-btn attach-image">
-                    <BsPlusLg />
-                    <input type="file" onChange={onUploadImg} hidden />
-                </label>
-                {board?.customBackgrounds?.length > 0 && board.customBackgrounds.map(img => (
-                    <div onClick={() => changeBackgroundImage(img)} style={{ backgroundImage: `url(${img})` }} >
-                    </div>
-                ))}
+                    <label className="background-btn attach-image">
+                        <BsPlusLg />
+                        <input type="file" onChange={onUploadImg} hidden />
+                    </label>
+                    {board?.customBackgrounds?.length > 0 && board.customBackgrounds.map(img => (
+                        <div onClick={() => changeBackgroundImage(img)} style={{ backgroundImage: `url(${img})` }} >
+                        </div>
+                    ))}
+                </section>
             </section>
         </>
     )
@@ -105,7 +107,7 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
 
 
 
- const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
+const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
     const [photos, setPhotos] = useState(null)
     const dispatch = useDispatch()
 
@@ -146,12 +148,14 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
                 <BsSearch />
             </span>
         </div>
-        <section className="backgrounds-container">
-            {photos && photos.map(p => (
-                <div onClick={() => changeBackgroundImage(p.urlFull)} style={{ backgroundImage: `url(${p.urlSmall})` }} >
-                    <a target="_blank" className="creator-link" href={p.creatorUrl}>{p.creatorName}</a>
-                </div>
-            ))}
+        <section className="backgrounds-wrapper">
+            <section className="backgrounds-container">
+                {photos && photos.map(p => (
+                    <div onClick={() => changeBackgroundImage(p.urlFull)} style={{ backgroundImage: `url(${p.urlSmall})` }} >
+                        <a target="_blank" className="creator-link" href={p.creatorUrl}>{p.creatorName}</a>
+                    </div>
+                ))}
+            </section>
         </section>
     </>
     )

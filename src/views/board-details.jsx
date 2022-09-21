@@ -105,13 +105,11 @@ export const BoardDetails = () => {
                                             return (
                                                 <Draggable key={group.id} index={index} draggableId={group.id}>
                                                     {(provided) => (
-                                                        <section {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                            <div className="group-wrapper">
-                                                                <section className="group-content"  >
-                                                                    <BoardGroup groupIndex={index} key={group.id} group={group} boardId={board._id} />
-                                                                </section>
-                                                            </div>
-                                                        </section>)}
+
+                                                        <section className="group-content" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
+                                                            <BoardGroup groupIndex={index} key={group.id} group={group} boardId={board._id} />
+                                                        </section>
+                                                    )}
                                                 </Draggable>
                                             )
                                         })}
