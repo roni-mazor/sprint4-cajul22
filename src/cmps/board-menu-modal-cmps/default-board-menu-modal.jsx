@@ -43,11 +43,11 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
             <div className="activities-title flex">
                 <span className='task-icon'> <GrList /></span><h3>Activity</h3>
             </div>
-            <div className="menu-activities-wrapper">
+            {/* <div className="menu-activities-wrapper">
                 <div className="board-menu-activities">
                     {board.activities.map(activity => <div className="activity-container flex">
                         <div className="profile-img">
-                            <img src={activity.byMember.imgUrl} alt="" />
+                            <img src={activity?.byMember.imgUrl} alt="" />
                         </div>
                         <div className="activity flex column">
                             <div>
@@ -62,7 +62,7 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                     </div>)}
                 </div>
 
-            </div>
+            </div> */}
         </>
     )
 }
