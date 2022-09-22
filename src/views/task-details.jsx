@@ -81,9 +81,9 @@ export const TaskDetails = () => {
 
     const onAddUserToTask = () => {
         task.members = [...task.members, user._id]
-        onSaveTask(task)
-        onSaveActivity(`joined to the task`)
-        
+
+        onSaveTask(task, `joined`, task.title)
+
         board.members = [...board.members, user]
         dispatch(saveBoard(board))
     }
@@ -148,6 +148,7 @@ export const TaskDetails = () => {
 
                         <TaskActivities
                             user={user}
+                            board={board}
                             task={task}
                             onSaveTask={onSaveTask} />
                     </div>

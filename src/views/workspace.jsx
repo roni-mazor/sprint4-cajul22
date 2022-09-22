@@ -17,7 +17,7 @@ export const Workspace = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch(loadBoards())
+        dispatch(loadBoards())
         dispatch(loadLoggedInUser())
         // dispatch(resetBoard())
     }, [])

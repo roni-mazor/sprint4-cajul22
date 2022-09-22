@@ -15,23 +15,27 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const onAddMemberToTask = (memberId) => {
         let currMember = task.members.find(member => (member === memberId))
         if (currMember) {
+            // const selectedMember = task.members.find(member => member.id === currMember)
             const selectedMembers = task.members.filter(id => id !== memberId)
             task.members = [...selectedMembers]
-            onSaveTask(task)
+            console.log('currMember:', currMember)
+            currMember = board.members.find(member => member._id === memberId)
+            onSaveTask(task, `removed ${currMember.fullname} from`, task.title)
+
             return
         }
 
         currMember = board.members.find(member => member._id === memberId)
         task.members = [...task.members, currMember._id]
-        onSaveTask(task)
+        onSaveTask(task, `added ${currMember.fullname} to`, task.title)
     }
 
     const onHandleChange = ({ target: { value } }) => {
         setTxt(value)
     }
 
-    const isMemberOnTask = (memberId) => {       
-        const { members } = task        
+    const isMemberOnTask = (memberId) => {
+        const { members } = task
         const isOnTask = members.find(id => id === memberId)
         if (isOnTask) return true
     }
@@ -70,7 +74,7 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
                             <p>{member.username ? `(${member.username})` : 'loading...'}</p>
                         </pre>
                         <span></span>
-                        {isMemberOnTask(member._id) && <AiOutlineCheck/>}
+                        {isMemberOnTask(member._id) && <AiOutlineCheck />}
                     </div>)}
             </section>
         </section >

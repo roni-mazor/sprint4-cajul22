@@ -18,15 +18,16 @@
     .board-preview {
         
         cursor: pointer;
-        border-radius: 5px;
-        width: 195px;
-        height: 95px;
-        background-color: cadetblue;
-        padding: 1px;
-        position: relative;
-        color: rgb(47, 45, 45);
-        background-size: cover;
-        z-index: 20;
+    border-radius: 5px;
+    width: 195px;
+    height: 95px;
+    background-color: cadetblue;
+    padding: 1px;
+    position: relative;
+    color: rgb(47, 45, 45);
+    background-size: cover;
+    z-index: 20;
+    background-position: center;
 
         &:hover div {
             opacity: 100;
