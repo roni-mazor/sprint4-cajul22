@@ -52,17 +52,19 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
         console.log(board)
         board.customBackgrounds.push(img.url)
         board.style = { backgroundImage: `url(${img.url})` }
-        dispatch(saveBoard(board))
+        dispatch(saveBoard(board, null, null, `changed the background of this board`))
+        // saveBoard(board, group, task, txt, link, opTxt)
     }
-
+    
     const changeBackgroundImage = (url) => {
         board.style = { backgroundImage: `url(${url})` }
-        dispatch(saveBoard(board))
+        // dispatch(saveBoard(board))
+        dispatch(saveBoard(board, null, null, `changed the background of this board`))
     }
+    
 
 
-
-
+    
     return (
         <>
             <header className="menu-modal-header ">
@@ -126,7 +128,8 @@ const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
     }
     const changeBackgroundImage = (url) => {
         board.style = { backgroundImage: `url(${url})` }
-        dispatch(saveBoard(board))
+        // dispatch(saveBoard(board))
+        dispatch(saveBoard(board, null, null, `changed the background of this board`))
     }
 
 
@@ -165,7 +168,8 @@ const Colors = ({ board, toggleMenuModal, setBackgroundModalState }) => {
     const dispatch = useDispatch()
     const changeBoardBackground = (color) => {
         board.style = { backgroundColor: color }
-        dispatch(saveBoard(board))
+        // dispatch(saveBoard(board))
+        dispatch(saveBoard(board, null, null, `changed the background of this board`))
     }
     const colors = utilService.getBackgroundColors()
     return (<>

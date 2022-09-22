@@ -3,7 +3,7 @@ import { VscChromeClose } from "react-icons/vsc"
 
 export const GroupActions = ({ toggleModal, onRemoveGroup }) => {
 
-    console.log('openeeed')
+    // console.log('openeeed')
     return (
         <section className="add-features-modal group-actions-modal">
             <header className='edit-label-header'>

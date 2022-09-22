@@ -24,11 +24,8 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         dispatch(toggleLabelTxt())
     }
 
-    const onSaveTask = (newTask) => {
-        console.log(boardId)
-        console.log(groupId)
-        console.log(newTask)
-        dispatch(saveTask(boardId, groupId, newTask))
+    const onSaveTask = (newTask, txt, link, opTxt) => {
+        dispatch(saveTask(groupId, newTask, txt, link, opTxt))
     }
 
     const getDoneChecklist = () => {
@@ -60,7 +57,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
 
     const dispalyDoneChecklist = () => {
         const todos = getDoneChecklist()
-        if (!todos) return
+        if (todos.totalTodos === 0) return
         return `${todos.isDone}/${todos.totalTodos}`
     }
 
@@ -117,21 +114,26 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                         {getTaskMembers().map(member => <img className="task-users"
                             src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
                     </section>
-                    <section className="task-badges">
+                    <section className="task-badges flex align-center">
                         {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
-                        {task?.attachments?.length > 0 && <span className="task-badges attached">
-                            <ImAttachment />  {task.attachments.length}</span>}
-                        {task?.checklists?.length > 0 &&
-                            <span className={isAllDone ? 'task-badges checklist done' : 'task-badges checklist'}>
-                                <span><TbCheckbox /></span>
-                                {dispalyDoneChecklist()}</span>}
+
+                        {task?.attachments?.length > 0 &&
+                            <div className="task-badges attached flex align-center">
+                                <span className="attach-icon"> <ImAttachment /></span>
+                                <p>{task.attachments.length}</p></div>}
+
+                        {task?.checklists?.length > 0 && <div
+                            className={`task-badges checklist flex align-center ${isAllDone ? 'done' : ''}`}>
+                            <span className="checklist-icon"><TbCheckbox /></span>
+                            <p className=".todo-num">{dispalyDoneChecklist()}</p></div>}
                     </section>
                 </div>
             </div>}
-            {task.background === 'body' && <div>
-                {task.cover && <div className="mini-task" style={{ backgroundImage: `url(${task.cover.url}) `, height: `${getCoverHeight()}px` }}>
+            {task.background === 'body' && <div className="mini-task-container">
+                {task.cover && <div className="mini-task" style={{ backgroundImage: `url(${task.cover.url}) `, minHeight: `${getCoverHeight()}px` }}>
                     <p className="img-bg">{task.title}</p></div>}
-                {task.coverClr && <div className="mini-task" style={{ backgroundColor: task.coverClr }}>  <p >{task.title}</p></div>}
+                {task.coverClr && <div className="mini-task" style={{ backgroundColor: task.coverClr }}>
+                    <div className="mini-task-title" ><p >{task.title}</p></div> </div>}
             </div>}
         </Link>
     )

@@ -36,8 +36,8 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
     const onRemoveCover = () => {
         task.coverClr = ''
         task.cover = null
-        onSaveTask(task)
-        onSaveActivity(`removed the cover`)
+        task.background ='header'
+        onSaveTask(task, '')
         setCardClr({})
         setCardFocus(null)
         setClrFocus(null)
@@ -56,7 +56,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
             backgroundColor: color,
             opacity: 1
         })
-        onSaveTask(task)
+        onSaveTask(task, '')
         onSaveActivity(`changed the cover`)
         setClrFocus(color)
     }
@@ -69,7 +69,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
             backgroundImage: `url(${cover.url})`,
             opacity: 1
         })
-        onSaveTask(task)
+        onSaveTask(task, '')
         onSaveActivity(`changed the cover`)
         setClrFocus(cover)
         if (!cardFocus) setCardFocus('header')
@@ -83,7 +83,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
             backgroundImage: `url(${cover.url})`,
             opacity: 1
         })
-        onSaveTask(task)
+        onSaveTask(task, '')
         onSaveActivity(`changed the cover`)
         setClrFocus(cover)
         if (!cardFocus) setCardFocus('header')
@@ -94,7 +94,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
             return
         }
         task.background = cover
-        onSaveTask(task)
+        onSaveTask(task, '')
         setCardFocus(cover)
 
     }

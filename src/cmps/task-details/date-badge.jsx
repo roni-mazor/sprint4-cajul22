@@ -14,7 +14,9 @@ export const DateBadge = ({ task, onSaveTask }) => {
         ev.preventDefault()
         ev.stopPropagation()
         task.dueDate.isDone = !task.dueDate.isDone
-        onSaveTask(task)
+        // console.log('task:', task)
+        if (task.dueDate.isDone) onSaveTask(task, `marked the due date on`, task.title, `as complete`)
+        else if (!task.dueDate.isDone) onSaveTask(task, `marked the due date on`, task.title, `as incomplete`)
     }
 
     const getBgColor = () => {
@@ -28,7 +30,7 @@ export const DateBadge = ({ task, onSaveTask }) => {
     }
 
     return (
-        <span className="date-badge" style={getBgColor()}>
+        <span className="date-badge flex align-center" style={getBgColor()}>
             <Checkbox className="date-checkbox"
                 onClick={onChangeDone}
                 checked={(task.dueDate.isDone)}

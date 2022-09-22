@@ -33,7 +33,8 @@ export const DateShower = ({ task, onSaveTask, toggleModal }) => {
 
     const onChangeDone = () => {
         task.dueDate.isDone = !task.dueDate.isDone
-        onSaveTask(task)
+        if (task.dueDate.isDone) onSaveTask(task, `marked the due date on`, task.title, `as complete`)
+        else if (!task.dueDate.isDone) onSaveTask(task, `marked the due date on`, task.title, `as incomplete`)
     }
     console.log(((time - new Date()) / 1000 / 60 / 60))
     return (

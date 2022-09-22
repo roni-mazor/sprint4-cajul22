@@ -46,15 +46,17 @@ export function updateIsStarred(board) {
     }
 }
 
-export function saveGroup(group) {
+export function saveGroup(group, task, txt, link, opTxt) {
 
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
+            const user = getState().userModule.user
             board.groups = board.groups.map(g => {
                 if (g.id === group.id) return group
                 else return g
             })
+            _saveActivity(user, board, group.id, task, txt, link, opTxt)
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
@@ -62,42 +64,34 @@ export function saveGroup(group) {
         }
     }
 }
-export function saveBoard(board) {
+export function saveBoard(board, group, task, txt, link, opTxt) {
 
-    return async (dispatch,) => {
-        try {
-
-            boardService.save(board)
-            dispatch({ type: 'SET_BOARD', board })
-        } catch (err) {
-            console.log('Couldnt update board: ', err);
-        }
-    }
-}
-
-export function saveTask(groupId, task) {
     return async (dispatch, getState) => {
-        console.log(groupId)
+        try {
+            const user = getState().userModule.user
+            let groupId = group ? group.id : null
+            // board.activities = []
+            console.log('txt:', txt)
+            _saveActivity(user, board, groupId, task, txt, link, opTxt)
+            boardService.save(board)
+            dispatch({ type: 'SET_BOARD', board })
+        } catch (err) {
+            console.log('Couldnt update board: ', err);
+        }
+    }
+}
+
+export function saveTask(groupId, task, txt, link, opTxt) {
+    return async (dispatch, getState) => {
+        // boardService.saveTask(boardId, groupId, task)
+        const user = getState().userModule.user
         const board = getState().boardModule.board
         const groupIdx = board.groups.findIndex(g => g.id === groupId)
-        console.log(groupIdx)
-        console.log(board.groups)
-        // board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.map(t => {
-        //     if (t.id === task.id) return task
-        //     else return t
-        // })
-        // const user = getState().userModule.user
-        // const addedActivity = {
-        //     id: utilService.makeId(6),
-        //     byMember: user,
-        //     createdAt: Date.now(),
-        //     taskId: task.id,
-        //     groupId,
-        //     txt
-        // }
-
-        // board.activities.unshift(addedActivity)
-        console.log(board)
+        board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.map(t => {
+            if (t.id === task.id) return task
+            else return t
+        })
+        _saveActivity(user, board, groupId, task, txt, link, opTxt)
         boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
 
@@ -137,10 +131,12 @@ export function removeLabel(labels, removedLabelId) {
     }
 }
 
-export function removeGroup(groupId) {
+export function removeGroup(groupId, txt, link, opTxt) {
     return (dispatch, getState) => {
         const board = getState().boardModule.board
+        const user = getState().userModule.user
         board.groups = board.groups.filter(g => g.id !== groupId)
+        _saveActivity(user, board, groupId, null, txt, link, opTxt)
         boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
     }
@@ -155,21 +151,21 @@ export function removeAttachment(groupId, taskId) {
     }
 }
 
-export function saveActivity(taskId, groupId, txt) {
-    return (dispatch, getState) => {
-        const board = getState().boardModule.board
-        const user = getState().userModule.user
-        const addedActivity = {
-            id: utilService.makeId(4),
-            byMember: user,
-            createdAt: Date.now(),
-            taskId,
-            groupId,
-            txt
-        }
-        console.log('addedActivity:', addedActivity)
-        board.activities.unshift(addedActivity)
-        boardService.save(board)
-        dispatch({ type: 'SET_BOARD', board })
+
+function _saveActivity(user, board, groupId, task, txt, link, opTxt) {
+    if (!txt) return
+
+    const addedActivity = {
+        id: utilService.makeId(4),
+        byMember: user,
+        createdAt: Date.now(),
+        task,
+        groupId,
+        txt,
+        link,
+        opTxt
     }
+    // console.log('addedActivity:', addedActivity)
+    board.activities = [addedActivity, ...board.activities]
+    // return board
 }

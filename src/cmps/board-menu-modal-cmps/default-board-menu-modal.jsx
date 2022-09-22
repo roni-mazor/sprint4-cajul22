@@ -43,7 +43,7 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
             <div className="activities-title flex">
                 <span className='task-icon'> <GrList /></span><h3>Activity</h3>
             </div>
-            {/* <div className="menu-activities-wrapper">
+            <div className="menu-activities-wrapper">
                 <div className="board-menu-activities">
                     {board.activities.map(activity => <div className="activity-container flex">
                         <div className="profile-img">
@@ -51,18 +51,20 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                         </div>
                         <div className="activity flex column">
                             <div>
-                                <span>{activity.byMember.fullname} </span>
-                                <Link onClick={toggleMenuModal}
-                                    to={`/board/${board._id}/${activity.groupId}/${activity.taskId}`}>
-                                    {activity.txt}
-                                </Link>
+                                <span className="username">{activity.byMember.fullname} </span>
+                                <span className="txt"> {activity.txt} </span>
+                                {activity.task && <Link onClick={toggleMenuModal}
+                                    to={`/board/${board._id}/${activity.groupId}/${activity.task.id}`}>
+                                    {activity.link}
+                                </Link>}
+                                {activity.opTxt && <span className="opTxt"> {activity.opTxt}</span>}
                             </div>
                             <div>{formatedTime(activity.createdAt)}</div>
                         </div>
                     </div>)}
                 </div>
 
-            </div> */}
+            </div>
         </>
     )
 }
