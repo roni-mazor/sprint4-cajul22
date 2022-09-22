@@ -24,7 +24,16 @@
             color: #5e6c84;
             background-color: transparent;
             border: none;
-            right: 6px;
+            right: 4px;
+            border-radius: 3px;
+            padding: 6px;
+            height: 32px;
+            width: 32px;
+
+
+            &:hover {
+                background: #091e4214;
+            }
 
             svg {
                 height: 16px;
@@ -33,6 +42,7 @@
         }
 
         input {
+            margin: 5px 0 12px;
             background: rgba(0, 0, 0, 0);
             border: 0;
             border-radius: 3px;
@@ -43,7 +53,6 @@
             padding: 10px 8px 8px 12px;
             width: 100%;
             font-size: 13px;
-            margin: 5px 0 8px;
 
             &:focus {
                 box-shadow: inset 0 0 0 1.5px var(--ds-border-input, #1946b6);
@@ -177,5 +186,3 @@
     }
 
 }
-
-// }
