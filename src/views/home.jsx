@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
-import { userService } from "../services/user.service"
 import { useSelector, useDispatch } from "react-redux"
-import { loadUsers } from "../store/user.actions"
 import { loadBoards} from "../store/board.actions"
 import { SiTrello } from 'react-icons/si'
 import { onSignUp } from '../store/user.actions'
@@ -17,8 +15,7 @@ export function Home() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
-    useEffect(() => {
-        dispatch(loadUsers())  
+    useEffect(() => { 
         dispatch(loadBoards())       
     }, [])
     

@@ -28,7 +28,7 @@ export const Workspace = () => {
         // console.log('board:', board)
         board.isStarred = !board.isStarred
         dispatch(updateIsStarred(board))
-    
+
     }
     // console.log('member:', member)
     if (!boards) return <LoaderIcon />
@@ -36,6 +36,10 @@ export const Workspace = () => {
         <React.Fragment>
             <AppHeader />
             <section className="workspace">
+                <section>
+                    lalalala
+                </section>
+                <hr />
                 <BoardList boards={boards}
                     onToggleIsStarred={onToggleIsStarred} />
             </section>

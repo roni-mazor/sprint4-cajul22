@@ -66,7 +66,7 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                                             onChange={() => handleMemberCheck(member._id)}
                                         />
                                         <span className='member-container flex align-center' onClick={() => console.log(member._id)}>
-                                            <MemberPreview infoReq={'boardHeader'} member={member} />
+                                            <MemberPreview infoReq={'boardHeader'} memberId={member._id} members={board.members}/>
                                             <p>{member.username}</p>
                                             <p>{`(${member.fullname})`}</p>
                                         </span>

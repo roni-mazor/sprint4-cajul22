@@ -2,6 +2,7 @@
     margin: 2px -2px;
     color: rgb(38, 38, 38);
     align-items: center;
+    padding: 0 0 0 4px;
     cursor: pointer;
 
     .member-avatar-img {
@@ -41,5 +42,9 @@
 
     & span{
         flex: 1;
+    }
+
+    & svg{
+        margin-inline-end: 11px;
     }
 }
