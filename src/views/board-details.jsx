@@ -97,12 +97,12 @@ export const BoardDetails = () => {
         }
     }
 
-    // console.log('board:', board)
+    console.log('board:', board)
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={board.style} >
 
-            {isShareModalOpen && <ShareBoard members={board.members} onToggleShareModal={onToggleShareModal} />}
+            {isShareModalOpen && <ShareBoard x  ={board.members} onToggleShareModal={onToggleShareModal} />}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} board={board}
