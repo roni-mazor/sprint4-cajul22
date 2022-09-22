@@ -1,0 +1,82 @@
+.label-display-btn,
+.label-shower-btn,
+.label-btn.open {
+    position: relative;
+
+    .color-ball-display {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+
+        &.preview {
+            width: 8px;
+            height: 8px;
+            top: 4px;
+            left: 4px;
+        }
+
+    }
+
+    &.green {
+        background-color: #D6ECD2;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #B7DDB0;
+        }
+    }
+
+    &.yellow {
+        background-color: #FAF3C0;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #F5EA92;
+        }
+    }
+
+    &.orange {
+        background-color: #FCE6C6;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #FAD29C;
+        }
+    }
+
+    &.red {
+        background-color: #F5D3CE;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #EFB3AB;
+        }
+    }
+
+    &.purple {
+        background-color: #EDDBF4;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #DFC0EB;
+        }
+    }
+
+    &.blue {
+        background-color: #BCD9EA;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #8BBDD9;
+        }
+    }
+}

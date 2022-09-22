@@ -1,6 +1,6 @@
-// import DateFnsUtils from '@date-io/date-fns';
+import DateFnsUtils from '@date-io/date-fns';
 import { VscChromeClose } from 'react-icons/vsc';
-// import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { useState } from 'react';
 
 
@@ -37,8 +37,8 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
                 </header>
                 <hr />
                 <div className="date-picker-container">
-                    {/* <MuiPickersUtilsProvider style={{ width: "304px" }} utils={DateFnsUtils}> */}
-                        {/* <KeyboardDatePicker
+                    <MuiPickersUtilsProvider style={{ width: "304px" }} utils={DateFnsUtils}>
+                        <KeyboardDatePicker
                             disableToolbar
                             variant="static"
                             format="MM/dd/yyyy"
@@ -50,8 +50,8 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
                             KeyboardButtonProps={{
                                 'aria-label': 'change date',
                             }}
-                        /> */}
-                    {/* </MuiPickersUtilsProvider> */}
+                        />
+                    </MuiPickersUtilsProvider>
                 </div>
 
 

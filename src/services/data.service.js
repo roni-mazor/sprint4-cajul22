@@ -41,32 +41,38 @@ const board1 = {
         {
             "id": "l101",
             "title": "",
-            "color": "#5AAC44"
+            "colorName": "green",
+            "color": '#7BC86C',
         },
         {
             "id": "l102",
             "title": "",
-            "color": "#E6C60D;"
+            "colorName": "yellow",
+            "color": '#F5DD29'
         },
         {
             "id": "l103",
             "title": "",
-            "color": "#E79217"
+            "colorName": "orange",
+            "color": '#FFAF3F'
         },
         {
             "id": "l104",
             "title": "",
-            "color": "#CF513D"
+            "colorName": "red",
+            "color": '#EF7564'
         },
         {
             "id": "l105",
             "title": "",
-            "color": "#CD8DE5"
+            "colorName": "purple",
+            "color": '#CD8DE5'
         },
         {
             "id": "l106",
             "title": "",
-            "color": "#5BA4CF"
+            "colorName": "blue",
+            "color": '#5BA4CF'
         }
     ],
     "members": [

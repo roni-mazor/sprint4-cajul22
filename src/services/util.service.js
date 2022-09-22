@@ -52,11 +52,12 @@ function getMonthName(date) {
 
 function getColors() {
     return [
-        '#B7DDB0', '#F5EA92', '#FAD29C', '#EFB3AB', '#DFC0EB',
-        '#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5',
-        '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1',
-        '#8BBDD9', '#8FDFEB', '#B3F1D0', '#F9C2E4', '#FF8ED4',
-        '#026AA7', '#00AECC', '#6DECA9', '#C1C7D0', '#E568AF',
+        { color:'#7BC86C', colorName:'green' },
+        { color:'#F5DD29', colorName:'yellow' },
+        { color:'#FFAF3F', colorName:'orange' },
+        { color:'#EF7564', colorName:'red' },
+        { color:'#CD8DE5', colorName:'purple' },
+        { color:'#5BA4CF', colorName:'blue' },
     ]
 }
 function getBackgroundColors() {
@@ -80,7 +81,7 @@ function debounce(func, wait) {
 }
 
 function getFormatedTime(time) {
-    
+
     const date = new Date(time)
     const month = utilService.getMonthName(date)
     const day = date.getDate()

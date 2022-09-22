@@ -28,8 +28,8 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
         onSaveTask(t)
     }
 
-    const onChangeLabelColor = (color) => {
-        setLabelEdit((prevLabel) => ({ ...prevLabel, color }))
+    const onChangeLabelColor = (color, colorName) => {
+        setLabelEdit((prevLabel) => ({ ...prevLabel, color, colorName }))
     }
     const onChangeLabelTitle = ({ target: { value } }) => {
         setLabelEdit((prevLabel) => ({ ...prevLabel, title: value }))
@@ -46,7 +46,6 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
     const onDeleteLabel = () => {
         let newLabels = labels.filter(l => (l.id !== labelEdit.id))
         dispatch(removeLabel(newLabels, labelEdit.id))
-        // dispatch(saveLabels(newLabels))
         setLabelEdit(null)
     }
     const onCreateLabel = () => {
@@ -78,7 +77,8 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
                                 <Checkbox onChange={() => { onLabelCheck(label.id) }}
                                     checked={(task.labelIds.includes(label.id))}
                                     name={label.id} size="small" style={{ padding: '5px 9px' }} />
-                                <div className='label-display-btn' style={{ backgroundColor: label.color }}>
+                                <div className={`label-display-btn ${label.colorName}`} >
+                                    <div className="color-ball-display" style={{ background: label.color }}> </div>
                                     <span>{label.title}</span>
                                 </div>
                                 <button className='edit-btn' onClick={() => setLabelEdit(label)}>
@@ -109,10 +109,10 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
                     value={labelEdit.title} />
                 <p>Select a color</p>
                 <section className='label-colors-container'>
-                    {colors.map(color => (
+                    {colors.map(({ color, colorName }) => (
                         <button
                             className={(color === labelEdit.color) ? 'chosen' : ''}
-                            onClick={() => { onChangeLabelColor(color) }}
+                            onClick={() => { onChangeLabelColor(color, colorName) }}
                         >
                             <div style={{ backgroundColor: color }} ></div>
                         </button>))}

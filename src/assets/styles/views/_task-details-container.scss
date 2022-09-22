@@ -72,8 +72,13 @@
             margin-top: 15px;
             margin-bottom: 50px;
         }
-        .task-details-main{
-           flex: 1;
+
+        .task-details-main {
+            flex: 1;
+
+            div.flex {
+                margin-bottom: 20px;
+            }
         }
     }
 }

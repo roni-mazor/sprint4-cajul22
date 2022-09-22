@@ -116,6 +116,7 @@
                 position: relative;
 
                 .label-display-btn {
+
                     display: inline-block;
                     margin-bottom: 0;
                     border-radius: 3px;
@@ -132,9 +133,20 @@
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     flex: 1;
+                    padding-left: 30px;
+
+                    .color-ball-display {
+                        position: absolute;
+                        top: 8px;
+                        left: 8px;
+                        border-radius: 50%;
+                        width: 16px;
+                        height: 16px;
+
+                    }
 
                     span {
-                        font-size: 22px;
+                        font-size: 16px;
                     }
 
                 }
@@ -276,7 +288,7 @@
             }
         }
 
-        
+
 
     }
 }
