@@ -34,6 +34,10 @@ export const Workspace = () => {
         <React.Fragment>
             <AppHeader />
             <section className="workspace">
+                <section>
+                    lalalala
+                </section>
+                <hr />
                 <BoardList boards={boards}
                     onToggleIsStarred={onToggleIsStarred} />
             </section>

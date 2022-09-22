@@ -9,11 +9,11 @@ import GuestImg from '../assets/img/guest-img.svg'
 
 export function ShareBoard({ onToggleShareModal }) {
 
-    const dispatch = useDispatch()
     const users = useSelector(state => state.userModule.users)
     const board = useSelector(state => state.boardModule.board)
     const [txt, setTxt] = useState('')
     const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (txt !== '') {
@@ -29,18 +29,20 @@ export function ShareBoard({ onToggleShareModal }) {
 
     const addUserToBoard = (user) => {
         const selectedUser = board.members.find(member => member._id === user._id)
+        console.log('user:', user)            
         if (selectedUser) {
+            console.log('userRemoved:', user)            
             board.members = board.members.filter(currUser => currUser._id !== user._id)
         } else {
+            console.log('userAdded:', user)            
             board.members.push(user)
         }
         dispatch(saveBoard(board))
     }
 
-    const getFilteredUsers = () => {
+    const getFilteredUsers = () => {     
         const regex = new RegExp(txt, 'i')
         const currUsers = users.filter(user => regex.test(user.fullname))
-
         return currUsers
     }
 

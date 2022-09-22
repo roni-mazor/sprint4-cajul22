@@ -13,8 +13,7 @@ import { TaskTitle } from "../cmps/task-details/task-title"
 import { TaskDescription } from "../cmps/task-details/task-description"
 import { TaskAttachments } from "../cmps/task-details/task-attachments"
 import { TaskActivities } from "../cmps/task-details/task-activities"
-import { saveTask, saveBoard, loadBoard, saveActivity } from "../store/board.actions"
-import { getLoggedinUser, loadUsers } from "../store/user.actions"
+import { saveTask, loadBoard, saveActivity, saveBoard } from "../store/board.actions"
 import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
 import { Members } from "../cmps/task-details/task-members"
 import { LoaderIcon } from "../cmps/loader-icon"
@@ -40,7 +39,6 @@ export const TaskDetails = () => {
     useEffect(() => {
         loadBoard()
         loadTask()
-        dispatch(loadUsers())
     }, [])
 
     useEffect(() => {
@@ -74,20 +72,20 @@ export const TaskDetails = () => {
         else setIsAdditivesModalOpen(type)
     }
 
-    const isUserJoined = (task) => {
-        // const { members } = task
-        // let loggedInUser = members.find(id => id === user._id)
-        // if (loggedInUser) setIsJoined(true)
-
-        // console.log('board.members from isJoinedUser:', board.members)
-
+    const isUserJoined = () => {
+        if (!task) return
+        const { members } = task
+        const member = members.find(id => id === user._id)
+        if (!member) return true
     }
 
     const onAddUserToTask = () => {
-        toggleSuggestedJoin()
         task.members = [...task.members, user._id]
         onSaveTask(task)
         onSaveActivity(`joined to the task`)
+        
+        board.members = [...board.members, user]
+        dispatch(saveBoard(board))
     }
 
     const toggleSuggestedJoin = () => {
@@ -162,7 +160,7 @@ export const TaskDetails = () => {
                             onSaveTask={onSaveTask} />
                     </div>
                     <aside className="details-side-bar">
-                        {!isJoined && <div>
+                        {isUserJoined() && <div>
                             <h3>Suggested</h3>
                             <button onClick={onAddUserToTask}><AiOutlineUser />Join</button>
                         </div>}

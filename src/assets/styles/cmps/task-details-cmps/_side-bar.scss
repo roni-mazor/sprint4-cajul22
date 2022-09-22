@@ -58,6 +58,25 @@
             &:hover {
                 background-color: #00000014;
             }
+
+            & .check {
+                display: none;
+            }
+
+            & .unCheck {
+                display: unset;
+            }
+
+
+        }
+
+        
+        & .isJoinedContainer >* {            
+             
+            font-size: 85px;
+            // &.joined {
+            //     display: none;
+            // }
         }
     }
 

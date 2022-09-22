@@ -4,7 +4,6 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { RiUserAddLine } from 'react-icons/ri'
 
 export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal, onToggleShareModal }) => {
-    console.log(members)
     return (
         <header className="board-header"> 
             <span>                

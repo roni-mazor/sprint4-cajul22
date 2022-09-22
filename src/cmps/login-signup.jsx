@@ -12,15 +12,6 @@ export function LoginSignup(props) {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(props.isSignup)
 
-    useEffect(() => {
-        dispatch(loadUsers())
-    }, [])
-
-    const clearState = () => {
-        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
-        setIsSignup(false)
-    }
-
     const handleChange = ev => {
         const field = ev.target.name
         const value = ev.target.value
