@@ -41,7 +41,7 @@ export const TaskActivities = ({ task, onSaveTask, user }) => {
                         onFocus={onFocus}
                         onBlur={onBlur}
                         onChange={handleChange}
-                        className='comment-txtarea'
+                        className='comment-txtarea simple-txtarea'
                         value={txt}
                         name="" id="" cols="60" rows="2" placeholder='Write a comment'></textarea>
                     {focused && <div>

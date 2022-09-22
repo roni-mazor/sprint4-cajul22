@@ -23,7 +23,7 @@ const user17 = { "_id": "u113", "fullname": "Torry Telem", "username": "Torry", 
 
 const board1 = {
     "_id": "b101",
-    "title": "Our Robot App",
+    "title": "Demo data",
     "isStarred": false,
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,

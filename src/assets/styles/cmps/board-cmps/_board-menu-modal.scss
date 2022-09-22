@@ -43,6 +43,7 @@
 
         &.big {
             margin-top: 16px;
+            margin-bottom: 9px;
             font-size: 20px;
             line-height: 24px;
         }
@@ -77,11 +78,12 @@
 
         span {
             color: #172b4d;
-            font-size: 18px;
+            font-size: 1.4375rem;
             cursor: pointer;
+            margin-top: 5px;
 
             &:hover {
-                color: #172b4d;
+                color: #091e42;
             }
         }
     }
@@ -253,6 +255,10 @@
                 height: 96px;
                 margin-bottom: 8px;
                 width: 100%;
+                cursor: pointer;
+                &:hover{
+                    opacity: .7;
+                }
             }
 
             p {
@@ -346,7 +352,7 @@
         gap: 10px;
         margin-bottom: 20px;
         margin-top: 20px;
-        margin-inline-start: 14px;
+        margin-inline-start: 8px;
     }
 
     .menu-activities-wrapper {

@@ -71,16 +71,16 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
 
                             {provided.placeholder}
                         </ul>
-                        {isAdditivesModalOpen && <TaskAdditivesModal
-                            type={isAdditivesModalOpen}
-                            onRemoveGroup={onRemoveGroup}
-                            toggleModal={toggleAdditivesModal} />}
-
-                        <TxtCompose type={'card'} returnTxt={addTask} />
                     </section>
                 )}
             </Droppable>
 
+            {isAdditivesModalOpen && <TaskAdditivesModal
+                type={isAdditivesModalOpen}
+                onRemoveGroup={onRemoveGroup}
+                toggleModal={toggleAdditivesModal} />}
+
+            <TxtCompose type={'card'} returnTxt={addTask} />
         </>
     )
 }
