@@ -1,23 +1,19 @@
-import { useEffect } from 'react'
+
 import { NavLink, useNavigate } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
-import { loadBoards} from "../store/board.actions"
+import { useSelector} from "react-redux"
 import { SiTrello } from 'react-icons/si'
 import { onSignUp } from '../store/user.actions'
 import HeroImg from '../assets/img/home-hero.png'
 import GuestImg from '../assets/img/guest-img.svg'
+import { useDispatch } from "react-redux"
 
 
 export function Home() {
 
     const users = useSelector(state => state.userModule.users)
 
-    const dispatch = useDispatch()
     const navigate = useNavigate()
-    
-    useEffect(() => { 
-        dispatch(loadBoards())       
-    }, [])
+    const dispatch = useDispatch()
     
 
     const onStartDemo = () => {

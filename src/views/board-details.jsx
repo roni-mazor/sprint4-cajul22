@@ -12,6 +12,7 @@ import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
+import { socketService } from "../services/socket.service"
 
 export const BoardDetails = () => {
     const params = useParams()
@@ -23,7 +24,9 @@ export const BoardDetails = () => {
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
-        dispatch(loadUsers())       
+        // socketService.on('set-board-listening',(borad)=>{
+        //     // dispatch(setBoard)
+        // })
     }, [])
 
     const onCreateGroup = (txt) => {

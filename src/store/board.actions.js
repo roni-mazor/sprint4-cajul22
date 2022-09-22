@@ -4,6 +4,7 @@ import { utilService } from "../services/util.service"
 export function loadBoard(boardId) {
     return async (dispatch) => {
         const board = await boardService.getById(boardId)
+        console.log(board)
         dispatch({ type: 'SET_BOARD', board })
     }
 }
@@ -18,10 +19,10 @@ export function resetBoard() {
 
 export function loadBoards() {
 
-    return async (dispatch, getState) => {
-        const { filterBy } = getState().boardModule
+    console.log('loading')
+    return async (dispatch) => {
         try {
-            const boards = await boardService.query(filterBy)
+            const boards = await boardService.query()
 
             dispatch({ type: 'SET_BOARDS', boards })
         } catch (err) {
@@ -31,13 +32,14 @@ export function loadBoards() {
     }
 }
 
+
 export function updateIsStarred(board) {
 
     return async (dispatch) => {
 
         try {
-            boardService.save(board)
             dispatch({ type: 'SET_STARRED', board })
+            await boardService.starBoardFromWorkspace(board._id)
         } catch (err) {
             console.log('Couldnt update board: ', err);
         }
