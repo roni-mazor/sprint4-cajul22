@@ -5,6 +5,7 @@ import { users } from "./data.service"
 // import { getActionSetWatchedUser } from '../store/review.actions'
 // import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
 import { showSuccessMsg } from '../services/event-bus.service'
+import { httpService } from "./http.service"
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORAGE_KEY = 'users'
@@ -19,7 +20,6 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore,
 }
 
 window.userService = userService
@@ -40,7 +40,7 @@ async function getUsers() {
 }
 
 function onUserUpdate(user) {
-    showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
+    // showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
     //     // store.dispatch(getActionSetWatchedUser(user))
 }
 
@@ -77,8 +77,7 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-    userCred.score = 10000
-    console.log('userCred:', userCred)
+
 
     const user = await storageService.post('users', userCred)
     // const user = await httpService.post('auth/signup', userCred)
@@ -93,13 +92,7 @@ async function logout() {
     // return await httpService.post('auth/logout')
 }
 
-async function changeScore(by) {
-    const user = getLoggedinUser()
-    if (!user) throw new Error('Not loggedin')
-    user.score = user.score + by || by
-    await update(user)
-    return user.score
-}
+
 
 
 function saveLocalUser(user) {

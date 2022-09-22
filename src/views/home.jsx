@@ -19,7 +19,7 @@ export function Home() {
     
     useEffect(() => {
         dispatch(loadUsers())  
-        dispatch(loadBoards())       
+        // dispatch(loadBoards())       
     }, [])
     
 

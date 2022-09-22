@@ -11,6 +11,7 @@ import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
+import { socketService } from "../services/socket.service"
 
 export const BoardDetails = () => {
     const params = useParams()
@@ -22,6 +23,9 @@ export const BoardDetails = () => {
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
+        // socketService.on('set-board-listening',(borad)=>{
+        //     // dispatch(setBoard)
+        // })
     }, [])
 
     const onCreateGroup = (txt) => {
@@ -41,6 +45,7 @@ export const BoardDetails = () => {
     }
 
     const onHandleDrag = ({ source, destination, draggableId, type }) => {
+       
         if (type === 'task') {
             const sIndex = source.index
             const sourceGroupId = source.droppableId
@@ -53,11 +58,14 @@ export const BoardDetails = () => {
             const [task] = sGroup.tasks.splice(sIndex, 1)
             const dGroup = groups.find((g) => g.id === destinationGroupId)
             dGroup.tasks.splice(dIndex, 0, task)
+           
         } else {
             var groups = [...board.groups]
             const [group] = groups.splice(source.index, 1)
             groups.splice(destination.index, 0, group)
+          
         }
+        
         const b = { ...board, groups }
         dispatch(saveBoard(b))
     }

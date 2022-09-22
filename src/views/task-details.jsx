@@ -78,7 +78,7 @@ export const TaskDetails = () => {
         // const { members } = task
         // let loggedInUser = members.find(id => id === user._id)
         // if (loggedInUser) setIsJoined(true)
-        
+
         // console.log('board.members from isJoinedUser:', board.members)
 
     }
@@ -97,7 +97,7 @@ export const TaskDetails = () => {
 
 
     const onSaveTask = (newTask) => {
-        dispatch(saveTask(boardId, groupId, newTask))
+        dispatch(saveTask(groupId, newTask))
     }
     const onSaveActivity = (txt) => {
         dispatch(saveActivity(task.id, groupId, txt))
@@ -155,7 +155,7 @@ export const TaskDetails = () => {
                             onSaveTask={onSaveTask}
                             toggleModal={toggleAdditivesModal}
                         />}
-                        
+
                         <TaskActivities
                             user={user}
                             task={task}

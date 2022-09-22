@@ -21,7 +21,9 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
 
 
     const onRemoveDate = () => {
-        task.dueDate = {}
+        delete task.dueDate
+        // the second option is to not render if the object is empty
+        // task.dueDate = {}
         onSaveTask(task)
     }
 

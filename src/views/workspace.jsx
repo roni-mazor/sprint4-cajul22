@@ -5,7 +5,7 @@ import { AppHeader } from "../cmps/app-header"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { BoardList } from "../cmps/board-list"
 import { boardService } from "../services/board.service"
-import { loadBoards, resetBoard, updateIsStarred } from "../store/board.actions"
+import { loadBoards,  resetBoard, updateIsStarred } from "../store/board.actions"
 import { loadLoggedInUser } from "../store/user.actions"
 
 export const Workspace = () => {
@@ -23,12 +23,10 @@ export const Workspace = () => {
     }, [])
 
     const onToggleIsStarred = async (boardId) => {
-        // console.log('boardId:', boardId)
-        const board = await boardService.getById(boardId)
-        // console.log('board:', board)
+        const board = boards.find(board => boardId === board._id)
         board.isStarred = !board.isStarred
         dispatch(updateIsStarred(board))
-    
+
     }
     // console.log('member:', member)
     if (!boards) return <LoaderIcon />

@@ -34,7 +34,7 @@ const board1 = {
     },
     "customBackgrounds": [],
     "style": {
-        backgroundImage: 'url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'
+        "backgroundImage": "url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)"
     }
     ,
     "labels": [
@@ -42,37 +42,37 @@ const board1 = {
             "id": "l101",
             "title": "",
             "colorName": "green",
-            "color": '#7BC86C',
+            "color": "#7BC86C",
         },
         {
             "id": "l102",
             "title": "",
             "colorName": "yellow",
-            "color": '#F5DD29'
+            "color": "#F5DD29"
         },
         {
             "id": "l103",
             "title": "",
             "colorName": "orange",
-            "color": '#FFAF3F'
+            "color": "#FFAF3F"
         },
         {
             "id": "l104",
             "title": "",
             "colorName": "red",
-            "color": '#EF7564'
+            "color": "#EF7564"
         },
         {
             "id": "l105",
             "title": "",
             "colorName": "purple",
-            "color": '#CD8DE5'
+            "color": "#CD8DE5"
         },
         {
             "id": "l106",
             "title": "",
             "colorName": "blue",
-            "color": '#5BA4CF'
+            "color": "#5BA4CF"
         }
     ],
     "members": [
@@ -144,7 +144,7 @@ const board2 = {
         "imgUrl": "http://some-img"
     },
     "style": {
-        backgroundImage: 'url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'
+        "backgroundImage": "url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)"
     },
     "labels": [
         {
@@ -1278,3 +1278,151 @@ export const users = [
     { ...user17 },
 
 ]
+
+
+const b = {
+    "title": "Demo data",
+    "isStarred": false,
+    "archivedAt": 1589983468418,
+    "createdAt": 1589983468418,
+    "createdBy": {
+        "fullname": "Abi Abambi",
+        "imgUrl": "http://some-img"
+    },
+    "customBackgrounds": [],
+    "style": {
+        "backgroundImage": "url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)"
+    }
+    ,
+    "labels": [],
+    "members": [],
+    "groups": [
+        {
+            "id": "g101",
+            "title": "Group 1",
+            "archivedAt": 1589983468418,
+            "tasks": [
+                {
+                    "id": "c101",
+                    "labelIds": [],
+                    "title": "Replace logo",
+                }
+            ],
+            "style": {}
+        },
+        {
+            "id": "g102",
+            "title": "Group 2",
+            "tasks": [
+                {
+                    "id": "c103",
+                    "labelIds": [],
+                    "title": "Do that",
+                    "archivedAt": 1589983468418,
+                }
+            ],
+            "style": {}
+        }
+    ],
+    "activities": []
+}
+const bb = {
+    "title": "Demo data",
+    "isStarred": false,
+    "archivedAt": 1589983468418,
+    "createdAt": 1589983468418,
+    "createdBy": {
+        "fullname": "Abi Abambi",
+        "imgUrl": "http://some-img"
+    },
+    "customBackgrounds": [],
+    "style": {
+        "backgroundImage": "url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)"
+    }
+    ,
+    "labels": [
+        {
+            "id": "l101",
+            "title": "",
+            "colorName": "green",
+            "color": "#7BC86C",
+        },
+        {
+            "id": "l102",
+            "title": "",
+            "colorName": "yellow",
+            "color": "#F5DD29"
+        },
+        {
+            "id": "l103",
+            "title": "",
+            "colorName": "orange",
+            "color": "#FFAF3F"
+        },
+        {
+            "id": "l104",
+            "title": "",
+            "colorName": "red",
+            "color": "#EF7564"
+        },
+        {
+            "id": "l105",
+            "title": "",
+            "colorName": "purple",
+            "color": "#CD8DE5"
+        },
+        {
+            "id": "l106",
+            "title": "",
+            "colorName": "blue",
+            "color": "#5BA4CF"
+        }
+    ],
+    "members": [],
+    "groups": [
+        {
+            "id": "g101",
+            "title": "Group 1",
+            "archivedAt": 1589983468418,
+            "tasks": [
+                {
+                    "id": "c101",
+                    "labelIds": [],
+                    "title": "Replace logo",
+                },
+                {
+                    "id": "c102",
+                    "labelIds": [],
+                    "title": "Add Samples",
+                }
+            ],
+            "style": {}
+        },
+        {
+            "id": "g102",
+            "title": "Group 2",
+            "tasks": [
+                {
+                    "id": "c103",
+                    "labelIds": [],
+                    "title": "Do that",
+                    "archivedAt": 1589983468418,
+                }
+            ],
+            "style": {}
+        }
+    ],
+    "activities": [
+        {
+            "id": "a101",
+            "txt": "Changed Color",
+            "createdAt": 154514,
+            "byMember": {},
+            "task": {
+                "id": "c101",
+                "labelIds": [],
+                "title": "Replace Logo",
+            }
+        }
+    ],
+}

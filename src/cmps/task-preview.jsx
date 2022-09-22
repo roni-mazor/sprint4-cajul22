@@ -25,6 +25,9 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     }
 
     const onSaveTask = (newTask) => {
+        console.log(boardId)
+        console.log(groupId)
+        console.log(newTask)
         dispatch(saveTask(boardId, groupId, newTask))
     }
 
@@ -101,10 +104,10 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                         {task.labelIds.map((id) => {
                             const label = labels.find(l => l.id === id)
                             return <div key={id} className={`label-btn ${label.colorName} ${openLabelClassName}`}
-                                style={{backgroundColor: !isLabelTxtOpen ? label.color : ''}}
+                                style={{ backgroundColor: !isLabelTxtOpen ? label.color : '' }}
                                 onClick={onToggleLabelTxt}  >
 
-                                {isLabelTxtOpen && <div className="color-ball-display preview" style={{ background: label.color }}> </div> }
+                                {isLabelTxtOpen && <div className="color-ball-display preview" style={{ background: label.color }}> </div>}
                                 {isLabelTxtOpen && <span>{label.title}</span>}
                             </div>
                         })}

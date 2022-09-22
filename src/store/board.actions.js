@@ -4,6 +4,7 @@ import { utilService } from "../services/util.service"
 export function loadBoard(boardId) {
     return async (dispatch) => {
         const board = await boardService.getById(boardId)
+        console.log(board)
         dispatch({ type: 'SET_BOARD', board })
     }
 }
@@ -18,10 +19,10 @@ export function resetBoard() {
 
 export function loadBoards() {
 
-    return async (dispatch, getState) => {
-        const { filterBy } = getState().boardModule
+    console.log('loading')
+    return async (dispatch) => {
         try {
-            const boards = await boardService.query(filterBy)
+            const boards = await boardService.query()
 
             dispatch({ type: 'SET_BOARDS', boards })
         } catch (err) {
@@ -31,13 +32,14 @@ export function loadBoards() {
     }
 }
 
+
 export function updateIsStarred(board) {
 
     return async (dispatch) => {
 
         try {
-            boardService.save(board)
             dispatch({ type: 'SET_STARRED', board })
+            await boardService.starBoardFromWorkspace(board._id)
         } catch (err) {
             console.log('Couldnt update board: ', err);
         }
@@ -73,16 +75,30 @@ export function saveBoard(board) {
     }
 }
 
-export function saveTask(boardId, groupId, task) {
+export function saveTask(groupId, task) {
     return async (dispatch, getState) => {
-        boardService.saveTask(boardId, groupId, task)
+        console.log(groupId)
         const board = getState().boardModule.board
         const groupIdx = board.groups.findIndex(g => g.id === groupId)
-        board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.map(t => {
-            if (t.id === task.id) return task
-            else return t
-        })
+        console.log(groupIdx)
+        console.log(board.groups)
+        // board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.map(t => {
+        //     if (t.id === task.id) return task
+        //     else return t
+        // })
+        // const user = getState().userModule.user
+        // const addedActivity = {
+        //     id: utilService.makeId(6),
+        //     byMember: user,
+        //     createdAt: Date.now(),
+        //     taskId: task.id,
+        //     groupId,
+        //     txt
+        // }
 
+        // board.activities.unshift(addedActivity)
+        console.log(board)
+        boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
 
     }
