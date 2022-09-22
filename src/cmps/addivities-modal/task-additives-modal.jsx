@@ -7,7 +7,7 @@ import { DatePickerModal } from "./date-picker"
 import { GroupActions } from "./group-actions"
 import { MemberPicker } from "./member-picker"
 
-export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, type ,onSaveActivity}) => {
+export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, type ,onSaveActivity,onSaveTaskAct}) => {
 
     const renderModalByType = () => {
         switch (type) {
@@ -49,6 +49,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                         task={task}
                         onSaveTask={onSaveTask}
                         onSaveActivity={onSaveActivity}
+                        onSaveTaskAct={onSaveTaskAct}
                         toggleModal={toggleModal} />
                 )
             case 'date-picker':

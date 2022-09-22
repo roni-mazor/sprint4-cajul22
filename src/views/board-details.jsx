@@ -41,6 +41,7 @@ export const BoardDetails = () => {
     }
 
     const onHandleDrag = ({ source, destination, draggableId, type }) => {
+        var txt = ''
         if (type === 'task') {
             const sIndex = source.index
             const sourceGroupId = source.droppableId
@@ -53,13 +54,21 @@ export const BoardDetails = () => {
             const [task] = sGroup.tasks.splice(sIndex, 1)
             const dGroup = groups.find((g) => g.id === destinationGroupId)
             dGroup.tasks.splice(dIndex, 0, task)
+            if (sGroup.id !== dGroup.id) {
+                txt = `moved`
+            }
+            const b = { ...board, groups }
+            dispatch(saveBoard(b, dGroup, task, txt, task.title, `from ${sGroup.title} to ${dGroup.title}`))
+
         } else {
             var groups = [...board.groups]
             const [group] = groups.splice(source.index, 1)
             groups.splice(destination.index, 0, group)
+            txt = `moved ${group}`
+
+            const b = { ...board, groups }
+            dispatch(saveBoard(b, txt))
         }
-        const b = { ...board, groups }
-        dispatch(saveBoard(b))
     }
 
     const toggleMenuModal = () => {

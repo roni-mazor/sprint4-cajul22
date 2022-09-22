@@ -1,5 +1,5 @@
 .todo-preview {
-
+    margin-bottom: 0px;
     cursor: pointer;
 
     &:hover .todo-menu {
@@ -23,7 +23,7 @@
         opacity: 0;
 
 
-        &:hover  {
+        &:hover {
             background-color: #091e4214;
         }
     }

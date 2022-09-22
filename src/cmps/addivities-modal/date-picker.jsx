@@ -2,6 +2,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { VscChromeClose } from 'react-icons/vsc';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { useState } from 'react';
+import { utilService } from '../../services/util.service';
 
 
 
@@ -9,20 +10,20 @@ import { useState } from 'react';
 export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
 
     const [selectedDate, handleDateChange] = useState(task?.dueDate?.time || new Date())
-
+    const formatedTIme = utilService.getFormatedTime
 
     const onSaveDate = () => {
         task.dueDate = {
             time: selectedDate.getTime() + ((new Date()).getHours() - 12) * 60 * 60 * 1000,
             isDone: false
         }
-        onSaveTask(task)
+        onSaveTask(task, `changed the due date on `, task.title, ` to ${formatedTIme(task.dueDate.time)}`)
     }
 
 
     const onRemoveDate = () => {
         task.dueDate = {}
-        onSaveTask(task)
+        onSaveTask(task, `removed the due date from`, task.title)
     }
 
     return (

@@ -32,7 +32,9 @@
 
         p {
             margin: 0;
-            font-size: 14px;
+            margin-bottom: 5px;
+            font-size: 13px;
+            // color: #172b4d
         }
 
         .labels-container {
@@ -104,6 +106,8 @@
             // float: left;
             // margin-left: 3px;
             // margin-bottom: 10px;
+            position: relative;
+            gap: 1px;
             max-width: 100%;
 
             .date-badge {
@@ -113,11 +117,13 @@
                 font-weight: 400;
                 line-height: 20px;
                 min-height: 20px;
-                padding: 3px;
+                padding: 1px 6px 3px 3px;
                 position: relative;
                 display: inline-flex;
                 vertical-align: top;
                 margin-right: 4px;
+                gap: 2px;
+                background-color: inherit;
 
                 .date-checkbox {
                     color: #443d34;
@@ -128,7 +134,7 @@
                 .clock-icon {
                     font-size: 17px;
                     position: absolute;
-                    top: 4.5px;
+                    top: 3.5px;
                     left: 4px;
                 }
 
@@ -150,44 +156,46 @@
                 line-height: 20px;
                 width: 20px;
                 margin-bottom: 5px;
-                margin-inline-end: 5px;
+                margin-inline-end: 10px;
+                gap: 5px;
+                position: relative;
+                top: 3px;
+                padding-inline-start: 4px;
+                p{
+                    font-size: 13px;
+                }
             }
 
             &.checklist {
                 color: #5e6c84;
                 font-size: 12px;
-                height: 20px;
-                line-height: 20px;
-                width: 20px;
+                border-radius: 3px;
+                max-width: 100%;
                 margin-bottom: 5px;
+                margin-inline-start: 2px;
+                padding: 0px 5px 0px 5px;
                 position: relative;
+                gap: 5px;
+                top: 3px;
 
                 &.done {
                     background-color: #61bd4f;
-                    border-radius: 3px;
                     color: #fff;
-                    margin: 0 4px 4px 0;
-                    max-width: 100%;
-                    min-height: 20px;
-                    overflow: hidden;
-                    padding: 2px;
-                    padding-inline-end: 7px;
-                    position: relative;
-                    text-decoration: none;
-                    text-overflow: ellipsis;
-                    vertical-align: top;
+                    // margin: 0 4px 4px 0;
                 }
 
-                span {
-                    // color: #5e6c84;
-                    margin-inline-end: 5px;
+                .checklist-icon {
                     font-size: 0.875rem;
-                    height: 20px;
-                    line-height: 20px;
-                    width: 20px;
+                    ;
+                    // height: 20px;
+                    // line-height: 20px;
+                    // width: 20px;
+                }
+
+                .todo-num {
+                    font-size: 0.8rem;
                     position: relative;
-                    top: 3px;
-                    left: 0px;
+                    top: 1px;
                 }
             }
         }
@@ -199,15 +207,30 @@
         border-radius: 3px 3px 0 0;
         // text-align: end;
         min-height: 56px;
-        padding: 5px;
+        padding: 5px 5px 5px 5px;
         position: relative;
+        color: #172b4d;
 
-        p {
-            position: absolute;
-            bottom: -17px;
-            left: 0px;
-            padding: 8px;
+
+        .mini-task-title {
+            align-self: flex-end;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 20px;
+            word-wrap: break-word;
+
+
+            .mini-task-title {
+                p {
+                    padding: 0px 8px 0px 8px;
+                }
+
+            }
         }
+
 
         .img-bg {
             background: linear-gradient(180deg, #ffffff80, #fff);
@@ -215,6 +238,16 @@
             overflow: visible;
             align-self: flex-end;
             width: 100%;
+            position: absolute;
+            bottom: -4px;
+            left: 0px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 20px;
+            margin-bottom: 0;
+            padding-bottom: 8px;
+            margin: 0 0 4px;
+            padding-inline-start: 7px;
 
             &::before {
                 background: linear-gradient(180deg, #fff0, #ffffff80);
@@ -226,6 +259,7 @@
                 right: 0;
                 top: -32px;
                 width: 100%;
+
             }
         }
     }

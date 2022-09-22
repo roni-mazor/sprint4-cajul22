@@ -5,7 +5,7 @@ import { BsSquareHalf } from 'react-icons/bs'
 
 import { utilService } from '../../services/util.service'
 
-export const TaskAttachments = ({ task, onSaveTask, removeAttachments,onSaveActivity }) => {
+export const TaskAttachments = ({ task, onSaveTask, removeAttachments, onSaveActivity }) => {
 
     const { attachments } = task
 
@@ -14,10 +14,10 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments,onSaveActi
 
     const onRemoveAttachment = (attachmentId) => {
         console.log('attachmentId :', attachmentId)
+        const attachmentToRemove = attachments.find(attachment => attachment.id === attachmentId)
         task.attachments = attachments.filter(attachment => attachment.id !== attachmentId)
         task.cover = ''
-        onSaveTask(task)
-        onSaveActivity('removed an attachment')
+        onSaveTask(task, `deleted the ${attachmentToRemove.name} attachment from`, task.title)
     }
 
     const onMakeCover = (attachmentId) => {
@@ -26,18 +26,15 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments,onSaveActi
 
         task.cover = selectedAttach
         task.coverClr = ''
-        onSaveActivity('changed the cover')
         onSaveTask(task)
     }
-    
+
     const startLoader = () => {
         setTimeout()
     }
-    
+
     const onRemoveCover = () => {
-        
         task.cover = ''
-        onSaveActivity('removed the cover')
         onSaveTask(task)
     }
     // console.log('date:', date)

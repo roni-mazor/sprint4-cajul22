@@ -28,7 +28,7 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onS
     const onRemoveChecklist = (checklistId) => {
         task.checklists = task.checklists.filter(checklist => checklist.id !== checklistId)
         // onSaveActivity(`removed checklist: ${checklist.title}`)
-        onSaveTask(task)
+        onSaveTask(task, `removed ${checklist.title} from`, task.title)
     }
 
 
@@ -61,10 +61,8 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onS
         const todo = checklist.list.find(todo => todo.id === todoId)
         todo.isDone = !todo.isDone
         checklist = checklist.list.map(currTodo => currTodo.id === todo.id ? todo : currTodo)
-        onSaveTask(task)
-        // if (todo.isDone) onSaveActivity(`has marked todo as done`)
-        // if (!todo.isDone) onSaveActivity(`has marked todo as undone`)
-        // console.log('todo:', todo)
+        if (todo.isDone) onSaveTask(task, `completed ${todo.title} on`, task.title)
+        else onSaveTask(task)
     }
 
     const getProgressPercent = () => {

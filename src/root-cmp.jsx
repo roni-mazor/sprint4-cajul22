@@ -6,9 +6,22 @@ import { LoginPage } from './views/login-page'
 import { Home } from './views/home'
 import { TaskDetails } from './views/task-details'
 import './assets/styles/styles.scss'
+import { useDispatch } from 'react-redux'
+
+import { loadUsers } from './store/user.actions'
+import { loadBoards } from './store/board.actions'
 
 
 export function App() {
+
+
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+      dispatch(loadUsers())  
+      dispatch(loadBoards())       
+  }, [])
+
 
   return (
     <div className="App" >

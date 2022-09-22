@@ -13,7 +13,7 @@ import { TaskTitle } from "../cmps/task-details/task-title"
 import { TaskDescription } from "../cmps/task-details/task-description"
 import { TaskAttachments } from "../cmps/task-details/task-attachments"
 import { TaskActivities } from "../cmps/task-details/task-activities"
-import { saveTask, saveBoard, loadBoard, saveActivity } from "../store/board.actions"
+import { saveTask, saveBoard, loadBoard } from "../store/board.actions"
 import { getLoggedinUser, loadUsers } from "../store/user.actions"
 import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
 import { Members } from "../cmps/task-details/task-members"
@@ -78,7 +78,7 @@ export const TaskDetails = () => {
         // const { members } = task
         // let loggedInUser = members.find(id => id === user._id)
         // if (loggedInUser) setIsJoined(true)
-        
+
         // console.log('board.members from isJoinedUser:', board.members)
 
     }
@@ -87,7 +87,6 @@ export const TaskDetails = () => {
         toggleSuggestedJoin()
         task.members = [...task.members, user._id]
         onSaveTask(task)
-        onSaveActivity(`joined to the task`)
     }
 
     const toggleSuggestedJoin = () => {
@@ -95,20 +94,15 @@ export const TaskDetails = () => {
     }
 
 
-
-    const onSaveTask = (newTask) => {
-        dispatch(saveTask(boardId, groupId, newTask))
-    }
-    const onSaveActivity = (txt) => {
-        dispatch(saveActivity(task.id, groupId, txt))
+    const onSaveTask = (newTask, txt, link, opTxt) => {
+        dispatch(saveTask(groupId, newTask, txt, link, opTxt))
     }
 
     const handleChange = (ev) => {
         const value = ev.target.value
         let newTask = task
         newTask.title = value
-        onSaveActivity(`changed the task title to ${value}`)
-        onSaveTask(newTask)
+        onSaveTask(newTask, `changed the title on`, value)
     }
 
     // console.log('task:', task)
@@ -144,18 +138,15 @@ export const TaskDetails = () => {
                         </div>
                         {task?.dueDate?.time && < DateShower onSaveTask={onSaveTask} toggleModal={toggleAdditivesModal} task={task} />}
                         <TaskDescription task={task}
-                            onSaveActivity={onSaveActivity}
                             onSaveTask={onSaveTask} />
                         {task?.attachments?.length > 0 && <TaskAttachments task={task}
-                            onSaveActivity={onSaveActivity}
                             onSaveTask={onSaveTask} />}
                         {task?.checklists?.length > 0 && <TaskChecklist
                             task={task}
-                            onSaveActivity={onSaveActivity}
                             onSaveTask={onSaveTask}
                             toggleModal={toggleAdditivesModal}
                         />}
-                        
+
                         <TaskActivities
                             user={user}
                             task={task}
@@ -178,7 +169,6 @@ export const TaskDetails = () => {
                         type={isAdditivesModalOpen}
                         task={task}
                         onSaveTask={onSaveTask}
-                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleAdditivesModal}
                     />}
                 </section>
