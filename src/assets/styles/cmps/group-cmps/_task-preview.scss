@@ -31,6 +31,7 @@
         z-index: 10;
 
         p {
+            color: #172b4d;
             margin: 0;
             font-size: 14px;
         }
@@ -119,8 +120,12 @@
                 vertical-align: top;
                 margin-right: 4px;
 
+                span:last-child {
+                    margin: 0 2px;
+                }
+
                 .date-checkbox {
-                    color: #443d34;
+                    color: white;
                     opacity: 0;
 
                 }
@@ -128,8 +133,8 @@
                 .clock-icon {
                     font-size: 17px;
                     position: absolute;
-                    top: 4.5px;
-                    left: 4px;
+                    top: 3.5px;
+                    left: 5px;
                 }
 
                 &:hover {
