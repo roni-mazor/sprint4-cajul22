@@ -86,11 +86,12 @@ function createGroup(title) {
     }
 }
 
-function createLabel() {
+function createLabel({color, colorName}) {
     return {
         "id": utilService.makeId(),
         "title": "",
-        "color": "#fff"
+        color,
+        colorName
     }
 
 }
@@ -108,4 +109,3 @@ function createNewAttachment(url, height, width, name = 'Media url') {
 }
 
 
- 

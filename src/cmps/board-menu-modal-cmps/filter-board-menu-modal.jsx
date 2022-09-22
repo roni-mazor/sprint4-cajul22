@@ -61,12 +61,13 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                                 <li key={member._id} className='label-container'>
                                     <label >
                                         <Checkbox
+                                            sx={{ color: 'lightgray' }}
                                             checked={(filterBy.members.includes(member._id))}
                                             size="small" style={{ padding: '5px 9px' }}
                                             onChange={() => handleMemberCheck(member._id)}
                                         />
                                         <span className='member-container flex align-center' onClick={() => console.log(member._id)}>
-                                            <MemberPreview infoReq={'boardHeader'} member={member} />
+                                            <MemberPreview infoReq={'boardHeader'} memberId={member._id} members={board.members}/>
                                             <p>{member.username}</p>
                                             <p>{`(${member.fullname})`}</p>
                                         </span>
@@ -83,11 +84,13 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                                 <li key={label.id} className='label-container'>
                                     <label >
                                         <Checkbox
-                                            checked={(filterBy.labelIds.includes(label.id))}
+                                            sx={{ color: 'lightgray' }}
+                                            checked={(filterBy.labelIds.includes(label.id))
+                                            }
                                             onChange={() => handleLabelCheck(label.id)}
                                             name={label.id} size="small" style={{ padding: '5px 9px' }} />
-                                        <div className='label-display-btn' style={{ backgroundColor: label.color }}>
-                                            <span>{label.title}</span>
+                                        <div className={`label-display-btn ${label.colorName}`} >
+                                            <div className="color-ball-display" style={{ background: label.color }}> </div>
                                         </div>
                                     </label>
                                 </li>

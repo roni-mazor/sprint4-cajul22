@@ -30,6 +30,26 @@
         }
     }
 
+    &.light-green {
+        background-color: #EEF6EC;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #D6ECD2;
+        }
+    }
+
+    &.dark-green {
+        background-color: #B7DDB0;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #99D18F;
+        }
+    }
+
     &.yellow {
         background-color: #FAF3C0;
         transition: 0.2s;
@@ -37,6 +57,26 @@
         &:hover {
             transition: 0.2s;
             background-color: #F5EA92;
+        }
+    }
+
+    &.light-yellow {
+        background-color: #FDFAE5;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #FAF3C0;
+        }
+    }
+
+    &.dark-yellow {
+        background-color: #F5EA92;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #F3E260;
         }
     }
 
@@ -50,6 +90,26 @@
         }
     }
 
+    &.light-orange {
+        background-color: #FDF4E7;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #FCE6C6;
+        }
+    }
+
+    &.dark-orange {
+        background-color: #FAD29C;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #FDBF69;
+        }
+    }
+
     &.red {
         background-color: #F5D3CE;
         transition: 0.2s;
@@ -57,6 +117,26 @@
         &:hover {
             transition: 0.2s;
             background-color: #EFB3AB;
+        }
+    }
+
+    &.light-red {
+        background-color: #FBEDEB;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #F5D3CE;
+        }
+    }
+
+    &.dark-red {
+        background-color: #EFB3AB;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #EC9488;
         }
     }
 
@@ -70,6 +150,26 @@
         }
     }
 
+    &.light-purple {
+        background-color: #F7F0FA;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #EDDBF4;
+        }
+    }
+
+    &.dark-purple {
+        background-color: #DFC0EB;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #D5A6E6;
+        }
+    }
+
     &.blue {
         background-color: #BCD9EA;
         transition: 0.2s;
@@ -77,6 +177,144 @@
         &:hover {
             transition: 0.2s;
             background-color: #8BBDD9;
+        }
+    }
+
+    &.light-blue {
+        background-color: #E4F0F6;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #BCD9EA;
+        }
+    }
+
+    &.dark-blue {
+        background-color: #8BBDD9;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #5BA4CF;
+        }
+    }
+
+    &.light-sky {
+        background-color: #E4F7FA;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #BDECF3;
+        }
+    }
+
+    &.sky {
+        background-color: #BDECF3;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #8FDFEB;
+        }
+    }
+
+    &.dark-sky {
+        background-color: #8FDFEB;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #5DD3E5;
+        }
+    }
+
+    &.light-lime {
+        background-color: #ECFBF3;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #D3F6E4;
+        }
+    }
+
+    &.lime {
+        background-color: #D3F6E4;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #B3F1D0;
+        }
+    }
+
+    &.dark-lime {
+        background-color: #B3F1D0;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #90ECC1;
+        }
+    }
+    &.light-pink {
+        background-color: #FEF1F9;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #FCDCEF;
+        }
+    }
+
+    &.pink {
+        background-color: #FCDCEF;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #F9C2E4;
+        }
+    }
+
+    &.dark-pink {
+        background-color: #F9C2E4;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #FFABDF;
+        }
+    }
+    &.light-black {
+        background-color: #EBECF0;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #DFE1E6;
+        }
+    }
+
+    &.black {
+        background-color: #DFE1E6;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #C1C7D0;
+        }
+    }
+
+    &.dark-black {
+        background-color: #C1C7D0;
+        transition: 0.2s;
+
+        &:hover {
+            transition: 0.2s;
+            background-color: #B3BAC5;
         }
     }
 }

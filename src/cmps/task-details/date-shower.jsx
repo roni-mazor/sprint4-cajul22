@@ -43,12 +43,14 @@ export const DateShower = ({ task, onSaveTask, toggleModal }) => {
             <label className="date-shower-container" >
                 <Checkbox
                     onChange={onChangeDone}
+                    sx={{ color: 'lightgray' }}
                     checked={(task.dueDate.isDone)}
                     size="small" style={{ padding: '5px 9px' }} />
                 <div className='time-display-btn' >
                     {`${getDate()} ${time.toLocaleTimeString()}`}
                     {task.dueDate.isDone && <span className="isdone complete" >complete</span>}
                     {(!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 0) && <span className="isdone overdue" >overdue</span>}
+                    {(!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) > 0 && ((time - new Date()) / 1000 / 60 / 60) < 36) && <span className="isdone due-soon" >due soon</span>}
                     <span onClick={onOpenModal} className="arrow-down"><AiOutlineDown /></span>
                 </div>
             </label>

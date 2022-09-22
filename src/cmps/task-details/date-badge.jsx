@@ -24,6 +24,8 @@ export const DateBadge = ({ task, onSaveTask }) => {
             return { background: '#61bd4f' }
         } else if (!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 0) {
             return { background: '#ec9488' }
+        }  else if (!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 36) {
+            return { background: '#f2d600' }
         } else return { background: '#fff', color: '#5e6c84' }
     }
 

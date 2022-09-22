@@ -2,20 +2,15 @@ import { VscChromeClose } from 'react-icons/vsc'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { AiOutlineCheck } from 'react-icons/ai'
 import { MemberPreview } from '../member-preview'
-import { utilService } from '../../services/util.service'
+import GuestImg from '../../assets/img/guest-img.svg'
 
-export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) => {
+export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const board = useSelector(state => state.boardModule.board)
-
-    const dispatch = useDispatch()
     const [txt, setTxt] = useState('')
-    const loggedIn = useSelector(state => state.userModule.user)
     const members = useSelector(state => state.boardModule.board.members)
 
-    useEffect(() => {
-        
-    }, [txt])
 
     const onAddMemberToTask = (memberId) => {
         let currMember = task.members.find(member => (member === memberId))
@@ -25,7 +20,7 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
             onSaveTask(task)
             return
         }
-        
+
         currMember = board.members.find(member => member._id === memberId)
         task.members = [...task.members, currMember._id]
         onSaveTask(task)
@@ -35,11 +30,16 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
         setTxt(value)
     }
 
+    const isMemberOnTask = (memberId) => {       
+        const { members } = task        
+        const isOnTask = members.find(id => id === memberId)
+        if (isOnTask) return true
+    }
+
     const getFilteredUsers = () => {
         const regex = new RegExp(txt, 'i')
         const currMembers = members.filter(member => regex.test(member.fullname))
-        console.log('currMembers:', currMembers)
-        
+        // console.log('currMembers:', currMembers)
         return currMembers
     }
 
@@ -62,7 +62,16 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal, isJoinedChange }) 
                 value={txt} />
             <p>Board members</p>
             <section className="avatars-container flex column">
-                {getFilteredUsers().map(member => <MemberPreview task={task} members={members} key={member._id} memberId={member._id} infoReq={'picker'} onAddMemberToTask={onAddMemberToTask}/>)}
+                {getFilteredUsers().map(member =>
+                    <div className='member-avatar flex align-center' title={`${member?.fullname}`} onClick={() => onAddMemberToTask(member._id)}>
+                        <img src={member.imgUrl ? member.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
+                        <pre className="picker-pre">
+                            <p>{member.fullname ? member.fullname : 'loading...'}</p>
+                            <p>{member.username ? `(${member.username})` : 'loading...'}</p>
+                        </pre>
+                        <span></span>
+                        {isMemberOnTask(member._id) && <AiOutlineCheck/>}
+                    </div>)}
             </section>
         </section >
     )
