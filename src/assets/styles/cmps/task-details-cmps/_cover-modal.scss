@@ -20,6 +20,10 @@
         margin-bottom: 16px;
 
         .header-cover {
+            &.focused {
+                border-radius: 3px;
+            }
+
             .card-header {
                 height: 28px;
                 border-radius: 3px 3px 0 0;
@@ -73,38 +77,44 @@
             }
         }
 
-        .body-cover {
-            background: #5E6C84;
-            background-size: cover;
-            opacity: 0.3;
-            height: 62px;
-            margin: 0;
-            box-shadow: none;
-            border-radius: 3px;
-            position: relative;
-            width: 134px;
-            border: 1px solid rgba(9, 30, 66, 0.08);
+        .body {
+            &.focused {
+                border-radius: 3px;
+            }
 
-            .card-body {
-                position: absolute;
-                bottom: 4px;
-                padding: 6px 4px 4px 6px;
+            .body-cover {
+                background: #5E6C84;
+                background-size: cover;
+                opacity: 0.3;
+                height: 62px;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 3px;
+                position: relative;
+                width: 134px;
+                border: 1px solid rgba(9, 30, 66, 0.08);
 
-                >* {
+                .card-body {
+                    position: absolute;
+                    bottom: 4px;
+                    padding: 6px 4px 4px 6px;
 
-                    background: #FFFFFF;
-                    opacity: 1;
-                    height: 4px;
-                    border-radius: 2px;
-                }
+                    >* {
 
-                .top-line {
-                    width: 116px;
-                }
+                        background: #FFFFFF;
+                        opacity: 1;
+                        height: 4px;
+                        border-radius: 2px;
+                    }
 
-                .middle-line {
-                    width: 92px;
-                    margin-top: 4px;
+                    .top-line {
+                        width: 116px;
+                    }
+
+                    .middle-line {
+                        width: 92px;
+                        margin-top: 4px;
+                    }
                 }
             }
         }

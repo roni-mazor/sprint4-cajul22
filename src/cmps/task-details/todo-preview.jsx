@@ -39,7 +39,8 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
 
         <div className='todo-preview  flex align-center justify-between' onClick={onFocus}>
             <div >
-                <span><Checkbox
+                <span><Checkbox 
+                className="todo-checkbox"
                     onClick={onStopProp}
                     checked={todo.isDone}
                     onChange={() => onTodoIsDone(todo.id)} />
