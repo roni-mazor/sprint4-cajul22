@@ -100,8 +100,11 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                     <section className="labels-container">
                         {task.labelIds.map((id) => {
                             const label = labels.find(l => l.id === id)
-                            return <div key={id} className={`label-btn ${openLabelClassName}`}
-                                onClick={onToggleLabelTxt} style={{ backgroundColor: label.color }} >
+                            return <div key={id} className={`label-btn ${label.colorName} ${openLabelClassName}`}
+                                style={{backgroundColor: !isLabelTxtOpen ? label.color : ''}}
+                                onClick={onToggleLabelTxt}  >
+
+                                {isLabelTxtOpen && <div className="color-ball-display preview" style={{ background: label.color }}> </div> }
                                 {isLabelTxtOpen && <span>{label.title}</span>}
                             </div>
                         })}

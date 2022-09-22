@@ -74,7 +74,8 @@ export const BoardDetails = () => {
                         const regex = new RegExp(filterBy.txt, 'i')
                         return (
                             filterBy.labelIds.every(id => task.labelIds.includes(id)) &&
-                            regex.test(task.title)
+                            regex.test(task.title) &&
+                            filterBy.members.every(id => task.members.includes(id))
                         )
                     })
                 }

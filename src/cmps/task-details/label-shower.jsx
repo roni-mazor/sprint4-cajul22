@@ -10,8 +10,9 @@ export const LabelShower = ({ labelIds, toggleModal }) => {
                 {labelIds.map((id) => {
                     const label = labels.find(l => l.id === id)
                     if (!label) return
-                    return <button key={id} className="label-shower-btn" onClick={() => { toggleModal('label-picker') }}
-                        style={{ backgroundColor: label.color }} >
+                    return <button key={id} className={`label-shower-btn ${label.colorName}`} 
+                    onClick={() => { toggleModal('label-picker') }}>
+                        <div className="color-ball-display" style={{ background: label.color }}> </div> 
                         {label.title}
                     </button>
                 })}
