@@ -54,7 +54,6 @@
 
     .task-compose {
         border-radius: 3px;
-        margin: -2px -5px 0px -4px;
         padding: 4px 8px;
         position: relative;
         white-space: nowrap;
@@ -64,6 +63,8 @@
         display: block;
         width: 272px;
         height: 40px;
+        margin: -3px -5px 0px -4px;
+
 
         .compose-btn {
             color: #5e6c84;
@@ -81,7 +82,7 @@
             .plus-sign {
                 position: absolute;
                 font-size: 13px;
-                top: 11px;
+                top: 10px;
                 left: 18px;
                 color: #5e6c84;
 

@@ -49,7 +49,7 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
         setLabelEdit(null)
     }
     const onCreateLabel = () => {
-        setLabelEdit(boardService.createLabel())
+        setLabelEdit(boardService.createLabel(colors[0]))
 
     }
 
@@ -75,6 +75,7 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
                         <li className='label-container'>
                             <label >
                                 <Checkbox onChange={() => { onLabelCheck(label.id) }}
+                                    sx={{ color: 'lightgray' }}
                                     checked={(task.labelIds.includes(label.id))}
                                     name={label.id} size="small" style={{ padding: '5px 9px' }} />
                                 <div className={`label-display-btn ${label.colorName}`} >

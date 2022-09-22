@@ -52,12 +52,38 @@ function getMonthName(date) {
 
 function getColors() {
     return [
-        { color:'#7BC86C', colorName:'green' },
-        { color:'#F5DD29', colorName:'yellow' },
-        { color:'#FFAF3F', colorName:'orange' },
-        { color:'#EF7564', colorName:'red' },
-        { color:'#CD8DE5', colorName:'purple' },
-        { color:'#5BA4CF', colorName:'blue' },
+
+        { color: '#B7DDB0', colorName: 'light-green' },
+        { color: '#F5EA92', colorName: 'light-yellow' },
+        { color: '#FAD29C', colorName: 'light-orange' },
+        { color: '#EFB3AB', colorName: 'light-red' },
+        { color: '#DFC0EB', colorName: 'light-purple' },
+        { color: '#7BC86C', colorName: 'green' },
+        { color: '#F5DD29', colorName: 'yellow' },
+        { color: '#FFAF3F', colorName: 'orange' },
+        { color: '#EF7564', colorName: 'red' },
+        { color: '#CD8DE5', colorName: 'purple' },
+        { color: '#5AAC44', colorName: 'dark-green' },
+        { color: '#E6C60D', colorName: 'dark-yellow' },
+        { color: '#E79217', colorName: 'dark-orange' },
+        { color: '#CF513D', colorName: 'dark-red' },
+        { color: '#A86CC1', colorName: 'dark-purple' },
+        { color: '#8BBDD9', colorName: 'light-blue' },
+        { color: '#8FDFEB', colorName: 'light-sky' },
+        { color: '#B3F1D0', colorName: 'light-lime' },
+        { color: '#F9C2E4', colorName: 'light-pink' },
+        { color: '#505F79', colorName: 'light-black' },
+        { color: '#5BA4CF', colorName: 'blue' },
+        { color: '#29CCE5', colorName: 'sky' },
+        { color: '#6DECA9', colorName: 'lime' },
+        { color: '#FF8ED4', colorName: 'pink' },
+        { color: '#344563', colorName: 'black' },
+        { color: '#026AA7', colorName: 'dark-blue' },
+        { color: '#026AA7', colorName: 'dark-sky' },
+        { color: '#4ED583', colorName: 'dark-lime' },
+        { color: '#E568AF', colorName: 'dark-pink' },
+        { color: '#091E42', colorName: 'dark-black' },
+
     ]
 }
 function getBackgroundColors() {

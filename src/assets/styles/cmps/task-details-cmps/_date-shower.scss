@@ -41,15 +41,19 @@
                     font-size: 12px;
                     padding: 0 4px;
                     border-radius: 2px;
+                    color: white;
 
                     &.complete {
-                        color: #FFFFFF;
                         background-color: #61BD4F;
                     }
 
                     &.overdue {
-                        color: #FFFFFF;
                         background-color: #EC9488;
+                    }
+
+                    &.due-soon {
+                        background-color: #f2d600;
+                        color: #172b4d;
                     }
 
                 }
