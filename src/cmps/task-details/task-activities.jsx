@@ -29,7 +29,7 @@ export const TaskActivities = ({ task, onSaveTask, user }) => {
         <section className="activities-container">
             <div className="activities-title flex align-center">
                 <span className='task-icon'> <GrList /></span><h3>Activity</h3>
-                <button className='show-acts'>Show details</button>
+                {/* <button className='show-acts'>Show details</button> */}
             </div>
             <div className='new-comment flex'>
                 <div className='profile-img'>

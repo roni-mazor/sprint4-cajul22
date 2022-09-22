@@ -117,7 +117,7 @@
             overflow-wrap: break-word;
             padding: 6px 8px 2px;
             resize: none;
-            width: 100%;
+            width: 98%;
         }
     }
 
@@ -126,6 +126,7 @@
         align-items: flex-start;
         margin-block-start: 3px;
         padding-bottom: 6px;
+        position: relative;
 
         .add-task-btn {
             align-items: center;

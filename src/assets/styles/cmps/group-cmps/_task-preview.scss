@@ -10,7 +10,9 @@
     position: relative;
     text-decoration: none;
 
-
+    &:hover {
+        background-color: #f4f5f7;
+    }
 
     .task-cover {
         border-radius: 3px 3px 0 0;

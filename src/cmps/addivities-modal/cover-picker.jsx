@@ -126,7 +126,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
                                 <div className='dot-corner'></div>
                             </div>
                         </div>
-                        <div className={cardFocus === 'body' ? 'focused' : ''}>
+                        <div className={cardFocus === 'body' ? 'body focused' : 'body'}>
                             <div className=' body-cover' style={cardClr}
                                 onClick={() => onToggleCover('body')}>
                                 <div className='card-body'>

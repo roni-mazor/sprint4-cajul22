@@ -8,6 +8,12 @@
             height: 32px;
             padding: 8px 0;
             margin-bottom: 10px;
+            position: relative;
+            color: #42526e;
+
+            >* {
+                color: #42526e;
+            }
 
             h3 {
                 font-size: 16px;
@@ -15,6 +21,24 @@
             }
 
             gap: 15px;
+
+            .show-acts {
+                position: absolute;
+                top: 0px;
+                right: 5px;
+                border: none;
+                border-radius: 3px;
+                box-sizing: border-box;
+                display: inline-block;
+                line-height: 20px;
+                padding: 6px 12px;
+                text-decoration: none;
+                color: #5e6c84;
+
+                &:hover {
+                    background-color: #091e4214;
+                }
+            }
         }
 
         & div img {
