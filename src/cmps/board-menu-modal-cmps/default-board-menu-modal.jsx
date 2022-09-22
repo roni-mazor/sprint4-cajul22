@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom"
-
 import { BsSearch } from "react-icons/bs"
 import { IoMdClose } from "react-icons/io"
 import { GrList } from 'react-icons/gr'
-
-
+import GuestImg from '../../assets/img/guest-img.svg'
 import { utilService } from "../../services/util.service"
 
 
@@ -47,7 +45,7 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                 <div className="board-menu-activities">
                     {board.activities.map(activity => <div className="activity-container flex">
                         <div className="profile-img">
-                            <img src={activity?.byMember.imgUrl} alt="" />
+                            <img src={(activity.byMember.imgUrl)? activity.byMember.imgUrl : GuestImg} alt="" />
                         </div>
                         <div className="activity flex column">
                             <div>

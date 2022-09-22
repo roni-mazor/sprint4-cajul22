@@ -1,6 +1,10 @@
 .board-list {
     margin-bottom: 20px;
 
+    h3 {
+        padding-inline-start: 8px;
+    }
+
     .board-list-container {
 
         display: flex;
@@ -12,16 +16,18 @@
             width: 195px;
             height: 95px;
             background-color: #091e4204;
-            padding: 1px;
+            padding: 8px;
             position: relative;
-            color: rgb(47, 45, 45);
             background-size: cover;
             z-index: 20;
-            
-           & h1 {
+
+            & h1 {
+                margin: 0;
                 margin-inline-start: 5px;
-                color: whitesmoke;
-                text-shadow: 0px 0px 4px #464444;
+                font-weight: 300;
+                line-height: 1em;
+                // color: whitesmoke;
+                // text-shadow: 0px 0px 4px #464444;
             }
         }
     }

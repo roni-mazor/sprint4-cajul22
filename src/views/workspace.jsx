@@ -17,7 +17,7 @@ export const Workspace = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch(loadBoards())
+        dispatch(loadBoards())
         dispatch(loadLoggedInUser())
         // dispatch(resetBoard())
     }, [])
@@ -33,11 +33,12 @@ export const Workspace = () => {
     return (
         <React.Fragment>
             <AppHeader />
-            <section className="workspace">
-                <section>
-                    lalalala
+                <section className="workspace-banner">
+                    <img src="https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" className="workspace-img"/>
+                    <h2>Welcome to Your Workspace</h2>
                 </section>
-                <hr />
+                <hr class="horizontal-rule"/>
+            <section className="workspace">
                 <BoardList boards={boards}
                     onToggleIsStarred={onToggleIsStarred} />
             </section>

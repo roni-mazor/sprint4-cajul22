@@ -6,7 +6,7 @@
 html {
     font-family: montserrat;
     line-height: 1.6;
-    // color: $clr2;
+    color: #172b4d;
 }
 
 textarea {
@@ -54,4 +54,13 @@ a:active {
 
 button {
     cursor: pointer;
+}
+
+hr{
+    background-color: #091e4221;
+    border: 0;
+    height: 1px;
+    margin: 16px 0;
+    padding: 0;
+    width: 100%;
 }

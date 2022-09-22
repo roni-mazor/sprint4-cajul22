@@ -12,7 +12,7 @@ import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
-import { socketService } from "../services/socket.service"
+// import { socketService } from "../services/socket.service"
 
 export const BoardDetails = () => {
     const params = useParams()
