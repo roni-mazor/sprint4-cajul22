@@ -9,7 +9,7 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments, onSaveAct
 
     const { attachments } = task
 
-    const formatedTime = utilService.getFormatedTime
+    const formatedTime = utilService.getDetailedTime
 
 
     const onRemoveAttachment = (attachmentId) => {

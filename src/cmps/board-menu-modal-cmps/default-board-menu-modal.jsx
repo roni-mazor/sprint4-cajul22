@@ -7,7 +7,8 @@ import { utilService } from "../../services/util.service"
 
 
 export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal }) => {
-    const formatedTime = utilService.getFormatedTime
+    // const formatedTime = utilService.getFormatedTime
+    const formatedTime = utilService.getDetailedTime
 
     return (
         <>
@@ -52,14 +53,20 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                             <div className="activity flex column">
                                 <div>
                                     <span className="username">{activity.byMember.fullname} </span>
-                                    <span className="txt"> {activity.txt} </span>
+                                    {!activity.comment && <span className="txt"> {activity.txt} </span>}
                                     {activity.task && <Link onClick={toggleMenuModal}
                                         to={`/board/${board._id}/${activity.groupId}/${activity.task.id}`}>
                                         {activity.link}
                                     </Link>}
                                     {activity.opTxt && <span className="opTxt"> {activity.opTxt}</span>}
                                 </div>
-                                <div>{formatedTime(activity.createdAt)}</div>
+                                {activity.task && <Link className="activity-time"
+                                    to={`/board/${board._id}/${activity?.groupId}/${activity?.task?.id}`}>
+                                    {formatedTime(activity.createdAt)}
+                                </Link>}
+                                {!activity.task && <div className="activity-time">{formatedTime(activity.createdAt)}</div>}
+                                {activity.attachment && <img className="activity-attachment"
+                                    src={activity.attachment} alt="task attachment" />}
                             </div>
                         </div>)}
                     </div>

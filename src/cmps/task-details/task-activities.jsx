@@ -10,7 +10,7 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
     const [focused, setFocused] = useState(false)
     const [txt, setTxt] = useState('')
     const [isShown, setIsShown] = useState('')
-    const activities = board.activities.filter(activity => activity.task.id === task.id)
+    const activities = board.activities.filter(activity => activity?.task?.id === task.id)
 
     // console.log('activities:', activities)
     const onFocus = () => setFocused(true)
@@ -37,7 +37,7 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
 
     const onSaveComment = () => {
         if (!txt) return
-        onSaveTask(task, `on`, task.title, txt)
+        onSaveTask(task, `on`, task.title, txt, null, true)
         setTxt('')
         setFocused(false)
     }
@@ -77,11 +77,13 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
                         <img src={activity?.byMember.imgUrl} alt="" />
                     </div>
                     <div className='activity-txt flex column'>
-                        <span className="username">{activity.byMember.fullname} </span>
-                        <span className="txt"> {activity.txt} </span>
-                        <span> {activity.link} </span>
-                        {activity.opTxt && <span className="opTxt"> {activity.opTxt}</span>}
-                        <div>{formatedTime(activity.createdAt)}</div>
+                        <div>
+                            <span className="username">{activity.byMember.fullname} </span>
+                            <span className="txt"> {activity.txt} </span>
+                            <span> {activity.link} </span>
+                            {activity.opTxt && <span className="opTxt"> {activity.opTxt}</span>}
+                        </div>
+                        <div className='time'>{formatedTime(activity.createdAt)}</div>
                     </div>
                 </div>)}
             </div>}

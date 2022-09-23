@@ -93,8 +93,8 @@ export const TaskDetails = () => {
     }
 
 
-    const onSaveTask = (newTask, txt, link, opTxt) => {
-        dispatch(saveTask(groupId, newTask, txt, link, opTxt))
+    const onSaveTask = (newTask, txt, link, opTxt, attachment, comment) => {
+        dispatch(saveTask(groupId, newTask, txt, link, opTxt, attachment, comment))
     }
 
     const handleChange = (ev) => {
@@ -128,8 +128,6 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div className="task-details-main">
                         <div className="flex">
-                            {console.log('task:', task)
-                            }
                             {(task.members.length !== 0) && <Members members={board.members} membersId={task.members} toggleModal={toggleAdditivesModal} />}
                             <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
