@@ -133,10 +133,10 @@ export const TaskDetails = () => {
                             {console.log('task:', task)
                             }
                             {(task.members.length !== 0) && <Members members={board.members} membersId={task.members} toggleModal={toggleAdditivesModal} />}
-                            <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
+                            {(task.labelIds.length !== 0) && <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />}
 
 
-                        {task?.dueDate?.time && < DateShower onSaveTask={onSaveTask} toggleModal={toggleAdditivesModal} task={task} />}
+                            {task?.dueDate?.time && < DateShower onSaveTask={onSaveTask} toggleModal={toggleAdditivesModal} task={task} />}
                         </div>
                         <TaskDescription task={task}
                             onSaveTask={onSaveTask} />

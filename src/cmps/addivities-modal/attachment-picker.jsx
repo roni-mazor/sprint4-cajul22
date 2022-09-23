@@ -2,21 +2,12 @@ import { useState, useEffect } from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
 import { boardService } from '../../services/board.service'
 import { imgFromLink, uploadService } from '../../services/upload.service'
-import { utilService } from '../../services/util.service'
 
 
 export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
 
 
     const [txt, setTxt] = useState('')
-
-    useEffect(() => {
-
-
-        return () => {
-            setTxt('')
-        }
-    }, [])
 
     const onHandleChange = ({ target: { value } }) => {
         setTxt(value)

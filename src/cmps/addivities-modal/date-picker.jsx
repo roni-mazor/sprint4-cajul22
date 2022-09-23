@@ -10,14 +10,14 @@ import { utilService } from '../../services/util.service';
 export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
 
     const [selectedDate, handleDateChange] = useState(task?.dueDate?.time || new Date())
-    const formatedTIme = utilService.getFormatedTime
+    const formatedTime = utilService.getFormatedTime
 
     const onSaveDate = () => {
         task.dueDate = {
             time: selectedDate.getTime() + ((new Date()).getHours() - 12) * 60 * 60 * 1000,
             isDone: false
         }
-        onSaveTask(task, `changed the due date on `, task.title, ` to ${formatedTIme(task.dueDate.time)}`)
+        onSaveTask(task, `changed the due date on `, task.title, ` to ${formatedTime(task.dueDate.time)}`)
     }
 
 
