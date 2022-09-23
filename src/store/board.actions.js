@@ -32,6 +32,10 @@ export function loadBoards() {
     }
 }
 
+export function onCreateNewBoard(){
+
+}
+
 
 export function updateIsStarred(board) {
 
