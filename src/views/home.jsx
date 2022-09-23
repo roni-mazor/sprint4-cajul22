@@ -1,11 +1,13 @@
 
+import React, { useEffect } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-import { useSelector} from "react-redux"
+import { useSelector } from "react-redux"
 import { SiTrello } from 'react-icons/si'
 import { onSignUp } from '../store/user.actions'
 import HeroImg from '../assets/img/home-hero.png'
 import GuestImg from '../assets/img/guest-img.svg'
 import { useDispatch } from "react-redux"
+import { loadBoards } from "../store/board.actions"
 
 
 export function Home() {
@@ -14,19 +16,20 @@ export function Home() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     
 
     const onStartDemo = () => {
         const demoUser = users.find(user => user.username === 'demo')
-        if(demoUser) {
+        if (demoUser) {
             navigate('/workspace')
-        }else{
-            dispatch(onSignUp({ username: 'demo', password: 'demo', fullname: 'demo' ,imgUrl: GuestImg}))
+        } else {
+            dispatch(onSignUp({ username: 'demo', password: 'demo', fullname: 'demo', imgUrl: GuestImg }))
                 .then(navigate('/workspace'))
         }
 
     }
-    
+
     return <section className="home-container">
         <header className="home-header-container flex align-center">
             <NavLink to="/workspace" className="home-logo flex align-center" ><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></NavLink>

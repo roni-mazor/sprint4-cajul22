@@ -10,14 +10,6 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
 
     const [txt, setTxt] = useState('')
 
-    useEffect(() => {
-
-
-        return () => {
-            setTxt('')
-        }
-    }, [])
-
     const onHandleChange = ({ target: { value } }) => {
         setTxt(value)
     }

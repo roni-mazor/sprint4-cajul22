@@ -16,7 +16,8 @@ export const boardService = {
     // saveTask,
     createLabel,
     createNewAttachment,
-    starBoardFromWorkspace
+    starBoardFromWorkspace,
+    createNewBoard
 }
 
 async function query() {
@@ -117,6 +118,35 @@ function createNewAttachment(url, height, width, name = 'Media url') {
         createdAt: Date.now()
     }
 
+}
+
+function createNewBoard(boardInfo) {
+
+    const board = {
+        "_id": utilService.makeId(6),
+        "title": boardInfo.title,
+        "isStarred": false,
+        "createdAt": Date.now(),
+        "createBy": {
+            "_id": boardInfo.user._id,
+            "fullname": boardInfo.user.fullname,
+            "imgUrl": boardInfo.user.imgUrl
+        },
+        "customBackgrounds": [],
+        "style": {
+            "backgroundImage": boardInfo.background.backgroundUrl,
+            "backgroundColor": boardInfo.background.backgroundColor
+        },
+        "labels": [],
+        "members": [
+            boardInfo.user,
+        ],
+        "groups": [],
+        "activities": [],
+    }
+
+    storageService.post(STORAGE_KEY, board)
+    return board
 }
 
 

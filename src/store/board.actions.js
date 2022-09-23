@@ -26,13 +26,25 @@ export function loadBoards() {
 
             dispatch({ type: 'SET_BOARDS', boards })
         } catch (err) {
-            console.log('Couldnt get boards: ', err);
+            console.log('Couldnt get boards: ', err)
         }
 
     }
 }
 
-export function onCreateNewBoard(){
+export function createBoard(boardInfo) {
+    return async (dispatch) => {
+        console.log('boardInfo :', boardInfo)
+        try {
+            const board = boardService.createNewBoard(boardInfo)
+            console.log('newBoard from board actions!:', board)
+            dispatch({ type: 'ADD_BOARD', board })
+            const boards = await boardService.query()
+            dispatch({ type: 'SET_BOARDS', boards })
+        } catch (err) {
+            console.log('Had a problem at createBoard', err)
+        }
+    }
 
 }
 
@@ -45,7 +57,7 @@ export function updateIsStarred(board) {
             dispatch({ type: 'SET_STARRED', board })
             await boardService.starBoardFromWorkspace(board._id)
         } catch (err) {
-            console.log('Couldnt update board: ', err);
+            console.log('Couldnt update board: ', err)
         }
     }
 }
@@ -64,10 +76,12 @@ export function saveGroup(group, task, txt, link, opTxt) {
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
-            console.log('Couldnt update board: ', err);
+            console.log('Couldnt update board: ', err)
         }
     }
 }
+
+
 export function saveBoard(board, group, task, txt, link, opTxt) {
 
     return async (dispatch, getState) => {
@@ -80,7 +94,7 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
-            console.log('Couldnt update board: ', err);
+            console.log('Couldnt update board: ', err)
         }
     }
 }
