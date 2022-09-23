@@ -1,9 +1,9 @@
 .create-board-modal {
-    position: relative;
+    position: absolute;
     width: 300px;
     will-change: top, left;
-    top: 50%;
-    left: 25%;
+    // top: 50%;
+    left: 37%;
     z-index: 20;
 
     color: var(--ds-text, #172b4d);

@@ -75,9 +75,12 @@ export const TaskDetails = () => {
     }
 
     const isUserJoined = () => {
+        console.log('user:', user)
+        
         if (!task) return
         const { members } = task
         const member = members.find(id => id === user._id)
+        console.log('user_id:', user._id)        
         if (!member) return true
     }
 

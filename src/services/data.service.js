@@ -22,7 +22,6 @@ const user17 = { "fullname": "Torry Telem", "username": "Torry", "password": "12
 
 
 const board1 = {
-    "_id": "b101",
     "title": "Demo data",
     "isStarred": false,
     "archivedAt": 1589983468418,
@@ -30,7 +29,7 @@ const board1 = {
     "createdBy": {
         "_id": "u103",
         "fullname": "Abi Abambi",
-        "imgUrl": "http://some-img"
+        "imgUrl": "https://media.istockphoto.com/photos/close-up-portrait-of-brunette-woman-picture-id1154642632?b=1&k=20&m=1154642632&s=612x612&w=0&h=StstyxyDdiJQgUSTlaWv2ITXSMb029KzXijHtsaTQEg="
     },
     "customBackgrounds": [],
     "style": {
@@ -129,7 +128,6 @@ const board1 = {
 }
 
 const board2 = {
-    "_id": "b102",
     "title": "Volunteering",
     "isStarred": true,
     "archivedAt": 1589983468418,
@@ -137,7 +135,7 @@ const board2 = {
     "createdBy": {
         "_id": "u103",
         "fullname": "Abi Abambi",
-        "imgUrl": "http://some-img"
+        "imgUrl": "https://media.istockphoto.com/photos/close-up-portrait-of-brunette-woman-picture-id1154642632?b=1&k=20&m=1154642632&s=612x612&w=0&h=StstyxyDdiJQgUSTlaWv2ITXSMb029KzXijHtsaTQEg="
     },
     "style": {
         "backgroundImage": "url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)"
@@ -298,7 +296,6 @@ const board2 = {
 }
 
 const board3 = {
-    "_id": "b103",
     "title": "App Ideas",
     "isStarred": false,
     "archivedAt": 1589983468418,
@@ -306,10 +303,10 @@ const board3 = {
     "createdBy": {
         "_id": "u103",
         "fullname": "Abi Abambi",
-        "imgUrl": "http://some-img"
+        "imgUrl": "https://media.istockphoto.com/photos/close-up-portrait-of-brunette-woman-picture-id1154642632?b=1&k=20&m=1154642632&s=612x612&w=0&h=StstyxyDdiJQgUSTlaWv2ITXSMb029KzXijHtsaTQEg="
     },
     "style": {
-        backgroundImage: 'url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'
+        "backgroundImage": 'url(https://images.unsplash.com/photo-1662705510599-dcd4eb70c745?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'
     },
     "labels": [
         {
