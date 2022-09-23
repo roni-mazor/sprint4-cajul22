@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
-import { loadBoard, saveBoard} from "../store/board.actions"
+import { loadBoard, saveBoard } from "../store/board.actions"
 import { loadUsers } from "../store/user.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
@@ -20,7 +20,7 @@ export const BoardDetails = () => {
     let [isShareModalOpen, setIsShareModalOpen] = useState(false)
     const board = useSelector(state => state.boardModule.board)
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false)
-    const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMemebers: false })
+    const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMembers: false, isDone: null, time: null })
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
@@ -81,15 +81,30 @@ export const BoardDetails = () => {
     }
 
     const getFilteredBoard = () => {
+        console.log(filterBy)
         return {
             ...board, groups: board.groups.map(group => {
                 return {
                     ...group, tasks: group.tasks.filter(task => {
                         const regex = new RegExp(filterBy.txt, 'i')
+                        console.log(filterBy)
                         return (
+
                             filterBy.labelIds.every(id => task.labelIds.includes(id)) &&
                             regex.test(task.title) &&
-                            filterBy.members.every(id => task.members.includes(id))
+                            ((filterBy.showNoMembers) ?
+                                !task.hasOwnProperty('members') || task.members.length === 0 :
+                                filterBy.members.every(id => task?.members?.includes(id))) &&
+                            ((filterBy.isDone === null) ? true :
+                                (filterBy.isDone) ? task?.dueDate?.isDone : !task?.dueDate?.isDone) 
+                                // &&
+                            // ((filterBy.time === null) ? true :
+                            //     (filterBy.time === 0) ? (task?.dueDate?.time && new Date() - task.dueDate.time < 0) : false
+                            // )
+                            // :
+                            //     (task?.dueDate?.time > filterBy.time && task?.dueDate?.time > 0)
+
+
                         )
                     })
                 }
@@ -102,7 +117,7 @@ export const BoardDetails = () => {
     return (
         <div className="board-wrapper" style={board.style} >
 
-            {isShareModalOpen && <ShareBoard x  ={board.members} onToggleShareModal={onToggleShareModal} />}
+            {isShareModalOpen && <ShareBoard x={board.members} onToggleShareModal={onToggleShareModal} />}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} board={board}

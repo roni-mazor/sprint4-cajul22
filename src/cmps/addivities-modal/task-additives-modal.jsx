@@ -80,17 +80,22 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
     }
 
     const getModalPos = () => {
-        const { type, posDetails } = modalInfo
+        const { type, posDetails, windowWidth } = modalInfo
+        let left = posDetails.left
         if (type === 'todo' || type === 'check-list' || type === 'attachment') {
-            console.log(type)
-            return { top: `${posDetails.top + posDetails.height}px`, left: `${posDetails.left}px` }
+            if (windowWidth - posDetails.left < 304) left = windowWidth - 340
+            return { top: `${posDetails.top + posDetails.height}px`, left: `${left}px` }
         } else if (type === 'cover-picker' || type === 'label-picker' || type === 'date-picker' || type === 'members') {
-            return { top: '51px', left: `${posDetails.left}px` }
-            // maybe the members should be in this position?
+            if (windowWidth - posDetails.left < 304) left = windowWidth - 340
+            return { top: '51px', left: `${left}px` }
         } else if (type === 'group-actions') {
-            return { top: `${posDetails.top}px`, left: `${posDetails.left - 160}px` }
+            return { top: `${posDetails.top}px`, left: `${left - 160}px` }
         }
+
+        //and another adjustment for moblie between 500 or something to allways place in the center
     }
+
+
 
     return (
         <section style={getModalPos()} className="additives-modal-container">

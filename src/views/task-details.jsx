@@ -68,10 +68,10 @@ export const TaskDetails = () => {
 
     const toggleAdditivesModal = (ev, type) => {
         const posDetails = ev.target.getBoundingClientRect()
-        const windowDetails = window.screen
-        console.log({ type, posDetails })
+        const windowWidth = window.innerWidth
+        console.log({ type, posDetails, windowWidth })
         if (type === isAdditivesModalOpen?.type) setIsAdditivesModalOpen(null)
-        else setIsAdditivesModalOpen({ type, posDetails, windowDetails })
+        else setIsAdditivesModalOpen({ type, posDetails, windowWidth })
     }
 
     const isUserJoined = () => {
