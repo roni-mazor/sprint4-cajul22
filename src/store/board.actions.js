@@ -32,6 +32,10 @@ export function loadBoards() {
     }
 }
 
+export function onCreateNewBoard(){
+
+}
+
 
 export function updateIsStarred(board) {
 
@@ -71,7 +75,7 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
             const user = getState().userModule.user
             let groupId = group ? group.id : null
             // board.activities = []
-            console.log('txt:', txt)
+            // console.log('txt:', txt)
             _saveActivity(user, board, groupId, task, txt, link, opTxt)
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
@@ -81,7 +85,7 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
     }
 }
 
-export function saveTask(groupId, task, txt, link, opTxt) {
+export function saveTask(groupId, task, txt, link, opTxt, attachment, comment) {
     return async (dispatch, getState) => {
         // boardService.saveTask(boardId, groupId, task)
         const user = getState().userModule.user
@@ -91,7 +95,7 @@ export function saveTask(groupId, task, txt, link, opTxt) {
             if (t.id === task.id) return task
             else return t
         })
-        _saveActivity(user, board, groupId, task, txt, link, opTxt)
+        _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, comment)
         boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
 
@@ -152,7 +156,7 @@ export function removeAttachment(groupId, taskId) {
 }
 
 
-function _saveActivity(user, board, groupId, task, txt, link, opTxt) {
+function _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, comment = false) {
     if (!txt) return
 
     const addedActivity = {
@@ -163,7 +167,9 @@ function _saveActivity(user, board, groupId, task, txt, link, opTxt) {
         groupId,
         txt,
         link,
-        opTxt
+        opTxt,
+        attachment,
+        comment
     }
     // console.log('addedActivity:', addedActivity)
     board.activities = [addedActivity, ...board.activities]

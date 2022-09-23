@@ -95,8 +95,8 @@ export const TaskDetails = () => {
     }
 
 
-    const onSaveTask = (newTask, txt, link, opTxt) => {
-        dispatch(saveTask(groupId, newTask, txt, link, opTxt))
+    const onSaveTask = (newTask, txt, link, opTxt, attachment, comment) => {
+        dispatch(saveTask(groupId, newTask, txt, link, opTxt, attachment, comment))
     }
 
     const handleChange = (ev) => {
@@ -130,8 +130,6 @@ export const TaskDetails = () => {
                 <section className="task-details-content " >
                     <div className="task-details-main">
                         <div className="task-data-container">
-                            {console.log('task:', task)
-                            }
                             {(task.members.length !== 0) && <Members members={board.members} membersId={task.members} toggleModal={toggleAdditivesModal} />}
                             {(task.labelIds.length !== 0) && <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />}
 

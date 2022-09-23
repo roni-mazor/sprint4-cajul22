@@ -388,7 +388,7 @@
 
         .board-menu-activities {
             overflow-y: hidden;
-
+            margin-right: 8px;
 
             .activity-container {
                 gap: 10px;
@@ -410,6 +410,26 @@
 
                     a {
                         text-decoration: underline;
+                    }
+                    
+                    .activity-time {
+                        font-size: 12px;
+                        text-decoration: none;
+                        cursor: pointer;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+
+                    .activity-attachment {
+                        max-height: 300px;
+                        max-width: 100%;
+                        border: 1px solid #dfe1e6;
+                        border-radius: 3px;
+                        box-sizing: border-box;
+                        clear: both;
+                        display: block;
+                        margin: 8px 0 4px;
                     }
                 }
             }
