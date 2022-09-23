@@ -70,7 +70,7 @@ export const TaskDetails = () => {
         const posDetails = ev.target.getBoundingClientRect()
         const windowDetails = window.screen
         console.log({ type, posDetails })
-        if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
+        if (type === isAdditivesModalOpen?.type) setIsAdditivesModalOpen(null)
         else setIsAdditivesModalOpen({ type, posDetails, windowDetails })
     }
 

@@ -403,6 +403,7 @@
                     max-width: 250px;
                     color: #172b4d;
                     font-size: 14px;
+                    max-width: 250px;
 
                     .username {
                         font-weight: 700;
@@ -411,12 +412,13 @@
                     a {
                         text-decoration: underline;
                     }
-                    
+
                     .activity-time {
                         font-size: 12px;
                         text-decoration: none;
                         cursor: pointer;
-                        &:hover{
+
+                        &:hover {
                             text-decoration: underline;
                         }
                     }
