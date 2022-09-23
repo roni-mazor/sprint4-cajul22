@@ -1,77 +1,81 @@
 .task-details-container {
-    .date-shower {
+    .task-data-container {
+        margin-left: 50px;
 
-        height: 56px;
-        margin: 0 8px 26px 0;
-        position: relative;
-        left: 58px;
-        top: 11px;
-        width: fit-content;
+        .date-shower {
 
-        h3 {
-            color: #5e6c84;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 16px;
-            margin-top: 0;
-            margin-right: 8px;
-            margin-bottom: 4px;
-            margin-left: 0;
-            line-height: 20px;
-        }
+            height: 56px;
+            float: left;
+            margin: 10px 0 20px;
 
-        .date-shower-container {
-            display: flex;
-            align-items: center;
-
-            .time-display-btn {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                background-color: rgba(9, 30, 66, .04);
-                border-radius: 3px;
-                color: #172b4d;
-                cursor: pointer;
-                font-size: 14px;
-                font-weight: 400;
+            h3 {
+                color: #5e6c84;
+                // position: relative;
+                // left: -3px;
+                font-size: 12px;
+                font-weight: 600;
+                margin-top: 16px;
+                margin-top: 0;
+                margin-right: 8px;
+                margin-bottom: 4px;
+                margin-left: 0;
                 line-height: 20px;
-                padding: 6px 12px;
-
-                .isdone {
-                    font-size: 12px;
-                    padding: 0 4px;
-                    border-radius: 2px;
-                    color: white;
-
-                    &.complete {
-                        background-color: #61BD4F;
-                    }
-
-                    &.overdue {
-                        background-color: #EC9488;
-                    }
-
-                    &.due-soon {
-                        background-color: #f2d600;
-                        color: #172b4d;
-                    }
-
-                }
-
-                .arrow-down {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: #172b4d;
-                    font-size: 14px;
-                }
-
-                &:hover {
-                    background-color: rgba(9, 30, 66, 0.1);
-                }
             }
 
+            .date-shower-container {
+                display: flex;
+                align-items: center;
+                // position: relative;
+                // left: -7px;
+
+                .time-display-btn {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    background-color: rgba(9, 30, 66, .04);
+                    border-radius: 3px;
+                    color: #172b4d;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 20px;
+                    padding: 6px 12px;
+
+                    .isdone {
+                        font-size: 12px;
+                        padding: 0 4px;
+                        border-radius: 2px;
+                        color: white;
+
+                        &.complete {
+                            background-color: #61BD4F;
+                        }
+
+                        &.overdue {
+                            background-color: #EC9488;
+                        }
+
+                        &.due-soon {
+                            background-color: #f2d600;
+                            color: #172b4d;
+                        }
+
+                    }
+
+                    .arrow-down {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #172b4d;
+                        font-size: 14px;
+                    }
+
+                    &:hover {
+                        background-color: rgba(9, 30, 66, 0.1);
+                    }
+                }
+
+            }
         }
     }
-
 }

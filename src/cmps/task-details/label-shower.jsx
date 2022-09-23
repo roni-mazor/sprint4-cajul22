@@ -10,13 +10,13 @@ export const LabelShower = ({ labelIds, toggleModal }) => {
                 {labelIds.map((id) => {
                     const label = labels.find(l => l.id === id)
                     if (!label) return
-                    return <button key={id} className={`label-shower-btn ${label.colorName}`} 
-                    onClick={() => { toggleModal('label-picker') }}>
-                        <div className="color-ball-display" style={{ background: label.color }}> </div> 
+                    return <button key={id} className={`label-shower-btn ${label.colorName}`}
+                        onClick={(ev) => { toggleModal(ev, 'label-picker') }}>
+                        <div className="color-ball-display" style={{ background: label.color }}> </div>
                         {label.title}
                     </button>
                 })}
-                <button onClick={() => { toggleModal('label-picker') }} className="add-label-btn"><BsPlusLg /></button>
+                <button onClick={(ev) => { toggleModal(ev, 'label-picker') }} className="add-label-btn"><BsPlusLg /></button>
             </section>
         </section>
     )

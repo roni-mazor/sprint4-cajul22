@@ -1,62 +1,59 @@
 .task-details-container {
-    .label-shower {
-        position: relative;
-        top: 13px;
-        height: 56px;
-        margin: 0 8px 8px 60px;
+    .task-data-container {
+        .label-shower {
 
-        h3 {
-            color: #5e6c84;
-            font-size: 12px;
-            font-weight: 600;
-            margin-top: 16px;
-            margin-top: 0;
-            margin-right: 8px;
-            margin-bottom: 4px;
-            margin-left: 0;
-            line-height: 20px;
-        }
+            margin: 0 8px 8px 0;
+            float: left;
 
-        .labels-shower-container {
-            flex-wrap: wrap;
-            display: flex;
-            gap: 4px;
-
-            .add-label-btn {
-                border: none;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 3px;
-                width: 32px;
-                height: 32px;
-                background-color: rgba(9, 30, 66, 0.04);
-
-                &:hover {
-                    background-color: #00000014;
-                }
+            h3 {
+                color: #5e6c84;
+                font-size: 12px;
+                font-weight: 600;
+                margin: 0 8px 4px 0;
+                line-height: 20px;
             }
 
-            .label-shower-btn {
-                padding-left: 30px;
-                border: none;
-                position: relative;
-                border-radius: 3px;
-                max-width: 100%;
-                min-width: 48px;
-                height: 32px;
-                line-height: 32px;
-                color: #172b4d;
-                font-size: 14px;
-                font-weight: 400;
-                text-align: left;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+            .labels-shower-container {
+                flex-wrap: wrap;
+                display: flex;
+                gap: 4px;
+
+                .add-label-btn {
+                    border: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    width: 32px;
+                    height: 32px;
+                    background-color: rgba(9, 30, 66, 0.04);
+
+                    &:hover {
+                        background-color: #00000014;
+                    }
+                }
+
+                .label-shower-btn {
+                    padding-left: 30px;
+                    border: none;
+                    position: relative;
+                    border-radius: 3px;
+                    max-width: 100%;
+                    min-width: 48px;
+                    height: 32px;
+                    line-height: 32px;
+                    color: #172b4d;
+                    font-size: 14px;
+                    font-weight: 400;
+                    text-align: left;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
 
 
 
-                &:hover {
-                    opacity: 0.8;
+                    &:hover {
+                        opacity: 0.8;
+                    }
                 }
             }
         }

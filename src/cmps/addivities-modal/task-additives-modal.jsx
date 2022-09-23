@@ -7,10 +7,10 @@ import { DatePickerModal } from "./date-picker"
 import { GroupActions } from "./group-actions"
 import { MemberPicker } from "./member-picker"
 
-export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, type ,onSaveActivity,onSaveTaskAct}) => {
+export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, modalInfo, onSaveActivity, onSaveTaskAct }) => {
 
     const renderModalByType = () => {
-        switch (type) {
+        switch (modalInfo.type) {
             case 'label-picker':
                 return (
                     < LabelPicker
@@ -79,8 +79,21 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
         }
     }
 
+    const getModalPos = () => {
+        const { type, posDetails } = modalInfo
+        if (type === 'todo' || type === 'check-list' || type === 'attachment') {
+            console.log(type)
+            return { top: `${posDetails.top + posDetails.height}px`, left: `${posDetails.left}px` }
+        } else if (type === 'cover-picker' || type === 'label-picker' || type === 'date-picker' || type === 'members') {
+            return { top: '51px', left: `${posDetails.left}px` }
+            // maybe the members should be in this position?
+        } else if (type === 'group-actions') {
+            return { top: `${posDetails.top}px`, left: `${posDetails.left - 160}px` }
+        }
+    }
+
     return (
-        <section className="additives-modal-container">
+        <section style={getModalPos()} className="additives-modal-container">
             {renderModalByType()}
         </section>
     )

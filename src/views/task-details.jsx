@@ -66,10 +66,12 @@ export const TaskDetails = () => {
         ev.stopPropagation()
     }
 
-    const toggleAdditivesModal = (type) => {
-        // console.log('isAdditivesModalOpen:', isAdditivesModalOpen)
+    const toggleAdditivesModal = (ev, type) => {
+        const posDetails = ev.target.getBoundingClientRect()
+        const windowDetails = window.screen
+        console.log({ type, posDetails })
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
-        else setIsAdditivesModalOpen(type)
+        else setIsAdditivesModalOpen({ type, posDetails, windowDetails })
     }
 
     const isUserJoined = () => {
@@ -113,13 +115,13 @@ export const TaskDetails = () => {
                     <header className="task-details-header"
                         style={{ backgroundImage: `url(${task.cover.url})`, backgroundColor: task.cover.color }}>
                         <button className="cover-btn-header"
-                            onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                            onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                     </header>}
                 {task.coverClr &&
                     <header className="task-details-header"
                         style={{ backgroundColor: task.coverClr, height: '116px' }}>
                         <button className="cover-btn-header"
-                            onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                            onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                     </header>}
                 <TaskTitle task={task}
                     handleChange={handleChange}
@@ -132,8 +134,8 @@ export const TaskDetails = () => {
                             <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
 
 
-                        </div>
                         {task?.dueDate?.time && < DateShower onSaveTask={onSaveTask} toggleModal={toggleAdditivesModal} task={task} />}
+                        </div>
                         <TaskDescription task={task}
                             onSaveTask={onSaveTask} />
                         {task?.attachments?.length > 0 && <TaskAttachments task={task}
@@ -156,15 +158,15 @@ export const TaskDetails = () => {
                             <button onClick={onAddUserToTask}><AiOutlineUser />Join</button>
                         </div>}
                         <h3>Add to card</h3>
-                        <button onClick={() => toggleAdditivesModal('members')}><AiOutlineUser />Members</button>
-                        <button onClick={() => toggleAdditivesModal('label-picker')}><BsTag /> Labels</button>
-                        <button onClick={() => toggleAdditivesModal('date-picker')}><AiOutlineClockCircle /> Dates</button>
-                        <button onClick={() => toggleAdditivesModal('attachment')}><ImAttachment /> Attachments</button>
-                        <button onClick={() => toggleAdditivesModal('cover-picker')}><span><BsSquareHalf /></span> Cover</button>
-                        <button onClick={() => toggleAdditivesModal('check-list')}><TbCheckbox /> CheckList</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'members')}><AiOutlineUser />Members</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'label-picker')}><BsTag /> Labels</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}><ImAttachment /> Attachments</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'check-list')}><TbCheckbox /> CheckList</button>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
-                        type={isAdditivesModalOpen}
+                        modalInfo={isAdditivesModalOpen}
                         task={task}
                         onSaveTask={onSaveTask}
                         toggleModal={toggleAdditivesModal}
