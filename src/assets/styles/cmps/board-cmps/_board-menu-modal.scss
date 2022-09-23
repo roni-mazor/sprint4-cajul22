@@ -288,8 +288,22 @@
             gap: 8px;
             padding-right: 4px;
 
+            // .background-container {
+            //     background-size: cover;
+            //     border-radius: 8px;
+            //     height: 96px;
+            //     width: 100%;
+            //     cursor: pointer;
+            //     float: left;
+            //     padding: 0 4px;
+            //     position: relative;
+            //     text-align: center;
+            //     transition: 0.3s;
+            // }
+
             div,
-            label {
+            label,
+            .background-container {
                 background-size: cover;
                 border-radius: 8px;
                 height: 96px;

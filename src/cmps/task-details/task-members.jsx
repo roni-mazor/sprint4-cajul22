@@ -8,7 +8,7 @@ export function Members({members, membersId, toggleModal }) {
             {console.log('membersId:',membersId )
             }
             {membersId.map(id => <MemberPreview members={members} key={id} memberId={id} infoReq={'boardHeader'} />)}
-            <button className='add-task-member' onClick={() => { toggleModal('members') }}>+</button>
+            <button className='add-task-member' onClick={(ev) => { toggleModal(ev,'members') }}>+</button>
         </section>
     </section>
 }

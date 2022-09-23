@@ -146,31 +146,37 @@ const board2 = {
         {
             "id": "l101",
             "title": "",
-            "color": "#5AAC44"
+            "colorName": "green",
+            "color": "#7BC86C",
         },
         {
             "id": "l102",
             "title": "",
-            "color": "#E6C60D"
+            "colorName": "yellow",
+            "color": "#F5DD29"
         },
         {
             "id": "l103",
             "title": "",
-            "color": "#E79217"
+            "colorName": "orange",
+            "color": "#FFAF3F"
         },
         {
             "id": "l104",
             "title": "",
-            "color": "#CF513D"
+            "colorName": "red",
+            "color": "#EF7564"
         },
         {
             "id": "l105",
             "title": "",
+            "colorName": "purple",
             "color": "#CD8DE5"
         },
         {
             "id": "l106",
             "title": "",
+            "colorName": "blue",
             "color": "#5BA4CF"
         }
     ],
@@ -308,13 +314,39 @@ const board3 = {
     "labels": [
         {
             "id": "l101",
-            "title": "Done",
-            "color": "#61bd4f"
+            "title": "",
+            "colorName": "green",
+            "color": "#7BC86C",
         },
         {
             "id": "l102",
-            "title": "Progress",
-            "color": "#61bd33"
+            "title": "",
+            "colorName": "yellow",
+            "color": "#F5DD29"
+        },
+        {
+            "id": "l103",
+            "title": "",
+            "colorName": "orange",
+            "color": "#FFAF3F"
+        },
+        {
+            "id": "l104",
+            "title": "",
+            "colorName": "red",
+            "color": "#EF7564"
+        },
+        {
+            "id": "l105",
+            "title": "",
+            "colorName": "purple",
+            "color": "#CD8DE5"
+        },
+        {
+            "id": "l106",
+            "title": "",
+            "colorName": "blue",
+            "color": "#5BA4CF"
         }
     ],
     "members": [

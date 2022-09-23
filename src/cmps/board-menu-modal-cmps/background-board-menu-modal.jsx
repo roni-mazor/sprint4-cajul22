@@ -55,16 +55,16 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
         dispatch(saveBoard(board, null, null, `changed the background of this board`))
         // saveBoard(board, group, task, txt, link, opTxt)
     }
-    
+
     const changeBackgroundImage = (url) => {
         board.style = { backgroundImage: `url(${url})` }
         // dispatch(saveBoard(board))
         dispatch(saveBoard(board, null, null, `changed the background of this board`))
     }
-    
 
 
-    
+
+
     return (
         <>
             <header className="menu-modal-header ">
@@ -168,7 +168,6 @@ const Colors = ({ board, toggleMenuModal, setBackgroundModalState }) => {
     const dispatch = useDispatch()
     const changeBoardBackground = (color) => {
         board.style = { backgroundColor: color }
-        // dispatch(saveBoard(board))
         dispatch(saveBoard(board, null, null, `changed the background of this board`))
     }
     const colors = utilService.getBackgroundColors()
@@ -184,8 +183,10 @@ const Colors = ({ board, toggleMenuModal, setBackgroundModalState }) => {
             </span>
         </header>
         <hr />
-        <section className="backgrounds-container">
-            {colors.map(color => <div onClick={() => { changeBoardBackground(color) }} style={{ backgroundColor: color }}></div>)}
+        <section className="backgrounds-wrapper">
+            <section className="backgrounds-container">
+                {colors.map(color => <div className="background-container" onClick={() => { changeBoardBackground(color) }} style={{ backgroundColor: color }}></div>)}
+            </section>
         </section>
     </>
     )
