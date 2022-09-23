@@ -28,7 +28,7 @@ export const DateShower = ({ task, onSaveTask, toggleModal }) => {
 
     const onOpenModal = (ev) => {
         ev.preventDefault()
-        toggleModal('date-picker')
+        toggleModal(ev, 'date-picker')
     }
 
     const onChangeDone = () => {
@@ -45,7 +45,7 @@ export const DateShower = ({ task, onSaveTask, toggleModal }) => {
                     onChange={onChangeDone}
                     sx={{ color: 'lightgray' }}
                     checked={(task.dueDate.isDone)}
-                    size="small" style={{ padding: '5px 9px' }} />
+                    size="small" style={{ padding: '0', margin: '2px' }} />
                 <div className='time-display-btn' >
                     {`${getDate()} ${time.toLocaleTimeString()}`}
                     {task.dueDate.isDone && <span className="isdone complete" >complete</span>}

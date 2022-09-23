@@ -59,6 +59,7 @@
         .new-comment {
             gap: 17px;
             position: relative;
+            margin-bottom: 10px;
 
             .profile-img {
                 position: absolute;
@@ -145,6 +146,15 @@
                 margin-bottom: 10px;
                 position: relative;
 
+                .activity-txt {
+                    .username {
+                        font-weight: 700;
+                    }
+
+                    .time {
+                        font-size: 12px;
+                    }
+                }
             }
         }
     }

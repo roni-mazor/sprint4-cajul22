@@ -14,7 +14,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 15;
+    z-index: 35;
 
     & .details-side-bar .box {
         transform: rotateZ(269deg) scaleX(0.6);
@@ -30,7 +30,7 @@
     max-width: 48rem;
     min-height: 600px;
     position: relative;
-    z-index: 20;
+    z-index: 40;
 
     .close-modal {
         font-size: 1.4rem;
@@ -60,7 +60,7 @@
         display: flex;
         gap: 15px;
 
-        span {
+      .task-icon {
             font-size: 1.5em;
         }
 

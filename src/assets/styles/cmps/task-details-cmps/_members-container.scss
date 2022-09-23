@@ -1,43 +1,52 @@
 .task-details-container {
 
-
-    .members-container {
-        position: relative;
-        left: 65px;
-        top: 11px;
-        color: #5e6c84;
-        display: block;
-        font-weight: 600;
-        line-height: 16px;
-        line-height: 20px;
-        margin-inline-end: 20px;
-        margin-inline-start: -8px;
-        margin-bottom: 35px;
-        
-
-        & .member-avatar-img {
-            cursor: pointer;
-            overflow: hidden;
-            width: 32px;
-            padding: 2px 0 0 2px;
-        }
-
-        & p {
-            margin: 0 8px 4px 0;
-        }
-
-        & .add-task-member {
-            border: 1px solid #091e4205;
-            border-radius: 50px;
-            background-color: #42526e19;
-            color: #7b7b7b;
-            width: 32px;
-            height: 32px;
-            font-size: 2em;
+    .task-data-container {
 
 
-            &:hover {
-                background-color: #42526e21;
+        .members-container {
+            float: left;
+
+            color: #5e6c84;
+            display: block;
+            font-weight: 600;
+            line-height: 16px;
+            line-height: 20px;
+            margin: 0 16px 0 0;
+
+
+            & .member-avatar-img {
+                cursor: pointer;
+                overflow: hidden;
+                width: 32px;
+                padding: 2px 0 0 2px;
+            }
+
+            & p {
+                font-size: 12px;
+                margin: 0 8px 4px 0;
+            }
+
+            & .add-task-member {
+                border: 1px solid #091e4205;
+                border-radius: 50px;
+                background-color: #42526e19;
+                color: #7b7b7b;
+                width: 32px;
+                height: 32px;
+                font-size: 2em;
+                position: relative;
+                top: 4px;
+                right: -4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 200;
+
+
+
+                &:hover {
+                    background-color: #42526e21;
+                }
             }
         }
     }

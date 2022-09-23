@@ -7,7 +7,8 @@ export const utilService = {
     getColors,
     getBackgroundColors,
     debounce,
-    getFormatedTime
+    getFormatedTime,
+    getDetailedTime
 }
 
 function makeId(length = 6) {
@@ -113,6 +114,22 @@ function getFormatedTime(time) {
     const day = date.getDate()
     const hour = date.getHours()
     const minutes = date.getMinutes()
+    return `${month} ${_padNum(day)} at ${_padNum(hour)}:${_padNum(minutes)}`
+}
+function getDetailedTime(time) {
+    const minutesTamplate = 1000 * 60
+    const hoursTamplate = 1000 * 60 * 60
+    if (Date.now() - time < 1000 * 10) return 'just now'
+    if (Date.now() - time < 1000 * 60) return 'a few seconds ago'
+    if (Date.now() - time < 1000 * 60 * 60) return `${Math.ceil((Date.now() - time) / minutesTamplate)} minutes ago`
+    if (Date.now() - time < 1000 * 60 * 60 * 24) return `${Math.ceil((Date.now() - time) / hoursTamplate)} hours ago`
+
+    const date = new Date(time)
+    const month = utilService.getMonthName(date)
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minutes = date.getMinutes()
+
     return `${month} ${_padNum(day)} at ${_padNum(hour)}:${_padNum(minutes)}`
 }
 

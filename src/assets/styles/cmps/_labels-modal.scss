@@ -1,8 +1,9 @@
 .additives-modal-container {
     width: 304px;
     max-height: 520px;
-    position: absolute;
-    right: 0;
+    // position: absolute;
+    // right: 0;
+    position: fixed;
     z-index: 100;
 
 

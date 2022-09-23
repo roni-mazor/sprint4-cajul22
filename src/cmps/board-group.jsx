@@ -12,9 +12,12 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
     const [title, setTitle] = useState(group.title)
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
 
-    const toggleAdditivesModal = (type) => {
+    const toggleAdditivesModal = (ev, type) => {
+        const posDetails = ev.target.getBoundingClientRect()
+        const windowDetails = window.screen
+        console.log({ type, posDetails })
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
-        else setIsAdditivesModalOpen(type)
+        else setIsAdditivesModalOpen({ type, posDetails, windowDetails })
     }
 
     const changeGroupTitle = ({ target: { value } }) => {
@@ -44,7 +47,7 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
                     onChange={changeGroupTitle}
                     onBlur={onTitleUpdate}
                     value={title} />
-                <button onClick={() => { toggleAdditivesModal('group-actions') }} className="group-actions-btn"><BsThreeDots /></button>
+                <button onClick={(ev) => { toggleAdditivesModal(ev, 'group-actions') }} className="group-actions-btn"><BsThreeDots /></button>
             </header>
 
             <Droppable droppableId={`${group.id}`} type='task'>
@@ -75,7 +78,7 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
             </Droppable>
 
             {isAdditivesModalOpen && <TaskAdditivesModal
-                type={isAdditivesModalOpen}
+                modalInfo={isAdditivesModalOpen}
                 onRemoveGroup={onRemoveGroup}
                 toggleModal={toggleAdditivesModal} />}
 

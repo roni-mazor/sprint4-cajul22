@@ -168,7 +168,6 @@ const Colors = ({ board, toggleMenuModal, setBackgroundModalState }) => {
     const dispatch = useDispatch()
     const changeBoardBackground = (color) => {
         board.style = { backgroundColor: color }
-        // dispatch(saveBoard(board))
         dispatch(saveBoard(board, null, null, `changed the background of this board`))
     }
     const colors = utilService.getBackgroundColors()
@@ -186,7 +185,7 @@ const Colors = ({ board, toggleMenuModal, setBackgroundModalState }) => {
         <hr />
         <section className="backgrounds-wrapper">
             <section className="backgrounds-container">
-                {colors.map(color => <div onClick={() => { changeBoardBackground(color) }} style={{ backgroundColor: color }}></div>)}
+                {colors.map(color => <div className="background-container" onClick={() => { changeBoardBackground(color) }} style={{ backgroundColor: color }}></div>)}
             </section>
         </section>
     </>
