@@ -12,7 +12,7 @@ import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
-import { socketService } from "../services/socket.service"
+// import { socketService } from "../services/socket.service"
 
 export const BoardDetails = () => {
     const params = useParams()
@@ -97,12 +97,12 @@ export const BoardDetails = () => {
         }
     }
 
-    // console.log('board:', board)
+    console.log('board:', board)
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={board.style} >
 
-            {isShareModalOpen && <ShareBoard members={board.members} onToggleShareModal={onToggleShareModal} />}
+            {isShareModalOpen && <ShareBoard x  ={board.members} onToggleShareModal={onToggleShareModal} />}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} board={board}
