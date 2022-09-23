@@ -17,7 +17,7 @@ export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
             time: selectedDate.getTime() + ((new Date()).getHours() - 12) * 60 * 60 * 1000,
             isDone: false
         }
-        onSaveTask(task, `changed the due date on `, task.title, ` to ${formatedTIme(task.dueDate.time)}`)
+        onSaveTask(task, `changed the due date on `, task.title, ` to ${formatedTime(task.dueDate.time)}`)
 
         toggleModal(ev, 'date-picker')
 

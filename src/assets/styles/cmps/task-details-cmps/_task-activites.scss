@@ -80,7 +80,7 @@
                 transition-property: padding-bottom;
                 transition-timing-function: ease;
                 width: 93%;
-                margin-inline-start: 37px;
+                margin-inline-start: 41px;
 
                 &.focused {
                     padding-bottom: 56px;
@@ -143,16 +143,38 @@
 
             .activity {
                 gap: 10px;
-                margin-bottom: 10px;
+                margin-bottom: 37px;
                 position: relative;
 
                 .activity-txt {
+                    position: relative;
+
                     .username {
                         font-weight: 700;
                     }
 
                     .time {
                         font-size: 12px;
+                        padding: 1px 0px 0px 0px;
+                    }
+
+                    .opTxt {
+                        &.comment {
+                            position: absolute;
+                            top: 22px;
+                            left: 0px;
+                            background-color: #fff;
+                            border-radius: 3px;
+                            box-shadow: 0 0 0 1px #091e4214;
+                            box-sizing: border-box;
+                            clear: both;
+                            display: inline-block;
+                            margin: 4px 2px 4px 0;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            padding: 8px 12px;
+                            width: 272%;
+                        }
                     }
                 }
             }

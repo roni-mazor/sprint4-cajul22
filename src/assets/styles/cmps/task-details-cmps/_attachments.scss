@@ -5,7 +5,7 @@
 
         .img-container {
             border-radius: 3px;
-            margin: 0 0 8px;
+            margin: 0 0 0;
             margin-inline-start: 40px;
             min-height: 80px;
             overflow: hidden;
@@ -88,13 +88,41 @@
 
         .attachments-title {
             h1 {
-                font-size:1.1em;
+                font-size: 1.1em;
             }
 
             margin-bottom: -13px;
             gap: 15px;
         }
 
+        .add-attachment {
+            background-color: #091e420a;
+            border: none;
+            border-radius: 3px;
+            box-shadow: none;
+            box-sizing: border-box;
+            color: #172b4d;
+            cursor: pointer;
+            display: block;
+            height: 32px;
+            // margin-top: 8px;
+            margin-inline-start: 42px;
+            max-width: 300px;
+            overflow: hidden;
+            padding: 6px 12px;
+            position: relative;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            transition-duration: 85ms;
+            transition-property: background-color, border-color, box-shadow;
+            transition-timing-function: ease;
+            white-space: nowrap;
+
+            &:hover {
+
+                background-color: #091e4214;
+            }
+        }
     }
 
 }

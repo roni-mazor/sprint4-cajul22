@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
 import { boardService } from '../../services/board.service'
-import { imgFromLink, uploadService } from '../../services/upload.service'
+import { uploadService } from '../../services/upload.service'
 import { utilService } from '../../services/util.service'
 
 
@@ -24,23 +24,24 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
 
     const onUploadImg = async (ev) => {
         const img = await uploadService.uploadImg(ev)
-        onSaveUrl(ev, img)
+        if (!task.attachments) task.attachments = []
+        if (!task.background) task.background = 'header'
+        const newAttachment = boardService.createNewAttachment(img.url, img.height, img.width, img.name)
+        task.attachments.unshift(newAttachment)
+        onSaveTask(task, `attached ${img.name} to`, task.title, null, newAttachment.url)
+        toggleModal(ev, 'attachment-picker')
     }
 
     const onSaveUrl = (ev, img) => {
-        if (typeof img === 'string') {
-            // console.log('hey')
-            const image = imgFromLink(img)
-            img = image  // console.log('img:', img)
-            console.log('img:', img)
-        }
-        if (!task.attachments) task.attachments = []
-        const newAttachment = boardService.createNewAttachment(img.url, img.height, img.width, img.name)
-        task.attachments.unshift(newAttachment)
-        console.log('newAttachment:', newAttachment)
+
+        const image = uploadService.imgFromLink(img)
+
         // console.log('img:', img)
+        if (!task.attachments) task.attachments = []
         if (!task.background) task.background = 'header'
-        onSaveTask(task, `attached ${img.name} to`, task.title, null, newAttachment.url)
+        const newAttachment = boardService.createNewAttachment(image.url, image.height, image.width, image.name)
+        task.attachments.unshift(newAttachment)
+        onSaveTask(task, `attached ${image.name} to`, task.title, null, newAttachment.url)
         toggleModal(ev, 'attachment-picker')
     }
 

@@ -11,7 +11,7 @@
     .add-features-modal {
         width: 304px;
         background-color: white;
-        padding: 0 12px 12px 12px;
+        padding: 0 7px 12px 12px;
         border-radius: 3px;
         box-shadow: 0px 0px 1px 1px #dfe1e6;
 
@@ -289,6 +289,40 @@
             }
         }
 
+        .todo-modal-header {
+
+            cursor: auto;
+        }
+
+        .todo-actions {
+            padding: 0px;
+
+            >* {
+
+                text-align: left;
+                width: 115%;
+                cursor: pointer;
+                display: block;
+                font-weight: normal;
+                padding: 6px 12px;
+                position: relative;
+                margin: -6px -43px 0px -12px;
+                // margin: unset;
+
+                &:hover {
+                    background-color: rgba(9, 30, 66, 0.08);
+                    box-shadow: none;
+                    border: none;
+                    color: inherit;
+                }
+            }
+
+            .checklist-picker-convert {
+                margin-bottom: 10px;
+            }
+
+
+        }
 
 
     }

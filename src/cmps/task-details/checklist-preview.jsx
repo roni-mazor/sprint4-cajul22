@@ -7,7 +7,7 @@ import { TodoModal } from './todo.modal'
 import { TodoPreview } from './todo-preview'
 
 
-export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onSaveActivity }) => {
+export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, convertTodoToTask, removeActivity }) => {
 
     const [focused, setFocused] = useState(false)
     const [titleFocus, setTitleFocus] = useState(false)
@@ -37,7 +37,7 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onS
     }
 
     const onSaveTxt = () => {
-
+        if (!txt) return
         checklist = checklist.list.push({
             id: utilService.makeId(5),
             title: txt,
@@ -61,8 +61,14 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onS
         const todo = checklist.list.find(todo => todo.id === todoId)
         todo.isDone = !todo.isDone
         checklist = checklist.list.map(currTodo => currTodo.id === todo.id ? todo : currTodo)
-        if (todo.isDone) onSaveTask(task, `completed ${todo.title} on`, task.title)
-        else onSaveTask(task)
+        console.log('todoId:', todoId)
+        if (todo.isDone) onSaveTask(task, `completed ${todo.title} on`, task.title, null, null, todoId)
+
+        else if (todoId && !todo.isDone) {
+            removeActivity(todoId)
+            onSaveTask(task)
+        }
+        //  else onSaveTask(task)
     }
 
     const getProgressPercent = () => {
@@ -82,16 +88,17 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onS
     }
 
     const onRemoveTodo = (todoId) => {
+        console.log('todoId:', todoId)
         const idx = checklist.list.findIndex(todo => todo.id === todoId)
         checklist = checklist.list.splice(idx, 1)
         onSaveTask(task)
-        // onSaveActivity(`removed todo`)
     }
 
     const onSaveTitle = () => {
+        if (!txt) return
         checklist.title = txt
         onSaveTask(task)
-        // onSaveActivity(`changed checklist title to ${txt}`)
+        setTxt('')
         onTitleBlur()
     }
 
@@ -101,7 +108,6 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onS
         const todo = checklist.list.find(todo => todo.id === todoId)
         todo.title = txt
         checklist = checklist.list.map(currTodo => currTodo.id === todo.id ? todo : currTodo)
-        // onSaveActivity(`changed todo title to ${txt}`)
         onSaveTask(task)
     }
     // console.log('checklist:', checklist)
@@ -141,8 +147,10 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, onS
                 {checklist.list.map(todo => <TodoPreview key={todo.id}
                     todo={todo}
                     checklist={checklist}
+                    toggleModal={toggleModal}
                     onSaveTodo={onSaveTodo}
                     onTodoIsDone={onTodoIsDone}
+                    convertTodoToTask={convertTodoToTask}
                     onRemoveTodo={onRemoveTodo} />)}
             </div>
             <div className='add-checklist'>

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
-import { loadBoard, saveBoard} from "../store/board.actions"
+import { loadBoard, saveBoard } from "../store/board.actions"
 import { loadUsers } from "../store/user.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
@@ -33,7 +33,8 @@ export const BoardDetails = () => {
         const group = boardService.createGroup(txt)
         const b = { ...board }
         b.groups.push(group)
-        dispatch(saveBoard(b))
+        dispatch(saveBoard(b, group, null, `added ${txt} to the board`))
+
     }
 
     const onToggleIsStarred = () => {
@@ -97,12 +98,12 @@ export const BoardDetails = () => {
         }
     }
 
-    // console.log('board:', board)
+    console.log('board:', board)
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={board.style} >
 
-            {isShareModalOpen && <ShareBoard x  ={board.members} onToggleShareModal={onToggleShareModal} />}
+            {isShareModalOpen && <ShareBoard x={board.members} onToggleShareModal={onToggleShareModal} />}
             <AppHeader board={board} />
             <section className="board-container" >
                 <BoardHeader name={board.title} members={board.members} board={board}
