@@ -10,7 +10,7 @@ import { utilService } from '../../services/util.service';
 export const DatePickerModal = ({ task, toggleModal, onSaveTask }) => {
 
     const [selectedDate, handleDateChange] = useState(task?.dueDate?.time || new Date())
-    const formatedTIme = utilService.getFormatedTime
+    const formatedTime = utilService.getFormatedTime
 
     const onSaveDate = (ev) => {
         task.dueDate = {

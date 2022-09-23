@@ -1,41 +1,58 @@
-.workspace {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns:
-        minmax(50px, 1fr) minmax(auto, 800px) minmax(50px, 1fr);
+.workspace-container {
+    color: #172b4d;
+    font-family: var(--base);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
 
+    .workspace-banner {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 875px;
+        padding: 32px;
+        position: relative;
+        text-overflow: ellipsis;
+        overflow: hidden;
 
-    >* {
-        grid-column: 2;
+        .workspace-img {
+            background-size: 60px 60px;
+            height: 60px;
+            width: 60px;
+            margin-inline-end: 20px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        & h2 {
+            font-size: 1.25em;
+            font-weight: 600;
+        }
     }
-}
 
-.workspace-banner{
-    display: flex;    
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 875px;
-    padding: 32px;
-    position: relative;
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    .workspace-img{
-        background-size: 60px 60px;
-        height: 60px;
-        width: 60px;
-        margin-inline-end: 20px;
-        object-fit: cover;
-        border-radius: 3px;
+    .horizontal-rule {
+        margin: auto;
+        width: 92.5%;
     }
 
-    & h2{
-        font-size: 1.25em;
-        font-weight: 600;
-    }
-}
+    .boards-container {
 
-.horizontal-rule {
-    margin: auto;
-    width: 92.5%;
+
+        .workspace {
+            margin: 0 auto;
+            max-width: 850px;
+            padding: 32px px;
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            max-width: 1266px;
+
+            >* {
+                grid-column: 2;
+            }
+        }
+
+    }
 }

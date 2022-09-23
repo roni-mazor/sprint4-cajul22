@@ -5,7 +5,7 @@ import { AppHeader } from "../cmps/app-header"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { BoardList } from "../cmps/board-list"
 import { boardService } from "../services/board.service"
-import { loadBoards,  resetBoard, updateIsStarred } from "../store/board.actions"
+import { loadBoards, resetBoard, updateIsStarred } from "../store/board.actions"
 import { loadLoggedInUser } from "../store/user.actions"
 
 export const Workspace = () => {
@@ -17,8 +17,8 @@ export const Workspace = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(loadBoards())
-        dispatch(loadLoggedInUser())
+        // dispatch(loadBoards())
+        // dispatch(loadLoggedInUser())
         // dispatch(resetBoard())
     }, [])
 
@@ -33,15 +33,19 @@ export const Workspace = () => {
     return (
         <React.Fragment>
             <AppHeader />
+            <div className="workspace-container">
                 <section className="workspace-banner">
-                    <img src="https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" className="workspace-img"/>
+                    <img src="https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" className="workspace-img" />
                     <h2>Welcome to Your Workspace</h2>
                 </section>
-                <hr class="horizontal-rule"/>
-            <section className="workspace">
-                <BoardList boards={boards}
-                    onToggleIsStarred={onToggleIsStarred} />
-            </section>
+                <hr className="horizontal-rule" />
+                <div className="boards-container">
+                    <section className="workspace">
+                        <BoardList boards={boards}
+                            onToggleIsStarred={onToggleIsStarred} />
+                    </section>
+                </div>
+            </div>
         </React.Fragment>
     )
 }
