@@ -68,10 +68,10 @@ export const TaskDetails = () => {
 
     const toggleAdditivesModal = (ev, type) => {
         const posDetails = ev.target.getBoundingClientRect()
-        const windowDetails = window.screen
-        console.log({ type, posDetails })
-        if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
-        else setIsAdditivesModalOpen({ type, posDetails, windowDetails })
+        const windowWidth = window.innerWidth
+        console.log({ type, posDetails, windowWidth })
+        if (type === isAdditivesModalOpen?.type) setIsAdditivesModalOpen(null)
+        else setIsAdditivesModalOpen({ type, posDetails, windowWidth })
     }
 
     const isUserJoined = () => {
@@ -134,10 +134,10 @@ export const TaskDetails = () => {
                     <div className="task-details-main">
                         <div className="task-data-container">
                             {(task.members.length !== 0) && <Members members={board.members} membersId={task.members} toggleModal={toggleAdditivesModal} />}
-                            <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />
+                            {(task.labelIds.length !== 0) && <LabelShower toggleModal={toggleAdditivesModal} labelIds={task.labelIds} />}
 
 
-                        {task?.dueDate?.time && < DateShower onSaveTask={onSaveTask} toggleModal={toggleAdditivesModal} task={task} />}
+                            {task?.dueDate?.time && < DateShower onSaveTask={onSaveTask} toggleModal={toggleAdditivesModal} task={task} />}
                         </div>
                         <TaskDescription task={task}
                             onSaveTask={onSaveTask} />

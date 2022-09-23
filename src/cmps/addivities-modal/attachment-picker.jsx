@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { VscChromeClose } from 'react-icons/vsc'
 import { boardService } from '../../services/board.service'
 import { imgFromLink, uploadService } from '../../services/upload.service'
-import { utilService } from '../../services/util.service'
 
 
 export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
@@ -10,24 +9,16 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
 
     const [txt, setTxt] = useState('')
 
-    useEffect(() => {
-
-
-        return () => {
-            setTxt('')
-        }
-    }, [])
-
     const onHandleChange = ({ target: { value } }) => {
         setTxt(value)
     }
 
     const onUploadImg = async (ev) => {
         const img = await uploadService.uploadImg(ev)
-        onSaveUrl(img)
+        onSaveUrl(ev, img)
     }
 
-    const onSaveUrl = (img) => {
+    const onSaveUrl = (ev, img) => {
         if (typeof img === 'string') {
             // console.log('hey')
             const image = imgFromLink(img)
@@ -41,7 +32,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
         // console.log('img:', img)
         if (!task.background) task.background = 'header'
         onSaveTask(task, `attached ${img.name} to`, task.title, null, newAttachment.url)
-        toggleModal()
+        toggleModal(ev, 'attachment-picker')
     }
 
     return (
@@ -61,7 +52,7 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
             <hr />
             <h5>Attach a link</h5>
             <input className='label-title-input' type="text" value={txt} placeholder='paste link here' onChange={onHandleChange} />
-            <button className='attach-btn' onClick={() => onSaveUrl(txt)}>Attach</button>
+            <button className='attach-btn' onClick={(event) => onSaveUrl(event, txt)}>Attach</button>
         </section>
     )
 }

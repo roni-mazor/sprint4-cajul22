@@ -1,8 +1,11 @@
 import { Checkbox } from "@mui/material"
+import { AiOutlineUser } from "react-icons/ai"
 import { BsSearch } from "react-icons/bs"
+import { FaRegUserCircle } from "react-icons/fa"
 import { FiChevronLeft } from "react-icons/fi"
 import { IoMdClose } from "react-icons/io"
 import { MemberPreview } from "../member-preview"
+
 
 export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, setFilterBy, filterBy }) => {
     const labels = board.labels
@@ -23,6 +26,18 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
 
     const handleTextChange = ({ target: { value } }) => {
         setFilterBy(prevState => ({ ...prevState, txt: value }))
+    }
+
+    const togglesShowNoMembers = () => {
+        console.log(filterBy)
+        setFilterBy(prevState => ({ ...prevState, showNoMembers: !prevState.showNoMembers }))
+    }
+    const filterByDueDone = (val) => {
+        const isDone = (filterBy.isDone === val) ? null : val
+        setFilterBy(prevState => ({ ...prevState, isDone }))
+    }
+    const filterByDueTime = (time) => {
+        setFilterBy(prevState => ({ ...prevState, time }))
     }
 
 
@@ -57,6 +72,20 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                     <section classname="labels-container">
                         <h4>Members</h4>
                         <ul className="labels-container">
+                            <li key='no-members-btn' className='label-container'>
+                                <label >
+                                    <Checkbox
+                                        sx={{ color: 'lightgray' }}
+                                        checked={(filterBy.showNoMembers)}
+                                        size="small" style={{ padding: '5px 9px' }}
+                                        onChange={togglesShowNoMembers}
+                                    />
+                                    <span className='member-container flex align-center'>
+                                        <span className="no-member-avatar"><AiOutlineUser /></span>
+                                        <p>No members</p>
+                                    </span>
+                                </label>
+                            </li>
                             {board.members.map(member => (
                                 <li key={member._id} className='label-container'>
                                     <label >
@@ -67,7 +96,7 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                                             onChange={() => handleMemberCheck(member._id)}
                                         />
                                         <span className='member-container flex align-center' onClick={() => console.log(member._id)}>
-                                            <MemberPreview infoReq={'boardHeader'} memberId={member._id} members={board.members}/>
+                                            <MemberPreview infoReq={'boardHeader'} memberId={member._id} members={board.members} />
                                             <p>{member.username}</p>
                                             <p>{`(${member.fullname})`}</p>
                                         </span>
@@ -75,6 +104,45 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                                 </li>
                             ))}
                         </ul>
+                    </section>
+
+                    <section className="labels-container">
+                        <label >
+                            <Checkbox
+                                sx={{ color: 'lightgray' }}
+                                checked={(filterBy.isDone === false)}
+                                size="small" style={{ padding: '5px 9px' }}
+                                onChange={() => filterByDueDone(false)}
+                            />
+                            Undone Tasks
+                        </label>
+                        <label >
+                            <Checkbox
+                                sx={{ color: 'lightgray' }}
+                                checked={(filterBy.isDone === true)}
+                                size="small" style={{ padding: '5px 9px' }}
+                                onChange={() => filterByDueDone(true)}
+                            />
+                            done Tasks
+                        </label>
+                        <label >
+                            <Checkbox
+                                sx={{ color: 'lightgray' }}
+                                checked={(filterBy.time === 0)}
+                                size="small" style={{ padding: '5px 9px' }}
+                                onChange={() => filterByDueTime(0)}
+                            />
+                            overdue
+                        </label>
+                        <label >
+                            <Checkbox
+                                sx={{ color: 'lightgray' }}
+                                checked={(filterBy.time === 24 * 60 * 60 * 1000)}
+                                size="small" style={{ padding: '5px 9px' }}
+                                onChange={() => filterByDueTime(24 * 60 * 60 * 1000)}
+                            />
+                            due in 24 hours
+                        </label>
                     </section>
 
                     <section className="filter-container">
