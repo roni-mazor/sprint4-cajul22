@@ -7,6 +7,7 @@ import { BsTag, BsSquareHalf } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TbCheckbox } from 'react-icons/tb'
 import { ImAttachment } from 'react-icons/im'
+import { MdOutlineContentCopy } from 'react-icons/md'
 
 import { DateShower } from "../cmps/task-details/date-shower"
 import { boardService } from "../services/board.service"
@@ -75,12 +76,12 @@ export const TaskDetails = () => {
     }
 
     const isUserJoined = () => {
-        console.log('user:', user)
-        
+        // console.log('user:', user)
+
         if (!task) return
         const { members } = task
-        const member = members.find(id => id === user._id)
-        console.log('user_id:', user._id)        
+        const member = members.find(id => id === user?._id)
+        // console.log('user_id:', user._id)        
         if (!member) return true
     }
 
@@ -93,9 +94,6 @@ export const TaskDetails = () => {
         dispatch(saveBoard(board))
     }
 
-    const toggleSuggestedJoin = () => {
-        setIsJoined(isJoined = !isJoined)
-    }
 
     const convertTodoToTask = (txt) => {
         const group = board.groups.find(group => group.id === groupId)
@@ -117,9 +115,8 @@ export const TaskDetails = () => {
 
     const handleChange = (ev) => {
         const value = ev.target.value
-        let newTask = task
-        newTask.title = value
-        onSaveTask(newTask, `changed the title on`, value)
+        task.title = value
+        onSaveTask(task, `changed the title on`, value)
     }
 
     // console.log('task:', task)
@@ -183,6 +180,7 @@ export const TaskDetails = () => {
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}><ImAttachment /> Attachments</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'copy')}><span><MdOutlineContentCopy /></span> Copy</button>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
                         modalInfo={isAdditivesModalOpen}

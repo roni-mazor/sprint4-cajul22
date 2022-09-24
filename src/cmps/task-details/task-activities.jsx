@@ -37,7 +37,7 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
 
     const onSaveComment = () => {
         if (!txt) return
-        if (!task.comment) task.comment = 1
+        if (!task.comment) task.comment = 0
         task.comment++
         onSaveTask(task, `on`, task.title, txt, null, null, true)
 
@@ -55,7 +55,7 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
             </div>
             <div className='new-comment flex'>
                 <div className='profile-img'>
-                    <img src={user.imgUrl} alt="" />
+                    <img src={user?.imgUrl} alt="" />
                 </div>
                 <div className={focused ? 'comment-box flex column focused' : 'comment-box flex column'}>
                     {/* <MemberPreview user={user} /> */}
@@ -78,7 +78,7 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
                     <div key={activity.id}
                         className='activity flex'>
                         {(isShown || activity.comment) && <div className="">
-                            <img src={activity?.byMember.imgUrl} alt="" />
+                            <img src={activity?.byMember?.imgUrl} alt="" />
                         </div>}
                         {(isShown || activity.comment) &&
                             <div className={`activity-txt flex ${activity.comment ? '' : 'column'}`}>
