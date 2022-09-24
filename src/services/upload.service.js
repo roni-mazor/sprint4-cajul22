@@ -1,7 +1,8 @@
 import { json } from "react-router-dom"
 
 export const uploadService = {
-  uploadImg
+  uploadImg,
+  imgFromLink
 }
 async function uploadImg(ev) {
   const CLOUD_NAME = "dcwibf9o5"
@@ -32,7 +33,7 @@ async function uploadImg(ev) {
 
 }
 
-export function imgFromLink(img) {
+ function imgFromLink(img) {
   const image = new Image()
   image.onload = () => {
   }

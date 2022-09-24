@@ -98,7 +98,7 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
     }
 }
 
-export function saveTask(groupId, task, txt, link, opTxt, attachment, comment) {
+export function saveTask(groupId, task, txt, link, opTxt, attachment, onActId,comment) {
     return async (dispatch, getState) => {
         // boardService.saveTask(boardId, groupId, task)
         const user = getState().userModule.user
@@ -108,7 +108,7 @@ export function saveTask(groupId, task, txt, link, opTxt, attachment, comment) {
             if (t.id === task.id) return task
             else return t
         })
-        _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, comment)
+        _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, onActId,comment)
         boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
 
@@ -169,8 +169,7 @@ export function removeAttachment(groupId, taskId) {
 }
 
 
-
-function _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, comment = false) {
+function _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, onActId,comment = false) {
     if (!txt) return
 
     const addedActivity = {
@@ -183,7 +182,8 @@ function _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment,
         link,
         opTxt,
         attachment,
-        comment
+        comment,
+        onActId
     }
     // console.log('addedActivity:', addedActivity)
     board.activities = [addedActivity, ...board.activities]

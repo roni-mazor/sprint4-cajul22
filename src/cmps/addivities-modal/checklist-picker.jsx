@@ -13,7 +13,7 @@ export const Checklist = ({ task, onSaveTask, toggleModal, onSaveActivity, onSav
 
     }
 
-    const onCreateChecklist = () => {
+    const onCreateChecklist = (ev) => {
 
         task.checklists.push({
             id: utilService.makeId(5),
@@ -23,7 +23,7 @@ export const Checklist = ({ task, onSaveTask, toggleModal, onSaveActivity, onSav
 
 
         onSaveTask(task, `added ${txt} at`, task.title)
-        toggleModal()
+        toggleModal(ev,'checklist-picker')
     }
 
     return (

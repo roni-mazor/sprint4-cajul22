@@ -7,8 +7,8 @@ import { DatePickerModal } from "./date-picker"
 import { GroupActions } from "./group-actions"
 import { MemberPicker } from "./member-picker"
 
-export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, modalInfo, onSaveActivity, onSaveTaskAct }) => {
-
+export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, modalInfo, todo, onRemoveTodo, onTodoToCard }) => {
+    console.log('todo:', todo)
     const renderModalByType = () => {
         switch (modalInfo.type) {
             case 'label-picker':
@@ -16,7 +16,6 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     < LabelPicker
                         task={task}
                         onSaveTask={onSaveTask}
-                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'members':
@@ -25,7 +24,6 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     < MemberPicker
                         task={task}
                         onSaveTask={onSaveTask}
-                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'attachment':
@@ -33,23 +31,19 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     <AttachmentPicker
                         task={task}
                         onSaveTask={onSaveTask}
-                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'group-actions':
                 return (
                     <GroupActions
                         onRemoveGroup={onRemoveGroup}
-                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
-            case 'check-list':
+            case 'checklist-picker':
                 return (
                     <Checklist
                         task={task}
                         onSaveTask={onSaveTask}
-                        onSaveActivity={onSaveActivity}
-                        onSaveTaskAct={onSaveTaskAct}
                         toggleModal={toggleModal} />
                 )
             case 'date-picker':
@@ -57,7 +51,6 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     <DatePickerModal
                         task={task}
                         onSaveTask={onSaveTask}
-                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'cover-picker':
@@ -65,15 +58,16 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                     <CoverPickerModal
                         task={task}
                         onSaveTask={onSaveTask}
-                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
             case 'todo':
                 return (
                     <TodoModal
                         task={task}
+                        todo={todo}
+                        onRemoveTodo={onRemoveTodo}
+                        onTodoToCard={onTodoToCard}
                         onSaveTask={onSaveTask}
-                        onSaveActivity={onSaveActivity}
                         toggleModal={toggleModal} />
                 )
         }
@@ -89,7 +83,10 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
             if (windowWidth - posDetails.left < 304) left = windowWidth - 340
             return { top: '51px', left: `${left}px` }
         } else if (type === 'group-actions') {
-            return { top: `${posDetails.top}px`, left: `${left - 160}px` }
+            return { top: `${posDetails.top}px`, left: `${posDetails.left - 160}px` }
+        } else if (type === 'attachment') {
+
+            return { top: `${posDetails.top-240}px`, left: `${posDetails.left - 134}px` }
         }
 
         //and another adjustment for moblie between 500 or something to allways place in the center

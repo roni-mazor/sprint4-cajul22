@@ -1,6 +1,6 @@
 import { ChecklistPreview } from "./checklist-preview"
 
-export const TaskChecklist = ({ task, onSaveTask, toggleModal }) => {
+export const TaskChecklist = ({ task, onSaveTask, toggleModal, convertTodoToTask,removeActivity }) => {
 
     return (
         <section className="task-checklist">
@@ -9,7 +9,9 @@ export const TaskChecklist = ({ task, onSaveTask, toggleModal }) => {
                 task={task}
                 checklist={checklist}
                 onSaveTask={onSaveTask}
+                convertTodoToTask={convertTodoToTask}
                 toggleModal={toggleModal}
+                removeActivity={removeActivity}
             />)}
         </section>
     )

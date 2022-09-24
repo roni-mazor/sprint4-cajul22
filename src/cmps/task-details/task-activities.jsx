@@ -37,7 +37,10 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
 
     const onSaveComment = () => {
         if (!txt) return
-        onSaveTask(task, `on`, task.title, txt, null, true)
+        if (!task.comment) task.comment = 1
+        task.comment++
+        onSaveTask(task, `on`, task.title, txt, null, null, true)
+
         setTxt('')
         setFocused(false)
     }
@@ -70,23 +73,28 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
 
                 </div>
             </div>
-            {isShown && <div className='task-activities'>
-                {activities.map(activity => <div key={activity.id}
-                    className='activity flex'>
-                    <div className="">
-                        <img src={activity?.byMember.imgUrl} alt="" />
-                    </div>
-                    <div className='activity-txt flex column'>
-                        <div>
-                            <span className="username">{activity.byMember.fullname} </span>
-                            <span className="txt"> {activity.txt} </span>
-                            <span> {activity.link} </span>
-                            {activity.opTxt && <span className="opTxt"> {activity.opTxt}</span>}
-                        </div>
-                        <div className='time'>{formatedTime(activity.createdAt)}</div>
-                    </div>
-                </div>)}
-            </div>}
+            <div className='task-activities'>
+                {activities.map(activity =>
+                    <div key={activity.id}
+                        className='activity flex'>
+                        {(isShown || activity.comment) && <div className="">
+                            <img src={activity?.byMember.imgUrl} alt="" />
+                        </div>}
+                        {(isShown || activity.comment) &&
+                            <div className={`activity-txt flex ${activity.comment ? '' : 'column'}`}>
+                                <div>
+                                    <span className="username">{activity.byMember.fullname}&nbsp; </span>
+                                    {!activity.comment && <>
+                                        <span className="txt"> {activity.txt} </span>
+                                        <span> {activity.link} </span>
+                                    </>}
+                                </div>
+                                <div className='time'>{formatedTime(activity.createdAt)}</div>
+                                {activity.opTxt && <span className={`opTxt ${activity.comment ? 'comment' : ''}`}>
+                                    {activity.opTxt}</span>}
+                            </div>}
+                    </div>)}
+            </div>
         </section >
     )
 }

@@ -5,7 +5,7 @@ import { BsSquareHalf } from 'react-icons/bs'
 
 import { utilService } from '../../services/util.service'
 
-export const TaskAttachments = ({ task, onSaveTask, removeAttachments, onSaveActivity }) => {
+export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
 
     const { attachments } = task
 
@@ -70,6 +70,9 @@ export const TaskAttachments = ({ task, onSaveTask, removeAttachments, onSaveAct
                     )
                 })}
             </section>
+            <button className="add-attachment"
+             onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}>
+             Add an attachment</button>
         </section >
     )
 }

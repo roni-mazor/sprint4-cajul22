@@ -32,7 +32,8 @@ export const BoardDetails = () => {
         const group = boardService.createGroup(txt)
         const b = { ...board }
         b.groups.push(group)
-        dispatch(saveBoard(b))
+        dispatch(saveBoard(b, group, null, `added ${txt} to the board`))
+
     }
 
     const onToggleIsStarred = () => {
