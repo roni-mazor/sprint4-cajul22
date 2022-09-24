@@ -81,8 +81,7 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
                     </div>
                 </div>}
             </div>
-            {/* {!focused && <span className='todo-menu' onClick={() => onRemoveTodo(todo.id)}> < VscChromeClose /></span>} */}
-            <span className='todo-menu' onClick={(event) => toggleAdditivesModal(event, 'todo')}><BsThreeDots /></span>
+            {!focused && <span className='todo-menu' onClick={(event) => toggleAdditivesModal(event, 'todo')}><BsThreeDots /></span>}
             {isAdditivesModalOpen && <TaskAdditivesModal
                 modalInfo={isAdditivesModalOpen}
                 toggleModal={toggleAdditivesModal}

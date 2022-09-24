@@ -31,7 +31,7 @@ export const BoardList = ({ boards, onToggleIsStarred, toggleCreateBoardModal })
                     <section className="create-board-preview" onClick={(ev) => toggleCreateBoardModal(ev)}>
                         <h1>Create new board</h1>
                     </section>
-                    {boards.map(board => !board.isStarred && <BoardPreview
+                    {boards.map(board => <BoardPreview
                         key={board._id}
                         board={board}
                         onToggleIsStarred={onToggleIsStarred}
