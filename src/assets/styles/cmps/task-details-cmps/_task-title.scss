@@ -2,7 +2,7 @@
     .task-details-title {
         position: relative;
         flex-wrap: wrap;
-        margin: 17px 40px 8px 60px;
+        margin: 17px 40px 20px 60px;
         min-height: 32px;
         z-index: 1;
 
@@ -17,7 +17,7 @@
             line-height: 24px;
             margin: 0 -10px;
             min-height: 24px;
-            padding: 4px 8px;
+            padding: 4px 4px;
             
             resize: none;
 
@@ -38,7 +38,7 @@
         p.mini-title {
             color: #5e6c84;
             display: inline-block;
-            margin: 0 0 0 -2px;
+            margin: 0 0 0 -5px;
             background-color: transparent;
         }
 

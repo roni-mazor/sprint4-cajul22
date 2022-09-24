@@ -4,7 +4,6 @@ import { Outlet, useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
 import { loadBoard, saveBoard } from "../store/board.actions"
-import { loadUsers } from "../store/user.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
 import { ShareBoard } from "../cmps/share-board"
@@ -22,7 +21,7 @@ export const BoardDetails = () => {
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false)
     const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMembers: false, isDone: null, time: null })
 
-    useEffect(() => {
+    useEffect(() => {        
         dispatch(loadBoard(params.boardId))
         // socketService.on('set-board-listening',(borad)=>{
         //     // dispatch(setBoard)
@@ -81,13 +80,13 @@ export const BoardDetails = () => {
     }
 
     const getFilteredBoard = () => {
-        console.log(filterBy)
+        // console.log(filterBy)
         return {
             ...board, groups: board.groups.map(group => {
                 return {
                     ...group, tasks: group.tasks.filter(task => {
                         const regex = new RegExp(filterBy.txt, 'i')
-                        console.log(filterBy)
+                        // console.log(filterBy)
                         return (
 
                             filterBy.labelIds.every(id => task.labelIds.includes(id)) &&
@@ -112,7 +111,7 @@ export const BoardDetails = () => {
         }
     }
 
-    // console.log('board:', board)
+    console.log('board:', board)
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={board.style} >

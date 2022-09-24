@@ -26,15 +26,15 @@
 
     .task-content {
         overflow: hidden;
-        padding: 6px 8px 6px 6px;
+        padding: 8px 8px 6px 6px;
         position: relative;
         z-index: 10;
 
         p {
             // color: #172b4d;
             margin: 0;
-            margin-bottom: 5px;
-            font-size: 13px;
+            margin-bottom: 4px;
+            font-size: 14px;
             // color: #172b4d
         }
 
@@ -42,7 +42,7 @@
             display: flex;
             gap: 3px;
             flex-wrap: wrap;
-            margin-block-end: 4px;
+            // margin-block-end: 4px;
             margin-bottom: 4px;
 
             .label-btn {

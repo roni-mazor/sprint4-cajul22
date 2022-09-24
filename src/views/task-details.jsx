@@ -32,7 +32,6 @@ export const TaskDetails = () => {
     const board = useSelector(state => state.boardModule.board)
     const user = useSelector(state => state.userModule.user)
     const [task, setTask] = useState()
-    let [isJoined, setIsJoined] = useState(false)
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
     const group = board.groups.find(group => group.id === groupId)
 
@@ -92,11 +91,6 @@ export const TaskDetails = () => {
         board.members = [...board.members, user]
         dispatch(saveBoard(board))
     }
-
-    const toggleSuggestedJoin = () => {
-        setIsJoined(isJoined = !isJoined)
-    }
-
 
     const onSaveTask = (newTask, txt, link, opTxt, attachment, comment) => {
         dispatch(saveTask(groupId, newTask, txt, link, opTxt, attachment, comment))
@@ -163,10 +157,10 @@ export const TaskDetails = () => {
                         <h3>Add to card</h3>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'members')}><AiOutlineUser />Members</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'label-picker')}><BsTag /> Labels</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'check-list')}><TbCheckbox /> CheckList</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}><ImAttachment /> Attachments</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'check-list')}><TbCheckbox /> CheckList</button>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
                         modalInfo={isAdditivesModalOpen}

@@ -28,8 +28,8 @@ export const BoardList = ({ boards, onToggleIsStarred, toggleCreateBoardModal })
             <section className="board-list ">
                 <h3 > <AiOutlineClockCircle /> Recently Viewed Boards</h3>
                 <div className="board-list-container">
-                    <section className="create-board-preview" onClick={() => toggleCreateBoardModal({ title: "New Board", user, background})}>
-                        <h1>Create New Board</h1>
+                    <section className="create-board-preview" onClick={(ev) => toggleCreateBoardModal(ev)}>
+                        <h1>Create new board</h1>
                     </section>
                     {boards.map(board => !board.isStarred && <BoardPreview
                         key={board._id}

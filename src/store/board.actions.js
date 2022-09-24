@@ -4,7 +4,7 @@ import { utilService } from "../services/util.service"
 export function loadBoard(boardId) {
     return async (dispatch) => {
         const board = await boardService.getById(boardId)
-        console.log(board)
+        // console.log(board)
         dispatch({ type: 'SET_BOARD', board })
     }
 }
@@ -36,17 +36,16 @@ export function createBoard(boardInfo) {
     return async (dispatch) => {
         console.log('boardInfo :', boardInfo)
         try {
-            const board = boardService.createNewBoard(boardInfo)
+            const board = await boardService.createNewBoard(boardInfo)
             console.log('newBoard from board actions!:', board)
             dispatch({ type: 'ADD_BOARD', board })
-            const boards = await boardService.query()
-            dispatch({ type: 'SET_BOARDS', boards })
         } catch (err) {
             console.log('Had a problem at createBoard', err)
         }
     }
 
 }
+
 
 
 export function updateIsStarred(board) {
