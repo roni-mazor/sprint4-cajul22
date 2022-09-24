@@ -93,10 +93,6 @@ export const TaskDetails = () => {
         dispatch(saveBoard(board))
     }
 
-    const toggleSuggestedJoin = () => {
-        setIsJoined(isJoined = !isJoined)
-    }
-
     const convertTodoToTask = (txt) => {
         const group = board.groups.find(group => group.id === groupId)
         const newTask = boardService.createTask(txt)
