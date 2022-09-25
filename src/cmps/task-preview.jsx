@@ -33,21 +33,19 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         if (!task.checklists) return
         let total = 0
         let done = 0
-        const todos = task.checklists.reduce((totalTodos, checklist) => {
+        task.checklists.forEach(checklist => {
             const isDone = checklist.list.reduce((doneTodos, todo) => {
-                if (todo.isDone) doneTodos++
-                totalTodos++
+                if (todo.isDone) done++
+                total++
                 return doneTodos
             }, done)
-            // console.log('totalTodos:', totalTodos)
-            return { isDone, totalTodos }
-            //check maybe return the reducer immediatly
-        }, total)
+        })
         return {
-            isDone: todos.isDone,
-            totalTodos: todos.totalTodos
+            isDone: done,
+            totalTodos: total
         }
     }
+
 
     const getCoverHeight = () => {
         if (!task.cover) return
@@ -116,19 +114,22 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                     </section>
                     <p className="task-preview-title">{task.title}</p>
                     <section className="task-badges flex align-center">
-                        {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
-                        {task?.comment && <div className="task-badges comment flex align-center">
-                            <span className="comment-icon"> <FaRegComment /></span> <p>{task.comment}</p></div>}
-                        {task?.attachments?.length > 0 &&
-                            <div className="task-badges attached flex align-center">
-                                <span className="attach-icon"> <ImAttachment /></span>
-                                <p>{task.attachments.length}</p></div>}
+                        <div>
 
-                        {/* {task?.checklists?.length > 0 && <div */}
-                        {todos?.totalTodos > 0 && <div
-                            className={`task-badges checklist flex align-center ${isAllDone ? 'done' : ''}`}>
-                            <span className="checklist-icon"><TbCheckbox /></span>
-                            <p className="todo-num">{dispalyDoneChecklist()}</p></div>}
+                            {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
+                            {task?.comment && <div className="task-badges comment flex align-center">
+                                <span className="comment-icon"> <FaRegComment /></span> <p>{task.comment}</p></div>}
+                            {task?.attachments?.length > 0 &&
+                                <div className="task-badges attached flex align-center">
+                                    <span className="attach-icon"> <ImAttachment /></span>
+                                    <p>{task.attachments.length}</p></div>}
+
+                            {/* {task?.checklists?.length > 0 && <div */}
+                            {todos?.totalTodos > 0 && <div
+                                className={`task-badges checklist flex align-center ${isAllDone ? 'done' : ''}`}>
+                                <span className="checklist-icon"><TbCheckbox /></span>
+                                <p className="todo-num">{dispalyDoneChecklist()}</p></div>}
+                        </div>
                         <section className="task-user-container flex">
                             {getTaskMembers().map(member => <img className="task-users"
                                 src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}

@@ -8,6 +8,7 @@ import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TbCheckbox } from 'react-icons/tb'
 import { ImAttachment } from 'react-icons/im'
 import { MdOutlineContentCopy } from 'react-icons/md'
+import { TbArrowNarrowRight } from 'react-icons/tb'
 
 import { DateShower } from "../cmps/task-details/date-shower"
 import { boardService } from "../services/board.service"
@@ -180,11 +181,15 @@ export const TaskDetails = () => {
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}><ImAttachment /> Attachments</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'copy')}><span><MdOutlineContentCopy /></span> Copy</button>
+                        <h3>Actions</h3>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'moveto-picker')}><TbArrowNarrowRight /> Move</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'copy-picker')}><MdOutlineContentCopy /> Copy</button>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
                         modalInfo={isAdditivesModalOpen}
                         task={task}
+                        board={board}
+                        group={group}
                         onSaveTask={onSaveTask}
                         toggleModal={toggleAdditivesModal}
                     />}

@@ -21,7 +21,6 @@ export const boardService = {
 }
 
 async function query() {
-    console.log('am i getting here?')
     let myBoards = await storageService.query(STORAGE_KEY)
 
     if (!myBoards || !myBoards.length) {
@@ -32,7 +31,8 @@ async function query() {
         "_id": board._id,
         "title": board.title,
         "isStarred": board.isStarred,
-        "style": board.style
+        "style": board.style,
+        "groups": board.groups
     }))
     // console.log('boards from service:', myBoards)
     return myBoards

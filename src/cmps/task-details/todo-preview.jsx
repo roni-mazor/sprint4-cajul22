@@ -72,7 +72,7 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
                         cols="30" rows="10"
                         autoFocus
                         onChange={handleChange}
-                        onBlur={onBlur}
+                        // onBlur={onBlur}
                         value={txt}>
                     </textarea>
                     <div className="todo-edit-btns">

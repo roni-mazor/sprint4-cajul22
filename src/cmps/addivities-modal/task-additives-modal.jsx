@@ -2,13 +2,14 @@ import { LabelPicker } from "../addivities-modal/label-picker"
 import { TodoModal } from "../task-details/todo.modal"
 import { AttachmentPicker } from "./attachment-picker"
 import { Checklist } from "./checklist-picker"
+import { CopyPicker } from "./copy-picker"
 import { CoverPickerModal } from "./cover-picker"
 import { DatePickerModal } from "./date-picker"
 import { GroupActions } from "./group-actions"
 import { MemberPicker } from "./member-picker"
+import { MoveTo } from "./moveto-picker"
 
-export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModal, modalInfo, todo, onRemoveTodo, onTodoToCard }) => {
-    console.log('todo:', todo)
+export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, board, group, toggleModal, modalInfo, todo, onRemoveTodo, onTodoToCard }) => {
     const renderModalByType = () => {
         switch (modalInfo.type) {
             case 'label-picker':
@@ -60,6 +61,24 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
                         onSaveTask={onSaveTask}
                         toggleModal={toggleModal} />
                 )
+            case 'copy-picker':
+                return (
+                    <CopyPicker
+                        task={task}
+                        board={board}
+                        group={group}
+                        onSaveTask={onSaveTask}
+                        toggleModal={toggleModal} />
+                )
+            case 'moveto-picker':
+                return (
+                    <MoveTo
+                        task={task}
+                        board={board}
+                        group={group}
+                        onSaveTask={onSaveTask}
+                        toggleModal={toggleModal} />
+                )
             case 'todo':
                 return (
                     <TodoModal
@@ -76,7 +95,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
     const getModalPos = () => {
         const { type, posDetails, windowWidth } = modalInfo
         let left = posDetails.left
-        if (type === 'todo' || type === 'check-list' || type === 'attachment') {
+        if (type === 'todo' || type === 'check-list' ) {
             if (windowWidth - posDetails.left < 304) left = windowWidth - 340
             return { top: `${posDetails.top + posDetails.height}px`, left: `${left}px` }
         } else if (type === 'cover-picker' || type === 'label-picker' || type === 'date-picker' || type === 'members') {
@@ -84,9 +103,11 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, toggleModa
             return { top: '51px', left: `${left}px` }
         } else if (type === 'group-actions') {
             return { top: `${posDetails.top}px`, left: `${posDetails.left - 160}px` }
-        } else if (type === 'attachment') {
+        } else if (type === 'copy-picker') {
+            return { top: `${posDetails.top - 409}px`, left: `${posDetails.left - 134}px`  }
+        } else if (type === 'attachment'||type==='moveto-picker') {
 
-            return { top: `${posDetails.top-240}px`, left: `${posDetails.left - 134}px` }
+            return { top: `${posDetails.top - 240}px`, left: `${posDetails.left - 134}px` }
         }
 
         //and another adjustment for moblie between 500 or something to allways place in the center

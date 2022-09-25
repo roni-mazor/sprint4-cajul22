@@ -90,16 +90,15 @@
 
         .task-user-container {
             flex-direction: row-reverse;
-            float: right;
+            // float: right;
             margin: 0 -2px 0 0;
+
 
             & .task-users {
                 object-fit: cover;
                 border-radius: 25px;
                 width: 30px;
                 height: 30px;
-
-
             }
         }
 
