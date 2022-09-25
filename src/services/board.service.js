@@ -16,11 +16,11 @@ export const boardService = {
     // saveTask,
     createLabel,
     createNewAttachment,
-    starBoardFromWorkspace
+    // starBoardFromWorkspace
 }
 
 async function query() {
-    console.log('am i getting here?')
+    // console.log('am i getting here?')
     let myBoards = await storageService.query(STORAGE_KEY)
 
     if (!myBoards || !myBoards.length) {
@@ -53,9 +53,9 @@ async function getById(boardId) {
 
 // }
 
-async function starBoardFromWorkspace(boardId) {
-    await httpService.put(`board/star/${boardId}`)
-}
+// async function starBoardFromWorkspace(boardId) {
+//     await httpService.put(`board/star/${boardId}`)
+// }
 
 async function save(board) {
     if (board._id) {

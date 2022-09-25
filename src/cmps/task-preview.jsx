@@ -8,12 +8,15 @@ import { TbCheckbox } from 'react-icons/tb'
 
 import { useEffect, useState } from "react"
 import { DateBadge } from "./task-details/date-badge"
+import { FaPencilAlt } from "react-icons/fa"
+import { FastEditModal } from "./fast-edit-modal"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
     const board = useSelector(state => state.boardModule.board)
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
     const dispatch = useDispatch()
+    const [isFastEdit, setIsFastEdit] = useState({ isOpen: false })
 
     useEffect(() => {
         getTaskMembers()
@@ -84,10 +87,26 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         return isAllDone
     }
 
+    const openFastEdit = (ev) => {
+        ev.preventDefault()
+        const posDetails = ev.target.getBoundingClientRect()
+        const windowWidth = window.innerWidth
+        setIsFastEdit({ isOpen: true, posDetails, windowWidth })
+    }
+
     const isAllDone = allDone()
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
-    return (
-        <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
+    const linkToTask = `/board/${boardId}/${groupId}/${task.id}`
+    return (<>
+
+        {isFastEdit?.isOpen && <FastEditModal linkToTask={linkToTask} isAllDone={isAllDone} dispalyDoneChecklist={dispalyDoneChecklist} 
+        onSaveTask={onSaveTask} getTaskMembers={getTaskMembers} labels={labels} getCoverHeight={getCoverHeight}
+         task={task} modalInfo={isFastEdit} toggleModal={setIsFastEdit} />}
+
+        <Link to={linkToTask} className="task-preview">
+            <button className='edit-btn' onClick={openFastEdit}>
+                <FaPencilAlt />
+            </button>
             {(!task.background || task.background === 'header') && <div>
 
                 {task.cover && <div className="task-cover"
@@ -136,5 +155,6 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                     <div className="mini-task-title" ><p >{task.title}</p></div> </div>}
             </div>}
         </Link>
+    </>
     )
 }

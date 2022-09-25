@@ -1,0 +1,64 @@
+.fast-edit-task.task-preview {
+    position: fixed;
+    z-index: 40;
+    width: 256px;
+    background-color: white;
+
+    &:hover {
+        background-color: white;
+    }
+
+    aside.button-container {
+        left: 100%;
+        top: 0;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        z-index: 100;
+        width: 240px;
+
+        button {
+            background: #0009;
+            border: none;
+            border-radius: 3px;
+            color: #e6e6e6;
+            font-size: 14px;
+            margin: 0 0 4px 8px;
+            padding: 6px 12px 6px 8px;
+            transition: -webkit-transform 85ms ease-in;
+            transition: transform 85ms ease-in;
+            transition: transform 85ms ease-in, -webkit-transform 85ms ease-in;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+
+            &:hover {
+                background: #000c;
+                color: #fff;
+                -webkit-transform: translateX(5px);
+                transform: translateX(5px);
+            }
+        }
+    }
+
+    .task-content {
+
+        textarea {
+            overflow: hidden;
+            background-color: white;
+            overflow-wrap: break-word;
+            resize: none;
+            height: 90px;
+            outline: 0;
+            border: 0;
+
+            ::selection {
+                background-color: #2e579c;
+                color: #fff;
+            }
+
+        }
+
+    }
+}

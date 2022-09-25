@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
 import { BoardHeader } from "../cmps/board-header"
 import { BoardGroup } from "../cmps/board-group"
-import { loadBoard, saveBoard } from "../store/board.actions"
+import { loadBoard, saveBoard, setBoard } from "../store/board.actions"
 import { loadUsers } from "../store/user.actions"
 import { AppHeader } from "../cmps/app-header"
 import { TxtCompose } from "../cmps/txt-compose"
@@ -12,7 +12,7 @@ import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
-// import { socketService } from "../services/socket.service"
+import { socketService } from "../services/socket.service"
 
 export const BoardDetails = () => {
     const params = useParams()
@@ -24,9 +24,10 @@ export const BoardDetails = () => {
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
-        // socketService.on('set-board-listening',(borad)=>{
-        //     // dispatch(setBoard)
-        // })
+        socketService.emit('set-board-listening', params.boardId)
+        socketService.on('emit-board-change', (board) => {
+            console.log('got emitted')
+             dispatch(setBoard(board)) })
     }, [])
 
     const onCreateGroup = (txt) => {
@@ -81,13 +82,11 @@ export const BoardDetails = () => {
     }
 
     const getFilteredBoard = () => {
-        console.log(filterBy)
         return {
             ...board, groups: board.groups.map(group => {
                 return {
                     ...group, tasks: group.tasks.filter(task => {
                         const regex = new RegExp(filterBy.txt, 'i')
-                        console.log(filterBy)
                         return (
 
                             filterBy.labelIds.every(id => task.labelIds.includes(id)) &&
@@ -96,8 +95,8 @@ export const BoardDetails = () => {
                                 !task.hasOwnProperty('members') || task.members.length === 0 :
                                 filterBy.members.every(id => task?.members?.includes(id))) &&
                             ((filterBy.isDone === null) ? true :
-                                (filterBy.isDone) ? task?.dueDate?.isDone : !task?.dueDate?.isDone) 
-                                // &&
+                                (filterBy.isDone) ? task?.dueDate?.isDone : !task?.dueDate?.isDone)
+                            // &&
                             // ((filterBy.time === null) ? true :
                             //     (filterBy.time === 0) ? (task?.dueDate?.time && new Date() - task.dueDate.time < 0) : false
                             // )
@@ -112,7 +111,7 @@ export const BoardDetails = () => {
         }
     }
 
-    // console.log('board:', board)
+    // console.log('boardId', board._id)
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={board.style} >

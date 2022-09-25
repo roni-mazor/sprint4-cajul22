@@ -146,11 +146,11 @@ export const TaskDetails = () => {
                             toggleModal={toggleAdditivesModal}
                         />}
 
-                        <TaskActivities
+                        {/* <TaskActivities
                             user={user}
                             board={board}
                             task={task}
-                            onSaveTask={onSaveTask} />
+                            onSaveTask={onSaveTask} /> */}
                     </div>
                     <aside className="details-side-bar">
                         {isUserJoined() && <div>

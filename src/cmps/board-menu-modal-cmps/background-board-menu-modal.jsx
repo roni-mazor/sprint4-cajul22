@@ -49,7 +49,6 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
     }
 
     const saveBackground = (img) => {
-        console.log(board)
         board.customBackgrounds.push(img.url)
         board.style = { backgroundImage: `url(${img.url})` }
         dispatch(saveBoard(board, null, null, `changed the background of this board`))

@@ -45,7 +45,7 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                 </div>
                 <div className="menu-activities-wrapper">
                     <div className="board-menu-activities">
-                        {board.activities.map(activity => <div key={activity.id}
+                        {/* {board.activities.map(activity => <div key={activity.id}
                             className="activity-container flex">
                             <div className="profile-img">
                                 <img src={activity?.byMember.imgUrl} alt="" />
@@ -68,7 +68,7 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                                 {activity.attachment && <img className="activity-attachment"
                                     src={activity.attachment} alt="task attachment" />}
                             </div>
-                        </div>)}
+                        </div>)} */}
                     </div>
 
                 </div>

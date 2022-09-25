@@ -19,10 +19,10 @@ export function resetBoard() {
 
 export function loadBoards() {
 
-    console.log('loading')
     return async (dispatch) => {
         try {
             const boards = await boardService.query()
+            console.log('loading')
 
             dispatch({ type: 'SET_BOARDS', boards })
         } catch (err) {
@@ -32,7 +32,7 @@ export function loadBoards() {
     }
 }
 
-export function onCreateNewBoard(){
+export function onCreateNewBoard() {
 
 }
 
@@ -82,6 +82,13 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
         } catch (err) {
             console.log('Couldnt update board: ', err);
         }
+    }
+}
+
+
+export function setBoard(board) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_BOARD', board })
     }
 }
 
