@@ -115,22 +115,20 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                         })}
                     </section>
                     <p className="task-preview-title">{task.title}</p>
-                    <section className="task-user-container flex">
-                        {getTaskMembers().map(member => <img className="task-users"
-                            src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
-                    </section>
-                    <section className="task-badges flex align-center">
-                        {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
+                    <section className="task-info-container flex">
+                        <section className="task-badges flex align-center">
+                            {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
 
-                        {task?.attachments?.length > 0 &&
-                            <div className="task-badges attached flex align-center">
-                                <span className="attach-icon"> <ImAttachment /></span>
-                                <p>{task.attachments.length}</p></div>}
+                            {task?.attachments?.length > 0 &&
+                                <div className="task-badges attached flex align-center">
+                                    <span className="attach-icon"> <ImAttachment /></span>
+                                    <p>{task.attachments.length}</p></div>}
 
-                        {task?.checklists?.length > 0 && <div
-                            className={`task-badges checklist flex align-center ${isAllDone ? 'done' : ''}`}>
-                            <span className="checklist-icon"><TbCheckbox /></span>
-                            <p className="todo-num">{dispalyDoneChecklist()}</p></div>}
+                            {task?.checklists?.length > 0 && <div
+                                className={`task-badges checklist flex align-center ${isAllDone ? 'done' : ''}`}>
+                                <span className="checklist-icon"><TbCheckbox /></span>
+                                <p className="todo-num">{dispalyDoneChecklist()}</p></div>}
+                        </section>
                         <section className="task-user-container flex">
                             {getTaskMembers().map(member => <img className="task-users"
                                 src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
