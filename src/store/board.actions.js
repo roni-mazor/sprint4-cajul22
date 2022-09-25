@@ -19,10 +19,10 @@ export function resetBoard() {
 
 export function loadBoards() {
 
-    console.log('loading')
     return async (dispatch) => {
         try {
             const boards = await boardService.query()
+            console.log('loading')
 
             dispatch({ type: 'SET_BOARDS', boards })
         } catch (err) {
@@ -33,22 +33,22 @@ export function loadBoards() {
 }
 
 
-export function saveBoards(currBoard, BoardToUpdate) {
-    return async (dispatch, getState) => {
-        try {
-            // console.log('board:', board)
-            const user = getState().userModule.user
-            let groupId = group ? group.id : null
-            // board.activities = []
-            _saveActivity(user, board, groupId, task, txt, link, opTxt)
-            boardService.save(board)
-            boardService.save(board)
-            dispatch({ type: 'SET_BOARD', board })
-        } catch (err) {
-            console.log('Couldnt update board: ', err)
-        }
-    }
-}
+// export function saveBoards(currBoard, BoardToUpdate) {
+//     return async (dispatch, getState) => {
+//         try {
+//             // console.log('board:', board)
+//             const user = getState().userModule.user
+//             let groupId = group ? group.id : null
+//             // board.activities = []
+//             _saveActivity(user, board, groupId, task, txt, link, opTxt)
+//             boardService.save(board)
+//             boardService.save(board)
+//             dispatch({ type: 'SET_BOARD', board })
+//         } catch (err) {
+//             console.log('Couldnt update board: ', err)
+//         }
+//     }
+// }
 
 export function createBoard(boardInfo) {
     return async (dispatch) => {
@@ -116,7 +116,14 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
     }
 }
 
-export function saveTask(groupId, task, txt, link, opTxt, attachment, onActId, comment) {
+
+export function setBoard(board) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_BOARD', board })
+    }
+}
+
+export function saveTask(groupId, task, txt, link, opTxt, attachment, comment) {
     return async (dispatch, getState) => {
         // boardService.saveTask(boardId, groupId, task)
         const user = getState().userModule.user

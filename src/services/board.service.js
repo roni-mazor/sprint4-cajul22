@@ -16,7 +16,7 @@ export const boardService = {
     // saveTask,
     createLabel,
     createNewAttachment,
-    starBoardFromWorkspace,
+    // starBoardFromWorkspace,
     createNewBoard
 }
 
@@ -54,9 +54,9 @@ async function getById(boardId) {
 
 // }
 
-async function starBoardFromWorkspace(boardId) {
-    await httpService.put(`board/star/${boardId}`)
-}
+// async function starBoardFromWorkspace(boardId) {
+//     await httpService.put(`board/star/${boardId}`)
+// }
 
 async function save(board) {
     if (board._id) {

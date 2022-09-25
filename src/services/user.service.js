@@ -6,6 +6,7 @@ import { users } from "./data.service"
 // import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
 import { showSuccessMsg } from '../services/event-bus.service'
 import { httpService } from "./http.service"
+import { socketService } from "./socket.service"
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORAGE_KEY = 'users'
@@ -33,7 +34,7 @@ async function getUsers() {
         rawUsers = users
     }
     // console.log('rawUsers:', rawUsers)
-    
+
     return rawUsers
     // return storageService.query('user')
     // return httpService.get(`user`)
@@ -69,11 +70,12 @@ async function update(user) {
 async function login(userCred) {
     const users = await storageService.query('users')
     console.log('user from userService:', users)
-    
+
     const user = users.find(currUser => currUser.username.toLowerCase() === userCred.username.toLowerCase())
     // const user = await httpService.post('auth/login', userCred)
+    // console.log(user)
     if (user) {
-        // socketService.login(user._id)
+        socketService.login(user._id)
         return saveLocalUser(user)
     }
 }
@@ -83,7 +85,7 @@ async function signup(userCred) {
 
     const user = await storageService.post('users', userCred)
     // const user = await httpService.post('auth/signup', userCred)
-    // socketService.login(user._id)
+    socketService.login(user._id)
 
     return saveLocalUser(user)
 }

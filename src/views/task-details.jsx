@@ -95,7 +95,6 @@ export const TaskDetails = () => {
         dispatch(saveBoard(board))
     }
 
-
     const convertTodoToTask = (txt) => {
         const group = board.groups.find(group => group.id === groupId)
         const newTask = boardService.createTask(txt)
@@ -163,11 +162,11 @@ export const TaskDetails = () => {
                             removeActivity={removeActivity}
                         />}
 
-                        <TaskActivities
+                        {/* <TaskActivities
                             user={user}
                             board={board}
                             task={task}
-                            onSaveTask={onSaveTask} />
+                            onSaveTask={onSaveTask} /> */}
                     </div>
                     <aside className="details-side-bar">
                         {isUserJoined() && <div>

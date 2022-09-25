@@ -52,7 +52,7 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
 
             <Droppable droppableId={`${group.id}`} type='task'>
                 {(provided) => (
-                    //wrap it up with a div for scrolling
+                    
                     <section className="task-container-wrapper">
                         <ul className="task-container" {...provided.droppableProps} ref={provided.innerRef}>
 

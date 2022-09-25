@@ -9,12 +9,15 @@ import { FaRegComment } from 'react-icons/fa'
 
 import { useEffect, useState } from "react"
 import { DateBadge } from "./task-details/date-badge"
+import { FaPencilAlt } from "react-icons/fa"
+import { FastEditModal } from "./fast-edit-modal"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
     const board = useSelector(state => state.boardModule.board)
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
     const dispatch = useDispatch()
+    const [isFastEdit, setIsFastEdit] = useState({ isOpen: false })
 
     useEffect(() => {
         getTaskMembers()
@@ -87,10 +90,26 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         return isAllDone
     }
 
+    const openFastEdit = (ev) => {
+        ev.preventDefault()
+        const posDetails = ev.target.getBoundingClientRect()
+        const windowWidth = window.innerWidth
+        setIsFastEdit({ isOpen: true, posDetails, windowWidth })
+    }
+
     const isAllDone = allDone()
     const openLabelClassName = (isLabelTxtOpen) ? 'open' : ''
-    return (
-        <Link to={`/board/${boardId}/${groupId}/${task.id}`} className="task-preview">
+    const linkToTask = `/board/${boardId}/${groupId}/${task.id}`
+    return (<>
+
+        {isFastEdit?.isOpen && <FastEditModal linkToTask={linkToTask} isAllDone={isAllDone} dispalyDoneChecklist={dispalyDoneChecklist} 
+        onSaveTask={onSaveTask} getTaskMembers={getTaskMembers} labels={labels} getCoverHeight={getCoverHeight}
+         task={task} modalInfo={isFastEdit} toggleModal={setIsFastEdit} />}
+
+        <Link to={linkToTask} className="task-preview">
+            <button className='edit-btn' onClick={openFastEdit}>
+                <FaPencilAlt />
+            </button>
             {(!task.background || task.background === 'header') && <div>
 
                 {task.cover && <div className="task-cover"
@@ -113,23 +132,20 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                         })}
                     </section>
                     <p className="task-preview-title">{task.title}</p>
-                    <section className="task-badges flex align-center">
-                        <div>
-
+                    <section className="task-info-container flex">
+                        <section className="task-badges flex align-center">
                             {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
-                            {task?.comment && <div className="task-badges comment flex align-center">
-                                <span className="comment-icon"> <FaRegComment /></span> <p>{task.comment}</p></div>}
+
                             {task?.attachments?.length > 0 &&
                                 <div className="task-badges attached flex align-center">
                                     <span className="attach-icon"> <ImAttachment /></span>
                                     <p>{task.attachments.length}</p></div>}
 
-                            {/* {task?.checklists?.length > 0 && <div */}
-                            {todos?.totalTodos > 0 && <div
+                            {task?.checklists?.length > 0 && <div
                                 className={`task-badges checklist flex align-center ${isAllDone ? 'done' : ''}`}>
                                 <span className="checklist-icon"><TbCheckbox /></span>
                                 <p className="todo-num">{dispalyDoneChecklist()}</p></div>}
-                        </div>
+                        </section>
                         <section className="task-user-container flex">
                             {getTaskMembers().map(member => <img className="task-users"
                                 src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
@@ -144,5 +160,6 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                     <div className="mini-task-title" ><p >{task.title}</p></div> </div>}
             </div>}
         </Link>
+    </>
     )
 }

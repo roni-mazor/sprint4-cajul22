@@ -131,6 +131,7 @@ const board2 = {
     "title": "Volunteering",
     "isStarred": true,
     "archivedAt": 1589983468418,
+    "customBackgrounds": [],
     "createdAt": 1589983468418,
     "createdBy": {
         "_id": "u103",
@@ -298,6 +299,7 @@ const board2 = {
 const board3 = {
     "title": "App Ideas",
     "isStarred": false,
+    "customBackgrounds": [],
     "archivedAt": 1589983468418,
     "createdAt": 1589983468418,
     "createdBy": {

@@ -10,8 +10,38 @@
     position: relative;
     text-decoration: none;
 
+    .edit-btn {
+        position: absolute;
+        border: none;
+        font-size: 11px;
+        width: 24px;
+        height: 24px;
+        background-color: transparent;
+        background-clip: padding-box;
+        background-origin: initial;
+        opacity: .8;
+        padding: 4px;
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        z-index: 20;
+        border-radius: 3px;
+        visibility: hidden;
+
+        &:hover {
+            background-color: #e7e8eb;
+
+        }
+
+    }
+
     &:hover {
         background-color: #f4f5f7;
+
+        .edit-btn {
+            color: #172b4d;
+            visibility: visible;
+        }
     }
 
     .task-cover {
@@ -90,8 +120,11 @@
 
         .task-user-container {
             flex-direction: row-reverse;
-            // float: right;
+            align-self: flex-end;
+            float: right;
             margin: 0 -2px 0 0;
+            flex-wrap: nowrap;
+            flex: 1;
 
 
             & .task-users {
@@ -102,126 +135,131 @@
             }
         }
 
-        .task-badges {
-            // float: left;
-            // margin-left: 3px;
-            // margin-bottom: 10px;
-            position: relative;
-            gap: 1px;
-            max-width: 100%;
+        .task-info-container {
 
+            flex-wrap: wrap;
 
-
-            .date-badge {
-                border-radius: 3px;
-                color: #fff;
-                font-size: 12px;
-                font-weight: 400;
-                line-height: 20px;
-                min-height: 20px;
-                padding: 1px 6px 3px 3px;
+            .task-badges {
+                // float: left;
+                // margin-left: 3px;
+                // margin-bottom: 10px;
                 position: relative;
-                display: inline-flex;
-                vertical-align: top;
-                margin-right: 4px;
-                gap: 2px;
-                background-color: inherit;
+                gap: 1px;
+                max-width: 100%;
 
-                .date-checkbox {
-                    color: white;
-                    opacity: 0;
 
-                }
 
-                .clock-icon {
-                    font-size: 17px;
-                    position: absolute;
-                    top: 3.5px;
-                    left: 5px;
-                }
-
-                &:hover {
-                    .clock-icon {
-                        display: none;
-                    }
+                .date-badge {
+                    border-radius: 3px;
+                    color: #fff;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 20px;
+                    min-height: 20px;
+                    padding: 1px 6px 3px 3px;
+                    position: relative;
+                    display: inline-flex;
+                    vertical-align: top;
+                    margin-right: 4px;
+                    gap: 2px;
+                    background-color: inherit;
 
                     .date-checkbox {
-                        opacity: 1;
+                        color: white;
+                        opacity: 0;
+
+                    }
+
+                    .clock-icon {
+                        font-size: 17px;
+                        position: absolute;
+                        top: 3.5px;
+                        left: 5px;
+                    }
+
+                    &:hover {
+                        .clock-icon {
+                            display: none;
+                        }
+
+                        .date-checkbox {
+                            opacity: 1;
+                        }
                     }
                 }
-            }
 
-            &.comment {
-                color: #5e6c84;
-                font-size: 12px;
-                height: 20px;
-                line-height: 20px;
-                width: 20px;
-                margin-bottom: 5px;
-                margin-inline-end: 10px;
-                gap: 5px;
-                position: relative;
-                top: 3px;
-                padding-inline-start: 4px;
-
-                p {
-                    font-size: 13px;
-                }
-            }
-
-            &.attached {
-                color: #5e6c84;
-                font-size: 12px;
-                height: 20px;
-                line-height: 20px;
-                width: 20px;
-                margin-bottom: 5px;
-                margin-inline-end: 10px;
-                gap: 5px;
-                position: relative;
-                top: 3px;
-                padding-inline-start: 4px;
-
-                p {
-                    font-size: 13px;
-                }
-            }
-
-            &.checklist {
-                color: #5e6c84;
-                font-size: 12px;
-                border-radius: 3px;
-                max-width: 100%;
-                margin-bottom: 5px;
-                margin-inline-start: 2px;
-                padding: 0px 5px 0px 5px;
-                position: relative;
-                gap: 5px;
-                top: 3px;
-
-                &.done {
-                    background-color: #61bd4f;
-                    color: #fff;
-                    // margin: 0 4px 4px 0;
-                }
-
-                .checklist-icon {
-                    font-size: 0.875rem;
-                    ;
-                    // height: 20px;
-                    // line-height: 20px;
-                    // width: 20px;
-                }
-
-                .todo-num {
-                    font-size: 0.8rem;
+                &.comment {
+                    color: #5e6c84;
+                    font-size: 12px;
+                    height: 20px;
+                    line-height: 20px;
+                    width: 20px;
+                    margin-bottom: 5px;
+                    margin-inline-end: 10px;
+                    gap: 5px;
                     position: relative;
-                    top: 1px;
+                    top: 3px;
+                    padding-inline-start: 4px;
+
+                    p {
+                        font-size: 13px;
+                    }
                 }
 
-                // & p{
-                //     margin: 0;
-                // }
+                &.attached {
+                    color: #5e6c84;
+                    font-size: 12px;
+                    height: 20px;
+                    line-height: 20px;
+                    width: 20px;
+                    margin-bottom: 5px;
+                    margin-inline-end: 10px;
+                    gap: 5px;
+                    position: relative;
+                    top: 3px;
+                    padding-inline-start: 4px;
+
+                    p {
+                        font-size: 13px;
+                    }
+                }
+
+                &.checklist {
+                    color: #5e6c84;
+                    font-size: 12px;
+                    border-radius: 3px;
+                    max-width: 100%;
+                    margin-bottom: 5px;
+                    margin-inline-start: 2px;
+                    padding: 0px 5px 0px 5px;
+                    position: relative;
+                    gap: 5px;
+                    top: 3px;
+
+                    &.done {
+                        background-color: #61bd4f;
+                        color: #fff;
+                        // margin: 0 4px 4px 0;
+                    }
+
+                    .checklist-icon {
+                        font-size: 0.875rem;
+                        ;
+                        // height: 20px;
+                        // line-height: 20px;
+                        // width: 20px;
+                    }
+
+                    .todo-num {
+                        font-size: 0.8rem;
+                        position: relative;
+                        top: 1px;
+                    }
+
+                    // & p{
+                    //     margin: 0;
+                    // }
+                }
             }
         }
     }

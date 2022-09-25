@@ -57,17 +57,15 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
 
         <div className='todo-preview  flex align-center justify-between' onClick={onFocus}>
             <div className="todo-preview-container">
-                <span><Checkbox
-                    sx={{ color: 'lightgray' }}
-                    className="todo-checkbox"
+                <span className="todo-checkbox"><Checkbox
+                    sx={{ color: 'lightgray' }}                    
                     onClick={onStopProp}
                     checked={todo.isDone}
                     onChange={() => onTodoIsDone(todo.id)} />
                 </span>
                 {!focused && <span className={todo.isDone ? 'todo-title done' : 'todo-title'}>
                     {todo.title}</span>}
-                {focused && <div>
-
+                {focused && <section className="text-area-container">
                     <textarea className='todo-title-txtarea simple-txtarea'
                         cols="30" rows="10"
                         autoFocus
@@ -79,7 +77,7 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
                         <button className="save" onClick={onSaveTitle}>Save</button>
                         <button className="cancel" onClick={onBlur}><IoMdClose /></button>
                     </div>
-                </div>}
+                </section>}
             </div>
             {!focused && <span className='todo-menu' onClick={(event) => toggleAdditivesModal(event, 'todo')}><BsThreeDots /></span>}
             {isAdditivesModalOpen && <TaskAdditivesModal
