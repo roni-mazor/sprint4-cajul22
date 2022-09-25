@@ -36,21 +36,19 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
         if (!task.checklists) return
         let total = 0
         let done = 0
-        const todos = task.checklists.reduce((totalTodos, checklist) => {
+        task.checklists.forEach(checklist => {
             const isDone = checklist.list.reduce((doneTodos, todo) => {
-                if (todo.isDone) doneTodos++
-                totalTodos++
+                if (todo.isDone) done++
+                total++
                 return doneTodos
             }, done)
-            // console.log('totalTodos:', totalTodos)
-            return { isDone, totalTodos }
-            //check maybe return the reducer immediatly
-        }, total)
+        })
         return {
-            isDone: todos.isDone,
-            totalTodos: todos.totalTodos
+            isDone: done,
+            totalTodos: total
         }
     }
+
 
     const getCoverHeight = () => {
         if (!task.cover) return

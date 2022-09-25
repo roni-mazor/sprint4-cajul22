@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { AppHeader } from "../cmps/app-header"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { BoardList } from "../cmps/board-list"
-import { updateIsStarred, createBoard } from "../store/board.actions"
+import { updateIsStarred, createBoard, loadBoards } from "../store/board.actions"
 import { MdOutlineClose } from "react-icons/md"
 import { utilService } from "../services/util.service"
 import boardPreview from "../assets/img/board-preview.svg"
@@ -26,6 +26,7 @@ export const Workspace = () => {
 
     useEffect(() => {
         setNewBoardBackground({ backgroundImage: 'url("https://images.unsplash.com/photo-1663787652609-57b525eb6ee6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjYzOTU5NDEy&ixlib=rb-1.2.1&q=80&w=400")' })
+        dispatch(loadBoards())
     }, [])
 
     const onCreateNewBoard = (ev) => {
@@ -59,7 +60,7 @@ export const Workspace = () => {
         const isOpen = !isCreateBoardModal.isOpen
         // setIsCreateBoardModal(!isCreateBoardModal)
         console.log('ev:', ev)
-        
+
         const posDetails = ev.target.getBoundingClientRect()
         const windowWidth = window.innerWidth
         console.log({ posDetails, windowWidth })
@@ -79,13 +80,13 @@ export const Workspace = () => {
     }
 
     console.log('isCreateBoardModal location:', isCreateBoardModal.posDetails)
-    
+
     // console.log('member:', member)
     if (!boards) return <LoaderIcon />
     return (
         <React.Fragment>
             <AppHeader />
-            {isCreateBoardModal.isOpen && <section className="create-board-modal" style={{left: "276px", top: "336.5px"}}>
+            {isCreateBoardModal.isOpen && <section className="create-board-modal" style={{ left: "276px", top: "336.5px" }}>
                 <header className="modal-header flex">
                     <div className="modal-title">Create board</div>
                     <span></span>

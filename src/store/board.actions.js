@@ -32,6 +32,24 @@ export function loadBoards() {
     }
 }
 
+
+// export function saveBoards(currBoard, BoardToUpdate) {
+//     return async (dispatch, getState) => {
+//         try {
+//             // console.log('board:', board)
+//             const user = getState().userModule.user
+//             let groupId = group ? group.id : null
+//             // board.activities = []
+//             _saveActivity(user, board, groupId, task, txt, link, opTxt)
+//             boardService.save(board)
+//             boardService.save(board)
+//             dispatch({ type: 'SET_BOARD', board })
+//         } catch (err) {
+//             console.log('Couldnt update board: ', err)
+//         }
+//     }
+// }
+
 export function createBoard(boardInfo) {
     return async (dispatch) => {
         console.log('boardInfo :', boardInfo)
@@ -85,10 +103,10 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
 
     return async (dispatch, getState) => {
         try {
+            console.log('board:', board)
             const user = getState().userModule.user
             let groupId = group ? group.id : null
             // board.activities = []
-            // console.log('txt:', txt)
             _saveActivity(user, board, groupId, task, txt, link, opTxt)
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
@@ -127,6 +145,7 @@ export function toggleLabelTxt() {
         dispatch({ type: 'TOGGLE_LABEL_TXT' })
     }
 }
+
 export function saveLabels(labels) {
     return (dispatch, getState) => {
         const board = getState().boardModule.board
@@ -136,6 +155,7 @@ export function saveLabels(labels) {
         dispatch({ type: 'SET_BOARD', board })
     }
 }
+
 export function removeLabel(labels, removedLabelId) {
     return (dispatch, getState) => {
         const board = getState().boardModule.board
