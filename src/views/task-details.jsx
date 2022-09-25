@@ -7,13 +7,16 @@ import { BsTag, BsSquareHalf } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TbCheckbox } from 'react-icons/tb'
 import { ImAttachment } from 'react-icons/im'
+import { MdOutlineContentCopy } from 'react-icons/md'
 
+import { DateShower } from "../cmps/task-details/date-shower"
+import { boardService } from "../services/board.service"
 
 import { TaskTitle } from "../cmps/task-details/task-title"
 import { TaskDescription } from "../cmps/task-details/task-description"
 import { TaskAttachments } from "../cmps/task-details/task-attachments"
 import { TaskActivities } from "../cmps/task-details/task-activities"
-import { saveTask, saveBoard, loadBoard } from "../store/board.actions"
+import { saveTask, saveBoard, loadBoard, saveGroup } from "../store/board.actions"
 import { TaskAdditivesModal } from "../cmps/addivities-modal/task-additives-modal"
 import { Members } from "../cmps/task-details/task-members"
 import { LoaderIcon } from "../cmps/loader-icon"
@@ -21,7 +24,6 @@ import { LoaderIcon } from "../cmps/loader-icon"
 
 import { LabelShower } from "../cmps/task-details/label-shower"
 import { TaskChecklist } from "../cmps/task-details/task-checklist"
-import { DateShower } from "../cmps/task-details/date-shower"
 
 
 export const TaskDetails = () => {
@@ -32,7 +34,6 @@ export const TaskDetails = () => {
     const board = useSelector(state => state.boardModule.board)
     const user = useSelector(state => state.userModule.user)
     const [task, setTask] = useState()
-    let [isJoined, setIsJoined] = useState(false)
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
     const group = board.groups.find(group => group.id === groupId)
 
@@ -75,9 +76,12 @@ export const TaskDetails = () => {
     }
 
     const isUserJoined = () => {
+        // console.log('user:', user)
+
         if (!task) return
         const { members } = task
-        const member = members.find(id => id === user._id)
+        const member = members.find(id => id === user?._id)
+        // console.log('user_id:', user._id)        
         if (!member) return true
     }
 
@@ -90,20 +94,28 @@ export const TaskDetails = () => {
         dispatch(saveBoard(board))
     }
 
-    const toggleSuggestedJoin = () => {
-        setIsJoined(isJoined = !isJoined)
+    const convertTodoToTask = (txt) => {
+        const group = board.groups.find(group => group.id === groupId)
+        const newTask = boardService.createTask(txt)
+        group.tasks.push(newTask)
+        dispatch(saveGroup(group, task, `converted ${txt} from a checklist item on`, task.title))
     }
 
+    const onSaveTask = (newTask, txt, link, opTxt, attachment, onActId, comment) => {
+        dispatch(saveTask(groupId, newTask, txt, link, opTxt, attachment, onActId, comment))
+    }
 
-    const onSaveTask = (newTask, txt, link, opTxt, attachment, comment) => {
-        dispatch(saveTask(groupId, newTask, txt, link, opTxt, attachment, comment))
+    const removeActivity = (id) => {
+
+        const activityIdx = board.activities.findIndex(activity => id === activity.onActId)
+        board.activities.splice(activityIdx, 1)
+        dispatch(saveBoard(board))
     }
 
     const handleChange = (ev) => {
         const value = ev.target.value
-        let newTask = task
-        newTask.title = value
-        onSaveTask(newTask, `changed the title on`, value)
+        task.title = value
+        onSaveTask(task, `changed the title on`, value)
     }
 
     // console.log('task:', task)
@@ -139,11 +151,14 @@ export const TaskDetails = () => {
                         <TaskDescription task={task}
                             onSaveTask={onSaveTask} />
                         {task?.attachments?.length > 0 && <TaskAttachments task={task}
-                            onSaveTask={onSaveTask} />}
+                            onSaveTask={onSaveTask}
+                            toggleAdditivesModal={toggleAdditivesModal} />}
                         {task?.checklists?.length > 0 && <TaskChecklist
                             task={task}
                             onSaveTask={onSaveTask}
+                            convertTodoToTask={convertTodoToTask}
                             toggleModal={toggleAdditivesModal}
+                            removeActivity={removeActivity}
                         />}
 
                         {/* <TaskActivities
@@ -160,10 +175,11 @@ export const TaskDetails = () => {
                         <h3>Add to card</h3>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'members')}><AiOutlineUser />Members</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'label-picker')}><BsTag /> Labels</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'checklist-picker')}><TbCheckbox /> CheckList</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}><ImAttachment /> Attachments</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'check-list')}><TbCheckbox /> CheckList</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'copy')}><span><MdOutlineContentCopy /></span> Copy</button>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
                         modalInfo={isAdditivesModalOpen}

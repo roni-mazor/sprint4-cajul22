@@ -1,3 +1,5 @@
+import { boards } from "../services/data.service"
+
 const initialState = {
     board: null,
     boards: null,
@@ -18,6 +20,9 @@ export function boardReducer(state = initialState, action) {
                 ...state,
                 boards: state.boards.map(board => board._id === action.board._id ? action.board : board)
             }
+        case 'ADD_BOARD':
+            console.log('I got here! did you?!:', action)            
+            return { ...state, boards: [...state.boards, action.board]  }
         case 'TOGGLE_LABEL_TXT':
             return { ...state, isLabelTxtOpen: !state.isLabelTxtOpen }
 

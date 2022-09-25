@@ -5,7 +5,7 @@ import { photoService } from '../../services/photo.service'
 import { utilService } from '../../services/util.service'
 
 
-export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity }) => {
+export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
 
     const [cardClr, setCardClr] = useState(null)
     const [cardFocus, setCardFocus] = useState(null)
@@ -36,7 +36,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
     const onRemoveCover = () => {
         task.coverClr = ''
         task.cover = null
-        task.background ='header'
+        task.background = 'header'
         onSaveTask(task, '')
         setCardClr({})
         setCardFocus(null)
@@ -57,8 +57,9 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
             opacity: 1
         })
         onSaveTask(task, '')
-        onSaveActivity(`changed the cover`)
         setClrFocus(color)
+        console.log('color:', color)
+        console.log('clrFocus:', clrFocus)
     }
 
     const onMakeCover = (cover) => {
@@ -70,7 +71,6 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
             opacity: 1
         })
         onSaveTask(task, '')
-        onSaveActivity(`changed the cover`)
         setClrFocus(cover)
         if (!cardFocus) setCardFocus('header')
     }
@@ -84,7 +84,6 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal, onSaveActivity
             opacity: 1
         })
         onSaveTask(task, '')
-        onSaveActivity(`changed the cover`)
         setClrFocus(cover)
         if (!cardFocus) setCardFocus('header')
     }

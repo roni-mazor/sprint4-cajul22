@@ -4,7 +4,7 @@ import { utilService } from "../services/util.service"
 export function loadBoard(boardId) {
     return async (dispatch) => {
         const board = await boardService.getById(boardId)
-        console.log(board)
+        // console.log(board)
         dispatch({ type: 'SET_BOARD', board })
     }
 }
@@ -26,15 +26,26 @@ export function loadBoards() {
 
             dispatch({ type: 'SET_BOARDS', boards })
         } catch (err) {
-            console.log('Couldnt get boards: ', err);
+            console.log('Couldnt get boards: ', err)
         }
 
     }
 }
 
-export function onCreateNewBoard() {
+export function createBoard(boardInfo) {
+    return async (dispatch) => {
+        console.log('boardInfo :', boardInfo)
+        try {
+            const board = await boardService.createNewBoard(boardInfo)
+            console.log('newBoard from board actions!:', board)
+            dispatch({ type: 'ADD_BOARD', board })
+        } catch (err) {
+            console.log('Had a problem at createBoard', err)
+        }
+    }
 
 }
+
 
 
 export function updateIsStarred(board) {
@@ -45,7 +56,7 @@ export function updateIsStarred(board) {
             dispatch({ type: 'SET_STARRED', board })
             await boardService.starBoardFromWorkspace(board._id)
         } catch (err) {
-            console.log('Couldnt update board: ', err);
+            console.log('Couldnt update board: ', err)
         }
     }
 }
@@ -64,10 +75,12 @@ export function saveGroup(group, task, txt, link, opTxt) {
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
-            console.log('Couldnt update board: ', err);
+            console.log('Couldnt update board: ', err)
         }
     }
 }
+
+
 export function saveBoard(board, group, task, txt, link, opTxt) {
 
     return async (dispatch, getState) => {
@@ -80,7 +93,7 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
-            console.log('Couldnt update board: ', err);
+            console.log('Couldnt update board: ', err)
         }
     }
 }
@@ -102,7 +115,7 @@ export function saveTask(groupId, task, txt, link, opTxt, attachment, comment) {
             if (t.id === task.id) return task
             else return t
         })
-        _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, comment)
+        _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, onActId,comment)
         boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
 
@@ -163,7 +176,7 @@ export function removeAttachment(groupId, taskId) {
 }
 
 
-function _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, comment = false) {
+function _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, onActId,comment = false) {
     if (!txt) return
 
     const addedActivity = {
@@ -176,7 +189,8 @@ function _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment,
         link,
         opTxt,
         attachment,
-        comment
+        comment,
+        onActId
     }
     // console.log('addedActivity:', addedActivity)
     board.activities = [addedActivity, ...board.activities]

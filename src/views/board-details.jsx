@@ -22,7 +22,7 @@ export const BoardDetails = () => {
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false)
     const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMembers: false, isDone: null, time: null })
 
-    useEffect(() => {
+    useEffect(() => {        
         dispatch(loadBoard(params.boardId))
         socketService.emit('set-board-listening', params.boardId)
         socketService.on('emit-board-change', (board) => {
@@ -34,7 +34,8 @@ export const BoardDetails = () => {
         const group = boardService.createGroup(txt)
         const b = { ...board }
         b.groups.push(group)
-        dispatch(saveBoard(b))
+        dispatch(saveBoard(b, group, null, `added ${txt} to the board`))
+
     }
 
     const onToggleIsStarred = () => {
@@ -111,7 +112,7 @@ export const BoardDetails = () => {
         }
     }
 
-    // console.log('boardId', board._id)
+    console.log('board:', board)
     if (!board) return <LoaderIcon />
     return (
         <div className="board-wrapper" style={board.style} >

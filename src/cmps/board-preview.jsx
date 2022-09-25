@@ -14,15 +14,15 @@ export const BoardPreview = ({ board, onToggleIsStarred }) => {
     // console.log('board:', board)
     return (
         <Link to={`/board/${board._id}`}>
-            <div className='board-preview-container'>
+            <div className="board-preview-container">
                 <section className="board-preview" style={board.style} >
-                    {/* <div className='board-preview-darken'> */}
+                    <span className="board-preview-fade">
                         <h1>{board.title}</h1>
                         <div className={board.isStarred ? 'starred' : ''} onClick={onIsStarred}>
                             {!board.isStarred && <AiOutlineStar />}
                             {board.isStarred && <AiFillStar />}
                         </div>
-                    {/* </div> */}
+                    </span>
                 </section>
 
             </div>

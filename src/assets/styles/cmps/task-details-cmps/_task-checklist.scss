@@ -1,13 +1,14 @@
 .task-checklist {
-
+width: 99%;
     .checklist-preview {
-        margin-inline-start: 21px;
-        margin-top: 35px;
+        margin-inline-start: 11px;
+        margin-top: 28px;
         margin-bottom: 35px;
 
         button {
             align-items: center;
             background-color: #091e420a;
+            margin-top: 8px;
             border: none;
             border-radius: 3px;
             box-shadow: none;
@@ -34,8 +35,8 @@
 
 
         .checklist-title {
-            height: 32px;
-            padding: 8px 0;
+            height: 37px;
+            margin-inline-start: 10px;
             margin-bottom: 10px;
             color: #42526e;
             .checklist-title-container {
@@ -84,12 +85,13 @@
 
         .progress {
             position: relative;
+            padding-inline-start: 10px;
             margin-bottom: 10px;
 
             span {
                 color: #5e6c84;
                 font-size: 11px;
-                left: -6px;
+                left: 5px;
                 line-height: 10px;
                 position: absolute;
                 text-align: center;
@@ -121,8 +123,8 @@
 
         .add-checklist {
 
-            margin-top: 8px;
-            margin-left: 32px;
+            // margin-top: 8px;
+            margin-left: 2px;
 
 
             textarea {
@@ -135,8 +137,8 @@
                 cursor: text;
                 float: none;
                 resize: vertical;
-                width: 100%;
-                margin: 4px 0 0;
+                width: 93%;
+                margin: 4px 39px 0;
                 text-align: initial;
                 text-decoration: none;
                 margin-bottom: 10px;
@@ -171,7 +173,7 @@
             padding: 6px 12px;
             text-decoration: none;
             white-space: normal;
-            margin: 0 4px 0 0;
+            // margin: 0 4px 0 0;
             transition: all .5s;
         }
 

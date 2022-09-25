@@ -16,7 +16,8 @@ export const boardService = {
     // saveTask,
     createLabel,
     createNewAttachment,
-    // starBoardFromWorkspace
+    // starBoardFromWorkspace,
+    createNewBoard
 }
 
 async function query() {
@@ -33,7 +34,7 @@ async function query() {
         "isStarred": board.isStarred,
         "style": board.style
     }))
-    console.log('boards from service:', myBoards)
+    // console.log('boards from service:', myBoards)
     return myBoards
     // return await httpService.get('board/')
 }
@@ -117,6 +118,40 @@ function createNewAttachment(url, height, width, name = 'Media url') {
         createdAt: Date.now()
     }
 
+}
+
+async function createNewBoard(boardInfo) {
+
+    const board = {
+        "_id": boardInfo._id,
+        "title": boardInfo.title,
+        "isStarred": false,
+        "createdAt": Date.now(),
+        "createBy": {
+            "_id": boardInfo.user._id,
+            "fullname": boardInfo.user.fullname,
+            "imgUrl": boardInfo.user.imgUrl
+        },
+        "customBackgrounds": [],
+        "style": boardInfo.style,
+        "labels": [],
+        "members": [
+            boardInfo.user,
+        ],
+        "groups": [
+            {
+                "id": utilService.makeId(5),
+                "title": "Start Here",
+                "archivedAt": 1589983468418,
+                "tasks": [],
+                "style": {}
+            },
+        ],
+        "activities": [],
+    }
+
+   await storageService.post(STORAGE_KEY, board)
+    return board
 }
 
 

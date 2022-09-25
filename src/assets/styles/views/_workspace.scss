@@ -20,8 +20,11 @@
             height: 60px;
             width: 60px;
             margin-inline-end: 20px;
-            object-fit: cover;
             border-radius: 3px;
+
+            background: url("https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+            object-fit: cover;
+            background-size: cover;
         }
 
         & h2 {
@@ -37,22 +40,17 @@
 
     .boards-container {
 
-
         .workspace {
             margin: 0 auto;
-            max-width: 850px;
-            padding: 32px px;
+            // max-width: 850px;
+            padding: 32px 0px;
             position: relative;
 
             display: flex;
             flex-direction: column;
             margin: 0 auto;
             max-width: 1266px;
-
-            >* {
-                grid-column: 2;
-            }
         }
-
+        
     }
 }
