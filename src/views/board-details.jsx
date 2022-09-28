@@ -84,7 +84,7 @@ export const BoardDetails = () => {
 
     const getFilteredBoard = () => {
         return {
-            ...board, groups: board.groups.map(group => {
+            ...board, groups: board?.groups?.map(group => {
                 return {
                     ...group, tasks: group.tasks.filter(task => {
                         const regex = new RegExp(filterBy.txt, 'i')

@@ -39,7 +39,8 @@ export const TaskDescription = ({ task, onSaveTask, onSaveActivity }) => {
                 <span className='task-icon'> <GrTextAlignFull /></span>   <h3>Description</h3>
             </div>
             <textarea onFocus={onFocus} onBlur={onBlur} onChange={onHandleChange}
-                className='simple-txtarea description-txtarea' cols="60" rows="2"
+                className={`simple-txtarea description-txtarea ${task.description ? 'have-description' : ''}`}
+                cols="60" rows="2"
                 placeholder='Add a more detailed description...'
                 value={txt}></textarea>
             {focused && <div className='description-btn'>

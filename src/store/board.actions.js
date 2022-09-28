@@ -33,22 +33,23 @@ export function loadBoards() {
 }
 
 
-// export function saveBoards(currBoard, BoardToUpdate) {
-//     return async (dispatch, getState) => {
-//         try {
-//             // console.log('board:', board)
-//             const user = getState().userModule.user
-//             let groupId = group ? group.id : null
-//             // board.activities = []
-//             _saveActivity(user, board, groupId, task, txt, link, opTxt)
-//             boardService.save(board)
-//             boardService.save(board)
-//             dispatch({ type: 'SET_BOARD', board })
-//         } catch (err) {
-//             console.log('Couldnt update board: ', err)
-//         }
-//     }
-// }
+export function saveBoards(currBoard, BoardToUpdate, group, task, txt, link, opTxt) {
+    console.log('currBoard:', currBoard)
+    console.log('BoardToUpdate:', BoardToUpdate)
+    return async (dispatch, getState) => {
+        try {
+            boardService.save(BoardToUpdate)
+            const user = getState().userModule.user
+            let groupId = group ? group.id : null
+            // board.activities = []
+            _saveActivity(user, BoardToUpdate, groupId, task, txt, link, opTxt)
+            boardService.save(currBoard)
+            dispatch({ type: 'SET_BOARD', currBoard })
+        } catch (err) {
+            console.log('Couldnt update board: ', err)
+        }
+    }
+}
 
 export function createBoard(boardInfo) {
     return async (dispatch) => {

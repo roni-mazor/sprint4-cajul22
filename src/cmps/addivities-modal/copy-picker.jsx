@@ -59,7 +59,7 @@ export const CopyPicker = ({ board, group, task, onSaveTask, toggleModal }) => {
         const selectedBoard = await boardService.getById(value)
         setSelectedBoard(selectedBoard)
         setGroups(selectedBoard.groups)
-
+        setSelectedGroup(selectedBoard.groups[0])
     }
 
 

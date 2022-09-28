@@ -21,6 +21,7 @@ export const boardService = {
 
 async function query() {
     // let myBoards = await storageService.query(STORAGE_KEY)
+    let myBoards= await httpService.get('board/')
 
     // if (!myBoards || !myBoards.length) {
     //     storageService.postMany(STORAGE_KEY, boards)
@@ -33,9 +34,8 @@ async function query() {
     //     "style": board.style,
     //     "groups": board.groups
     // }))
-    // // console.log('boards from service:', myBoards)
-    // return myBoards
-    return await httpService.get('board/')
+    // console.log('boards from service:', myBoards)
+    return myBoards
 }
 
 
@@ -114,7 +114,7 @@ function createNewAttachment(url, height, width, name = 'Media url') {
 async function createNewBoard(boardInfo) {
 
     const board = {
-        "_id": boardInfo._id,
+        // "_id": boardInfo._id,
         "title": boardInfo.title,
         "isStarred": false,
         "createdAt": Date.now(),
@@ -141,9 +141,9 @@ async function createNewBoard(boardInfo) {
         "activities": [],
     }
 
-   //await storageService.post(STORAGE_KEY, board)
-   await httpService.post('board/', board)
-//    return await httpService.get('board/')
+    // await storageService.post(STORAGE_KEY, board)
+    await httpService.post('board/', board)
+    return board
 }
 
 

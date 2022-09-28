@@ -28,18 +28,19 @@ export const Workspace = () => {
         setNewBoardBackground({ backgroundImage: 'url("https://images.unsplash.com/photo-1663787652609-57b525eb6ee6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjYzOTU5NDEy&ixlib=rb-1.2.1&q=80&w=400")' })
         dispatch(loadBoards())
     }, [])
-
+    
     const onCreateNewBoard = (ev) => {
         if (ev) ev.preventDefault()
         const boardInfo = {
             title: txt,
             style: newBoardBackground,
-            _id: utilService.makeId(5),
+            // _id: utilService.makeId(5),
             user
         }
         // console.log('CREATING BOARD:', boardInfo)
         dispatch(createBoard(boardInfo))
-        setTimeout(() => { navigate(`/board/${boardInfo._id}`) }, 750)
+
+        setTimeout(() => { navigate(`/board/${board._id}`) }, 750)
     }
 
     const onSetBackground = ({ target: { style } }) => {
