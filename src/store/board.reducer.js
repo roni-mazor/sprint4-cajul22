@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export function boardReducer(state = initialState, action) {
-      switch (action.type) {
+    switch (action.type) {
         case 'SET_BOARDS':
             return { ...state, boards: action.boards }
         case 'SET_BOARD':
@@ -20,8 +20,8 @@ export function boardReducer(state = initialState, action) {
                 boards: state.boards.map(board => board._id === action.board._id ? action.board : board)
             }
         case 'ADD_BOARD':
-            console.log('I got here! did you?!:', action)            
-            return { ...state, boards: [...state.boards, action.board]  }
+            // console.log('I got here! did you?!:', action)            
+            return { ...state, boards: [...state.boards, action.board], board: { ...action.board } }
         case 'TOGGLE_LABEL_TXT':
             return { ...state, isLabelTxtOpen: !state.isLabelTxtOpen }
 

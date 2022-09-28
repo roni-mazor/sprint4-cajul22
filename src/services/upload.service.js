@@ -22,7 +22,7 @@ async function uploadImg(ev) {
     })
 
     const resData = await res.json()
-// console.log('resData:', resData)
+    // console.log('resData:', resData)
     return {
       url: resData.url,
       name: resData.original_filename,
@@ -50,7 +50,7 @@ async function uploadImgFromDrag(file) {
     })
 
     const resData = await res.json()
-console.log('resData:', resData)
+    // console.log('resData:', resData)
     return {
       url: resData.url,
       name: resData.original_filename,
@@ -63,7 +63,7 @@ console.log('resData:', resData)
 
 }
 
- function imgFromLink(img) {
+function imgFromLink(img) {
   const image = new Image()
   image.onload = () => {
   }

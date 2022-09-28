@@ -21,29 +21,29 @@ export const boardService = {
 }
 
 async function query() {
-    let myBoards = await storageService.query(STORAGE_KEY)
+    // let myBoards = await storageService.query(STORAGE_KEY)
+    let myBoards= await httpService.get('board/')
 
-    if (!myBoards || !myBoards.length) {
-        storageService.postMany(STORAGE_KEY, boards)
-        myBoards = boards
-    }
-    myBoards = myBoards.map(board => ({
-        "_id": board._id,
-        "title": board.title,
-        "isStarred": board.isStarred,
-        "style": board.style,
-        "groups": board.groups
-    }))
+    // if (!myBoards || !myBoards.length) {
+    //     storageService.postMany(STORAGE_KEY, boards)
+    //     myBoards = boards
+    // }
+    // myBoards = myBoards.map(board => ({
+    //     "_id": board._id,
+    //     "title": board.title,
+    //     "isStarred": board.isStarred,
+    //     "style": board.style,
+    //     "groups": board.groups
+    // }))
     // console.log('boards from service:', myBoards)
     return myBoards
-    // return await httpService.get('board/')
 }
 
 
 
 async function getById(boardId) {
-    return await storageService.get(STORAGE_KEY, boardId)
-    // return await httpService.get(`board/${boardId}`)
+    // return await storageService.get(STORAGE_KEY, boardId)
+    return await httpService.get(`board/${boardId}`)
 }
 
 // async function getTaskById(boardId, groupId, TaskId) {
@@ -60,13 +60,13 @@ async function getById(boardId) {
 
 async function save(board) {
     if (board._id) {
-        console.log('board:', board)
-        // return httpService.put(`board/${board._id}`, board)
-        return storageService.put(STORAGE_KEY, board)
+        // console.log('board:', board)
+        return httpService.put(`board/${board._id}`, board)
+        // return storageService.put(STORAGE_KEY, board)
     } else {
         board.createdAt = Date.now()
-        // return httpService.post('board/', board)
-        return storageService.post(STORAGE_KEY, board)
+        return httpService.post('board/', board)
+        // return storageService.post(STORAGE_KEY, board)
     }
 }
 
@@ -124,7 +124,7 @@ function createNewAttachment(url, height, width, name = 'Media url') {
 async function createNewBoard(boardInfo) {
 
     const board = {
-        "_id": boardInfo._id,
+        // "_id": boardInfo._id,
         "title": boardInfo.title,
         "isStarred": false,
         "createdAt": Date.now(),
@@ -151,7 +151,8 @@ async function createNewBoard(boardInfo) {
         "activities": [],
     }
 
-    await storageService.post(STORAGE_KEY, board)
+    // await storageService.post(STORAGE_KEY, board)
+    await httpService.post('board/', board)
     return board
 }
 
