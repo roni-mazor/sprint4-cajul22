@@ -14,7 +14,6 @@ export const DateBadge = ({ task, onSaveTask }) => {
         ev.preventDefault()
         ev.stopPropagation()
         task.dueDate.isDone = !task.dueDate.isDone
-        // console.log('task:', task)
         if (task.dueDate.isDone) onSaveTask(task, `marked the due date on`, task.title, `as complete`)
         else if (!task.dueDate.isDone) onSaveTask(task, `marked the due date on`, task.title, `as incomplete`)
     }

@@ -12,7 +12,7 @@ import { boardService } from "../services/board.service"
 import { LoaderIcon } from "../cmps/loader-icon"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { BoardMenuModal } from "../cmps/board-menu-modal-cmps/board-menu-modal"
-// import { socketService } from "../services/socket.service"
+import { socketService } from "../services/socket.service"
 
 export const BoardDetails = () => {
     const params = useParams()
@@ -24,10 +24,11 @@ export const BoardDetails = () => {
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
-        /*socketService.emit('set-board-listening', params.boardId)
+        socketService.emit('set-board-listening', params.boardId)
         socketService.on('emit-board-change', (board) => {
             console.log('got emitted')
-             dispatch(setBoard(board)) })*/
+            dispatch(setBoard(board))
+        })
     }, [])
 
     const onCreateGroup = (txt) => {
@@ -67,7 +68,7 @@ export const BoardDetails = () => {
             const b = { ...board, groups }
             dispatch(saveBoard(b, dGroup, task, txt, task.title, `from ${sGroup.title} to ${dGroup.title}`))
 
-        } else {
+        } else if (type === 'group') {
             var groups = [...board.groups]
             const [group] = groups.splice(source.index, 1)
             groups.splice(destination.index, 0, group)
@@ -99,8 +100,8 @@ export const BoardDetails = () => {
                                 (filterBy.isDone) ? task?.dueDate?.isDone : !task?.dueDate?.isDone)
                             &&
                             ((!filterBy.time) ? true :
-                             (task?.dueDate?.time - Date.now() < filterBy.time.max &&
-                              task?.dueDate?.time - Date.now() > filterBy.time.min))
+                                (task?.dueDate?.time - Date.now() < filterBy.time.max &&
+                                    task?.dueDate?.time - Date.now() > filterBy.time.min))
                         )
                     })
                 }
@@ -108,15 +109,21 @@ export const BoardDetails = () => {
         }
     }
 
-    console.log('board:', board)
+
     if (!board) return <LoaderIcon />
     return (
-        <div className="board-wrapper" style={board.style} >
+        <DragDropContext onDragEnd={onHandleDrag}>
+            {/* <Droppable droppableId="father">
+                {(provided) => ( */}
+            <div className="board-wrapper" style={board.style}  >
 
-            <DragDropContext onDragEnd={onHandleDrag}>
+
                 {isShareModalOpen && <ShareBoard x={board.members} onToggleShareModal={onToggleShareModal} />}
                 <AppHeader board={board} />
-                <section className="board-container" >
+
+
+
+                <section className="board-container"  >
                     <BoardHeader name={board.title} members={board.members} board={board}
                         onToggleIsStarred={onToggleIsStarred}
                         toggleMenuModal={toggleMenuModal}
@@ -152,8 +159,11 @@ export const BoardDetails = () => {
                     <Outlet />
                     <BoardMenuModal filterBy={filterBy} setFilterBy={setFilterBy}
                         board={board} toggleMenuModal={toggleMenuModal} isOpen={isMenuModalOpen} />
+                    {/* {provided.placeholder} */}
                 </section>
-            </DragDropContext>
-        </div >
+            </div >
+            {/* )}
+            </Droppable> */}
+        </DragDropContext>
     )
 }
