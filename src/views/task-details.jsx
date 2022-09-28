@@ -119,7 +119,7 @@ export const TaskDetails = () => {
         onSaveTask(task, `changed the title on`, value)
     }
 
-    // console.log('task:', task)
+
     if (!task) return <LoaderIcon />
     return (
         <div className="task-details-container" onClick={onCloseModal}>
@@ -162,27 +162,31 @@ export const TaskDetails = () => {
                             removeActivity={removeActivity}
                         />}
 
-                        {/* <TaskActivities
+                        <TaskActivities
                             user={user}
                             board={board}
                             task={task}
-                            onSaveTask={onSaveTask} /> */}
+                            onSaveTask={onSaveTask} />
                     </div>
                     <aside className="details-side-bar">
-                        {isUserJoined() && <div>
+                        {isUserJoined() && <div className="join-section">
                             <h3>Suggested</h3>
                             <button onClick={onAddUserToTask}><AiOutlineUser />Join</button>
                         </div>}
-                        <h3>Add to card</h3>
+                        <div className="additives-modal">
+                        <h3 >Add to card</h3>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'members')}><AiOutlineUser />Members</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'label-picker')}><BsTag /> Labels</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'checklist-picker')}><TbCheckbox /> CheckList</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}><ImAttachment /> Attachments</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                        </div>
+                        <div className="actions-modal">
                         <h3>Actions</h3>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'moveto-picker')}><TbArrowNarrowRight /> Move</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'copy-picker')}><MdOutlineContentCopy /> Copy</button>
+                        </div>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal
                         modalInfo={isAdditivesModalOpen}

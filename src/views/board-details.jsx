@@ -22,7 +22,7 @@ export const BoardDetails = () => {
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false)
     const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMembers: false, isDone: null, time: null })
 
-    useEffect(() => {        
+    useEffect(() => {
         dispatch(loadBoard(params.boardId))
         /*socketService.emit('set-board-listening', params.boardId)
         socketService.on('emit-board-change', (board) => {
@@ -117,15 +117,15 @@ export const BoardDetails = () => {
     return (
         <div className="board-wrapper" style={board.style} >
 
-            {isShareModalOpen && <ShareBoard x={board.members} onToggleShareModal={onToggleShareModal} />}
-            <AppHeader board={board} />
-            <section className="board-container" >
-                <BoardHeader name={board.title} members={board.members} board={board}
-                    onToggleIsStarred={onToggleIsStarred}
-                    toggleMenuModal={toggleMenuModal}
-                    onToggleShareModal={onToggleShareModal} />
+            <DragDropContext onDragEnd={onHandleDrag}>
+                {isShareModalOpen && <ShareBoard x={board.members} onToggleShareModal={onToggleShareModal} />}
+                <AppHeader board={board} />
+                <section className="board-container" >
+                    <BoardHeader name={board.title} members={board.members} board={board}
+                        onToggleIsStarred={onToggleIsStarred}
+                        toggleMenuModal={toggleMenuModal}
+                        onToggleShareModal={onToggleShareModal} />
 
-                <DragDropContext onDragEnd={onHandleDrag}>
                     <div className="board">
                         <main className="board-main-content">
                             <Droppable droppableId="group" type="group" direction="horizontal" >
@@ -152,12 +152,12 @@ export const BoardDetails = () => {
                             </section>
                         </main>
                     </div>
-                </DragDropContext>
 
-                <Outlet />
-                <BoardMenuModal filterBy={filterBy} setFilterBy={setFilterBy}
-                    board={board} toggleMenuModal={toggleMenuModal} isOpen={isMenuModalOpen} />
-            </section>
+                    <Outlet />
+                    <BoardMenuModal filterBy={filterBy} setFilterBy={setFilterBy}
+                        board={board} toggleMenuModal={toggleMenuModal} isOpen={isMenuModalOpen} />
+                </section>
+            </DragDropContext>
         </div >
     )
 }
