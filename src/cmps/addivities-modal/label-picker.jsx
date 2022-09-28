@@ -52,7 +52,7 @@ export const LabelPicker = ({ onSaveTask, task, toggleModal }) => {
         setLabelEdit(boardService.createLabel(colors[0]))
 
     }
-    console.log(labels)
+    // console.log(labels)
     return (
         <section className="add-features-modal">
             {(!labelEdit) && <>

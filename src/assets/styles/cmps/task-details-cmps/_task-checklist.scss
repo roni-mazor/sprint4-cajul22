@@ -1,5 +1,6 @@
 .task-checklist {
-width: 99%;
+    width: 99%;
+
     .checklist-preview {
         margin-inline-start: 11px;
         margin-top: 28px;
@@ -39,6 +40,7 @@ width: 99%;
             margin-inline-start: 10px;
             margin-bottom: 10px;
             color: #42526e;
+
             .checklist-title-container {
                 // display: inline-block;
                 gap: 15px;
@@ -136,8 +138,8 @@ width: 99%;
                 color: #172b4d;
                 cursor: text;
                 float: none;
+                width: 87%;
                 resize: vertical;
-                width: 93%;
                 margin: 4px 39px 0;
                 text-align: initial;
                 text-decoration: none;
@@ -145,13 +147,17 @@ width: 99%;
                 font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
                 font-size: 14px;
                 font-weight: 400;
+
+                @media (min-width:650px) {
+                    width: 93%;
+                }
             }
 
 
             .todo-list {
                 margin-inline-start: -11px;
 
-                
+
             }
         }
 
