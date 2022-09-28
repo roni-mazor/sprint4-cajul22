@@ -97,14 +97,10 @@ export const BoardDetails = () => {
                                 filterBy.members.every(id => task?.members?.includes(id))) &&
                             ((filterBy.isDone === null) ? true :
                                 (filterBy.isDone) ? task?.dueDate?.isDone : !task?.dueDate?.isDone)
-                            // &&
-                            // ((filterBy.time === null) ? true :
-                            //     (filterBy.time === 0) ? (task?.dueDate?.time && new Date() - task.dueDate.time < 0) : false
-                            // )
-                            // :
-                            //     (task?.dueDate?.time > filterBy.time && task?.dueDate?.time > 0)
-
-
+                            &&
+                            ((!filterBy.time) ? true :
+                             (task?.dueDate?.time - Date.now() < filterBy.time.max &&
+                              task?.dueDate?.time - Date.now() > filterBy.time.min))
                         )
                     })
                 }

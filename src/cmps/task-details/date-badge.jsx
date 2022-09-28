@@ -24,17 +24,26 @@ export const DateBadge = ({ task, onSaveTask }) => {
             return { background: '#61bd4f' }
         } else if (!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 0) {
             return { background: '#ec9488' }
-        }  else if (!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 36) {
+        } else if (!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 36) {
             return { background: '#f2d600' }
-        } else return { background: '#fff', color: '#5e6c84' }
+        } else return { color: '#5e6c84' }
+    }
+    const getBgColorClass = () => {
+        if (task.dueDate.isDone) {
+            return 'green'
+        } else if (!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 0) {
+            return 'red'
+        } else if (!task.dueDate.isDone && ((time - new Date()) / 1000 / 60 / 60) < 36) {
+            return 'yellow'
+        } else return 'white'
     }
 
     return (
-        <span className="date-badge flex align-center" style={getBgColor()}>
+        <span className={`date-badge flex align-center ${getBgColorClass()}`} >
             <Checkbox className="date-checkbox"
                 onClick={onChangeDone}
                 checked={(task.dueDate.isDone)}
-                size="small" style={{ padding: '0', margin: '0' }} />
+                size="small" style={{ padding: '2px 0 0 0', margin: '0' }} />
             <span className="clock-icon"><AiOutlineClockCircle /></span>
             <span>{getDate()}</span>
         </span>
