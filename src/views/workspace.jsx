@@ -9,6 +9,7 @@ import { updateIsStarred, createBoard, loadBoards } from "../store/board.actions
 import { MdOutlineClose } from "react-icons/md"
 import { utilService } from "../services/util.service"
 import boardPreview from "../assets/img/board-preview.svg"
+import { boardService } from "../services/board.service"
 
 export const Workspace = () => {
 
@@ -28,19 +29,20 @@ export const Workspace = () => {
         setNewBoardBackground({ backgroundImage: 'url("https://images.unsplash.com/photo-1663787652609-57b525eb6ee6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjYzOTU5NDEy&ixlib=rb-1.2.1&q=80&w=400")' })
         dispatch(loadBoards())
     }, [])
-    
-    const onCreateNewBoard = (ev) => {
+    // const board = useSelector(state => state.boardModule.board)
+
+    const onCreateNewBoard = async (ev) => {
         if (ev) ev.preventDefault()
         const boardInfo = {
             title: txt,
             style: newBoardBackground,
-            // _id: utilService.makeId(5),
+            _id: utilService.makeId(5),
             user
         }
         // console.log('CREATING BOARD:', boardInfo)
-        dispatch(createBoard(boardInfo))
-
-        setTimeout(() => { navigate(`/board/${board._id}`) }, 750)
+        // dispatch(createBoard(boardInfo))
+        const boardId = await boardService.createNewBoard(boardInfo)
+        setTimeout(() => { navigate(`/board/${boardId}`) }, 200)
     }
 
     const onSetBackground = ({ target: { style } }) => {
