@@ -1,4 +1,4 @@
-import { storageService } from "./async-storage.service"
+// import { storageService } from "./async-storage.service"
 import { boards } from "./data.service"
 import { httpService } from "./http.service"
 import { utilService } from "./util.service"
@@ -10,13 +10,12 @@ export const boardService = {
     query,
     getById,
     save,
-    // getTaskById,
     createTask,
     createGroup,
     // saveTask,
     createLabel,
     createNewAttachment,
-    // starBoardFromWorkspace,
+    starBoardFromWorkspace,
     createNewBoard
 }
 
@@ -46,21 +45,12 @@ async function getById(boardId) {
     return await httpService.get(`board/${boardId}`)
 }
 
-// async function getTaskById(boardId, groupId, TaskId) {
-//     const board = await storageService.get(STORAGE_KEY, boardId)
-//     const group = board.groups.find(group => group.id === groupId)
-//     const task = group.tasks.find(task => task.id === TaskId)
-//     return task
-
-// }
-
-// async function starBoardFromWorkspace(boardId) {
-//     await httpService.put(`board/star/${boardId}`)
-// }
+async function starBoardFromWorkspace(boardId) {
+    await httpService.put(`board/star/${boardId}`)
+}
 
 async function save(board) {
     if (board._id) {
-        // console.log('board:', board)
         return httpService.put(`board/${board._id}`, board)
         // return storageService.put(STORAGE_KEY, board)
     } else {

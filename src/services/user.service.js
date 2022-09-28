@@ -31,11 +31,11 @@ async function getUsers() {
     //     storageService.postMany(STORAGE_KEY, users)
     //     rawUsers = users
     // }
-    // console.log('rawUsers:', rawUsers)
-    
+    // // console.log('rawUsers:', rawUsers)
+
     // return rawUsers
+    // // return storageService.query('user')
     return httpService.get(`user`)
-    // return storageService.query('user')
 }
 
 function onUserUpdate(user) {

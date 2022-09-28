@@ -13,7 +13,7 @@ export function userReducer(state = initialState, action) {
             newState = { ...state, user: action.user }
             break
         case 'ADD_USER':
-            newState = { ...state, user: action.user }
+            newState = { ...state, user: action.user }        
             break
         case 'REMOVE_USER':
             newState = {
