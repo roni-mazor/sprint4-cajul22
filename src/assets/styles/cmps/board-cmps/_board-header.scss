@@ -54,16 +54,15 @@
             text-overflow: ellipsis;
             margin-inline-end: -7px;
             transition: all .4s;
+            width: 32px;
 
             &:hover {
                 color: #f2d600;
                 background-color: rgba(255, 255, 255, 0.349);
-                // transform: scale(1.2);
             }
 
             &.true {
                 color: gold;
-
             }
         }
     }
