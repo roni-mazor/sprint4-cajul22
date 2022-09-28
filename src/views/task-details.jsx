@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useCallback } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { IoMdClose, } from 'react-icons/io'
+import { useDropzone } from 'react-dropzone'
+
+import { IoLogoDesignernews, IoMdClose, } from 'react-icons/io'
 import { AiOutlineUser } from 'react-icons/ai'
 import { BsTag, BsSquareHalf } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
@@ -25,6 +27,7 @@ import { LoaderIcon } from "../cmps/loader-icon"
 
 import { LabelShower } from "../cmps/task-details/label-shower"
 import { TaskChecklist } from "../cmps/task-details/task-checklist"
+import { uploadService } from "../services/upload.service"
 
 
 export const TaskDetails = () => {
@@ -47,6 +50,10 @@ export const TaskDetails = () => {
         loadTask()
     }, [board])
 
+
+
+
+
     const loadTask = () => {
 
         // const currTask =  boardService.getTaskById(boardId, groupId, taskId)
@@ -57,8 +64,22 @@ export const TaskDetails = () => {
         if (!currTask.members) currTask.members = []
         isUserJoined(currTask)
         setTask(currTask)
-        // console.log('task:', task)        
     }
+
+    const onDrop = useCallback(async acceptedFiles => {
+        // console.log('acceptedFiles[0]:', acceptedFiles[0])
+        const group = board.groups.find(group => group.id === groupId)
+        let currTask = group.tasks.find(task => task.id === taskId)
+        const img = await uploadService.uploadImgFromDrag(acceptedFiles)
+        console.log('currTask:', currTask)
+        if (!currTask.attachments) task.attachments = []
+        // if (!task.background) task.background = 'header'
+        const newAttachment = boardService.createNewAttachment(img.url, img.height, img.width, img.name)
+        console.log('task:', task)
+        currTask.attachments.unshift(newAttachment)
+        onSaveTask(currTask, `attached ${img.name} to`, currTask.title, null, newAttachment.url)
+    }, [])
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ noClick: true, onDrop })
 
     const onCloseModal = () => {
         navigate(`/board/${boardId}`)
@@ -140,7 +161,9 @@ export const TaskDetails = () => {
                     handleChange={handleChange}
                     group={group} />
 
-                <section className="task-details-content " >
+                {/* <section className="task-details-content " > */}
+                <section {...getRootProps({ className: 'task-details-content' })} >
+                    <input {...getInputProps()} />
                     <div className="task-details-main">
                         <div className="task-data-container">
                             {(task.members.length !== 0) && <Members members={board.members} membersId={task.members} toggleModal={toggleAdditivesModal} />}
@@ -174,18 +197,18 @@ export const TaskDetails = () => {
                             <button onClick={onAddUserToTask}><AiOutlineUser />Join</button>
                         </div>}
                         <div className="additives-modal">
-                        <h3 >Add to card</h3>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'members')}><AiOutlineUser />Members</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'label-picker')}><BsTag /> Labels</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'checklist-picker')}><TbCheckbox /> CheckList</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}><ImAttachment /> Attachments</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                            <h3 >Add to card</h3>
+                            <button onClick={(ev) => toggleAdditivesModal(ev, 'members')}><AiOutlineUser />Members</button>
+                            <button onClick={(ev) => toggleAdditivesModal(ev, 'label-picker')}><BsTag /> Labels</button>
+                            <button onClick={(ev) => toggleAdditivesModal(ev, 'checklist-picker')}><TbCheckbox /> CheckList</button>
+                            <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
+                            <button onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}><ImAttachment /> Attachments</button>
+                            <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
                         </div>
                         <div className="actions-modal">
-                        <h3>Actions</h3>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'moveto-picker')}><TbArrowNarrowRight /> Move</button>
-                        <button onClick={(ev) => toggleAdditivesModal(ev, 'copy-picker')}><MdOutlineContentCopy /> Copy</button>
+                            <h3>Actions</h3>
+                            <button onClick={(ev) => toggleAdditivesModal(ev, 'moveto-picker')}><TbArrowNarrowRight /> Move</button>
+                            <button onClick={(ev) => toggleAdditivesModal(ev, 'copy-picker')}><MdOutlineContentCopy /> Copy</button>
                         </div>
                     </aside>
                     {isAdditivesModalOpen && <TaskAdditivesModal

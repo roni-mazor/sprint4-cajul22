@@ -21,6 +21,7 @@ export function Home() {
 
     const onStartDemo = () => {
         const demoUser = users.find(user => user.username === 'demo')
+        console.log('demoUser:', demoUser)
         if (demoUser) {
             navigate('/workspace')
         } else {
@@ -38,7 +39,7 @@ export function Home() {
             <NavLink to="/signup" className="home-signup flex align-center" demoClicked={onStartDemo}>Get Jello for free</NavLink>
         </header>
         <main className="hero-container">
-            <div className="hero-flex-container flex">
+            <div className="hero-flex-container">
                 <section className="hero-content flex column">
                     <h1>Jello, Team collaboration<br /> made easy</h1>
                     <p>

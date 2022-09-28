@@ -19,7 +19,7 @@ export function App() {
   const dispatch = useDispatch()
   
   useEffect(() => {
-      dispatch(loadUsers())  
+      // dispatch(loadUsers())  
       dispatch(loadBoards())       
   }, [])
 
