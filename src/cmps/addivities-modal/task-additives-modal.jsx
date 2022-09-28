@@ -95,19 +95,20 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, board, gro
     const getModalPos = () => {
         const { type, posDetails, windowWidth } = modalInfo
         let left = posDetails.left
-        if (type === 'todo' || type === 'check-list' ) {
-            if (windowWidth - posDetails.left < 304) left = windowWidth - 340
+        console.log(left)
+        console.log(windowWidth)
+        if (windowWidth < 650 || windowWidth - posDetails.left < 304) left = windowWidth - 304
+        console.log(left)
+        if (type === 'todo' || type === 'checklist-picker') {
             return { top: `${posDetails.top + posDetails.height}px`, left: `${left}px` }
         } else if (type === 'cover-picker' || type === 'label-picker' || type === 'date-picker' || type === 'members') {
-            if (windowWidth - posDetails.left < 304) left = windowWidth - 340
             return { top: '51px', left: `${left}px` }
         } else if (type === 'group-actions') {
             return { top: `${posDetails.top}px`, left: `${posDetails.left - 160}px` }
         } else if (type === 'copy-picker') {
-            return { top: `${posDetails.top - 409}px`, left: `${posDetails.left - 134}px`  }
-        } else if (type === 'attachment'||type==='moveto-picker') {
-
-            return { top: `${posDetails.top - 240}px`, left: `${posDetails.left - 134}px` }
+            return { top: `${posDetails.top - 409}px`, left: `${left}px` }
+        } else if (type === 'attachment' || type === 'moveto-picker') {
+            return { top: `${posDetails.top - 240}px`, left: `${left}px` }
         }
 
         //and another adjustment for moblie between 500 or something to allways place in the center

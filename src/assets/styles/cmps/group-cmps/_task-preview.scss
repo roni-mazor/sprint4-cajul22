@@ -35,14 +35,18 @@
 
     }
 
-    &:hover {
-        background-color: #f4f5f7;
+    @media (min-width:650px) {
 
-        .edit-btn {
-            color: #172b4d;
-            visibility: visible;
+        &:hover {
+            background-color: #f4f5f7;
+
+            .edit-btn {
+                color: #172b4d;
+                visibility: visible;
+            }
         }
     }
+
 
     .task-cover {
         border-radius: 3px 3px 0 0;

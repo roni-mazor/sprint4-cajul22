@@ -1,5 +1,5 @@
 import { ImAttachment } from "react-icons/im"
-import { TbCheckbox } from "react-icons/tb"
+import { TbArrowNarrowRight, TbCheckbox } from "react-icons/tb"
 import { DateBadge } from "./task-details/date-badge"
 import GuestImg from '../assets/img/guest-img.svg'
 import { useState } from "react"
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { AiOutlineClockCircle, AiOutlineCreditCard, AiOutlineUser } from "react-icons/ai"
 import { BsSquareHalf, BsTag } from "react-icons/bs"
 import { TaskAdditivesModal } from "./addivities-modal/task-additives-modal"
+import { MdOutlineContentCopy } from "react-icons/md"
 
 export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyDoneChecklist, isAllDone, labels, getCoverHeight, task, toggleModal, modalInfo }) => {
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
@@ -20,6 +21,13 @@ export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyD
         setIsAdditivesModalOpen(null)
     }
 
+    const saveTitleChange = () => {
+        task.title = title
+        onSaveTask(task, `changed the title on`, title)
+        toggleModal(({ isOpen: false }))
+
+    }
+
     const toggleAdditivesModal = (ev, type) => {
         const posDetails = ev.target.getBoundingClientRect()
         const windowWidth = window.innerWidth
@@ -29,12 +37,18 @@ export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyD
     }
 
     const getModalPos = () => {
-        if (windowWidth - posDetails.x < 140) return { right: '140px' }
-        else return {}
+        const pos = {}
+        const taskHeight = (getCoverHeight() || 0) + 205
+        if (windowWidth - posDetails.x < 140) pos.right = '140px'
+        else pos.left = `${posDetails.x - 238}px`
+        if (window.innerHeight - posDetails.y < taskHeight) pos.bottom = '50px'
+        else pos.top = `${posDetails.y - 6}px`
+        return pos
+
     }
     const getAsidePos = () => {
-        if (window.innerHeight - posDetails.y < 150) return { top: '-70px' }
-        else return {}
+        if (window.innerHeight - posDetails.y < 205) return { top: '-70px' }
+        return {}
     }
 
     return (
@@ -56,6 +70,8 @@ export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyD
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'label-picker')}><BsTag /> Labels</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'date-picker')}><AiOutlineClockCircle /> Dates</button>
                         <button onClick={(ev) => toggleAdditivesModal(ev, 'cover-picker')}><span><BsSquareHalf /></span> Cover</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'moveto-picker')}><TbArrowNarrowRight /> Move</button>
+                        <button onClick={(ev) => toggleAdditivesModal(ev, 'copy-picker')}><MdOutlineContentCopy /> Copy</button>
                     </aside>
                     {(!task.background || task.background === 'header') && <div>
 
@@ -100,6 +116,7 @@ export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyD
                         {task.coverClr && <div className="mini-task" style={{ backgroundColor: task.coverClr }}>
                             <div className="mini-task-title" ><p >{task.title}</p></div> </div>}
                     </div>}
+                    <button onClick={saveTitleChange} className="fast-edit-save-btn">Save</button>
                 </div>
             </div>
         </>

@@ -24,10 +24,9 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
     const toggleAdditivesModal = (ev, type) => {
         ev.stopPropagation()
         const posDetails = ev.target.getBoundingClientRect()
-        const windowDetails = window.screen
-        console.log({ type, posDetails })
+        const windowWidth = window.innerWidth
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
-        else setIsAdditivesModalOpen({ type, posDetails, windowDetails })
+        else setIsAdditivesModalOpen({ type, posDetails, windowWidth })
     }
 
     const onStopProp = (ev) => {
@@ -58,7 +57,7 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
         <div className='todo-preview  flex align-center justify-between' onClick={onFocus}>
             <div className="todo-preview-container">
                 <span className="todo-checkbox"><Checkbox
-                    sx={{ color: 'lightgray' }}                    
+                    sx={{ color: 'lightgray' }}
                     onClick={onStopProp}
                     checked={todo.isDone}
                     onChange={() => onTodoIsDone(todo.id)} />

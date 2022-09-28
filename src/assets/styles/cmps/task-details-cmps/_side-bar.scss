@@ -29,10 +29,10 @@
             display: block;
             height: 32px;
             margin-top: 8px;
-            //max- width: 300px; in MQ the width needs to be maximum 300px!
+            max-width: 300px;
             // max-width: 168px;
             // min-width: 136px;
-            width: 170px;
+            // width: 170px;
             overflow: hidden;
             padding: 6px 10px;
             position: relative;
@@ -48,6 +48,10 @@
             line-height: 20px;
             transition-timing-function: ease;
             font-family: var(--base);
+
+            @media (min-width:650px) {
+                width: 170px;
+            }
 
 
             svg {
@@ -70,9 +74,9 @@
 
         }
 
-        
-        & .isJoinedContainer >* {            
-             
+
+        & .isJoinedContainer>* {
+
             font-size: 85px;
             // &.joined {
             //     display: none;
