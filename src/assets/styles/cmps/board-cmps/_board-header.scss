@@ -25,6 +25,7 @@
     }
 
     span {
+        width: 100%;
         margin: 0 0 0 6px;
         display: flex;
         align-items: center;
@@ -40,6 +41,7 @@
             border-radius: 3px;
             /* color: var(--dynamic-text-color, #fff); */
             cursor: pointer;
+            width: 32px;
             float: left;
             font-size: 17px;
             height: 32px;
