@@ -1,5 +1,5 @@
 import { Checkbox } from "@mui/material"
-import { AiOutlineUser } from "react-icons/ai"
+import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai"
 import { BsSearch } from "react-icons/bs"
 import { FaRegUserCircle } from "react-icons/fa"
 import { FiChevronLeft } from "react-icons/fi"
@@ -8,8 +8,21 @@ import { MemberPreview } from "../member-preview"
 
 
 export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, setFilterBy, filterBy }) => {
-    const labels = board.labels
-    console.log(filterBy)
+
+    const getLabels = () => {
+        const l = board.groups.reduce((labelsInUse, group) => {
+            group.tasks.forEach(task => {
+                task.labelIds.forEach(id => {
+                    if (!labelsInUse.includes(id)) labelsInUse.push(id)
+                })
+            })
+            return labelsInUse
+        }, [])
+        return l
+
+    }
+    const labelsinUse = getLabels()
+    const labels = board.labels.filter(label => labelsinUse.includes(label.id))
 
     const handleLabelCheck = (labelId) => {
         let labelIds
@@ -36,11 +49,12 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
         const isDone = (filterBy.isDone === val) ? null : val
         setFilterBy(prevState => ({ ...prevState, isDone }))
     }
-    const filterByDueTime = (time) => {
-        setFilterBy(prevState => ({ ...prevState, time }))
+    const filterByDueTime = (min, max) => {
+        if (min === filterBy.time?.min && max === filterBy.time?.max) setFilterBy(prevState => ({ ...prevState, time: null }))
+        else setFilterBy(prevState => ({ ...prevState, time: { min, max } }))
     }
 
-
+    getLabels()
     return (
         <>
 
@@ -107,42 +121,75 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                     </section>
 
                     <section className="labels-container">
-                        <label >
-                            <Checkbox
-                                sx={{ color: 'lightgray' }}
-                                checked={(filterBy.isDone === false)}
-                                size="small" style={{ padding: '5px 9px' }}
-                                onChange={() => filterByDueDone(false)}
-                            />
-                            Undone Tasks
-                        </label>
-                        <label >
-                            <Checkbox
-                                sx={{ color: 'lightgray' }}
-                                checked={(filterBy.isDone === true)}
-                                size="small" style={{ padding: '5px 9px' }}
-                                onChange={() => filterByDueDone(true)}
-                            />
-                            done Tasks
-                        </label>
-                        <label >
-                            <Checkbox
-                                sx={{ color: 'lightgray' }}
-                                checked={(filterBy.time === 0)}
-                                size="small" style={{ padding: '5px 9px' }}
-                                onChange={() => filterByDueTime(0)}
-                            />
-                            overdue
-                        </label>
-                        <label >
-                            <Checkbox
-                                sx={{ color: 'lightgray' }}
-                                checked={(filterBy.time === 24 * 60 * 60 * 1000)}
-                                size="small" style={{ padding: '5px 9px' }}
-                                onChange={() => filterByDueTime(24 * 60 * 60 * 1000)}
-                            />
-                            due in 24 hours
-                        </label>
+                        <h4>Due date</h4>
+                        <ul className="labels-container">
+                            <li className="label-container">
+                                <label >
+                                    <Checkbox
+                                        sx={{ color: 'lightgray' }}
+                                        checked={(filterBy.time?.max === 1)}
+                                        size="small" style={{ padding: '5px 9px' }}
+                                        onChange={() => filterByDueTime(-Infinity, 1)}
+                                    />
+                                    <span className="date-filter-container">
+                                        <span style={{ backgroundColor: 'rgb(235, 90, 70)', color: 'white' }} className="clock-icon"><AiOutlineClockCircle /></span>
+                                        Overdue
+                                    </span>
+                                </label>
+                            </li>
+                            <li className="label-container">
+                                <label >
+                                    <Checkbox
+                                        sx={{ color: 'lightgray' }}
+                                        checked={(filterBy.time?.min === 1 && filterBy.time?.max === 24 * 60 * 60 * 1000)}
+                                        size="small" style={{ padding: '5px 9px' }}
+                                        onChange={() => filterByDueTime(1, 24 * 60 * 60 * 1000)}
+                                    />
+                                    <span className="date-filter-container">
+                                        <span style={{ backgroundColor: 'rgb(242, 214, 0)', color: 'white' }} className="clock-icon"><AiOutlineClockCircle /></span>
+                                        Due in 24 hours
+                                    </span>
+                                </label>
+                            </li>
+                            <li className="label-container">
+
+                                <label >
+                                    <Checkbox
+                                        sx={{ color: 'lightgray' }}
+                                        checked={(filterBy.time?.min === 1 && filterBy.time?.max === 24 * 60 * 60 * 1000 * 7)}
+                                        size="small" style={{ padding: '5px 9px' }}
+                                        onChange={() => filterByDueTime(1, 24 * 60 * 60 * 1000 * 7)}
+                                    />
+                                    <span className="date-filter-container">
+                                        <span style={{ backgroundColor: 'rgb(212 214 221)', color: '#5e6c84' }} className="clock-icon"><AiOutlineClockCircle /></span>
+                                        Due in the next week
+                                    </span>
+                                </label>
+                                <li className="label-container">
+
+                                </li>
+                                <label >
+                                    <Checkbox
+                                        sx={{ color: 'lightgray' }}
+                                        checked={(filterBy.isDone === false)}
+                                        size="small" style={{ padding: '5px 9px' }}
+                                        onChange={() => filterByDueDone(false)}
+                                    />
+                                    Not marked as complete
+                                </label>
+                            </li>
+                            <li className="label-container">
+                                <label >
+                                    <Checkbox
+                                        sx={{ color: 'lightgray' }}
+                                        checked={(filterBy.isDone === true)}
+                                        size="small" style={{ padding: '5px 9px' }}
+                                        onChange={() => filterByDueDone(true)}
+                                    />
+                                    Marked as complete
+                                </label>
+                            </li>
+                        </ul>
                     </section>
 
                     <section className="filter-container">

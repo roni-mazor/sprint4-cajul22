@@ -168,6 +168,31 @@
                     gap: 2px;
                     background-color: inherit;
 
+                    &.white {
+                        color: #5e6c84;
+
+                        &:hover {
+                            background-color: #ebecf0;
+                        }
+
+                        .date-checkbox {
+                            color: #5e6c84;
+
+                        }
+                    }
+
+                    &.red {
+                        background: #ec9488;
+                    }
+
+                    &.yellow {
+                        background: #f2d600;
+                    }
+
+                    &.green {
+                        background: #61bd4f;
+                    }
+
                     .date-checkbox {
                         color: white;
                         opacity: 0;
