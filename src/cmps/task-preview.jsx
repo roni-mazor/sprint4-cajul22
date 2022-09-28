@@ -12,7 +12,7 @@ import { DateBadge } from "./task-details/date-badge"
 import { FaPencilAlt } from "react-icons/fa"
 import { FastEditModal } from "./fast-edit-modal"
 
-export const TaskPreview = ({ task, boardId, groupId }) => {
+export const TaskPreview = ({ task, boardId, groupId}) => {
     const labels = useSelector(state => state.boardModule.board.labels)
     const board = useSelector(state => state.boardModule.board)
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
@@ -102,9 +102,9 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
     const linkToTask = `/board/${boardId}/${groupId}/${task.id}`
     return (<>
 
-        {isFastEdit?.isOpen && <FastEditModal linkToTask={linkToTask} isAllDone={isAllDone} dispalyDoneChecklist={dispalyDoneChecklist} 
-        onSaveTask={onSaveTask} getTaskMembers={getTaskMembers} labels={labels} getCoverHeight={getCoverHeight}
-         task={task} modalInfo={isFastEdit} toggleModal={setIsFastEdit} />}
+        {isFastEdit?.isOpen && <FastEditModal linkToTask={linkToTask} isAllDone={isAllDone} dispalyDoneChecklist={dispalyDoneChecklist}
+            onSaveTask={onSaveTask} getTaskMembers={getTaskMembers} labels={labels} getCoverHeight={getCoverHeight}
+            task={task} modalInfo={isFastEdit} toggleModal={setIsFastEdit} />}
 
         <Link to={linkToTask} className="task-preview">
             <button className='edit-btn' onClick={openFastEdit}>
@@ -117,7 +117,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                 {task.coverClr && <div className="task-cover"
                     style={{ backgroundColor: task.coverClr, height: `32px` }}></div>}
 
-                <div className="task-content">
+                <div className="task-content" >
 
                     <section className="labels-container">
                         {task.labelIds.map((id) => {

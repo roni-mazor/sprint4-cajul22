@@ -21,7 +21,7 @@ export const boardService = {
 
 async function query() {
     // let myBoards = await storageService.query(STORAGE_KEY)
-    let myBoards= await httpService.get('board/')
+    let myBoards = await httpService.get('board/')
 
     // if (!myBoards || !myBoards.length) {
     //     storageService.postMany(STORAGE_KEY, boards)
@@ -142,8 +142,8 @@ async function createNewBoard(boardInfo) {
     }
 
     // await storageService.post(STORAGE_KEY, board)
-    await httpService.post('board/', board)
-    return board
+    const newBoard = await httpService.post('board/', board)
+    return newBoard._id
 }
 
 

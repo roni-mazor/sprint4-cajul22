@@ -56,6 +56,7 @@ export function createBoard(boardInfo) {
         console.log('boardInfo :', boardInfo)
         try {
             const board = await boardService.createNewBoard(boardInfo)
+            console.log('board:', board)
             console.log('newBoard from board actions!:', board)
             dispatch({ type: 'ADD_BOARD', board })
         } catch (err) {
@@ -104,7 +105,6 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
 
     return async (dispatch, getState) => {
         try {
-            // console.log('board:', board)
             const user = getState().userModule.user
             let groupId = group ? group.id : null
             // board.activities = []

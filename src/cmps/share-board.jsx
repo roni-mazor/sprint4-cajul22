@@ -6,17 +6,27 @@ import { loadBoard, saveBoard } from "../store/board.actions"
 import { MemberPreview } from "./member-preview"
 import { VscChromeClose } from 'react-icons/vsc'
 import GuestImg from '../assets/img/guest-img.svg'
+import { userService } from '../services/user.service'
 
 export function ShareBoard({ onToggleShareModal }) {
 
-    const users = useSelector(state => state.userModule.users)
+    const [users, setUsers] = useState(null)
     const board = useSelector(state => state.boardModule.board)
     const [txt, setTxt] = useState('')
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(loadUsers())
+        userService.getUsers()
+            .then((users) => {
+                users = users.filter(user => user.fullname !== 'demo')
+                setUsers(users)
+            }
+            )
+    }, [])
+
+    useEffect(() => {
+
         if (txt !== '') {
             setIsSearchOpen(true)
         } else {
