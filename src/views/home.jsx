@@ -38,7 +38,7 @@ export function Home() {
             <NavLink to="/signup" className="home-signup flex align-center" demoClicked={onStartDemo}>Get Jello for free</NavLink>
         </header>
         <main className="hero-container">
-            <div className="hero-flex-container flex">
+            <div className="hero-flex-container">
                 <section className="hero-content flex column">
                     <h1>Jello, Team collaboration<br /> made easy</h1>
                     <p>

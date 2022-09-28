@@ -123,7 +123,7 @@ export function setBoard(board) {
     }
 }
 
-export function saveTask(groupId, task, txt, link, opTxt, attachment, comment) {
+export function saveTask(groupId, task, txt, link, opTxt, attachment, onActId, comment) {
     return async (dispatch, getState) => {
         // boardService.saveTask(boardId, groupId, task)
         const user = getState().userModule.user
