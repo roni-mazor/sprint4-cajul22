@@ -56,6 +56,7 @@ export function createBoard(boardInfo) {
         console.log('boardInfo :', boardInfo)
         try {
             const board = await boardService.createNewBoard(boardInfo)
+            console.log('board:', board)
             console.log('newBoard from board actions!:', board)
             dispatch({ type: 'ADD_BOARD', board })
         } catch (err) {
