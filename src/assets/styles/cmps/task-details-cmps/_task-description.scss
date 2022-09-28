@@ -41,6 +41,10 @@
                 outline: none;
                 cursor: auto;
             }
+            &.have-description{
+                background-color: #f5f5f5                ;
+                // background-color: rgba(202, 188, 188, 0.55);
+            }
         }
 
 

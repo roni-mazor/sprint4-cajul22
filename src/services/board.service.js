@@ -60,6 +60,7 @@ async function getById(boardId) {
 
 async function save(board) {
     if (board._id) {
+        console.log('board:', board)
         // return httpService.put(`board/${board._id}`, board)
         return storageService.put(STORAGE_KEY, board)
     } else {
@@ -150,7 +151,7 @@ async function createNewBoard(boardInfo) {
         "activities": [],
     }
 
-   await storageService.post(STORAGE_KEY, board)
+    await storageService.post(STORAGE_KEY, board)
     return board
 }
 

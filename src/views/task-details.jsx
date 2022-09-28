@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useCallback } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
+import { useDropzone } from 'react-dropzone'
+
 import { IoMdClose, } from 'react-icons/io'
 import { AiOutlineUser } from 'react-icons/ai'
 import { BsTag, BsSquareHalf } from 'react-icons/bs'
@@ -25,6 +27,7 @@ import { LoaderIcon } from "../cmps/loader-icon"
 
 import { LabelShower } from "../cmps/task-details/label-shower"
 import { TaskChecklist } from "../cmps/task-details/task-checklist"
+import { uploadService } from "../services/upload.service"
 
 
 export const TaskDetails = () => {
@@ -46,6 +49,20 @@ export const TaskDetails = () => {
     useEffect(() => {
         loadTask()
     }, [board])
+
+
+
+    const onDrop = useCallback(async acceptedFiles => {
+        // console.log('acceptedFiles[0]:', acceptedFiles[0])
+        const img = await uploadService.uploadImgFromDrag(acceptedFiles)
+        if (!task.attachments) task.attachments = []
+        if (!task.background) task.background = 'header'
+        const newAttachment = boardService.createNewAttachment(img.url, img.height, img.width, img.name)
+        task.attachments.unshift(newAttachment)
+        onSaveTask(task, `attached ${img.name} to`, task.title, null, newAttachment.url)
+    }, [])
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ noClick: true, onDrop })
 
     const loadTask = () => {
 
@@ -140,7 +157,9 @@ export const TaskDetails = () => {
                     handleChange={handleChange}
                     group={group} />
 
-                <section className="task-details-content " >
+                {/* <section className="task-details-content " > */}
+                <section {...getRootProps({ className: 'task-details-content' })} >
+                    <input {...getInputProps()} />
                     <div className="task-details-main">
                         <div className="task-data-container">
                             {(task.members.length !== 0) && <Members members={board.members} membersId={task.members} toggleModal={toggleAdditivesModal} />}

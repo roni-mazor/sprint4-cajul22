@@ -4,7 +4,7 @@ import { boardService } from "../../services/board.service"
 
 import { VscChromeClose } from 'react-icons/vsc'
 
-import { saveBoard, saveGroup } from "../../store/board.actions"
+import { saveBoard, saveBoards, saveGroup } from "../../store/board.actions"
 import { Link, useNavigate } from "react-router-dom"
 
 
@@ -31,6 +31,7 @@ export const MoveTo = ({ board, group, task, onSaveTask, toggleModal }) => {
         const selectedBoard = await boardService.getById(value)
         setSelectedBoard(selectedBoard)
         setGroups(selectedBoard.groups)
+        setSelectedGroup(selectedBoard.groups[0])
 
     }
 
@@ -49,31 +50,20 @@ export const MoveTo = ({ board, group, task, onSaveTask, toggleModal }) => {
     const onCreateCard = (ev) => {
         const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
         group.tasks.splice(taskIdx, 1)
-        console.log('group:', group)
-        selectedGroup.tasks.splice(position, 0, task)
         groups.map(currGroup => currGroup.id === selectedGroup.id ? selectedGroup : currGroup)
+        selectedGroup.tasks.splice(position, 0, task)
         selectedBoard.groups = groups
-        // boards.map(currBoard => currBoard._id === selectedBoard._id ? selectedBoard : currBoard)
 
-
-
-        // dispatch(saveBoard(board, group, task))
 
         if (selectedBoard._id !== board._id) {
+            boardService.save(selectedBoard)
 
-            dispatch(saveBoard(selectedBoard, selectedGroup, task, `moved`, `${task.title} from ${task.title}`, `in list ${selectedGroup.title}`))
-
-        } else {
-
-            dispatch(saveGroup(group, task, `moved`, task.title, `from ${group.title} to ${selectedGroup.title}`))
         }
 
+        setTimeout(() => {
+            dispatch(saveGroup(group, task, `moved`, task.title, `from ${group.title} to ${selectedGroup.title}`))
+        }, 600)
 
-        //     boardService.save(selectedBoard)
-        // }
-        // toggleModal(ev, 'moveto-picker')
-
-        // navigate(`board/${board._id}/`)
 
 
     }
@@ -129,11 +119,11 @@ export const MoveTo = ({ board, group, task, onSaveTask, toggleModal }) => {
                                 {currTask.id === task.id && <span>&nbsp;(current)</span>}
 
                             </option>)}
-                            {<option value={selectedGroup.tasks.lenght}>{selectedGroup.tasks.length + 1}</option>}
+                            {<option value={selectedGroup.tasks.length}>{selectedGroup.tasks.length + 1}</option>}
                         </select>
                     </div>
                 </div>
-                <Link to={`/board/${selectedBoard._id}/`}>
+                <Link to={`/board/${board._id}/`}>
                     <button className='copy-submit'
                         onClick={onCreateCard}>Move</button>
                 </Link>
