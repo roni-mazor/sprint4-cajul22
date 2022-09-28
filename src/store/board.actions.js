@@ -103,7 +103,7 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
 
     return async (dispatch, getState) => {
         try {
-            console.log('board:', board)
+            // console.log('board:', board)
             const user = getState().userModule.user
             let groupId = group ? group.id : null
             // board.activities = []

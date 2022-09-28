@@ -21,6 +21,8 @@ export function Home() {
 
     const onStartDemo = () => {
         const demoUser = users.find(user => user.username === 'demo')
+        console.log('demoUser:', demoUser)
+        
         if (demoUser) {
             navigate('/workspace')
         } else {

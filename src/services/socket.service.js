@@ -1,5 +1,5 @@
-/*import io from 'socket.io-client'
-import { userService } from './user.service'*/
+import io from 'socket.io-client'
+import { userService } from './user.service'
 
 
 
@@ -12,18 +12,18 @@ import { userService } from './user.service'*/
 // export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
 // export const SOCKET_EVENT_ON_USER_TYPING = 'diff-user-typing'
 // export const SOCKET_EMIT_ON_SELF_TYPING = 'self-is-typing'
-/*const SOCKET_EMIT_LOGIN = 'set-user-socket'
-const SOCKET_EMIT_LOGOUT = 'unset-user-socket'*/
+const SOCKET_EMIT_LOGIN = 'set-user-socket'
+const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 
-/*const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
-export const socketService = createSocketService()*/
+const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
+export const socketService = createSocketService()
 // export const socketService = createDummySocketService()
 
 // for debugging from console
 // window.socketService = socketService
 
-/*socketService.setup()
+socketService.setup()
 
 
 function createSocketService() {
@@ -96,7 +96,7 @@ function createDummySocketService() {
     }
     window.listenersMap = listenersMap;
     return socketService
-}*/
+}
 
 
 // Basic Tests

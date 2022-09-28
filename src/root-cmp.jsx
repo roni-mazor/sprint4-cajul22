@@ -6,8 +6,8 @@ import { BoardDetails } from "./views/board-details"
 import { LoginPage } from './views/login-page'
 import { Home } from './views/home'
 import { TaskDetails } from './views/task-details'
-import { loadUsers } from './store/user.actions'
-import { loadBoards } from './store/board.actions'
+// import { loadUsers } from './store/user.actions'
+// import { loadBoards } from './store/board.actions'
 
 import './assets/styles/styles.scss'
 
@@ -16,11 +16,11 @@ import './assets/styles/styles.scss'
 export function App() {
 
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   
   useEffect(() => {
-      dispatch(loadUsers())  
-      dispatch(loadBoards())       
+      //dispatch(loadUsers())  
+      //dispatch(loadBoards())       
   }, [])
 
 
