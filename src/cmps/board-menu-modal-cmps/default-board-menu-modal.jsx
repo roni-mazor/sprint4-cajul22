@@ -45,7 +45,7 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                 </div>
                 <div className="menu-activities-wrapper">
                     <div className="board-menu-activities">
-                        {/* {board.activities.map(activity => <div key={activity.id}
+                        {board.activities.map(activity => <div key={activity.id}
                             className="activity-container flex">
                             <div className="profile-img">
                                 <img src={activity?.byMember.imgUrl} alt="" />
@@ -58,7 +58,9 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                                         to={`/board/${board._id}/${activity.groupId}/${activity.task.id}`}>
                                         {activity.link}
                                     </Link>}
-                                    {activity.opTxt && <span className="opTxt"> {activity.opTxt}</span>}
+                                    {activity.opTxt &&
+                                        <span className={`opTxt ${activity.comment ? 'comment' : ''}`}>
+                                            {activity.opTxt}</span>}
                                 </div>
                                 {activity.task && <Link className="activity-time"
                                     to={`/board/${board._id}/${activity?.groupId}/${activity?.task?.id}`}>
@@ -68,9 +70,8 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                                 {activity.attachment && <img className="activity-attachment"
                                     src={activity.attachment} alt="task attachment" />}
                             </div>
-                        </div>)} */}
+                        </div>)}
                     </div>
-
                 </div>
             </main>
         </>

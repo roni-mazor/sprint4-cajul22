@@ -8,7 +8,7 @@ import { Draggable } from "react-beautiful-dnd"
 export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal, onToggleShareModal }) => {
     return (
         <header className="board-header">
-            <span>
+            <div className="board-header-container">
                 <h1 className="board-title">{board.title}</h1>
                 <span className={board.isStarred ? 'starred true' : 'starred'}
                     onClick={onToggleIsStarred}>
@@ -34,7 +34,7 @@ export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal
                 <button className="add-board-user"
                     onClick={onToggleShareModal}
                 ><RiUserAddLine /> Share</button>
-            </span>
+            </div>
             <button onClick={toggleMenuModal} className="show-menu-btn"><BsThreeDots /> Show menu</button>
         </header>
     )

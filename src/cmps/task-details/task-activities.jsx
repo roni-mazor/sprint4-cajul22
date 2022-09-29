@@ -87,9 +87,9 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
                                 <span className="txt"> {activity.txt} </span>
                                 <span> {activity.link} </span>
                             </div>
-                            <div className='time'>{formatedTime(activity.createdAt)}</div>
+                            <div className='time'> &nbsp;{formatedTime(activity.createdAt)}</div>
                             {activity.opTxt && <span className={`opTxt ${activity.comment ? 'comment' : ''}`}>
-                                {activity.opTxt}</span>}
+                            {activity.opTxt}</span>}
                         </div>
                     </div>
                 })}
