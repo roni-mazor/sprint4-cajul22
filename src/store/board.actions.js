@@ -109,6 +109,8 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
             let groupId = group ? group.id : null
             // board.activities = []
             _saveActivity(user, board, groupId, task, txt, link, opTxt)
+            if(board.activities.length >= 50) board.activities.pop()
+            console.log('board.activities:', board.activities.length)            
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
