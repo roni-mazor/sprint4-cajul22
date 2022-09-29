@@ -54,6 +54,9 @@
             margin-inline-end: -7px;
             transition: all .4s;
             width: 32px;
+            svg{
+                margin-bottom: 5px;
+            }
 
             &:hover {
                 color: #f2d600;

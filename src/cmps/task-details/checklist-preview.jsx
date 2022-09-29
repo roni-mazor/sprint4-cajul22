@@ -138,7 +138,11 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, con
             <div className='progress'>
                 <span>{getProgressPercent()}</span>
                 <div className='progress-bar'>
-                    <div className='progress-bar-current' style={{ width: `${getProgressPercent()}` }}>
+                    <div className='progress-bar-current'
+                        style={{
+                            width: `${getProgressPercent()}`,
+                            backgroundColor: getProgressPercent() === '100%' ? '#61bd4f' : '#5ba4cf'
+                        }}>
 
                     </div>
                 </div>

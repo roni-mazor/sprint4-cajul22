@@ -154,11 +154,12 @@
             }
 
 
-            .todo-list {
-                margin-inline-start: -11px;
 
 
-            }
+
+        }
+        .todo-list {
+            margin-inline-start: 0.8px;
         }
 
         button {
@@ -189,7 +190,7 @@
             box-shadow: none;
             color: #fff;
             margin-inline-end: 5px;
-
+            margin-inline-start: 40px;
             &:hover {
                 background-color: #026aa7;
                 border: none;
@@ -202,7 +203,7 @@
             background-color: initial;
             border: none;
             box-shadow: none;
-
+            margin-inline-start: 0px;
             &:hover {
                 background-color: var(--ds-background-neutral-hovered, #091e4214);
                 border: none;
