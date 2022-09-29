@@ -40,12 +40,21 @@ export function ShareBoard({ onToggleShareModal }) {
 
     const addUserToBoard = (user) => {
         const selectedUser = board.members.find(member => member._id === user._id)
-        console.log('user:', user)
+        // console.log('user:', user)
         if (selectedUser) {
-            console.log('userRemoved:', user)
+            // console.log('userRemoved:', user)
             board.members = board.members.filter(currUser => currUser._id !== user._id)
+            const removedId = user._id
+            board.groups = board.groups.map((group) => {
+                return {
+                    ...group, tasks: group.tasks.map(task => {
+                        return { ...task, members: task.members.filter(_id => _id !== removedId) }
+                    })
+                }
+            })
+
         } else {
-            console.log('userAdded:', user)
+            // console.log('userAdded:', user)
             board.members.push(user)
         }
         dispatch(saveBoard(board))
