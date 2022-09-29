@@ -40,10 +40,9 @@
         left: 2.5px;
 
 
-        // .todo-checkbox {
-        //     position: relative;
-        //     top: 12px;
-        // }
+        & span .todo-checkbox {
+            padding: 9px 9px 9px 5px
+        }
 
 
         svg {
