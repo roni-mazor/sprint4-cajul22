@@ -217,6 +217,13 @@
                     }
                 }
 
+                &.description {
+                    font-size: 12px;
+                    margin-inline-end: 10px;
+                    padding-inline-start: 4px;
+
+                }
+
                 &.comment {
                     color: #5e6c84;
                     font-size: 12px;

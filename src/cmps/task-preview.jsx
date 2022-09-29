@@ -6,6 +6,8 @@ import GuestImg from '../assets/img/guest-img.svg'
 import { ImAttachment } from 'react-icons/im'
 import { TbCheckbox } from 'react-icons/tb'
 import { FaRegComment } from 'react-icons/fa'
+import { GrTextAlignFull } from 'react-icons/gr'
+
 
 import { useEffect, useState } from "react"
 import { DateBadge } from "./task-details/date-badge"
@@ -135,6 +137,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                     <section className="task-info-container flex">
                         <section className="task-badges flex align-center">
                             {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
+                            {task?.description && <span className="task-badges description"><GrTextAlignFull /></span>}
                             {task.comment && <div className="task-badges comment flex align-center">
                                 <span className=""><FaRegComment /></span>
                                 <p>{task.comment}</p>
