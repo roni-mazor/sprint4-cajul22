@@ -54,13 +54,12 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        margin-bottom: 5px;
-
+        margin-bottom: 2px;
     }
 
     .task-content {
         overflow: hidden;
-        padding: 8px 8px 6px 6px;
+        padding: 0 8px 6px 6px;
         position: relative;
         z-index: 10;
 
@@ -77,7 +76,7 @@
             gap: 3px;
             flex-wrap: wrap;
             width: 90%;
-            margin-bottom: 4px;
+            margin: 8px 0 6px 0;
 
             .label-btn {
                 min-width: 40px;
@@ -131,7 +130,8 @@
             flex: 1;
 
 
-            & .task-users {
+            .task-users {
+                margin-right: 3px;
                 object-fit: cover;
                 border-radius: 25px;
                 width: 30px;
@@ -223,12 +223,16 @@
                     height: 20px;
                     line-height: 20px;
                     width: 20px;
-                    margin-bottom: 5px;
+                    margin-bottom: 1px;
                     margin-inline-end: 10px;
                     gap: 5px;
                     position: relative;
                     top: 3px;
                     padding-inline-start: 4px;
+
+                    span {
+                        font-size: 14px;
+                    }
 
                     p {
                         font-size: 13px;
@@ -241,7 +245,7 @@
                     height: 20px;
                     line-height: 20px;
                     width: 20px;
-                    margin-bottom: 5px;
+                    margin-bottom: 1px;
                     margin-inline-end: 10px;
                     gap: 5px;
                     position: relative;
@@ -258,7 +262,7 @@
                     font-size: 12px;
                     border-radius: 3px;
                     max-width: 100%;
-                    margin-bottom: 5px;
+                    margin-bottom: 2px;
                     margin-inline-start: 2px;
                     padding: 0px 5px 0px 5px;
                     position: relative;
@@ -272,11 +276,7 @@
                     }
 
                     .checklist-icon {
-                        font-size: 0.875rem;
-                        ;
-                        // height: 20px;
-                        // line-height: 20px;
-                        // width: 20px;
+                        font-size: 15px;
                     }
 
                     .todo-num {

@@ -96,14 +96,17 @@ export const BoardDetails = () => {
                         const regex = new RegExp(filterBy.txt, 'i')
                         return (
 
-                            filterBy.labelIds.every(id => task.labelIds.includes(id)) &&
-                            regex.test(task.title) &&
+                            filterBy.labelIds.every(id => task.labelIds.includes(id))
+                             &&
+                            regex.test(task.title)
+                             &&
                             ((filterBy.showNoMembers) ?
                                 !task.hasOwnProperty('members') || task.members.length === 0 :
-                                filterBy.members.every(id => task?.members?.includes(id))) &&
+                                filterBy.members.every(id => task?.members?.includes(id)))
+                                 &&
                             ((filterBy.isDone === null) ? true :
-                                (filterBy.isDone) ? task?.dueDate?.isDone : !task?.dueDate?.isDone)
-                            &&
+                                (filterBy.isDone) ? task?.dueDate?.isDone : !task?.dueDate?.isDone) 
+                                &&
                             ((!filterBy.time) ? true :
                                 (task?.dueDate?.time - Date.now() < filterBy.time.max &&
                                     task?.dueDate?.time - Date.now() > filterBy.time.min))
