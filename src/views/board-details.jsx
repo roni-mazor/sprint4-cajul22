@@ -21,13 +21,18 @@ export const BoardDetails = () => {
     const board = useSelector(state => state.boardModule.board)
     const [isMenuModalOpen, setIsMenuModalOpen] = useState(false)
     const [filterBy, setFilterBy] = useState({ labelIds: [], txt: '', members: [], showNoMembers: false, isDone: null, time: null })
+    const windowWidth = window.innerWidth
 
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
         socketService.emit('set-board-listening', params.boardId)
-        socketService.on('emit-board-change', (board) => {
-            console.log('got emitted')
-            dispatch(setBoard(board))
+        // socketService.on('emit-board-change', (board) => {
+        //     console.log('got emitted')
+        //     dispatch(setBoard(board))
+        // })
+        socketService.on('emit-board-change', (boardId) => {
+            console.log('got emitted', boardId)
+            dispatch(loadBoard(boardId))
         })
     }, [])
 
@@ -113,8 +118,7 @@ export const BoardDetails = () => {
     if (!board) return <LoaderIcon />
     return (
         <DragDropContext onDragEnd={onHandleDrag}>
-            {/* <Droppable droppableId="father">
-                {(provided) => ( */}
+
             <div className="board-wrapper" style={board.style}  >
 
 
@@ -124,7 +128,7 @@ export const BoardDetails = () => {
 
 
                 <section className="board-container"  >
-                    <BoardHeader name={board.title} members={board.members} board={board}
+                    <BoardHeader windowWidth={windowWidth} name={board.title} members={board.members} board={board}
                         onToggleIsStarred={onToggleIsStarred}
                         toggleMenuModal={toggleMenuModal}
                         onToggleShareModal={onToggleShareModal} />

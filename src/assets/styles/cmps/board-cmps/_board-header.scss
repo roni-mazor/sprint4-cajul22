@@ -14,6 +14,15 @@
         background-color: #fff;
         border: none;
         border-radius: 3px;
+        height: 32px;
+
+        .board-header-txt {
+            display: none;
+
+            @media(min-width:650px) {
+                display: inline;
+            }
+        }
 
         &:hover {
             background-color: rgba(255, 255, 255, 0.9)
@@ -30,33 +39,41 @@
         align-items: center;
         gap: 15px;
         color: white;
-        width: 100%;
+
+        .avatars-container {
+            display: none;
+
+            @media(min-width:650px) {
+                display: flex;
+            }
+        }
+
 
         .board-title {
-            margin-inline-start: 8px;
+            margin: 0 8px 0 0;
+            font-size: 20px;
+
+            @media (min-width:650px) {
+                font-size: initial;
+            }
         }
 
         .starred {
             background-color: rgba(255, 255, 255, 0.2392156863);
             border-radius: 3px;
-            /* color: var(--dynamic-text-color, #fff); */
             cursor: pointer;
-            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 17px;
             height: 32px;
-            line-height: 32px;
-            max-width: 400px;
-            overflow: hidden;
-            padding: 7px;
-            position: relative;
-            text-decoration: none;
-            text-overflow: ellipsis;
             margin-inline-end: -7px;
-            transition: all .4s;
+            transition: all 0.4s;
             width: 32px;
             svg{
                 margin-bottom: 5px;
             }
+
 
             &:hover {
                 color: #f2d600;
@@ -79,20 +96,32 @@
         border: none;
         border-radius: 3px;
         color: #fff;
-        font-size: 14px;
         height: 32px;
-        line-height: 32px;
-        margin: 0 8px 4px 0;
+        margin: 5px 8px 4px 0;
         overflow: hidden;
         position: relative;
         padding-left: 32px;
         padding-right: 10px;
 
+        .board-header-txt {
+            display: none;
+
+            @media(min-width:650px) {
+                display: inline;
+            }
+        }
+
         svg {
             position: absolute;
-            top: 9px;
+            top: 8px;
             font-size: 17px;
-            left: 7px;
+            left: 13px;
+
+            @media(min-width:650px) {
+                top: 9px;
+                left: 7px;
+            }
+
         }
 
 
