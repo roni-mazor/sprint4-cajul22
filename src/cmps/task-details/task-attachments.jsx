@@ -13,10 +13,11 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
 
 
     const onRemoveAttachment = (attachmentId) => {
-        console.log('attachmentId :', attachmentId)
+        // console.log('attachmentId :', attachmentId)
         const attachmentToRemove = attachments.find(attachment => attachment.id === attachmentId)
         task.attachments = attachments.filter(attachment => attachment.id !== attachmentId)
-        task.cover = ''
+        if (attachmentId === task.cover.id) task.cover = ''
+
         onSaveTask(task, `deleted the ${attachmentToRemove.name} attachment from`, task.title)
     }
 
@@ -37,7 +38,7 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
         task.cover = ''
         onSaveTask(task)
     }
-    // console.log('date:', date)
+    // console.log('task:', task)
     return (
         <section className="attachments-container">
             <div className="attachments-title flex align-center">
@@ -71,8 +72,8 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
                 })}
             </section>
             <button className="add-attachment"
-             onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}>
-             Add an attachment</button>
+                onClick={(ev) => toggleAdditivesModal(ev, 'attachment')}>
+                Add an attachment</button>
         </section >
     )
 }
