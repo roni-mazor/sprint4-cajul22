@@ -24,13 +24,13 @@
         }
     }
 
-    span {
-        width: 100%;
+    .board-header-container {
         margin: 0 0 0 6px;
         display: flex;
         align-items: center;
         gap: 15px;
         color: white;
+        width: 100%;
 
         .board-title {
             margin-inline-start: 8px;

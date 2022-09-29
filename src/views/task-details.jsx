@@ -71,7 +71,7 @@ export const TaskDetails = () => {
         const group = board.groups.find(group => group.id === groupId)
         let currTask = group.tasks.find(task => task.id === taskId)
         const img = await uploadService.uploadImgFromDrag(acceptedFiles)
-        console.log('currTask:', currTask)
+        console.log('img:', img)
         if (!currTask.attachments) task.attachments = []
         // if (!task.background) task.background = 'header'
         const newAttachment = boardService.createNewAttachment(img.url, img.height, img.width, img.name)

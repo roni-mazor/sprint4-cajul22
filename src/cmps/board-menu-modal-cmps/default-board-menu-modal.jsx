@@ -58,7 +58,9 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                                         to={`/board/${board._id}/${activity.groupId}/${activity.task.id}`}>
                                         {activity.link}
                                     </Link>}
-                                    {activity.opTxt && <span className="opTxt"> {activity.opTxt}</span>}
+                                    {activity.opTxt &&
+                                        <span className={`opTxt ${activity.comment ? 'comment' : ''}`}>
+                                            {activity.opTxt}</span>}
                                 </div>
                                 {activity.task && <Link className="activity-time"
                                     to={`/board/${board._id}/${activity?.groupId}/${activity?.task?.id}`}>
@@ -70,7 +72,6 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                             </div>
                         </div>)}
                     </div>
-
                 </div>
             </main>
         </>

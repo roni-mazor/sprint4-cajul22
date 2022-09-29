@@ -12,7 +12,7 @@ import { DateBadge } from "./task-details/date-badge"
 import { FaPencilAlt } from "react-icons/fa"
 import { FastEditModal } from "./fast-edit-modal"
 
-export const TaskPreview = ({ task, boardId, groupId}) => {
+export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
     const board = useSelector(state => state.boardModule.board)
     const isLabelTxtOpen = useSelector(state => state.boardModule.isLabelTxtOpen)
@@ -135,7 +135,10 @@ export const TaskPreview = ({ task, boardId, groupId}) => {
                     <section className="task-info-container flex">
                         <section className="task-badges flex align-center">
                             {task?.dueDate && <DateBadge onSaveTask={onSaveTask} task={task} />}
-
+                            {task.comment && <div className="task-badges comment flex align-center">
+                                <span className=""><FaRegComment /></span>
+                                <p>{task.comment}</p>
+                            </div>}
                             {task?.attachments?.length > 0 &&
                                 <div className="task-badges attached flex align-center">
                                     <span className="attach-icon"> <ImAttachment /></span>
