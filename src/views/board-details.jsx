@@ -26,9 +26,13 @@ export const BoardDetails = () => {
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
         socketService.emit('set-board-listening', params.boardId)
-        socketService.on('emit-board-change', (board) => {
-            console.log('got emitted')
-            dispatch(setBoard(board))
+        // socketService.on('emit-board-change', (board) => {
+        //     console.log('got emitted')
+        //     dispatch(setBoard(board))
+        // })
+        socketService.on('emit-board-change', (boardId) => {
+            console.log('got emitted', boardId)
+            dispatch(loadBoard(boardId))
         })
     }, [])
 
