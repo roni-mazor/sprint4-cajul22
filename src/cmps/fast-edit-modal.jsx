@@ -101,7 +101,7 @@ export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyD
                                 {task?.attachments?.length > 0 &&
                                     <div className="task-badges attached flex align-center">
                                         <span className="attach-icon"> <ImAttachment /></span>
-                                        <p>{task.attachments.length}</p></div>}
+                                        <p>{task.attachments?.length}</p></div>}
 
                                 {task?.checklists?.length > 0 && <div
                                     className={`task-badges checklist flex align-center ${isAllDone ? 'done' : ''}`}>
