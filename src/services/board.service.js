@@ -51,6 +51,7 @@ async function starBoardFromWorkspace(boardId) {
 
 async function save(board) {
     if (board._id) {
+        // board.activities = []
         return httpService.put(`board/${board._id}`, board)
         // return storageService.put(STORAGE_KEY, board)
     } else {
