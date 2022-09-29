@@ -5,7 +5,8 @@ import { RiUserAddLine } from 'react-icons/ri'
 import GuestImg from '../assets/img/guest-img.svg'
 
 
-export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal, onToggleShareModal }) => {
+export const BoardHeader = ({ windowWidth, board, onToggleIsStarred, members, toggleMenuModal, onToggleShareModal }) => {
+
     return (
         <header className="board-header">
             <div className="board-header-container">
@@ -14,24 +15,28 @@ export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal
                     onClick={onToggleIsStarred}>
                     {board.isStarred ? <AiFillStar /> : <AiOutlineStar />}</span><p>|</p>
                 <section className="avatars-container" style={{ display: "flex" }}>
-                    {members && members.map((member) =>(
-                       
-                                <section   className="member-avatar flex" title={`${member.fullname}`}>
-                                    <img src={member.imgUrl ? member.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
-                                </section>
+                    {members && windowWidth > 650 && members.map((member) => (
 
-                        )
+                        <section className="member-avatar flex" title={`${member.fullname}`}>
+                            <img src={member.imgUrl ? member.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
+                        </section>
+
+                    )
                     )}
-            
+
 
 
 
                 </section>
                 <button className="add-board-user"
                     onClick={onToggleShareModal}
-                ><RiUserAddLine /> Share</button>
+                ><RiUserAddLine />
+                    {windowWidth > 650 && 'Share'}
+                </button>
             </div>
-            <button onClick={toggleMenuModal} className="show-menu-btn"><BsThreeDots /> Show menu</button>
+            <button onClick={toggleMenuModal} className="show-menu-btn"><BsThreeDots />
+                {windowWidth > 650 && 'Show menu'}
+            </button>
         </header>
     )
 }
