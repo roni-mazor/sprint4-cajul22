@@ -38,7 +38,7 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
         task.cover = ''
         onSaveTask(task)
     }
-    // console.log('task:', task)
+    console.log('task:', task)
     return (
         <section className="attachments-container">
             <div className="attachments-title flex align-center">

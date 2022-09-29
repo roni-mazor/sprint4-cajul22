@@ -51,7 +51,7 @@
             background-color: #0065ff;
             font-family: fira-reg;
             height: 100%;
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 2rem ;
         }
 
         @media (max-width: 425px) {
@@ -107,10 +107,11 @@
                 & .hero-demo-btn {
                     max-width: 125px;
                     height: 35px;
+                    font-weight: 500;
                     background-color: #0065ff;
                     border-radius: 3px;
                     color: #fff;
-                    font-family: Charlie Text, sans-serif;
+                    font-family: var(--base);
                     align-self: center;
                     letter-spacing: 1px;
                     margin-right: 15px;
@@ -144,6 +145,7 @@
                     width: auto;
                     max-height: 600px;
                     margin-left: -8.33333%;
+                    margin-bottom: 15px;
                     left: 16.6667%;
                     flex: 0 0 auto;
                     padding: 8rem 1rem 1rem;
@@ -269,7 +271,7 @@
             background-color: rgba(227, 227, 227, 0.45);
             border: 0;
             height: 1px;
-            margin: 16px 0;
+            margin: 25px 0;
             padding: 0;
             width: 100%;
         }

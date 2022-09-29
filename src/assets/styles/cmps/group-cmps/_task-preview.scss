@@ -134,6 +134,7 @@
                 margin-right: 3px;
                 object-fit: cover;
                 border-radius: 25px;
+                margin: 2px;
                 width: 30px;
                 height: 30px;
             }
@@ -217,6 +218,13 @@
                     }
                 }
 
+                &.description {
+                    font-size: 12px;
+                    margin-inline-end: 10px;
+                    padding-inline-start: 4px;
+
+                }
+
                 &.comment {
                     color: #5e6c84;
                     font-size: 12px;
@@ -282,7 +290,6 @@
                     .todo-num {
                         font-size: 0.8rem;
                         position: relative;
-                        top: 1px;
                     }
 
                     // & p{

@@ -57,6 +57,7 @@ const Home = ({ setModalState, board, toggleMenuModal, setBackgroundModalState }
 
     const changeBackgroundImage = (url) => {
         board.style = { backgroundImage: `url(${url})` }
+        
         // dispatch(saveBoard(board))
         dispatch(saveBoard(board, null, null, `changed the background of this board`))
     }
@@ -125,9 +126,10 @@ const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
     const onSearchPhoto = ({ target: { value } }) => {
         loadPhotos(value)
     }
-    const changeBackgroundImage = (url) => {
+    const changeBackgroundImage = (url,color) => {
         board.style = { backgroundImage: `url(${url})` }
         // dispatch(saveBoard(board))
+        board.color = { backgroundColor: `${color}`,opacity: .8 }
         dispatch(saveBoard(board, null, null, `changed the background of this board`))
     }
 
@@ -153,7 +155,7 @@ const Photos = ({ board, toggleMenuModal, setBackgroundModalState }) => {
         <section className="backgrounds-wrapper">
             <section className="backgrounds-container">
                 {photos && photos.map(p => (
-                    <div onClick={() => changeBackgroundImage(p.urlFull)} style={{ backgroundImage: `url(${p.urlSmall})` }} >
+                    <div onClick={() => changeBackgroundImage(p.urlFull,p.color)} style={{ backgroundImage: `url(${p.urlSmall})` }} >
                         <a target="_blank" className="creator-link" href={p.creatorUrl}>{p.creatorName}</a>
                     </div>
                 ))}

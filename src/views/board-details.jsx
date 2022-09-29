@@ -87,7 +87,7 @@ export const BoardDetails = () => {
     const toggleMenuModal = () => {
         setIsMenuModalOpen(prevState => !prevState)
     }
-
+    console.log('board:', board)
     const getFilteredBoard = () => {
         return {
             ...board, groups: board?.groups?.map(group => {
