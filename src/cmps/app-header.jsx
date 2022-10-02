@@ -6,6 +6,7 @@ import { TbBell } from 'react-icons/tb'
 import GuestImg from '../assets/img/guest-img.svg'
 import { MemberPreview } from './member-preview'
 import { socketService } from '../services/socket.service'
+import { useEffect } from 'react'
 
 export const AppHeader = ({ board }) => {
 
@@ -16,6 +17,11 @@ export const AppHeader = ({ board }) => {
         setIsModalOpen(!isModalOpen)
         console.log(isModalOpen)
     }
+
+    useEffect(() => {
+        //when change happens to the member then we need to update the 
+        //user that there is a new notification for him
+    }, [member])
     console.log(member)
     // if (!member) return <LoaderIcon />
     return (
