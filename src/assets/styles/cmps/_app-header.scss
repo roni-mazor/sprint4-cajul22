@@ -1,4 +1,5 @@
 .app-header {
+    z-index: 150;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,7 +31,7 @@
             // width: 20px;
             margin-inline-end: 5px;
         }
-        
+
         & .jello-logo-text {
             font-family: fira-reg;
             font-weight: bold;
@@ -44,15 +45,57 @@
         font-size: 1.9em;
         cursor: pointer;
 
+        .notification-btn {
+            width: 25px;
+            height: 25px;
+            font-size: 20px;
+            padding-inline-start: 2px;
+            margin-inline-end: 10px;
+            background-color: #e55844;
+            border-radius: 3px;
+
+            &:hover {
+                background-color: #d24f3e;
+            }
+        }
+
         img {
             object-fit: cover;
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            // margin-bottom: 1px;
         }
     }
 
-    // }
+    .notification-container {
+        color: #172b4d;
+        text-align: center;
+        font-family: var(--base);
+        position: absolute;
+        top: 50px;
+        right: 5px;
+        width: 250px;
+        height: 100%;
+        background-color: #ffffff;
+        border-radius: 3px;
+        box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25);
+        z-index: 1500;
 
+        .modal-headline {
+            margin-bottom: 8px;
+            padding: 0 12px;
+            position: relative;
+            display: grid;
+            align-items: center;
+            grid-template-columns: 12px 1fr 12px;
+            
+            & p{
+                margin: 5px;
+            }
+        }
+
+        & hr{
+            margin: 5px;
+        }
+    }
 }

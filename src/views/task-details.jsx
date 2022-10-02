@@ -32,9 +32,9 @@ import { uploadService } from "../services/upload.service"
 
 export const TaskDetails = () => {
     const params = useParams()
+    const { boardId, groupId, taskId } = params
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { boardId, groupId, taskId } = params
     const board = useSelector(state => state.boardModule.board)
     const user = useSelector(state => state.userModule.user)
     const [task, setTask] = useState()

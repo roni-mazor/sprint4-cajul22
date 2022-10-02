@@ -5,6 +5,7 @@ import { httpService } from './http.service'
 // import { getActionSetWatchedUser } from '../store/review.actions'
 import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
 import { showSuccessMsg } from '../services/event-bus.service'
+import { utilService } from "./util.service"
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORAGE_KEY = 'users'
@@ -19,10 +20,25 @@ export const userService = {
     getById,
     remove,
     update,
+    addUserNotification
 }
 
 window.userService = userService
 
+
+async function addUserNotification(notification) {
+    notification.id = utilService.makeId()
+    const userToUpdate = await getById(notification.onUserId)
+    if (!userToUpdate.notifications) {
+        userToUpdate.notifications = [notification]
+    } else {
+        userToUpdate.notifications.unshift(notification)
+    }
+    console.log(userToUpdate)
+    console.log(userToUpdate.notifications)
+    const user = await httpService.put(`user/${userToUpdate._id}`, userToUpdate)
+    console.log('final', user)
+}
 
 async function getUsers() {
     // let rawUsers = await storageService.query(STORAGE_KEY)
@@ -81,13 +97,13 @@ async function login(userCred) {
 async function signup(userCred) {
 
     // const user = await storageService.post('users', userCred)
-    try{
+    try {
         const user = await httpService.post('auth/signup', userCred)
         socketService.login(user._id)
         console.log('user:', user)
-    
+
         return saveLocalUser(user)
-    } catch(err){
+    } catch (err) {
         console.log('err:', err)
     }
 }

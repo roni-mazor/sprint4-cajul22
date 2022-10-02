@@ -55,6 +55,15 @@ export function onLogin(credentials) {
     }
 }
 
+export function updateUser(user) {
+    return (dispatch) => {
+        dispatch({
+            type: 'SET_USER',
+            user
+        })
+    }
+}
+
 
 export function onSignUp(credentials) {
     return async (dispatch) => {
