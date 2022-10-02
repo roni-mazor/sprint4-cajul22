@@ -4,10 +4,16 @@ import { useSelector} from "react-redux"
 import { SiTrello } from 'react-icons/si'
 import { TbBell } from 'react-icons/tb'
 import GuestImg from '../assets/img/guest-img.svg'
+<<<<<<< HEAD
+import { MemberPreview } from './member-preview'
+import { socketService } from '../services/socket.service'
+=======
+>>>>>>> d561cdfdef59ec434d5c43ed3932d5561db930a6
 
 export const AppHeader = ({ board }) => {
 
     const member = useSelector(state => state.userModule.user)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     
     // if (!member) return <LoaderIcon />
