@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 export const AppHeader = ({ board }) => {
 
     const member = useSelector(state => state.userModule.user)
+    const users = useSelector(state => state.userModule.users)
     const [isModalOpen, setIsModalOpen] = useState(false)
     // const [notificationsLen, setNotificationsLen] = (member?.notifications?.length)
     const [isRed, setIsRed] = useState(false)
@@ -27,6 +28,11 @@ export const AppHeader = ({ board }) => {
         setIsRed(true)
     }, [member?.notifications?.length])
     // console.log(member)
+    const getUser = (id) => {
+        const currUser = users.find(user => user._id === id)
+        if (currUser) return currUser.imgUrl
+    }
+
     // if (!member) return <LoaderIcon />
     return (
         <header className={board ? 'app-header board' : 'app-header'}
@@ -44,14 +50,21 @@ export const AppHeader = ({ board }) => {
             {isModalOpen && <section className='notification-container'>
                 <section className='modal-headline'>
                     <span></span>
-                    <p>Notifications</p>
+                    <p className='headline'>Notifications</p>
                     <span></span>
                 </section>
                 <hr />
-                <section className="notifications-container">
-                    {member?.notifications?.length && member.notifications.map(({ boardId, groupId, taskId, boardName, taskName, groupName, byUserName, id }) => (
+                <section>
+                    {member?.notifications?.length && member.notifications.map(({ boardId, groupId, taskId, boardName, taskName, groupName, byUserName, id, imgUrl }) => (
                         <div key={id} onClick={() => { navigate(`/board/${boardId}/${groupId}/${taskId}`) }}>
-                            <p>{`${byUserName} has added you to ${taskName} at group ${groupName} at board ${boardName}`}</p>
+                            <sections className="notifications-msg flex align-center ">
+                                <div className='profile-img'>
+                                    <img src={imgUrl} alt="" />
+                                </div>
+                                {/* {`${byUserName} has added you to \n ${taskName} at group ${groupName} at board ${boardName}`} */}
+                                <p className='not-msg'>{`${byUserName} has added you to a new task at ${boardName} board`}</p>
+                            </sections>
+                            <hr />
                         </div>
                     ))}
                 </section>
