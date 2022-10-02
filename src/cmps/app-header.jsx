@@ -19,6 +19,7 @@ export const AppHeader = ({ board }) => {
     }
 
     useEffect(() => {
+        
         //when change happens to the member then we need to update the 
         //user that there is a new notification for him
     }, [member])

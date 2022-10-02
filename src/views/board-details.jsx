@@ -96,8 +96,6 @@ export const BoardDetails = () => {
                             &&
                             regex.test(task.title)
                             &&
-                            // ((filterBy.showNoMembers) && !((!task.hasOwnProperty('members')) || !task.members.length)) &&
-                            // (filterBy.members.length && filterBy.members.every(id => task?.members?.includes(id)))
                             ((filterBy.showNoMembers) ?
                                 (!task.hasOwnProperty('members') || !task.members.length) :
                                 filterBy.members.every(id => task?.members?.includes(id)))
