@@ -11,6 +11,7 @@ import { userService } from '../../services/user.service'
 
 export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const board = useSelector(state => state.boardModule.board)
+    const user = useSelector(state => state.userModule.user)
     const [txt, setTxt] = useState('')
     const members = useSelector(state => state.boardModule.board.members)
     const params = useParams()
@@ -37,6 +38,7 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
         const loggedinUser = userService.getLoggedinUser()
         const currGroup = board.groups.find((group => group.id === groupId))
         const notification = {
+            imgUrl: user.imgUrl,
             onUserId: currMember._id, taskId, boardId, groupId,
             byUserId: loggedinUser._id, byUserName: loggedinUser.fullname,
             boardName: board.title, taskName: task.title, groupName: currGroup.title,

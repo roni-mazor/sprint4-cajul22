@@ -10,7 +10,7 @@
 
 
     &.board {
-        background-color: rgba(0, 0, 0, 0.744);
+        background-color: rgba(0, 0, 0, 1);
     }
 
     a {
@@ -51,11 +51,16 @@
             font-size: 20px;
             padding-inline-start: 2px;
             margin-inline-end: 10px;
-            background-color: #e55844;
             border-radius: 3px;
 
+            &.red {
+                background-color: #e55844;
+
+            }
+
             &:hover {
-                background-color: #d24f3e;
+                // background-color: #d24f3e;
+                background-color: rgba(255, 255, 255, 0.2);
             }
         }
 
@@ -88,14 +93,30 @@
             display: grid;
             align-items: center;
             grid-template-columns: 12px 1fr 12px;
-            
-            & p{
+
+            & .headline {
                 margin: 5px;
+            }
+        }    
+        
+        .notifications-msg{
+            & p{
+                margin: 0;
+                line-height: 1.2em;
             }
         }
 
-        & hr{
+        & hr {
             margin: 5px;
+        }
+
+        .profile-img {
+            width: 100px;
+            margin: 5px;
+            & img {
+                border-radius: 50%;
+            }
+
         }
     }
 }
