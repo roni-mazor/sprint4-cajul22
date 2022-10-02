@@ -5,12 +5,13 @@ import { LoaderIcon } from "../cmps/loader-icon"
 import { SiTrello } from 'react-icons/si'
 import GuestImg from '../assets/img/guest-img.svg'
 import { MemberPreview } from './member-preview'
+import { socketService } from '../services/socket.service'
 
 export const AppHeader = ({ board }) => {
 
     const member = useSelector(state => state.userModule.user)
 
-
+    
     // if (!member) return <LoaderIcon />
     return (
         <header className={board ? 'app-header board' : 'app-header'}

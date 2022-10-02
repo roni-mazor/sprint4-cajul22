@@ -26,10 +26,6 @@ export const BoardDetails = () => {
     useEffect(() => {
         dispatch(loadBoard(params.boardId))
         socketService.emit('set-board-listening', params.boardId)
-        // socketService.on('emit-board-change', (board) => {
-        //     console.log('got emitted')
-        //     dispatch(setBoard(board))
-        // })
         socketService.on('emit-board-change', (boardId) => {
             console.log('got emitted', boardId)
             dispatch(loadBoard(boardId))
@@ -97,19 +93,19 @@ export const BoardDetails = () => {
                         return (
 
                             filterBy.labelIds.every(id => task.labelIds.includes(id))
-                             &&
+                            &&
                             regex.test(task.title)
-                             &&
+                            &&
+                            // ((filterBy.showNoMembers) && !((!task.hasOwnProperty('members')) || !task.members.length)) &&
+                            // (filterBy.members.length && filterBy.members.every(id => task?.members?.includes(id)))
                             ((filterBy.showNoMembers) ?
-                                !task.hasOwnProperty('members') || task.members.length === 0 :
+                                (!task.hasOwnProperty('members') || !task.members.length) :
                                 filterBy.members.every(id => task?.members?.includes(id)))
-                                 &&
-                            ((filterBy.isDone === null) ? true :
-                                (filterBy.isDone) ? task?.dueDate?.isDone : !task?.dueDate?.isDone) 
-                                &&
-                            ((!filterBy.time) ? true :
-                                (task?.dueDate?.time - Date.now() < filterBy.time.max &&
-                                    task?.dueDate?.time - Date.now() > filterBy.time.min))
+                            &&
+                            ((filterBy.isDone === null) || (filterBy.isDone) === task?.dueDate?.isDone)
+                            &&
+                            ((!filterBy.time) || (task?.dueDate?.time - Date.now() < filterBy.time.max &&
+                                task?.dueDate?.time - Date.now() > filterBy.time.min))
                         )
                     })
                 }

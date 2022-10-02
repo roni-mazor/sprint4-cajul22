@@ -10,6 +10,8 @@ import { TaskDetails } from './views/task-details'
 // import { loadBoards } from './store/board.actions'
 
 import './assets/styles/styles.scss'
+import { socketService } from './services/socket.service'
+import { userService } from './services/user.service'
 
 
 
@@ -17,10 +19,18 @@ export function App() {
 
 
   // const dispatch = useDispatch()
-  
+
+  // useEffect(() => {
+  //     //dispatch(loadUsers())  
+  //     //dispatch(loadBoards())       
+  // }, [])
   useEffect(() => {
-      //dispatch(loadUsers())  
-      //dispatch(loadBoards())       
+    socketService.on('user-assignment-notification', (activityDetails) => {
+      // console.log('from root', activityDetails)
+      if (userService.getLoggedinUser()._id === activityDetails.userId){
+        console.log('its me')
+      }
+    })
   }, [])
 
 
