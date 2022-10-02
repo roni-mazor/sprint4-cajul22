@@ -12,17 +12,21 @@ export const AppHeader = ({ board }) => {
 
     const member = useSelector(state => state.userModule.user)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    // const [notificationsLen, setNotificationsLen] = (member?.notifications?.length)
+    const [isRed, setIsRed] = useState(false)
     const navigate = useNavigate()
     const onToggleModal = () => {
         setIsModalOpen(!isModalOpen)
-        console.log(isModalOpen)
+        setIsRed(false)
+        // console.log(isModalOpen)
     }
 
     useEffect(() => {
         //when change happens to the member then we need to update the 
         //user that there is a new notification for him
-    }, [member])
-    console.log(member)
+        setIsRed(true)
+    }, [member?.notifications?.length])
+    // console.log(member)
     // if (!member) return <LoaderIcon />
     return (
         <header className={board ? 'app-header board' : 'app-header'}
@@ -31,7 +35,9 @@ export const AppHeader = ({ board }) => {
             <span></span>
             {/* <Link to=""> */}
             <h4 className="log-sig flex align-center">
-                <p className="notification-btn flex align-center" onClick={onToggleModal}><TbBell /></p>
+                <p className={`notification-btn flex align-center ${isRed ? 'red' : ''}`}
+                    onClick={onToggleModal}><TbBell /></p>
+                {/* <p className="notification-btn flex align-center" onClick={onToggleModal}><TbBell /></p> */}
                 <img src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" title={member?.username} />
             </h4>
             {/* </Link> */}

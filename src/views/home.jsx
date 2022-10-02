@@ -13,6 +13,7 @@ import GuestImg from '../assets/img/guest-img.svg'
 export function Home() {
 
     const users = useSelector(state => state.userModule.users)
+    const user = useSelector(state => state.userModule.user)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -20,6 +21,10 @@ export function Home() {
 
 
     const onStartDemo = () => {
+        if (user) {
+            navigate('/workspace')
+            return
+        }
         const demoUser = users.find(user => user.username === 'demo')
         console.log('demoUser:', demoUser)
         if (demoUser) {
@@ -69,8 +74,8 @@ export function Home() {
                 <SiTrello className="jello-logo" />
                 <h1 className="jello-logo-text">Jello </h1>
             </span>
-                <h1>Team collaboration, Made easy</h1>
-                <hr />
+            <h1>Team collaboration, Made easy</h1>
+            <hr />
         </footer>
     </section>
 }
