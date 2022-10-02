@@ -23,7 +23,7 @@ export const AppHeader = ({ board }) => {
     }
 
     useEffect(() => {
-        
+
         //when change happens to the member then we need to update the 
         //user that there is a new notification for him
         if (isInitialMount.current) {
@@ -32,7 +32,7 @@ export const AppHeader = ({ board }) => {
         } else {
             // Your useEffect code here to be run on update
             setIsRed(true)
-         }
+        }
     }, [member])
     // console.log(member)
     const getUser = (id) => {
@@ -41,21 +41,24 @@ export const AppHeader = ({ board }) => {
     }
 
     // if (!member) return <LoaderIcon />
-    // console.log('isRed:', isRed)
+    console.log('isRed:', board)
     return (
-        <header className={board ? 'app-header board' : 'app-header'}
-            style={board?.color}>
-            <Link to="/workspace" className="header-logo flex align-center" ><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></Link>
-            <span></span>
-            {/* <Link to=""> */}
-            <h4 className="log-sig flex align-center">
-                <p className={`notification-btn flex align-center ${isRed ? 'red' : ''}`}
-                    onClick={onToggleModal}><TbBell /></p>
-                {/* <p className="notification-btn flex align-center" onClick={onToggleModal}><TbBell /></p> */}
-                <img src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" title={member?.username} />
-            </h4>
-            {/* </Link> */}
-            {isModalOpen && <section className='notification-container'>
+        <>
+            <header className={board ? 'app-header board' : 'app-header'}
+                style={board?.color}>
+                <Link to="/workspace" className="header-logo flex align-center" ><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></Link>
+                <span></span>
+                {/* <Link to=""> */}
+                <h4 className="log-sig flex align-center">
+                    <p className={`notification-btn flex align-center ${isRed ? 'red' : ''}`}
+                        onClick={onToggleModal}><TbBell /></p>
+                    {/* <p className="notification-btn flex align-center" onClick={onToggleModal}><TbBell /></p> */}
+                    <img src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" title={member?.username} />
+                </h4>
+                {/* </Link> */}
+
+            </header>
+            {isModalOpen && <section style={{ opacity: '1' }} className='notification-container'>
                 <section className='modal-headline'>
                     <span></span>
                     <p className='headline'>Notifications</p>
@@ -64,7 +67,13 @@ export const AppHeader = ({ board }) => {
                 <hr />
                 <section>
                     {member?.notifications?.length && member.notifications.map(({ boardId, groupId, taskId, boardName, taskName, groupName, byUserName, id, imgUrl }) => (
-                        <div key={id} onClick={() => { navigate(`/board/${boardId}/${groupId}/${taskId}`) }}>
+                        <div key={id} onClick={() => {
+                            navigate('/workspace')
+                            setTimeout(() => {
+                                navigate(`/board/${boardId}/${groupId}/${taskId}`)
+
+                            }, 100)
+                        }}>
                             <sections className="notifications-msg flex align-center ">
                                 <div className='profile-img'>
                                     <img src={imgUrl} alt="" />
@@ -77,7 +86,6 @@ export const AppHeader = ({ board }) => {
                     ))}
                 </section>
             </section>}
-
-        </header>
+        </>
     )
 }
