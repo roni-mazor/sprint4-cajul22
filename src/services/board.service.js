@@ -100,13 +100,14 @@ function createLabel({ color, colorName }) {
 
 }
 
-function createNewAttachment(url, height, width, name = 'Media url') {
+function createNewAttachment(url, height, width, name = 'Media url',type) {
     return {
         id: utilService.makeId(5),
         url,
         name,
         height,
         width,
+        type,
         createdAt: Date.now()
     }
 

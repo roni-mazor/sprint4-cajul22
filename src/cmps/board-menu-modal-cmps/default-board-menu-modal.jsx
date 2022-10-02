@@ -4,7 +4,7 @@ import { IoMdClose } from "react-icons/io"
 import { GrList } from 'react-icons/gr'
 import GuestImg from '../../assets/img/guest-img.svg'
 import { utilService } from "../../services/util.service"
-
+import PDF from '../../assets/img/pdf-icon.png'
 
 export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal }) => {
     // const formatedTime = utilService.getFormatedTime
@@ -54,21 +54,22 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                                 <div>
                                     <span className="username">{activity.byMember.fullname} </span>
                                     {!activity.comment && <span className="txt"> {activity.txt} </span>}
-                                    {activity.task && <Link onClick={toggleMenuModal}
-                                        to={`/board/${board._id}/${activity.groupId}/${activity.task.id}`}>
+                                    {activity.taskId && <Link onClick={toggleMenuModal}
+                                        to={`/board/${board._id}/${activity.groupId}/${activity.taskId}`}>
                                         {activity.link}
                                     </Link>}
                                     {activity.opTxt &&
                                         <span className={`opTxt ${activity.comment ? 'comment' : ''}`}>
                                             {activity.opTxt}</span>}
                                 </div>
-                                {activity.task && <Link className="activity-time"
-                                    to={`/board/${board._id}/${activity?.groupId}/${activity?.task?.id}`}>
+                                {activity.taskId && <Link className="activity-time"
+                                    to={`/board/${board._id}/${activity?.groupId}/${activity?.taskId}`}>
                                     {formatedTime(activity.createdAt)}
                                 </Link>}
-                                {!activity.task && <div className="activity-time">{formatedTime(activity.createdAt)}</div>}
+                                {!activity.taskId && <div className="activity-time">{formatedTime(activity.createdAt)}</div>}
                                 {activity.attachment && <img className="activity-attachment"
-                                    src={activity.attachment} alt="task attachment" />}
+                                    src={activity.attachment.type === 'application/pdf' ? PDF : activity.attachment.url}
+                                    alt="task attachment" />}
                             </div>
                         </div>)}
                     </div>

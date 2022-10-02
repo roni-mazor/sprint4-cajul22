@@ -34,15 +34,15 @@ export function loadBoards() {
 
 
 export function saveBoards(currBoard, BoardToUpdate, group, task, txt, link, opTxt) {
-    console.log('currBoard:', currBoard)
-    console.log('BoardToUpdate:', BoardToUpdate)
+    // console.log('currBoard:', currBoard)
+    // console.log('BoardToUpdate:', BoardToUpdate)
     return async (dispatch, getState) => {
         try {
             boardService.save(BoardToUpdate)
             const user = getState().userModule.user
             let groupId = group ? group.id : null
             // board.activities = []
-            _saveActivity(user, BoardToUpdate, groupId, task, txt, link, opTxt)
+            _saveActivity(user, BoardToUpdate, groupId, task.id, txt, link, opTxt)
             boardService.save(currBoard)
             dispatch({ type: 'SET_BOARD', currBoard })
         } catch (err) {
@@ -108,9 +108,9 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
             const user = getState().userModule.user
             let groupId = group ? group.id : null
             // board.activities = []
-            _saveActivity(user, board, groupId, task, txt, link, opTxt)
-            if(board.activities.length >= 50) board.activities.pop()
-            console.log('board.activities:', board.activities.length)            
+            _saveActivity(user, board, groupId, task.id, txt, link, opTxt)
+            // if(board.activities.length >= 50) board.activities.pop()
+            // console.log('board.activities:', board.activities.length)            
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
@@ -136,7 +136,7 @@ export function saveTask(groupId, task, txt, link, opTxt, attachment, onActId, c
             if (t.id === task.id) return task
             else return t
         })
-        _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, onActId, comment)
+        _saveActivity(user, board, groupId, task.id, txt, link, opTxt, attachment, onActId, comment)
         boardService.save(board)
         dispatch({ type: 'SET_BOARD', board })
 
@@ -199,14 +199,14 @@ export function removeAttachment(groupId, taskId) {
 }
 
 
-function _saveActivity(user, board, groupId, task, txt, link, opTxt, attachment, onActId, comment = false) {
+function _saveActivity(user, board, groupId, taskId, txt, link, opTxt, attachment, onActId, comment = false) {
     if (!txt) return
 
     const addedActivity = {
         id: utilService.makeId(4),
         byMember: user,
         createdAt: Date.now(),
-        task,
+        taskId,
         groupId,
         txt,
         link,
