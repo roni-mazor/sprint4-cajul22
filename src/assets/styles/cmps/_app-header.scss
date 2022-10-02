@@ -44,6 +44,20 @@
         font-size: 1.9em;
         cursor: pointer;
 
+        .notification-btn{
+            width: 25px;
+            height: 25px;
+            font-size: 20px;
+            padding-inline-start: 2px;
+            margin-inline-end: 10px;
+            background-color: #e55844;
+            border-radius: 3px;
+
+            &:hover{
+                background-color: #d24f3e;
+            }
+        }
+
         img {
             object-fit: cover;
             width: 32px;
