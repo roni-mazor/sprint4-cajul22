@@ -7,6 +7,7 @@ import { MemberPreview } from '../member-preview'
 import GuestImg from '../../assets/img/guest-img.svg'
 import { socketService } from '../../services/socket.service'
 import { useParams } from 'react-router-dom'
+import { userService } from '../../services/user.service'
 
 export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const board = useSelector(state => state.boardModule.board)
@@ -16,7 +17,7 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const { boardId, groupId, taskId } = params
 
 
-    const onAddMemberToTask = (memberId) => {
+    const onAddMemberToTask = async (memberId) => {
         let currMember = task.members.find(member => (member === memberId))
         if (currMember) {
             // const selectedMember = task.members.find(member => member.id === currMember)
@@ -32,9 +33,20 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
         currMember = board.members.find(member => member._id === memberId)
         task.members = [...task.members, currMember._id]
 
-        // emit user-task-assignment
-        socketService.emit('user-task-assignment', { userId: currMember._id, taskId, boardId, groupId })
-        console.log('happening')
+
+        const loggedinUser = userService.getLoggedinUser()
+        const currGroup = board.groups.find((group => group.id === groupId))
+        const notification = {
+            onUserId: currMember._id, taskId, boardId, groupId,
+            byUserId: loggedinUser._id, byUserName: loggedinUser.fullname,
+            boardName: board.title, taskName: task.title, groupName: currGroup.title,
+            createdAt: Date.now()
+        }
+        await userService.addUserNotification(notification)
+        console.log('assiging')
+        socketService.emit('user-task-assignment', notification)
+
+
         onSaveTask(task, `added ${currMember.fullname} to`, task.title)
     }
 

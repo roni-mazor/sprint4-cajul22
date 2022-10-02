@@ -12,26 +12,30 @@ import { TaskDetails } from './views/task-details'
 import './assets/styles/styles.scss'
 import { socketService } from './services/socket.service'
 import { userService } from './services/user.service'
+import { updateUser } from './store/user.actions'
 
 
 
 export function App() {
 
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   // useEffect(() => {
   //     //dispatch(loadUsers())  
   //     //dispatch(loadBoards())       
   // }, [])
   useEffect(() => {
-    socketService.on('user-assignment-notification', (activityDetails) => {
+    socketService.on('user-assignment-notification', async (activityDetails) => {
       // console.log('from root', activityDetails)
-      if (userService.getLoggedinUser()._id === activityDetails.userId){
-        console.log('its me')
+      if (userService.getLoggedinUser()._id === activityDetails.onUserId) {
+        const user = await userService.getById(activityDetails.onUserId)
+        dispatch(updateUser(user))
+
       }
     })
   }, [])
+
 
 
   return (
