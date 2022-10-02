@@ -51,11 +51,16 @@
             font-size: 20px;
             padding-inline-start: 2px;
             margin-inline-end: 10px;
-            background-color: #e55844;
             border-radius: 3px;
 
+            &.red {
+                background-color: #e55844;
+
+            }
+
             &:hover {
-                background-color: #d24f3e;
+                // background-color: #d24f3e;
+                background-color: rgba(255, 255, 255, 0.2);
             }
         }
 
@@ -88,13 +93,13 @@
             display: grid;
             align-items: center;
             grid-template-columns: 12px 1fr 12px;
-            
-            & p{
+
+            & p {
                 margin: 5px;
             }
         }
 
-        & hr{
+        & hr {
             margin: 5px;
         }
     }
