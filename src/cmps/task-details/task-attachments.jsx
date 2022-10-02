@@ -4,6 +4,7 @@ import { ImAttachment } from 'react-icons/im'
 import { BsSquareHalf } from 'react-icons/bs'
 
 import { utilService } from '../../services/util.service'
+import PDF from '../../assets/img/pdf-icon.png'
 
 export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
 
@@ -51,7 +52,11 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
                             {/* <section className="loader-screen" startLoader={startLoader}>
                              <LoaderIcon />
                             </section> */}
-                            <a href={attachment.url} style={{ backgroundImage: `url(${attachment.url})` }}></a>
+                            <a href={attachment.url}
+                                style={{
+                                    backgroundImage: attachment.type === 'application/pdf' ? `url(${PDF})` :
+                                        `url(${attachment.url})`
+                                }}></a>
                             <p className="flex column">
                                 <span className="attachment-url">{attachment.name}</span>
                                 <span className="attachment-details">
@@ -59,13 +64,13 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
                                     <span className="delete-attachment"
                                         onClick={() => onRemoveAttachment(attachment.id)}>Delete</span>
                                 </span>
-                                <span className="attachment-cover">
+                                {attachment.type !== 'application/pdf' && <span className="attachment-cover">
                                     <span className="icon">
                                         <BsSquareHalf />
                                     </span>
                                     {attachment.id !== task?.cover?.id && <span onClick={() => onMakeCover(attachment.id)}> Make cover</span>}
                                     {attachment.id === task?.cover?.id && <span onClick={() => onRemoveCover(attachment.id)}> Remove cover</span>}
-                                </span>
+                                </span>}
                             </p>
                         </div>
                     )

@@ -22,7 +22,7 @@ async function uploadImg(ev) {
     })
 
     const resData = await res.json()
-    // console.log('resData:', resData)
+    console.log('resData:', resData)
     return {
       url: resData.url,
       name: resData.original_filename,
@@ -50,12 +50,13 @@ async function uploadImgFromDrag(file) {
     })
 
     const resData = await res.json()
-    // console.log('resData:', resData)
+    console.log('file[0].type:', file[0].type)
     return {
       url: resData.url,
       name: resData.original_filename,
       height: resData.height,
-      width: resData.width
+      width: resData.width,
+      type: file[0].type
     }
   } catch (err) {
     console.error(err)

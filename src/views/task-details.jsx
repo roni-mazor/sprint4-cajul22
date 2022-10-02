@@ -74,10 +74,10 @@ export const TaskDetails = () => {
         console.log('img:', img)
         if (!currTask.attachments) task.attachments = []
         // if (!task.background) task.background = 'header'
-        const newAttachment = boardService.createNewAttachment(img.url, img.height, img.width, img.name)
-        console.log('task:', task)
+        const newAttachment = boardService.createNewAttachment(img.url, img.height, img.width, img.name, img.type)
+        // console.log('task:', task)
         currTask.attachments.unshift(newAttachment)
-        onSaveTask(currTask, `attached ${img.name} to`, currTask.title, null, newAttachment.url)
+        onSaveTask(currTask, `attached ${img.name} to`, currTask.title, null, newAttachment)
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ noClick: true, onDrop })
 

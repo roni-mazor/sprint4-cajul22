@@ -10,7 +10,7 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
     const [focused, setFocused] = useState(false)
     const [txt, setTxt] = useState('')
     const [isShown, setIsShown] = useState('')
-    const activities = board.activities.filter(activity => activity?.task?.id === task.id)
+    const activities = board.activities.filter(activity => activity?.taskId === task.id)
 
     // console.log('activities:', activities)
     const onFocus = () => setFocused(true)
