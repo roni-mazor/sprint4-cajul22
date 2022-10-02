@@ -8,7 +8,7 @@
     height: 45px;
     color: whitesmoke;
 
-    
+
 
     &.board {
         background-color: rgba(0, 0, 0, 1);
@@ -105,12 +105,27 @@
     }
 
     .notifications-msg {
-        & p {
+        .not-msg {
             margin: 0;
             line-height: 1.2em;
             padding: 6px;
             font-size: 14px;
+
+            &.task-name {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+            &.user-name {
+                font-weight: 700;
+            }
         }
+
+        .not-msg-time {
+
+            font-size: 12px;
+        }
+
     }
 
     & hr {
