@@ -1,15 +1,18 @@
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from "react-router-dom"
-import { useSelector } from "react-redux"
-import { LoaderIcon } from "../cmps/loader-icon"
+import { useSelector} from "react-redux"
 import { SiTrello } from 'react-icons/si'
+import { TbBell } from 'react-icons/tb'
 import GuestImg from '../assets/img/guest-img.svg'
-import { MemberPreview } from './member-preview'
 
 export const AppHeader = ({ board }) => {
 
     const member = useSelector(state => state.userModule.user)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const onShowModal = () =>{
+        setIsModalOpen = !isModalOpen
+    }
 
     // if (!member) return <LoaderIcon />
     return (
@@ -19,9 +22,14 @@ export const AppHeader = ({ board }) => {
             <span></span>
             {/* <Link to=""> */}
             <h4 className="log-sig flex align-center">
+                <p className="notification-btn flex align-center" onclick={onShowModal}><TbBell/></p>
                 <img src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" title={member?.username} />
             </h4>
             {/* </Link> */}
+            {isModalOpen && <section>
+                hello!!!!
+                </section>}
+            
         </header>
     )
 }
