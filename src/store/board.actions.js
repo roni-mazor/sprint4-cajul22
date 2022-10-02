@@ -91,7 +91,7 @@ export function saveGroup(group, task, txt, link, opTxt) {
                 if (g.id === group.id) return group
                 else return g
             })
-            _saveActivity(user, board, group.id, task, txt, link, opTxt)
+            _saveActivity(user, board, group.id, task?.id, txt, link, opTxt)
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
@@ -107,8 +107,8 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
         try {
             const user = getState().userModule.user
             let groupId = group ? group.id : null
-            // board.activities = []
-            _saveActivity(user, board, groupId, task.id, txt, link, opTxt)
+            // board.activities.shift()
+            _saveActivity(user, board, groupId, task?.id, txt, link, opTxt)
             // if(board.activities.length >= 50) board.activities.pop()
             // console.log('board.activities:', board.activities.length)            
             boardService.save(board)

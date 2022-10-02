@@ -48,11 +48,11 @@ export const DefaultBoardMenuModal = ({ setModalState, board, toggleMenuModal })
                         {board.activities.map(activity => <div key={activity.id}
                             className="activity-container flex">
                             <div className="profile-img">
-                                <img src={activity?.byMember.imgUrl} alt="" />
+                                <img src={activity?.byMember?.imgUrl} alt="" />
                             </div>
                             <div className="activity flex column">
                                 <div>
-                                    <span className="username">{activity.byMember.fullname} </span>
+                                    <span className="username">{activity?.byMember?.fullname} </span>
                                     {!activity.comment && <span className="txt"> {activity.txt} </span>}
                                     {activity.taskId && <Link onClick={toggleMenuModal}
                                         to={`/board/${board._id}/${activity.groupId}/${activity.taskId}`}>
