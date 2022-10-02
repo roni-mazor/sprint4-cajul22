@@ -16,7 +16,7 @@ export const AppHeader = ({ board }) => {
         setIsModalOpen(!isModalOpen)
         console.log(isModalOpen)
     }
-
+    console.log(member)
     // if (!member) return <LoaderIcon />
     return (
         <header className={board ? 'app-header board' : 'app-header'}
@@ -37,8 +37,8 @@ export const AppHeader = ({ board }) => {
                 </section>
                 <hr />
                 <section className="notifications-container">
-                    {member.notifications.map(({ boardId, groupdId, taskId, boardName, taskName, groupName, byUserName, id }) => (
-                        <div key={id} onClick={() => { navigate(`/board/${boardId}/${groupdId}/${taskId}`) }}>
+                    {member?.notifications?.length && member.notifications.map(({ boardId, groupId, taskId, boardName, taskName, groupName, byUserName, id }) => (
+                        <div key={id} onClick={() => { navigate(`/board/${boardId}/${groupId}/${taskId}`) }}>
                             <p>{`${byUserName} has added you to ${taskName} at group ${groupName} at board ${boardName}`}</p>
                         </div>
                     ))}
