@@ -5,11 +5,15 @@ import { useSelector } from 'react-redux'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { MemberPreview } from '../member-preview'
 import GuestImg from '../../assets/img/guest-img.svg'
+import { socketService } from '../../services/socket.service'
+import { useParams } from 'react-router-dom'
 
 export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const board = useSelector(state => state.boardModule.board)
     const [txt, setTxt] = useState('')
     const members = useSelector(state => state.boardModule.board.members)
+    const params = useParams()
+    const { boardId, groupId, taskId } = params
 
 
     const onAddMemberToTask = (memberId) => {
@@ -27,6 +31,10 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
 
         currMember = board.members.find(member => member._id === memberId)
         task.members = [...task.members, currMember._id]
+
+        // emit user-task-assignment
+        socketService.emit('user-task-assignment', { userId: currMember._id, taskId, boardId, groupId })
+        console.log('happening')
         onSaveTask(task, `added ${currMember.fullname} to`, task.title)
     }
 
@@ -46,6 +54,7 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
         // console.log('currMembers:', currMembers)
         return currMembers
     }
+
 
     return (
         <section className="add-features-modal">
