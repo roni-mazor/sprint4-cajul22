@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { SiTrello } from 'react-icons/si'
@@ -11,9 +11,9 @@ import { useEffect } from 'react'
 export const AppHeader = ({ board }) => {
 
     const member = useSelector(state => state.userModule.user)
+    const isInitialMount = useRef(true)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    // const [notificationsLen, setNotificationsLen] = (member?.notifications?.length)
-    const [isRed, setIsRed] = useState(false)
+    const [isRed, setIsRed] = useState()
     const navigate = useNavigate()
     const onToggleModal = () => {
         setIsModalOpen(!isModalOpen)
@@ -24,10 +24,17 @@ export const AppHeader = ({ board }) => {
     useEffect(() => {
         //when change happens to the member then we need to update the 
         //user that there is a new notification for him
-        setIsRed(true)
-    }, [member?.notifications?.length])
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            setIsRed(false)
+        } else {
+            // Your useEffect code here to be run on update
+            setIsRed(true)
+         }
+    }, [member])
     // console.log(member)
     // if (!member) return <LoaderIcon />
+    // console.log('isRed:', isRed)
     return (
         <header className={board ? 'app-header board' : 'app-header'}
             style={board?.color}>
