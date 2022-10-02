@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 export const AppHeader = ({ board }) => {
 
     const member = useSelector(state => state.userModule.user)
+    const users = useSelector(state => state.userModule.users)
     const isInitialMount = useRef(true)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isRed, setIsRed] = useState()
