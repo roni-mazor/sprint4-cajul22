@@ -58,7 +58,7 @@ export const TaskDetails = () => {
 
         // const currTask =  boardService.getTaskById(boardId, groupId, taskId)
         const group = board.groups.find(group => group.id === groupId)
-        let currTask = group.tasks.find(task => task.id === taskId)
+        let currTask = group?.tasks?.find(task => task.id === taskId)
         if (!currTask.attachments) currTask.attachments = []
         if (!currTask.checklists) currTask.checklists = []
         if (!currTask.members) currTask.members = []
