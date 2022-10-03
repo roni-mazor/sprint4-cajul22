@@ -105,7 +105,9 @@
         align-items: center;
         gap: 15px;
         margin: 4px 0;
+        margin-right: 4px;
         border-radius: 3px;
+        cursor: pointer;
 
         &:hover {
             background-color: #dfe2eb;

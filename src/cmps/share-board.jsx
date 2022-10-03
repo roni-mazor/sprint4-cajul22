@@ -100,6 +100,8 @@ export function ShareBoard({ onToggleShareModal }) {
                         <span></span>
                     </li>))}
             </ul>}
+            <div className="members-wrapper">
+
             <section className='board-list-container flex column justify-between'>
                 {board.members.map(member =>
                     <MemberPreview
@@ -108,8 +110,9 @@ export function ShareBoard({ onToggleShareModal }) {
                         memberId={member._id}
                         infoReq={'boardList'}
                         addUserToBoard={addUserToBoard}
-                    />)}
+                        />)}
             </section>
+                        </div>
         </section>
     </div>
 }

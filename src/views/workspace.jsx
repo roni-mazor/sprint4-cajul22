@@ -81,15 +81,24 @@ export const Workspace = () => {
         dispatch(updateIsStarred(board))
 
     }
+    const getModalPos = ({posDetails, windowWidth }) => {
+        const pos = {}
+        const modalHeight = 410
+        if (windowWidth - posDetails.x < 140) pos.right = '140px'
+        else pos.left = `${posDetails.x}px`
+        if (window.innerHeight - posDetails.y < modalHeight) pos.bottom = '50px'
+        else pos.top = `${posDetails.y - 6}px`
+        return pos
 
-    console.log('isCreateBoardModal location:', isCreateBoardModal.posDetails)
+    }
+
 
     // console.log('member:', member)
     if (!boards) return <LoaderIcon />
     return (
         <React.Fragment>
             <AppHeader />
-            {isCreateBoardModal.isOpen && <section className="create-board-modal" style={{ left: "276px", top: "336.5px" }}>
+            {isCreateBoardModal.isOpen && <section className="create-board-modal" style={getModalPos(isCreateBoardModal)}>
                 <header className="modal-header flex">
                     <div className="modal-title">Create board</div>
                     <span></span>
