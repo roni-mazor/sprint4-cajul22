@@ -54,7 +54,7 @@ export const AppHeader = ({ board }) => {
                 <img src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" title={member?.username} />
             </h4>
             {/* </Link> */}
-            {isModalOpen && <section className='notification-container'>
+            {isModalOpen && <section className='notification-container flex column'>
                 <section className='modal-headline'>
                     <span></span>
                     <p className='headline'>Notifications</p>
