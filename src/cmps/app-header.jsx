@@ -47,15 +47,15 @@ export const AppHeader = ({ board }) => {
     return (
         <>
             <header className={board ? 'app-header board' : 'app-header'}
-                style={board?.color}>
-                <Link to="/workspace" className="header-logo flex align-center" ><SiTrello className="jello-logo" /><h1 className="jello-logo-text">Jello</h1></Link>
+                style={{ backgroundColor: board?.color.backgroundColor }}>
+                <Link style={{ opacity: '1' }} to="/workspace" className="header-logo flex align-center" ><SiTrello className="jello-logo" /><h1 style={{ opacity: '1' }} className="jello-logo-text">Jello</h1></Link>
                 <span></span>
                 {/* <Link to=""> */}
-                <h4 className="log-sig flex align-center">
-                    <p className={`notification-btn flex align-center ${isRed ? 'red' : ''}`}
+                <h4 style={{ opacity: '1' }} className="log-sig flex align-center">
+                    <p style={{ opacity: '1' }} className={`notification-btn flex align-center ${isRed ? 'red' : ''}`}
                         onClick={onToggleModal}><TbBell /></p>
                     {/* <p className="notification-btn flex align-center" onClick={onToggleModal}><TbBell /></p> */}
-                    <img src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" title={member?.username} />
+                    <img style={{ opacity: '1' }} src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" title={member?.username} />
                 </h4>
                 {/* </Link> */}
 
