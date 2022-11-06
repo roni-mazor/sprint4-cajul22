@@ -42,7 +42,6 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
     }
 
     const togglesShowNoMembers = () => {
-        console.log(filterBy)
         setFilterBy(prevState => ({ ...prevState, showNoMembers: !prevState.showNoMembers }))
     }
     const filterByDueDone = (val) => {
@@ -109,7 +108,7 @@ export const FilterBoardMenuModal = ({ setModalState, board, toggleMenuModal, se
                                             size="small" style={{ padding: '5px 9px' }}
                                             onChange={() => handleMemberCheck(member._id)}
                                         />
-                                        <span className='member-container flex align-center' onClick={() => console.log(member._id)}>
+                                        <span className='member-container flex align-center' >
                                             <MemberPreview infoReq={'boardHeader'} memberId={member._id} members={board.members} />
                                             <p>{member.username}</p>
                                             <p>{`(${member.fullname})`}</p>

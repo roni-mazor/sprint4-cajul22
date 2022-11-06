@@ -17,13 +17,11 @@ export const TaskDescription = ({ task, onSaveTask, onSaveActivity }) => {
         const { value } = target
 
         setTxt(value)
-        // console.log('value:', value)
     }
 
     const onSaveTxt = () => {
         let newTask = task
         newTask.description = txt
-        // console.log('newTask:', newTask)
         onSaveActivity(`changed the description`)
         onSaveTask(newTask)
     }
@@ -32,7 +30,6 @@ export const TaskDescription = ({ task, onSaveTask, onSaveActivity }) => {
         onBlur()
     }
 
-    // console.log('txt:', txt)
     return (
         <section className="description-container">
             <div className="description-title">

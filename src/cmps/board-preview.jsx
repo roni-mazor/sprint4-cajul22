@@ -7,11 +7,9 @@ export const BoardPreview = ({ board, onToggleIsStarred }) => {
     const onIsStarred = (ev) => {
         ev.preventDefault()
         onToggleIsStarred(board._id)
-        // console.log('board.isStarred:', board.isStarred)
     }
 
 
-    // console.log('board:', board)
     return (
         <Link to={`/board/${board._id}`}>
             <div className="board-preview-container">

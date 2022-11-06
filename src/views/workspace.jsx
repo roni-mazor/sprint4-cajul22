@@ -39,8 +39,6 @@ export const Workspace = () => {
             _id: utilService.makeId(5),
             user
         }
-        // console.log('CREATING BOARD:', boardInfo)
-        // dispatch(createBoard(boardInfo))
         const boardId = await boardService.createNewBoard(boardInfo)
         setTimeout(() => { navigate(`/board/${boardId}`) }, 200)
     }
@@ -62,20 +60,16 @@ export const Workspace = () => {
     const toggleNewBoardModal = (ev) => {
         const isOpen = !isCreateBoardModal.isOpen
         // setIsCreateBoardModal(!isCreateBoardModal)
-        console.log('ev:', ev)
 
         const posDetails = ev.target.getBoundingClientRect()
         const windowWidth = window.innerWidth
-        console.log({ posDetails, windowWidth })
         setIsCreateBoardModal({ isOpen, posDetails, windowWidth })
     }
 
     const onToggleIsStarred = (boardId) => {
-        console.log('boardId toggleIsStarred:', boardId)
         if (!boardId) return
 
         const board = boards.find(board => boardId === board._id)
-        console.log('board from toggleIsStarred:', board)
 
         board.isStarred = !board.isStarred
         dispatch(updateIsStarred(board))
@@ -93,7 +87,6 @@ export const Workspace = () => {
     }
 
 
-    // console.log('member:', member)
     if (!boards) return <LoaderIcon />
     return (
         <React.Fragment>

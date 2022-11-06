@@ -36,7 +36,6 @@ export const DateShower = ({ task, onSaveTask, toggleModal }) => {
         if (task.dueDate.isDone) onSaveTask(task, `marked the due date on`, task.title, `as complete`)
         else if (!task.dueDate.isDone) onSaveTask(task, `marked the due date on`, task.title, `as incomplete`)
     }
-    console.log(((time - new Date()) / 1000 / 60 / 60))
     return (
         <section className="date-shower">
             <h3>Due Date</h3>

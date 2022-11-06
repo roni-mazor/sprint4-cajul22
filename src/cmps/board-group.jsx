@@ -15,7 +15,6 @@ export const BoardGroup = ({ group, boardId, groupIndex }) => {
     const toggleAdditivesModal = (ev, type) => {
         const posDetails = ev.target.getBoundingClientRect()
         const windowDetails = window.screen
-        console.log({ type, posDetails })
         if (type === isAdditivesModalOpen) setIsAdditivesModalOpen(null)
         else setIsAdditivesModalOpen({ type, posDetails, windowDetails })
     }

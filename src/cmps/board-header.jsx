@@ -3,10 +3,10 @@ import { BsThreeDots } from 'react-icons/bs'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { RiUserAddLine } from 'react-icons/ri'
 import GuestImg from '../assets/img/guest-img.svg'
+import { utilService } from "../services/util.service"
 
 
 export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal, onToggleShareModal }) => {
-    // console.log(windowWidth)
     return (
         <header className="board-header">
             <div className="board-header-container">
@@ -15,9 +15,9 @@ export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal
                     onClick={onToggleIsStarred}>
                     {board.isStarred ? <AiFillStar /> : <AiOutlineStar />}</span><p>|</p>
                 <section className="avatars-container">
-                    {members &&  members.map((member) => (
+                    {members && members.map((member) => (
 
-                        <section className="member-avatar flex" title={`${member.fullname}`}>
+                        <section key={utilService.makeId()} className="member-avatar flex" title={`${member.fullname}`}>
                             <img src={member.imgUrl ? member.imgUrl : GuestImg} alt="upload an image" className="member-avatar-img" />
                         </section>
 
@@ -31,7 +31,7 @@ export const BoardHeader = ({ board, onToggleIsStarred, members, toggleMenuModal
                 <button className="add-board-user"
                     onClick={onToggleShareModal}
                 ><RiUserAddLine />
-                    <span className="board-header-txt">Share</span> 
+                    <span className="board-header-txt">Share</span>
                 </button>
             </div>
             <button onClick={toggleMenuModal} className="show-menu-btn"><BsThreeDots />

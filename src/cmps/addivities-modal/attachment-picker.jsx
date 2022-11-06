@@ -28,7 +28,6 @@ export const AttachmentPicker = ({ task, toggleModal, onSaveTask }) => {
 
         const image = uploadService.imgFromLink(img)
 
-        // console.log('img:', img)
         if (!task.attachments) task.attachments = []
         if (!task.background) task.background = 'header'
         const newAttachment = boardService.createNewAttachment(image.url, image.height, image.width, image.name)

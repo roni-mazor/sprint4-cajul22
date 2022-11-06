@@ -46,7 +46,6 @@ export const MoveTo = ({ board, group, task, onSaveTask, toggleModal }) => {
         setPosition(value)
     }
 
-    // console.log('boards:', boards)
     const onCreateCard = (ev) => {
         const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
         group.tasks.splice(taskIdx, 1)
@@ -71,7 +70,7 @@ export const MoveTo = ({ board, group, task, onSaveTask, toggleModal }) => {
         <section className="add-features-modal">
             <header className='edit-label-header'>
                 <span></span>
-                <div>Copy</div>
+                <div>Move to</div>
                 <span onClick={toggleModal}>
                     < VscChromeClose />
                 </span>

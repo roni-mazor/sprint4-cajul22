@@ -14,7 +14,6 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
 
 
     const onRemoveAttachment = (attachmentId) => {
-        // console.log('attachmentId :', attachmentId)
         const attachmentToRemove = attachments.find(attachment => attachment.id === attachmentId)
         task.attachments = attachments.filter(attachment => attachment.id !== attachmentId)
         if (attachmentId === task.cover.id) task.cover = ''
@@ -24,7 +23,6 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
 
     const onMakeCover = (attachmentId) => {
         let selectedAttach = attachments.find(attachment => attachment.id === attachmentId)
-        // console.log('selectedAttach:', selectedAttach)
 
         task.cover = selectedAttach
         task.coverClr = ''
@@ -39,7 +37,6 @@ export const TaskAttachments = ({ task, onSaveTask, toggleAdditivesModal }) => {
         task.cover = ''
         onSaveTask(task)
     }
-    console.log('task:', task)
     return (
         <section className="attachments-container">
             <div className="attachments-title flex align-center">

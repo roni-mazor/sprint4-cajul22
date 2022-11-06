@@ -27,7 +27,6 @@ export const BoardDetails = () => {
         dispatch(loadBoard(params.boardId))
         socketService.emit('set-board-listening', params.boardId)
         socketService.on('emit-board-change', (boardId) => {
-            console.log('got emitted', boardId)
             dispatch(loadBoard(boardId))
         })
     }, [])
@@ -83,7 +82,6 @@ export const BoardDetails = () => {
     const toggleMenuModal = () => {
         setIsMenuModalOpen(prevState => !prevState)
     }
-    console.log('board:', board)
     const getFilteredBoard = () => {
         return {
             ...board, groups: board?.groups?.map(group => {

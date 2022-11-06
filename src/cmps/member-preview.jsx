@@ -13,9 +13,7 @@ export const MemberPreview = ({taskMembers, members, memberId, infoReq, addUserT
 
     const getCurrMember = () => {
         if (!members) return
-        // console.log('taskMembers from get Curr:', taskMembers)        
         const currMember = members.find(member => member._id === memberId)
-        // console.log('currMember:', currMember)      
         
         setRenderedMember(currMember)
     }

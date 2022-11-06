@@ -77,13 +77,12 @@ export const CopyPicker = ({ board, group, task, onSaveTask, toggleModal }) => {
         setPosition(value)
     }
 
-    // console.log('boards:', boards)
     const onCreateCard = (ev) => {
         const newTask = boardService.createTask(txt)
         newTask.cover = task.cover
         newTask.coverClr = task.coverClr
         newTask.background = task.background
-        if (members) newTask.members = task.members
+        // if (members) newTask.members = task.members
         if (checklists) newTask.checklists = task.checklists
         if (labels) newTask.labelIds = task.labelIds
         // if (comment) newTask.comment = task.comment
@@ -100,7 +99,6 @@ export const CopyPicker = ({ board, group, task, onSaveTask, toggleModal }) => {
 
 
     }
-    console.log('selectedBoard:', selectedBoard)
     return (
         <section className="add-features-modal">
             <header className='edit-label-header'>

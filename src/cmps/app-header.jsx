@@ -21,7 +21,6 @@ export const AppHeader = ({ board }) => {
     const onToggleModal = () => {
         setIsModalOpen(!isModalOpen)
         setIsRed(false)
-        // console.log(isModalOpen)
     }
 
     useEffect(() => {
@@ -36,18 +35,16 @@ export const AppHeader = ({ board }) => {
             setIsRed(true)
         }
     }, [member])
-    // console.log(member)
     const getUser = (id) => {
         const currUser = users.find(user => user._id === id)
         if (currUser) return currUser.imgUrl
     }
 
     // if (!member) return <LoaderIcon />
-    // console.log('isRed:', board)
     return (
         <>
             <header className={board ? 'app-header board' : 'app-header'}
-                style={{ backgroundColor: board?.color.backgroundColor }}>
+                style={{ backgroundColor: board?.color?.backgroundColor  }}>
                 <Link style={{ opacity: '1' }} to="/workspace" className="header-logo flex align-center" ><SiTrello className="jello-logo" /><h1 style={{ opacity: '1' }} className="jello-logo-text">Jello</h1></Link>
                 <span></span>
                 {/* <Link to=""> */}

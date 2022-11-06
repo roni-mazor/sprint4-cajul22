@@ -4,7 +4,6 @@ import { utilService } from "../services/util.service"
 export function loadBoard(boardId) {
     return async (dispatch) => {
         const board = await boardService.getById(boardId)
-        // console.log(board)
         dispatch({ type: 'SET_BOARD', board })
     }
 }
@@ -22,7 +21,6 @@ export function loadBoards() {
     return async (dispatch) => {
         try {
             const boards = await boardService.query()
-            console.log('loading')
 
             dispatch({ type: 'SET_BOARDS', boards })
         } catch (err) {
@@ -34,8 +32,6 @@ export function loadBoards() {
 
 
 export function saveBoards(currBoard, BoardToUpdate, group, task, txt, link, opTxt) {
-    // console.log('currBoard:', currBoard)
-    // console.log('BoardToUpdate:', BoardToUpdate)
     return async (dispatch, getState) => {
         try {
             boardService.save(BoardToUpdate)
@@ -53,11 +49,8 @@ export function saveBoards(currBoard, BoardToUpdate, group, task, txt, link, opT
 
 export function createBoard(boardInfo) {
     return async (dispatch) => {
-        console.log('boardInfo :', boardInfo)
         try {
             const board = await boardService.createNewBoard(boardInfo)
-            console.log('board:', board)
-            console.log('newBoard from board actions!:', board)
             dispatch({ type: 'ADD_BOARD', board })
         } catch (err) {
             console.log('Had a problem at createBoard', err)
@@ -107,10 +100,8 @@ export function saveBoard(board, group, task, txt, link, opTxt) {
         try {
             const user = getState().userModule.user
             let groupId = group ? group.id : null
-            // board.activities.shift()
             _saveActivity(user, board, groupId, task?.id, txt, link, opTxt)
-            // if(board.activities.length >= 50) board.activities.pop()
-            // console.log('board.activities:', board.activities.length)            
+            if (board.activities.length >= 50) board.activities.pop()
             boardService.save(board)
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
@@ -215,7 +206,5 @@ function _saveActivity(user, board, groupId, taskId, txt, link, opTxt, attachmen
         comment,
         onActId
     }
-    // console.log('addedActivity:', addedActivity)
     board.activities = [addedActivity, ...board.activities]
-    // return board
 }

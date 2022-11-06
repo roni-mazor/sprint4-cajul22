@@ -12,7 +12,6 @@ export const boardService = {
     save,
     createTask,
     createGroup,
-    // saveTask,
     createLabel,
     createNewAttachment,
     starBoardFromWorkspace,
@@ -21,21 +20,9 @@ export const boardService = {
 
 async function query() {
     // let myBoards = await storageService.query(STORAGE_KEY)
-    let myBoards = await httpService.get('board/')
+    let boards = await httpService.get('board/')
 
-    // if (!myBoards || !myBoards.length) {
-    //     storageService.postMany(STORAGE_KEY, boards)
-    //     myBoards = boards
-    // }
-    // myBoards = myBoards.map(board => ({
-    //     "_id": board._id,
-    //     "title": board.title,
-    //     "isStarred": board.isStarred,
-    //     "style": board.style,
-    //     "groups": board.groups
-    // }))
-    // console.log('boards from service:', myBoards)
-    return myBoards
+    return boards
 }
 
 
@@ -51,7 +38,6 @@ async function starBoardFromWorkspace(boardId) {
 
 async function save(board) {
     if (board._id) {
-        // board.activities = []
         return httpService.put(`board/${board._id}`, board)
         // return storageService.put(STORAGE_KEY, board)
     } else {
@@ -61,16 +47,6 @@ async function save(board) {
     }
 }
 
-// async function saveTask(boardId, groupId, task) {
-//     const board = await getById(boardId)
-//     const groupIdx = board.groups.findIndex(g => g.id === groupId)
-//     board.groups[groupIdx].tasks = board.groups[groupIdx].tasks.map(t => {
-//         if (t.id === task.id) return task
-//         else return t
-//     })
-//     save(board)
-
-// }
 
 function createTask(title) {
     return {

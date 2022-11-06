@@ -8,11 +8,13 @@ import { AiOutlineClockCircle, AiOutlineCreditCard, AiOutlineUser } from "react-
 import { BsSquareHalf, BsTag } from "react-icons/bs"
 import { TaskAdditivesModal } from "./addivities-modal/task-additives-modal"
 import { MdOutlineContentCopy } from "react-icons/md"
+import { useSelector } from "react-redux"
 
-export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyDoneChecklist, isAllDone, labels, getCoverHeight, task, toggleModal, modalInfo }) => {
+export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyDoneChecklist, isAllDone, labels, getCoverHeight, task, toggleModal, modalInfo, groupId }) => {
     const [isAdditivesModalOpen, setIsAdditivesModalOpen] = useState(null)
     const { windowWidth, posDetails } = modalInfo
     const [title, setTitle] = useState(task.title)
+    const board = useSelector(state => state.boardModule.board)
     const navigate = useNavigate()
 
     const onOpenCard = () => {
@@ -31,7 +33,6 @@ export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyD
     const toggleAdditivesModal = (ev, type) => {
         const posDetails = ev.target.getBoundingClientRect()
         const windowWidth = window.innerWidth
-        console.log({ type, posDetails, windowWidth })
         if (type === isAdditivesModalOpen?.type) setIsAdditivesModalOpen(null)
         else setIsAdditivesModalOpen({ type, posDetails, windowWidth })
     }
@@ -50,7 +51,10 @@ export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyD
         if (window.innerHeight - posDetails.y < 205) return { top: '-70px' }
         return {}
     }
-
+    const getGroup = () => {
+        return board.groups.find(group => group.id === groupId)
+    }
+    console.log(getGroup())
     return (
         <>
             <div onClick={() => { toggleModal(({ isOpen: false })) }} className="task-details-container" >
@@ -58,6 +62,8 @@ export const FastEditModal = ({ linkToTask, onSaveTask, getTaskMembers, dispalyD
             {isAdditivesModalOpen?.type && <TaskAdditivesModal
                 modalInfo={isAdditivesModalOpen}
                 task={task}
+                board={board}
+                group={getGroup()}
                 onSaveTask={onSaveTask}
                 toggleModal={toggleAdditivesModal}
             />}

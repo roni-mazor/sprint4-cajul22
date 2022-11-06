@@ -39,7 +39,7 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
 
 
     const onSaveTitle = () => {
-        if (!txt) return   // console.log('txt:', txt)
+        if (!txt) return  
         onSaveTodo(txt, todo.id)
     }
     const removeTodo = (ev, todoId) => {
@@ -51,7 +51,6 @@ export const TodoPreview = ({ todo, checklist, onTodoIsDone, onRemoveTodo, onSav
         convertTodoToTask(todo.title)
         onRemoveTodo(todoId)
     }
-    // console.log(focused);
     return (
 
         <div className='todo-preview  flex align-center justify-between' onClick={onFocus}>

@@ -24,7 +24,6 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
             // const selectedMember = task.members.find(member => member.id === currMember)
             const selectedMembers = task.members.filter(id => id !== memberId)
             task.members = [...selectedMembers]
-            console.log('currMember:', currMember)
             currMember = board.members.find(member => member._id === memberId)
             onSaveTask(task, `removed ${currMember.fullname} from`, task.title)
 
@@ -45,7 +44,6 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
             createdAt: Date.now()
         }
         await userService.addUserNotification(notification)
-        console.log('assiging')
         socketService.emit('user-task-assignment', notification)
 
 
@@ -65,7 +63,6 @@ export const MemberPicker = ({ onSaveTask, task, toggleModal }) => {
     const getFilteredUsers = () => {
         const regex = new RegExp(txt, 'i')
         const currMembers = members.filter(member => regex.test(member.fullname))
-        // console.log('currMembers:', currMembers)
         return currMembers
     }
 

@@ -95,10 +95,7 @@ export const TaskAdditivesModal = ({ onRemoveGroup, onSaveTask, task, board, gro
     const getModalPos = () => {
         const { type, posDetails, windowWidth } = modalInfo
         let left = posDetails.left
-        console.log(left)
-        console.log(windowWidth)
         if (windowWidth < 650 || windowWidth - posDetails.left < 304) left = windowWidth - 304
-        console.log(left)
         if (type === 'todo' || type === 'checklist-picker') {
             return { top: `${posDetails.top + posDetails.height}px`, left: `${left}px` }
         } else if (type === 'cover-picker' || type === 'label-picker' || type === 'date-picker' || type === 'members') {

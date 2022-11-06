@@ -12,11 +12,9 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
     const [isShown, setIsShown] = useState('')
     const activities = board.activities.filter(activity => activity?.taskId === task.id)
 
-    // console.log('activities:', activities)
     const onFocus = () => setFocused(true)
     const onBlur = () => {
         if (!txt) {
-            console.log('txt:', txt)
             setTimeout(() => {
 
                 setFocused(false)
@@ -27,7 +25,6 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
     const formatedTime = utilService.getFormatedTime
 
     const handleChange = ({ target: { value } }) => {
-        // console.log(value);
         setTxt(value)
     }
 
@@ -45,7 +42,6 @@ export const TaskActivities = ({ board, task, onSaveTask, user }) => {
         setFocused(false)
     }
 
-    // console.log('user:', user)
     return (
         <section className="activities-container">
             <div className="activities-title flex align-center">

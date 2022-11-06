@@ -9,7 +9,6 @@ export const Checklist = ({ task, onSaveTask, toggleModal, onSaveActivity, onSav
     const onHandleChange = ({ target }) => {
         const { value } = target
         setTxt(value)
-        console.log('value:', value)
 
     }
 

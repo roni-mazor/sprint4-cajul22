@@ -13,6 +13,7 @@ import { useEffect, useState } from "react"
 import { DateBadge } from "./task-details/date-badge"
 import { FaPencilAlt } from "react-icons/fa"
 import { FastEditModal } from "./fast-edit-modal"
+import { utilService } from "../services/util.service"
 
 export const TaskPreview = ({ task, boardId, groupId }) => {
     const labels = useSelector(state => state.boardModule.board.labels)
@@ -79,7 +80,6 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
             const currMember = board.members.find(member => member._id === members[i])
             taskPreviewMembers.push(currMember)
         }
-
         return taskPreviewMembers
     }
 
@@ -106,7 +106,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
 
         {isFastEdit?.isOpen && <FastEditModal linkToTask={linkToTask} isAllDone={isAllDone} dispalyDoneChecklist={dispalyDoneChecklist}
             onSaveTask={onSaveTask} getTaskMembers={getTaskMembers} labels={labels} getCoverHeight={getCoverHeight}
-            task={task} modalInfo={isFastEdit} toggleModal={setIsFastEdit} />}
+            task={task} modalInfo={isFastEdit} toggleModal={setIsFastEdit}  groupId={groupId} />}
 
         <Link to={linkToTask} className="task-preview">
             <button className='edit-btn' onClick={openFastEdit}>
@@ -153,7 +153,7 @@ export const TaskPreview = ({ task, boardId, groupId }) => {
                                 <p className="todo-num">{dispalyDoneChecklist()}</p></div>}
                         </section>
                         <section className="task-user-container flex">
-                            {getTaskMembers().map(member => <img className="task-users"
+                            {getTaskMembers().map(member => <img key={utilService.makeId()} className="task-users"
                                 src={member?.imgUrl ? member.imgUrl : GuestImg} alt="" />)}
                         </section>
                     </section>

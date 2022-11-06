@@ -19,7 +19,6 @@ export function LoginSignup(props) {
     }
 
     const onSubmitLogin = (ev = null) => {
-        console.log('credentials:', credentials)
         if (ev) ev.preventDefault()
         if (!credentials.username) return
         dispatch(onLogin(credentials))
@@ -29,7 +28,6 @@ export function LoginSignup(props) {
     const onSubmitSignup = (ev = null) => {
         if (ev) ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
-        console.log(credentials)
         dispatch(onSignUp(credentials))
             .then(navigate('/workspace'))
     }

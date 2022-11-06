@@ -34,23 +34,11 @@ async function addUserNotification(notification) {
     } else {
         userToUpdate.notifications.unshift(notification)
     }
-    console.log(userToUpdate)
-    console.log(userToUpdate.notifications)
     const user = await httpService.put(`user/${userToUpdate._id}`, userToUpdate)
-    console.log('final', user)
 }
 
 async function getUsers() {
-    // let rawUsers = await storageService.query(STORAGE_KEY)
 
-    // if(!rawUsers || !rawUsers.length){
-    //     storageService.postMany(STORAGE_KEY, users)
-    //     rawUsers = users
-    // }
-    // // console.log('rawUsers:', rawUsers)
-
-    // return rawUsers
-    // // return storageService.query('user')
     return httpService.get(`user`)
 }
 
@@ -83,11 +71,9 @@ async function update(user) {
 
 async function login(userCred) {
     // const users = await storageService.query('users')
-    // console.log('user from userService:', users)
 
     // const user = users.find(currUser => currUser.username.toLowerCase() === userCred.username.toLowerCase())
     const user = await httpService.post('auth/login', userCred)
-    // console.log(user)
     if (user) {
         socketService.login(user._id)
         return saveLocalUser(user)
@@ -100,11 +86,9 @@ async function signup(userCred) {
     try {
         const user = await httpService.post('auth/signup', userCred)
         socketService.login(user._id)
-        console.log('user:', user)
 
         return saveLocalUser(user)
     } catch (err) {
-        console.log('err:', err)
     }
 }
 async function logout() {

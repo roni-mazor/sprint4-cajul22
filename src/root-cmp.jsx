@@ -6,8 +6,7 @@ import { BoardDetails } from "./views/board-details"
 import { LoginPage } from './views/login-page'
 import { Home } from './views/home'
 import { TaskDetails } from './views/task-details'
-// import { loadUsers } from './store/user.actions'
-// import { loadBoards } from './store/board.actions'
+import { loadBoards } from './store/board.actions'
 
 import './assets/styles/styles.scss'
 import { socketService } from './services/socket.service'
@@ -21,13 +20,9 @@ export function App() {
 
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //     //dispatch(loadUsers())  
-  //     //dispatch(loadBoards())       
-  // }, [])
   useEffect(() => {
+    dispatch(loadBoards())       
     socketService.on('user-assignment-notification', async (activityDetails) => {
-      // console.log('from root', activityDetails)
       if (userService.getLoggedinUser()._id === activityDetails.onUserId) {
         const user = await userService.getById(activityDetails.onUserId)
         dispatch(updateUser(user))

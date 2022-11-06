@@ -43,9 +43,7 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, con
             title: txt,
             isDone: false
         })
-        // console.log('checklist:', checklist)
         onSaveTask(task)
-        // onSaveActivity(`add a todo: ${txt}`)
         setTxt('')
         onBlur()
 
@@ -57,11 +55,9 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, con
     }
 
     const onTodoIsDone = (todoId) => {
-        // console.log('todoId:', todoId)
         const todo = checklist.list.find(todo => todo.id === todoId)
         todo.isDone = !todo.isDone
         checklist = checklist.list.map(currTodo => currTodo.id === todo.id ? todo : currTodo)
-        console.log('todoId:', todoId)
         if (todo.isDone) onSaveTask(task, `completed ${todo.title} on`, task.title, null, null, todoId)
 
         else if (todoId && !todo.isDone) {
@@ -75,7 +71,6 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, con
 
 
         let count = checklist.list.reduce((acc, todo) => {
-            // console.log('todo:', todo)
             if (todo.isDone) acc++
             else acc = acc
             return acc
@@ -88,7 +83,6 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, con
     }
 
     const onRemoveTodo = (todoId) => {
-        console.log('todoId:', todoId)
         const idx = checklist.list.findIndex(todo => todo.id === todoId)
         checklist = checklist.list.splice(idx, 1)
         onSaveTask(task)
@@ -103,14 +97,12 @@ export const ChecklistPreview = ({ task, checklist, onSaveTask, toggleModal, con
     }
 
     const onSaveTodo = (txt, todoId) => {
-        console.log('txt:', txt)
-        console.log('todoId:', todoId)
+
         const todo = checklist.list.find(todo => todo.id === todoId)
         todo.title = txt
         checklist = checklist.list.map(currTodo => currTodo.id === todo.id ? todo : currTodo)
         onSaveTask(task)
     }
-    // console.log('checklist:', checklist)
     return (
         <section className="checklist-preview">
             {!titleFocus && <div className="checklist-title flex align-center justify-between"

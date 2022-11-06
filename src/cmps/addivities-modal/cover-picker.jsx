@@ -31,7 +31,6 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
         }
     }, [])
 
-    console.log('cardFocus:', cardFocus)
 
     const onRemoveCover = () => {
         task.coverClr = ''
@@ -44,7 +43,6 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
     }
 
     const onPickColor = (color) => {
-        // console.log('color:', color)
         task.cover = null
         task.coverClr = color
         if (!cardFocus) {
@@ -58,8 +56,7 @@ export const CoverPickerModal = ({ task, onSaveTask, toggleModal }) => {
         })
         onSaveTask(task, '')
         setClrFocus(color)
-        console.log('color:', color)
-        console.log('clrFocus:', clrFocus)
+
     }
 
     const onMakeCover = (cover) => {
@@ -180,7 +177,6 @@ const Photos = ({ task, onMakeUnsplashCover }) => {
         if (!searchBy) searchBy = 'cover'
         let photos = await photoService.getPhotos(searchBy)
         photos.splice(0, 4)
-        // console.log('photos:', photos)
         setPhotos(photos)
     }
 

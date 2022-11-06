@@ -22,7 +22,6 @@ async function uploadImg(ev) {
     })
 
     const resData = await res.json()
-    console.log('resData:', resData)
     return {
       url: resData.url,
       name: resData.original_filename,
@@ -50,7 +49,6 @@ async function uploadImgFromDrag(file) {
     })
 
     const resData = await res.json()
-    console.log('file[0].type:', file[0].type)
     return {
       url: resData.url,
       name: resData.original_filename,
@@ -69,7 +67,6 @@ function imgFromLink(img) {
   image.onload = () => {
   }
   image.src = img
-  // console.log('image:', image.width)
   return {
     url: image.src,
     height: image.height,

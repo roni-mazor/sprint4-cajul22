@@ -2,16 +2,10 @@ import { VscChromeClose } from 'react-icons/vsc'
 
 
 export const TodoModal = ({ todo, onRemoveTodo, toggleModal, onTodoToCard }) => {
-    // console.log('todo:', todo)
-    //     const onRemoveTodo = (ev) => {
-    //         removeTodo(todo.id)
-    //         toggleModal(ev, 'todo')
-    //         console.log('ev:', ev)
-    //     }
+
     const onStopPropagation = (ev) => {
         ev.stopPropagation()
     }
-    console.log('todo:', todo)
     return (
         <section className="add-features-modal"
             onClick={onStopPropagation}>

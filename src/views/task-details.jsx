@@ -67,15 +67,12 @@ export const TaskDetails = () => {
     }
 
     const onDrop = useCallback(async acceptedFiles => {
-        // console.log('acceptedFiles[0]:', acceptedFiles[0])
         const group = board.groups.find(group => group.id === groupId)
         let currTask = group.tasks.find(task => task.id === taskId)
         const img = await uploadService.uploadImgFromDrag(acceptedFiles)
-        console.log('img:', img)
         if (!currTask.attachments) task.attachments = []
         // if (!task.background) task.background = 'header'
         const newAttachment = boardService.createNewAttachment(img.url, img.height, img.width, img.name, img.type)
-        // console.log('task:', task)
         currTask.attachments.unshift(newAttachment)
         onSaveTask(currTask, `attached ${img.name} to`, currTask.title, null, newAttachment)
     }, [])
@@ -92,18 +89,15 @@ export const TaskDetails = () => {
     const toggleAdditivesModal = (ev, type) => {
         const posDetails = ev.target.getBoundingClientRect()
         const windowWidth = window.innerWidth
-        console.log({ type, posDetails, windowWidth })
         if (type === isAdditivesModalOpen?.type) setIsAdditivesModalOpen(null)
         else setIsAdditivesModalOpen({ type, posDetails, windowWidth })
     }
 
     const isUserJoined = () => {
-        // console.log('user:', user)
 
         if (!task) return
         const { members } = task
         const member = members.find(id => id === user?._id)
-        // console.log('user_id:', user._id)        
         if (!member) return true
     }
 
