@@ -15,7 +15,6 @@ Manage projects and tasks using a kanban board A board contains lists and tasks.
 * Search and filter cards based on lables, members and free text
 * Archive tasks and view the archived tasks
 * Change the background of your board with the Unsplash Photo API
-* View project analytics in the dashboard
 
 ## Application Demo
 * [Jello](https://jello-l37q.onrender.com/board/63355b9b857a720016c70bb7)
